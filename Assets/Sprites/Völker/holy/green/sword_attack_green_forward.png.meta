@@ -1,0 +1,383 @@
+fileFormatVersion: 2
+guid: 54b46561065cf8d499320166cdb25e25
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sword_attack_green_forward_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 16
+        width: 20
+        height: 47
+      alignment: 9
+      pivot: {x: 0.6518936, y: 0.052940734}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b5335536a7e044b8a11e3c2d63fbe4
+      internalID: -151911427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 14
+        width: 34
+        height: 46
+      alignment: 9
+      pivot: {x: 0.7944991, y: 0.09701003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23608a3b441078a4a8c00a26bda1b8ea
+      internalID: 1720673559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_6
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 14
+        width: 34
+        height: 35
+      alignment: 9
+      pivot: {x: 0.7960017, y: 0.12486289}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222c096335a7ef346add5334c6f013db
+      internalID: -1207646277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 16
+        width: 22
+        height: 48
+      alignment: 9
+      pivot: {x: 0.68272746, y: 0.052083373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52659a4a7286dc34f8a2993c4dc41747
+      internalID: -563102119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_8
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 16
+        width: 20
+        height: 47
+      alignment: 9
+      pivot: {x: 0.6490005, y: 0.051489405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed85af8b51e5fb449f8e8acf037e391
+      internalID: -662976534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_9
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 16
+        width: 17
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5882362, y: 0.056818224}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed165a109082d140bdf8227c96f1a30
+      internalID: 1245162691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_10
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 16
+        width: 18
+        height: 45
+      alignment: 9
+      pivot: {x: 0.61111283, y: 0.056000054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e797f7d3965ebb04fa1bc3c557613a5c
+      internalID: 1099545737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_11
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 14
+        width: 34
+        height: 31
+      alignment: 9
+      pivot: {x: 0.79360694, y: 0.14333011}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32da6faa2791bbc4c96b379dbfbc03c2
+      internalID: -382991950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_12
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 14
+        width: 30
+        height: 28
+      alignment: 9
+      pivot: {x: 0.76846516, y: 0.15916054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a0f9b6e4ee78741a09dca2e55d7cb6
+      internalID: -273712975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_14
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 15
+        width: 29
+        height: 27
+      alignment: 9
+      pivot: {x: 0.75862277, y: 0.13111122}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219d952c0e340d9459671af4644e887c
+      internalID: -1289885715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sword_attack_green_forward_16
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 15
+        width: 29
+        height: 27
+      alignment: 9
+      pivot: {x: 0.75851756, y: 0.12715636}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558919c8792e2734dbf23b14ed0dce15
+      internalID: 566773193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sword_attack_green_forward_0: -151911427
+      sword_attack_green_forward_1: 893008936
+      sword_attack_green_forward_10: 1099545737
+      sword_attack_green_forward_11: -382991950
+      sword_attack_green_forward_12: -273712975
+      sword_attack_green_forward_13: 36896296
+      sword_attack_green_forward_14: -1289885715
+      sword_attack_green_forward_15: -763489400
+      sword_attack_green_forward_16: 566773193
+      sword_attack_green_forward_2: 154539623
+      sword_attack_green_forward_3: 1456520242
+      sword_attack_green_forward_4: -298318885
+      sword_attack_green_forward_5: 1720673559
+      sword_attack_green_forward_6: -1207646277
+      sword_attack_green_forward_7: -563102119
+      sword_attack_green_forward_8: -662976534
+      sword_attack_green_forward_9: 1245162691
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

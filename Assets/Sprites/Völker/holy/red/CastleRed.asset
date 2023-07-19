@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: CastleRed
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -808980666, guid: e6c0cb1360f069b41958c50aa81a7ab5, type: 3}
+  - {fileID: 2107846086, guid: e6c0cb1360f069b41958c50aa81a7ab5, type: 3}
+  - {fileID: -2032109407, guid: e6c0cb1360f069b41958c50aa81a7ab5, type: 3}
+  - {fileID: 1174071916, guid: e6c0cb1360f069b41958c50aa81a7ab5, type: 3}
+  - {fileID: 205687859, guid: e6c0cb1360f069b41958c50aa81a7ab5, type: 3}
+  m_MinSpeed: 9
+  m_MaxSpeed: 11
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: QuarryRed
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -421154828, guid: be51b382092e9ae4497178c9c4b35fb6, type: 3}
+  - {fileID: -1665093789, guid: be51b382092e9ae4497178c9c4b35fb6, type: 3}
+  - {fileID: 2056432033, guid: be51b382092e9ae4497178c9c4b35fb6, type: 3}
+  - {fileID: 1062139635, guid: be51b382092e9ae4497178c9c4b35fb6, type: 3}
+  - {fileID: 92703826, guid: be51b382092e9ae4497178c9c4b35fb6, type: 3}
+  m_MinSpeed: 6
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
