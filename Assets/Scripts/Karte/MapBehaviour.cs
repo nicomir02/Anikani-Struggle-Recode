@@ -36,14 +36,6 @@ public class MapBehaviour : NetworkBehaviour
         createTerrain();
     }
 
-    int zaehler = 0;
-
-    void Update() {
-        if(zaehler%600 == 0) createTerrain();
-
-        zaehler++;
-    }
-
     void createTerrain() {
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
