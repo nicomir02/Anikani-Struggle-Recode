@@ -33,8 +33,16 @@ public class MapBehaviour : NetworkBehaviour
 
 
     void Start() {
-        createTerrain();
+        //createTerrain();
     }
+
+    /*
+    void createTerrain(); -> Erstellt ein neues Terrain
+    void createBiom(); -> Erstellt Biom, nur in createTerrain() benutzen
+    bool insideField(Vector3Int vec); -> Schaut ob Vektor im Feld ist
+    
+
+    */
 
     void createTerrain() {
         for(int x=0; x<width; x++) {
