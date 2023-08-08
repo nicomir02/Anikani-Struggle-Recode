@@ -85,8 +85,8 @@ public class OnlineMenu : MonoBehaviour
     }
 
     private void OnJoinRequest(GameLobbyJoinRequested_t callback) {
-        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
         manager.changeTransport(steam);
+        SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
         Debug.Log("Request To Join Lobby");
     }
 
@@ -96,13 +96,14 @@ public class OnlineMenu : MonoBehaviour
         //LobbyNameText.gameObject.SetActive(true);
         //LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name");
 
-        if(NetworkServer.active) {return;} 
+        connected();
 
+        if(NetworkServer.active) {return;} 
         manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
         
         manager.StartClient();
 
-        connected();
+        
     }
 
 

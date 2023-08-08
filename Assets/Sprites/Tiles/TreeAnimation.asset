@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: TreeAnimation
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 2014829168, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: -1937290209, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 1019506768, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: -1932196004, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: -140678251, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: -220837867, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 1181452506, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 2114904592, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: -1572428248, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 1553939461, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 140320675, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
-  - {fileID: 1494641232, guid: 8a9c7ea2fc3addb45b172fd96fbb2aa0, type: 3}
+  - {fileID: 336715600, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 750777999, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 1571324151, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 179054245, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 288187029, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 589539983, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 1381407098, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: 1616771123, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: -1649508730, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: -110021198, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: -201050118, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
+  - {fileID: -1483617002, guid: 8be14e2888ea0df46b94d2855b8fa148, type: 3}
   m_MinSpeed: 5
   m_MaxSpeed: 10
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
+  m_TileAnimationFlags: 0
