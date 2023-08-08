@@ -44,7 +44,7 @@ public class MapBehaviour : NetworkBehaviour
 
     */
 
-    void createTerrain() {
+    public void createTerrain() {
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 for(int z=0;z<=maxZ+2;z++) {
