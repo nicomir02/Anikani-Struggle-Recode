@@ -9,7 +9,7 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private NetworkManagerAnikani networkManager;
     [SerializeField] private TMP_Text[] playerlist;
 
-    public readonly SyncList<string> playernames = new SyncList<string>();
+    public readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
 
     [SerializeField] private Button readyBtn;
 
@@ -17,14 +17,26 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private GameObject Ingame;
     [SerializeField] private MapBehaviour mapBehaviour;
 
-    void Start() {
+    //Spieler muss auf Server registriert werden, OnStartClient und ähnliches warf Fehler aus
+    private bool registered = false;
+
+    void Update() {
         readyBtn.onClick.AddListener(ready);
+        if(NetworkServer.active && !registered) {
+            playerConnect(networkManager.GetComponent<SaveName>().name);
+            registered = true;
+        }
     }
 
-    void ready() {
-        //Neuer Code später
-        Ingame.SetActive(true);
-        mapBehaviour.createTerrain();
-        Lobby.SetActive(false);
+    [Server]
+    void playerConnect(string playername) {
+        playernames.Add(playername, false);
     }
+
+
+    void ready() {
+        PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+        if(pm.playerColor == -1) return;
+    }
+
 }

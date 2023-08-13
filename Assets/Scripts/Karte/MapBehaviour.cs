@@ -91,8 +91,6 @@ public class MapBehaviour : NetworkBehaviour
         }else {
             allVectors.Add(vec, biom.id);
         }
-        
-        Debug.Log(z);
 
         if(z > 0) {
             for(int j=0; j<z; j++) {
