@@ -24,7 +24,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     void Start() {
-        if(isLocalPlayer) name = GameObject.Find("NetworkManager").GetComponent<SaveName>().name;
+        //if(isLocalPlayer) name = GameObject.Find("NetworkManager").GetComponent<SaveName>().name;
     }
 
 }

@@ -16,23 +16,22 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private GameObject Lobby;
     [SerializeField] private GameObject Ingame;
     [SerializeField] private MapBehaviour mapBehaviour;
-
-    //Spieler muss auf Server registriert werden, OnStartClient und ähnliches warf Fehler aus
-    private bool registered = false;
-
-    void Update() {
-        readyBtn.onClick.AddListener(ready);
-        if(NetworkServer.active && !registered) {
-            playerConnect(networkManager.GetComponent<SaveName>().name);
-            registered = true;
-        }
-    }
-
-    [Server]
-    void playerConnect(string playername) {
+   
+    [Command(requiresAuthority=false)]
+    public void serverPlayerConnect(string playername) {
         playernames.Add(playername, false);
     }
 
+    
+    /*[ClientRpc]
+    void syncDictionary() {
+        int i=0;
+        foreach(KeyValuePair<string, bool>kvp in playernames) {
+            playerlist[i].text = kvp.Key;
+            if(kvp.Value == true) playerlist[i].text += " - ready";
+            i++;
+        }
+    }*/ 
 
     void ready() {
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();

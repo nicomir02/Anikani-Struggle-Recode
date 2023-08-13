@@ -20,9 +20,7 @@ public class OnlineMenu : MonoBehaviour
 
     [SerializeField] private Button connectBtn;
     [SerializeField] private GameObject connect;
-
-    [SerializeField] private GameObject onlineMenu;
-    [SerializeField] private GameObject lobbyMenu;
+    
     [SerializeField] private GameObject lobbyManager;
 
     [SerializeField] private TMP_InputField chooseName;
@@ -43,13 +41,6 @@ public class OnlineMenu : MonoBehaviour
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-    }
-
-    void connected() {
-        Debug.Log("Connected to Server");
-        onlineMenu.SetActive(false);
-        lobbyMenu.SetActive(true);
-        lobbyManager.SetActive(true);
     }
 
     void connectServer() {
@@ -96,13 +87,11 @@ public class OnlineMenu : MonoBehaviour
         //LobbyNameText.gameObject.SetActive(true);
         //LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name");
 
-        connected();
-
         if(NetworkServer.active) {return;} 
         manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
         
         manager.StartClient();
-
+        
         
     }
 
@@ -117,7 +106,7 @@ public class OnlineMenu : MonoBehaviour
                 manager.networkAddress = "localhost";
             }
             manager.StartClient();
-            connected();
+            
         }else {
             chooseName.text = "Name is not allowed";
         }
@@ -127,7 +116,6 @@ public class OnlineMenu : MonoBehaviour
     void kcpHost() {
         if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
             manager.StartHost();
-            connected();
         }else {
             chooseName.text = "Name is not allowed";
         }

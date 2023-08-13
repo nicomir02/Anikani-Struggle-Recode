@@ -7,6 +7,10 @@ using Steamworks;
 
 public class NetworkManagerAnikani : NetworkManager
 {
+    [SerializeField] private GameObject lobbyMenu;
+    [SerializeField] private LobbyManager lobbyManager;
+    [SerializeField] private GameObject onlineMenu;
+
     //Stop Server Methode
     public override void OnStopServer()
     {
@@ -19,12 +23,6 @@ public class NetworkManagerAnikani : NetworkManager
     {
         Debug.Log("Server started!");
         base.OnStartServer();
-    }
-
-    //Start von Client
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
     }
 
     public override void OnStopClient()
@@ -54,8 +52,13 @@ public class NetworkManagerAnikani : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player);
     }
 
-    //Spieler disconnected
-    public override void OnServerDisconnect(NetworkConnectionToClient conn) {
-        base.OnServerDisconnect(conn);
+    public override void OnClientConnect() {
+        onlineMenu.SetActive(false);
+        lobbyMenu.SetActive(true);
+
+        base.OnClientConnect();
+        Debug.Log("Connected to Server");
+
+        lobbyManager.serverPlayerConnect(GetComponent<SaveName>().name);
     }
 }
