@@ -13,7 +13,7 @@ public class MapBehaviour : NetworkBehaviour
     //Einstellungen:
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Biom[] biome;
-    [SerializeField] private Biom[] biomInBiom;
+    //[SerializeField] private Biom[] biomInBiom;
 
     [SerializeField] public int width = 50;
     [SerializeField] public int height = 50;
@@ -25,16 +25,14 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] private float sizeMultiplier = 2;
 
     //Liste mit allen Vectoren
-    private readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
+    public readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
 
 
     private List<Vector3Int> tempVecList = new List<Vector3Int>();
 
+    bool serverGenerated = false;
+    bool clientGenerated = false;
 
-
-    void Start() {
-        //createTerrain();
-    }
 
     /*
     void createTerrain(); -> Erstellt ein neues Terrain
@@ -44,7 +42,19 @@ public class MapBehaviour : NetworkBehaviour
 
     */
 
+    void Update() {
+        if(serverGenerated && !clientGenerated) {
+            startRecreateTerrain();
+            clientGenerated = true;
+        } 
+    }
+
+
+    [Command(requiresAuthority=false)]
     public void createTerrain() {
+
+        if(allVectors.Count > 0) return;
+        Debug.Log("Terrain wird erstellt");
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 for(int z=0;z<=maxZ+2;z++) {
@@ -65,10 +75,40 @@ public class MapBehaviour : NetworkBehaviour
         while(tempVecList.Count > 0) {
             createBiom();
         }
-        
-
+        Debug.Log("Terrain wurde erstellt");
+        serverGenerated = true;
     }
 
+    [Command(requiresAuthority=false)]
+    public void startRecreateTerrain() {
+        generateTerrain();
+    }
+
+    [ClientRpc]
+    void generateTerrain() {
+        Debug.Log("Terrain wird generiert");
+        foreach(KeyValuePair<Vector3Int, int> kvp in allVectors) {
+            Biom b = null;
+            Vector3Int vec = kvp.Key;
+            foreach(Biom biom in biome) {
+                if(biom.id == kvp.Value) {
+                    b = biom;
+                    break;
+                }
+            }
+
+            b.getBlock().setTile(tilemap, vec);
+            int z = vec.z;
+            if(z > 0) {
+                for(int j=0; j<z; j++) {
+                    vec.z = j;
+                    tilemap.SetTile(vec, unterErde);
+                }
+            }
+        }
+    }
+
+    [Command(requiresAuthority=false)]
     void createBiom() {
         Vector3Int vec = tempVecList[rand.Next(tempVecList.Count)];
         tempVecList.Remove(vec);

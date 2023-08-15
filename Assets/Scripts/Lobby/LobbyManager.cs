@@ -13,17 +13,101 @@ public class LobbyManager : NetworkBehaviour {
 
     [SerializeField] private Button readyBtn;
 
+    [SerializeField] private Button blueBtn;
+    [SerializeField] private Button redBtn;
+    [SerializeField] private Button greenBtn;
+    [SerializeField] private Button purpleBtn;
+
     [SerializeField] private GameObject Lobby;
     [SerializeField] private GameObject Ingame;
     [SerializeField] private MapBehaviour mapBehaviour;
+
+    bool registered = false;
+
+    void Start() {
+        Ingame.SetActive(false);
+        blueBtn.onClick.AddListener(() => OnButtonClicked(blueBtn));
+        redBtn.onClick.AddListener(() => OnButtonClicked(redBtn));
+        greenBtn.onClick.AddListener(() => OnButtonClicked(greenBtn));
+        purpleBtn.onClick.AddListener(() => OnButtonClicked(purpleBtn));
+
+        readyBtn.onClick.AddListener(ready);
+
+        
+    }
+
+    public void OnButtonClicked(Button buttonClicked) {
+        if(buttonClicked == blueBtn || buttonClicked == redBtn || buttonClicked == greenBtn || buttonClicked == purpleBtn) {
+
+            TMP_Text buttonTextComponent = buttonClicked.transform.GetChild(0).GetComponent<TMP_Text>();
+            PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+            if(!buttonTextComponent.text.Contains("-")) {
+                if(pm.playerColor != -1) {
+                    cmdUpdateButtonText(pm.playerColor, "");
+                }
+
+                if(buttonClicked == blueBtn) {
+                    pm.playerColor = 0;
+                    cmdUpdateButtonText(0, buttonTextComponent.text + " - " + pm.name);
+                }else if(buttonClicked == redBtn) {
+                    pm.playerColor = 1;
+                    cmdUpdateButtonText(1, buttonTextComponent.text + " - " + pm.name);
+                }else if(buttonClicked == greenBtn) {
+                    pm.playerColor = 2;
+                    cmdUpdateButtonText(2, buttonTextComponent.text + " - " + pm.name);
+                }else if(buttonClicked == purpleBtn) {
+                    pm.playerColor = 3;
+                    cmdUpdateButtonText(3, buttonTextComponent.text + " - " + pm.name);
+                }
+            }
+        }
+    }
+
+    [Command(requiresAuthority=false)]
+    void cmdUpdateButtonText(int btn, string text) {
+        rpcUpdateButtonText(btn, text);
+    }
+
+    [ClientRpc]
+    void rpcUpdateButtonText(int btn, string text) {
+        if(text != "") {
+            if(btn == 0) {
+                blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+            }else if(btn == 1) {
+                redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+            }else if(btn == 2) {
+                greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+            }else if(btn == 3) {
+                purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+            }
+        }else {
+            if(btn == 0) {
+                blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+            }else if(btn == 1) {
+                redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+            }else if(btn == 2) {
+                greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+            }else if(btn == 3) {
+                purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+            }
+        }
+    }
+
+    void Update() {
+        if(!registered && NetworkClient.ready) {
+            serverPlayerConnect(networkManager.GetComponent<SaveName>().name);
+            registered = true;
+        }
+    }
    
     [Command(requiresAuthority=false)]
     public void serverPlayerConnect(string playername) {
         playernames.Add(playername, false);
+        syncDictionary();
     }
 
     
-    /*[ClientRpc]
+    [ClientRpc]
     void syncDictionary() {
         int i=0;
         foreach(KeyValuePair<string, bool>kvp in playernames) {
@@ -31,11 +115,35 @@ public class LobbyManager : NetworkBehaviour {
             if(kvp.Value == true) playerlist[i].text += " - ready";
             i++;
         }
-    }*/ 
+    }
+ 
 
     void ready() {
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if(pm.playerColor == -1) return;
+        readyPlayer(pm.name);
+    }
+
+    [Command(requiresAuthority=false)]
+    void readyPlayer(string playername) {
+        playernames[playername] = true;
+        syncDictionary();
+        foreach(KeyValuePair<string, bool> kvp in playernames) {
+            if(kvp.Value == false) return;
+        }
+        
+        startGame();
+        /*Ingame.SetActive(true);
+        mapBehaviour.gameObject.SetActive(true);*/
+        Lobby.SetActive(false);
+        Ingame.SetActive(true);
+        mapBehaviour.createTerrain();
+    }
+
+    [ClientRpc]
+    void startGame() {
+        Lobby.SetActive(false);
+        Ingame.SetActive(true);
     }
 
 }

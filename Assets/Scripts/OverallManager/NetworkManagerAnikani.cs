@@ -7,9 +7,7 @@ using Steamworks;
 
 public class NetworkManagerAnikani : NetworkManager
 {
-    [SerializeField] private GameObject lobbyMenu;
-    [SerializeField] private LobbyManager lobbyManager;
-    [SerializeField] private GameObject onlineMenu;
+    
 
     //Stop Server Methode
     public override void OnStopServer()
@@ -53,12 +51,7 @@ public class NetworkManagerAnikani : NetworkManager
     }
 
     public override void OnClientConnect() {
-        onlineMenu.SetActive(false);
-        lobbyMenu.SetActive(true);
-
         base.OnClientConnect();
         Debug.Log("Connected to Server");
-
-        lobbyManager.serverPlayerConnect(GetComponent<SaveName>().name);
     }
 }

@@ -17,6 +17,7 @@ public class PlayerManager : NetworkBehaviour
     2 = Grün
     3 = Lila
     */
+
     private int color = -1;
     public int playerColor {
         get{return color;}
@@ -24,7 +25,20 @@ public class PlayerManager : NetworkBehaviour
     }
 
     void Start() {
-        //if(isLocalPlayer) name = GameObject.Find("NetworkManager").GetComponent<SaveName>().name;
+        if(isLocalPlayer) {
+            changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveName>().name);
+        }
+    }
+
+    [Command(requiresAuthority=false)]
+    public void changePlayername(string pname) {
+        name = pname;
+        rpcChangeName(pname);
+    }
+
+    [ClientRpc]
+    public void rpcChangeName(string pname) {
+        name = pname;
     }
 
 }

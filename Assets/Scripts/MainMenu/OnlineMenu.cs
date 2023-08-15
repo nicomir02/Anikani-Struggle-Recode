@@ -22,6 +22,8 @@ public class OnlineMenu : MonoBehaviour
     [SerializeField] private GameObject connect;
     
     [SerializeField] private GameObject lobbyManager;
+    [SerializeField] private GameObject lobbyMenu;
+    [SerializeField] private GameObject onlineMenu;
 
     [SerializeField] private TMP_InputField chooseName;
     [SerializeField] private TMP_InputField ipAdress;
@@ -95,6 +97,10 @@ public class OnlineMenu : MonoBehaviour
         
     }
 
+    void connected() {
+        onlineMenu.SetActive(false);
+    }
+
 
 
 
@@ -105,6 +111,7 @@ public class OnlineMenu : MonoBehaviour
             }else {
                 manager.networkAddress = "localhost";
             }
+            connected();
             manager.StartClient();
             
         }else {
@@ -115,6 +122,7 @@ public class OnlineMenu : MonoBehaviour
 
     void kcpHost() {
         if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
+            connected();
             manager.StartHost();
         }else {
             chooseName.text = "Name is not allowed";
