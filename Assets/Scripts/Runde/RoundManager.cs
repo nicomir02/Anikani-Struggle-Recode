@@ -61,9 +61,9 @@ public class RoundManager : NetworkBehaviour
 
     [Command(requiresAuthority=false)]
     void CMDnextRound() {
-        round++;
         if(++curTurn >= list.Count) {
             curTurn=0;
+            round++;
         }
         activePlayer.text = list[curTurn];
         roundText.text = round + "";

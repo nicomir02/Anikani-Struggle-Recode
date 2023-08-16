@@ -25,7 +25,7 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] private float sizeMultiplier = 2;
 
     //Liste mit allen Vectoren
-    public readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
+    private readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
 
 
     private List<Vector3Int> tempVecList = new List<Vector3Int>();
@@ -35,6 +35,14 @@ public class MapBehaviour : NetworkBehaviour
     void createBiom(); -> Erstellt Biom, nur in createTerrain() benutzen
     bool insideField(Vector3Int vec); -> Schaut ob Vektor im Feld ist
     */
+
+    public int getZ(Vector3Int vec) {
+        for(int z=0; z<=maxZ; z++) {
+            vec.z = z;
+            if(allVectors.ContainsKey(vec)) return z;
+        }
+        return -1;
+    }
 
     public void startGame() {
         createTerrain();
@@ -159,7 +167,7 @@ public class MapBehaviour : NetworkBehaviour
         }
     }
 
-    bool insideField(Vector3Int vec) {
+    public bool insideField(Vector3Int vec) {
         return vec.x >= 0 && vec.x <= width && vec.y >= 0 && vec.y <= height;
     }
 
