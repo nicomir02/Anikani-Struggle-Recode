@@ -42,9 +42,9 @@ public class MapBehaviour : NetworkBehaviour
 
     [Command(requiresAuthority=false)]
     public void createTerrain() {
-        Debug.Log("Terrain wird geprüft");
+        Debug.Log("[MapBehaviour] Terrain wird geprüft");
         if(allVectors.Count > 0) generateTerrain();
-        Debug.Log("Terrain wird erstellt!");
+        Debug.Log("[MapBehaviour] Terrain wird erstellt!");
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 for(int z=0;z<=maxZ+2;z++) {
@@ -65,7 +65,7 @@ public class MapBehaviour : NetworkBehaviour
         while(tempVecList.Count > 0) {
             createBiom();
         }
-        Debug.Log("Terrain wurde erstellt!");
+        Debug.Log("[MapBehaviour] Terrain wurde erstellt!");
 
         generateTerrain();
         
@@ -137,7 +137,7 @@ public class MapBehaviour : NetworkBehaviour
 
     [ClientRpc]
     void generateTerrain() {
-        Debug.Log("Terrain wird generiert");
+        Debug.Log("[MapBehaviour] Terrain wird generiert");
         foreach(KeyValuePair<Vector3Int, int> kvp in allVectors) {
             Biom b = null;
             Vector3Int vec = kvp.Key;

@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  probability: 1.82
-  size: 0.76
+  probability: 0.65
+  size: 0.29
   minheight: 0
   maxheight: 0
   mainBlock: {fileID: 6607858569274282558, guid: 788570de08beabd4ea2666b2e9cc927e, type: 3}

@@ -9,7 +9,7 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private NetworkManagerAnikani networkManager;
     [SerializeField] private TMP_Text[] playerlist;
 
-    public readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
+    private readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
 
     [SerializeField] private Button readyBtn;
 
@@ -22,6 +22,7 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private GameObject Ingame;
     [SerializeField] private GameObject onlineMenu;
     [SerializeField] private MapBehaviour mapBehaviour;
+    [SerializeField] private RoundManager roundManager;
 
     bool registered = false;
 
@@ -127,13 +128,16 @@ public class LobbyManager : NetworkBehaviour {
     void readyPlayer(string playername) {
         playernames[playername] = true;
         syncDictionary();
+        List<string> saveDictionary = new List<string>();
         foreach(KeyValuePair<string, bool> kvp in playernames) {
             if(kvp.Value == false) return;
+            saveDictionary.Add(kvp.Key);
         }
         
 
         startGame();
         mapBehaviour.startGame();
+        roundManager.startGame(saveDictionary);
     }
 
     [ClientRpc]

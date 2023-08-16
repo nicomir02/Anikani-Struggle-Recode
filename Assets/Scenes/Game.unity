@@ -1442,6 +1442,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1537992388}
+  - {fileID: 2014179072}
   m_Father: {fileID: 1979433505}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5402,6 +5403,7 @@ MonoBehaviour:
   Ingame: {fileID: 168238275}
   onlineMenu: {fileID: 477703262}
   mapBehaviour: {fileID: 1537992389}
+  roundManager: {fileID: 2014179073}
 --- !u!1 &1537992387
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,7 +5459,7 @@ MonoBehaviour:
   height: 75
   maxZ: 3
   unterErde: {fileID: 11400000, guid: 716e9da89fffeaa40acf7dd8f6fd2a5f, type: 2}
-  sizeMultiplier: 20
+  sizeMultiplier: 100
 --- !u!1 &1559935368
 GameObject:
   m_ObjectHideFlags: 0
@@ -7737,6 +7739,56 @@ Transform:
   m_Father: {fileID: 1979433505}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2014179071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014179072}
+  - component: {fileID: 2014179073}
+  m_Layer: 0
+  m_Name: RoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2014179072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014179071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 199001667}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014179073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014179071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b4ee3e96194f649bee91c7e734d3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  activePlayer: {fileID: 1833630903}
+  roundText: {fileID: 1512819291}
+  nextRoundBtn: {fileID: 130448241}
 --- !u!1 &2046775435
 GameObject:
   m_ObjectHideFlags: 0

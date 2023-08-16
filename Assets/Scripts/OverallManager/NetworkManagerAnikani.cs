@@ -26,7 +26,6 @@ public class NetworkManagerAnikani : NetworkManager
     public override void OnStopClient()
     {
         base.OnStopClient();
-        SceneManager.LoadScene("Menü");
         Destroy(gameObject);
         NetworkClient.Disconnect();
     }
@@ -34,7 +33,6 @@ public class NetworkManagerAnikani : NetworkManager
     public override void OnStopHost()
     {
         base.OnStopHost();
-        SceneManager.LoadScene("Menü");
         Destroy(gameObject);
         NetworkClient.Disconnect();
     }
