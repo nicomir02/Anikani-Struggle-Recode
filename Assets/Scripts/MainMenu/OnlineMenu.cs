@@ -98,7 +98,7 @@ public class OnlineMenu : MonoBehaviour
     }
 
     void connected() {
-        onlineMenu.SetActive(false);
+        //onlineMenu.SetActive(false);
     }
 
 

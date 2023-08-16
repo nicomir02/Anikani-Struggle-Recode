@@ -20,6 +20,7 @@ public class LobbyManager : NetworkBehaviour {
 
     [SerializeField] private GameObject Lobby;
     [SerializeField] private GameObject Ingame;
+    [SerializeField] private GameObject onlineMenu;
     [SerializeField] private MapBehaviour mapBehaviour;
 
     bool registered = false;
@@ -32,8 +33,6 @@ public class LobbyManager : NetworkBehaviour {
         purpleBtn.onClick.AddListener(() => OnButtonClicked(purpleBtn));
 
         readyBtn.onClick.AddListener(ready);
-
-        
     }
 
     public void OnButtonClicked(Button buttonClicked) {
@@ -132,18 +131,16 @@ public class LobbyManager : NetworkBehaviour {
             if(kvp.Value == false) return;
         }
         
+
         startGame();
-        /*Ingame.SetActive(true);
-        mapBehaviour.gameObject.SetActive(true);*/
-        Lobby.SetActive(false);
-        Ingame.SetActive(true);
-        mapBehaviour.createTerrain();
+        mapBehaviour.startGame();
     }
 
     [ClientRpc]
     void startGame() {
         Lobby.SetActive(false);
         Ingame.SetActive(true);
+        onlineMenu.SetActive(false);
     }
 
 }

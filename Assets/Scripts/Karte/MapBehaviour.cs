@@ -30,31 +30,21 @@ public class MapBehaviour : NetworkBehaviour
 
     private List<Vector3Int> tempVecList = new List<Vector3Int>();
 
-    bool serverGenerated = false;
-    bool clientGenerated = false;
-
-
     /*
     void createTerrain(); -> Erstellt ein neues Terrain
     void createBiom(); -> Erstellt Biom, nur in createTerrain() benutzen
     bool insideField(Vector3Int vec); -> Schaut ob Vektor im Feld ist
-    
-
     */
 
-    void Update() {
-        if(serverGenerated && !clientGenerated) {
-            startRecreateTerrain();
-            clientGenerated = true;
-        } 
+    public void startGame() {
+        createTerrain();
     }
-
 
     [Command(requiresAuthority=false)]
     public void createTerrain() {
-
-        if(allVectors.Count > 0) return;
-        Debug.Log("Terrain wird erstellt");
+        Debug.Log("Terrain wird geprüft");
+        if(allVectors.Count > 0) generateTerrain();
+        Debug.Log("Terrain wird erstellt!");
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 for(int z=0;z<=maxZ+2;z++) {
@@ -75,13 +65,74 @@ public class MapBehaviour : NetworkBehaviour
         while(tempVecList.Count > 0) {
             createBiom();
         }
-        Debug.Log("Terrain wurde erstellt");
-        serverGenerated = true;
+        Debug.Log("Terrain wurde erstellt!");
+
+        generateTerrain();
+        
     }
 
     [Command(requiresAuthority=false)]
-    public void startRecreateTerrain() {
-        generateTerrain();
+    void createBiom() {
+        Vector3Int vec = tempVecList[rand.Next(tempVecList.Count)];
+        tempVecList.Remove(vec);
+
+        (Biom, int) biomZTupel = getNextBiom(vec);
+
+        Biom biom = biomZTupel.Item1;
+    	int z = biomZTupel.Item2;
+        if(z == -1) {
+            z = rand.Next(Math.Min(biom.minheight, maxZ+1), Math.Min(biom.maxheight+1, maxZ+1));
+        }
+        vec.z = z;
+        //biom.getBlock().setTile(tilemap, vec);
+
+        List<Vector3Int> nachbarn = new List<Vector3Int>();
+        
+
+        if(allVectors.ContainsKey(vec)) {
+            allVectors[vec] = biom.id;
+        }else {
+            allVectors.Add(vec, biom.id);
+        }
+
+        if(z > 0) {
+            for(int j=0; j<z; j++) {
+                vec.z = j;
+                //tilemap.SetTile(vec, unterErde);
+            }
+        }
+
+        int i = 0;
+        while(i<biom.size*sizeMultiplier) {
+            Vector3Int[] nachbarliste = getNachbarn(vec);
+            for(int j=0; j<4; j++) {
+                if(insideField(nachbarliste[j]) && tempVecList.Contains(nachbarliste[j])) nachbarn.Add(nachbarliste[j]);
+            }
+
+            if(nachbarn.Count > 0) {
+                vec = nachbarn[rand.Next(0, nachbarn.Count)];
+                nachbarn.Remove(vec);
+                tempVecList.Remove(vec);
+                vec.z = z;
+                //biom.getBlock().setTile(tilemap, vec);
+                if(allVectors.ContainsKey(vec)) {
+                    allVectors[vec] = biom.id;
+                }else {
+                    allVectors.Add(vec, biom.id);
+                }
+
+                if(z > 0) {
+                    for(int j=0; j<z; j++) {
+                        vec.z = j;
+                        //tilemap.SetTile(vec, unterErde);
+                    }
+                }
+
+                i++;
+            }else {
+                break;
+            }
+        }
     }
 
     [ClientRpc]
@@ -104,70 +155,6 @@ public class MapBehaviour : NetworkBehaviour
                     vec.z = j;
                     tilemap.SetTile(vec, unterErde);
                 }
-            }
-        }
-    }
-
-    [Command(requiresAuthority=false)]
-    void createBiom() {
-        Vector3Int vec = tempVecList[rand.Next(tempVecList.Count)];
-        tempVecList.Remove(vec);
-
-        (Biom, int) biomZTupel = getNextBiom(vec);
-
-        Biom biom = biomZTupel.Item1;
-    	int z = biomZTupel.Item2;
-        if(z == -1) {
-            z = rand.Next(Math.Min(biom.minheight, maxZ+1), Math.Min(biom.maxheight+1, maxZ+1));
-        }
-        vec.z = z;
-        biom.getBlock().setTile(tilemap, vec);
-
-        List<Vector3Int> nachbarn = new List<Vector3Int>();
-        
-
-        if(allVectors.ContainsKey(vec)) {
-            allVectors[vec] = biom.id;
-        }else {
-            allVectors.Add(vec, biom.id);
-        }
-
-        if(z > 0) {
-            for(int j=0; j<z; j++) {
-                vec.z = j;
-                tilemap.SetTile(vec, unterErde);
-            }
-        }
-
-        int i = 0;
-        while(i<biom.size*sizeMultiplier) {
-            Vector3Int[] nachbarliste = getNachbarn(vec);
-            for(int j=0; j<4; j++) {
-                if(insideField(nachbarliste[j]) && tempVecList.Contains(nachbarliste[j])) nachbarn.Add(nachbarliste[j]);
-            }
-
-            if(nachbarn.Count > 0) {
-                vec = nachbarn[rand.Next(0, nachbarn.Count)];
-                nachbarn.Remove(vec);
-                tempVecList.Remove(vec);
-                vec.z = z;
-                biom.getBlock().setTile(tilemap, vec);
-                if(allVectors.ContainsKey(vec)) {
-                    allVectors[vec] = biom.id;
-                }else {
-                    allVectors.Add(vec, biom.id);
-                }
-
-                if(z > 0) {
-                    for(int j=0; j<z; j++) {
-                        vec.z = j;
-                        tilemap.SetTile(vec, unterErde);
-                    }
-                }
-
-                i++;
-            }else {
-                break;
             }
         }
     }
@@ -241,3 +228,5 @@ public class MapBehaviour : NetworkBehaviour
         return (biome[0], -1);
     }
 }
+
+
