@@ -27,6 +27,8 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] private float sizeMultiplier = 2;
     [SerializeField, Range(0, 10)] private float ressourceMultiplier = 2;
 
+    [SerializeField] private GameObject loading;
+
     //Liste mit allen Vectoren
     private readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
     public readonly SyncDictionary<Vector3Int, int> allRessourcen = new SyncDictionary<Vector3Int, int>();
@@ -91,7 +93,6 @@ public class MapBehaviour : NetworkBehaviour
                 float ressFloat = 0;
                 foreach(Ressource ress in ressourcen) {
                     ressFloat += ress.getProbality(getBiom(kvp.Key));
-                    Debug.Log(ressFloat);
                 }
                 float value = rand.NextFloat(0, ressFloat);
                 ressFloat = 0;
@@ -200,6 +201,8 @@ public class MapBehaviour : NetworkBehaviour
         foreach(KeyValuePair<Vector3Int, int> kvp in allRessourcen) {
             ressourcen[kvp.Value].setTile(tilemap, kvp.Key);
         }
+
+        loading.SetActive(false);
     }
 
     public bool insideField(Vector3Int vec) {

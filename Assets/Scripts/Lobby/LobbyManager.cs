@@ -133,6 +133,7 @@ public class LobbyManager : NetworkBehaviour {
             if(kvp.Value == false) return;
             saveDictionary.Add(kvp.Key);
         }
+
         
 
         startGame();
