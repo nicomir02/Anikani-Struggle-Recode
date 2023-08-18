@@ -17,7 +17,6 @@ public class TilemapHover : MonoBehaviour
     {
         Vector3Int newVec = getMousePosition();
         if(oldVec == null || oldVec != newVec) {
-            Debug.Log(newVec);
             tilemap.SetColor(oldVec, oldColor);
 
             tilemap.SetTileFlags(newVec, TileFlags.None);

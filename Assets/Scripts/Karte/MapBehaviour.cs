@@ -13,6 +13,7 @@ public class MapBehaviour : NetworkBehaviour
     //Einstellungen:
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Biom[] biome;
+    [SerializeField] private Ressource[] ressourcen;
     //[SerializeField] private Biom[] biomInBiom;
 
     [SerializeField] public int width = 50;
@@ -20,12 +21,15 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] public int maxZ = 3;
 
     [SerializeField] private TileBase unterErde;
+    
 
 
     [SerializeField] private float sizeMultiplier = 2;
+    [SerializeField, Range(0, 10)] private float ressourceMultiplier = 2;
 
     //Liste mit allen Vectoren
     private readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
+    public readonly SyncDictionary<Vector3Int, int> allRessourcen = new SyncDictionary<Vector3Int, int>();
 
 
     private List<Vector3Int> tempVecList = new List<Vector3Int>();
@@ -42,6 +46,14 @@ public class MapBehaviour : NetworkBehaviour
             if(allVectors.ContainsKey(vec)) return z;
         }
         return -1;
+    }
+
+    public Biom getBiom(Vector3Int vec) {
+        if(!allVectors.ContainsKey(vec)) return null;
+        foreach(Biom b in biome) {
+            if(b.id == allVectors[vec]) return b;
+        }
+        return null;
     }
 
     public void startGame() {
@@ -72,6 +84,25 @@ public class MapBehaviour : NetworkBehaviour
         
         while(tempVecList.Count > 0) {
             createBiom();
+        }
+
+        foreach(KeyValuePair<Vector3Int, int>kvp in allVectors) {
+            if(rand.Next(10) <= ressourceMultiplier) {
+                float ressFloat = 0;
+                foreach(Ressource ress in ressourcen) {
+                    ressFloat += ress.getProbality(getBiom(kvp.Key));
+                    Debug.Log(ressFloat);
+                }
+                float value = rand.NextFloat(0, ressFloat);
+                ressFloat = 0;
+                int i=0;
+                foreach(Ressource ress in ressourcen) {
+                    float before = ressFloat;
+                    ressFloat += ress.getProbality(getBiom(kvp.Key));
+                    if(value > before && value <=ressFloat) allRessourcen.Add(kvp.Key, i);
+                    i++;
+                }
+            }
         }
         Debug.Log("[MapBehaviour] Terrain wurde erstellt!");
 
@@ -164,6 +195,10 @@ public class MapBehaviour : NetworkBehaviour
                     tilemap.SetTile(vec, unterErde);
                 }
             }
+        }
+
+        foreach(KeyValuePair<Vector3Int, int> kvp in allRessourcen) {
+            ressourcen[kvp.Value].setTile(tilemap, kvp.Key);
         }
     }
 

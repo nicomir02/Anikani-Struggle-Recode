@@ -5,9 +5,25 @@ using UnityEngine.Tilemaps;
 
 public class Ressource : MonoBehaviour
 {
-    [SerializeField] private TileBase tilebase;
+    [SerializeField] private TileBase[] tilebase;
+    [SerializeField] private List<Biom> biom;
+    [SerializeField, Range(0, 1)] private List<float> probability;
+    [SerializeField, Range(0, 1)] private float standardProbality = 0f;
 
     public void setTile(Tilemap tilemap, Vector3Int vec) {
-        tilemap.SetTile(vec, tilebase);
+        foreach(TileBase tb in tilebase) {
+            tilemap.SetTile(vec, tb);
+            vec.z++;
+        }
     } 
+
+    public float getProbality(Biom b) {
+        if(b == null) return standardProbality;
+        for(int i=0; i<biom.Count; i++) {
+            if(b == biom[i] && i < probability.Count) {
+                return probability[i];
+            }
+        }
+        return standardProbality;
+    }
 }
