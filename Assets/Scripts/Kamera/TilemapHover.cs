@@ -8,6 +8,7 @@ public class TilemapHover : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Color selectColor;
     [SerializeField] private MapBehaviour mapBehaviour;
+    [SerializeField] private float offset = 13f;
 
     Vector3Int oldVec;
     Color oldColor;
@@ -28,12 +29,11 @@ public class TilemapHover : MonoBehaviour
 
     Vector3Int getMousePosition() {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 13;  // Set this to however far you want the point to be
+        mousePos.z = offset;
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3Int result = tilemap.WorldToCell(vector);
+        Vector3Int result = tilemap.LocalToCell(vector);
         /*result.x -= 7;
-        result.y -= 7;
-*/
+        result.y -= 7;*/
         result.z = mapBehaviour.getZ(result);
         
         return result;
