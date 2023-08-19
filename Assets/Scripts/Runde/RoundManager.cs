@@ -16,6 +16,8 @@ public class RoundManager : NetworkBehaviour
     [SerializeField] private TMP_Text roundText;
     [SerializeField] private Button nextRoundBtn;
 
+    [SerializeField] private GameManager gameManager;
+
     private bool isActive = false;
 
 
@@ -52,11 +54,23 @@ public class RoundManager : NetworkBehaviour
     void roundChange() {
         roundText.text = round + "";
         activePlayer.text = list[curTurn];
-        if(activePlayer.text.Equals(PlayerHelperScript.findLocalPlayer().name)) {
+        PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+        if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
+            CMDchangeFarbe(pm.playerColor);
         }else {
             isActive = false;
         }
+    }
+
+    [Command(requiresAuthority=false)]
+    void CMDchangeFarbe(int id) {
+        changeFarbe(id);
+    }
+
+    [ClientRpc]
+    void changeFarbe(int id) {
+        activePlayer.color = gameManager.getColor(id);
     }
 
     [Command(requiresAuthority=false)]
