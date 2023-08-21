@@ -27,7 +27,7 @@ public class TilemapHover : MonoBehaviour
         }
     }
 
-    Vector3Int getMousePosition() {
+    public Vector3Int getMousePosition() {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = offset;
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
@@ -37,5 +37,10 @@ public class TilemapHover : MonoBehaviour
         result.z = mapBehaviour.getZ(result);
         
         return result;
+    }
+
+    public Vector3 getVec3Mouse(){
+        Vector3Int from = getMousePosition();
+        return tilemap.CellToWorld(from);
     }
 }

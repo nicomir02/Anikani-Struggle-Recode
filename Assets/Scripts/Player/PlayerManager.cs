@@ -10,6 +10,22 @@ public class PlayerManager : NetworkBehaviour
     PlayerFind Methode findet sich in einem HelperScript "PlayerHelperScript"
     */
 
+
+    /*
+    Volk des Spielers
+    0 = Order of Seraphs
+    1 = Ancient Wanderers
+    ....
+
+    */
+
+    private int volkID = -1;
+
+    public int playerVolk {
+        get{return volkID;}
+        set{volkID = value;}
+    }
+
     /*
     Farbe des Spielers:
     0 = Blau
@@ -18,6 +34,7 @@ public class PlayerManager : NetworkBehaviour
     3 = Lila
     */
 
+    
     private int color = -1;
     public int playerColor {
         get{return color;}

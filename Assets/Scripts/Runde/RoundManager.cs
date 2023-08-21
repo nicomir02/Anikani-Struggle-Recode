@@ -18,6 +18,9 @@ public class RoundManager : NetworkBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    //Test Gebäudebau
+    [SerializeField] private GameObject testGameobject;
+
     private bool isActive = false;
 
 
@@ -58,6 +61,8 @@ public class RoundManager : NetworkBehaviour
         if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
             CMDchangeFarbe(pm.playerColor);
+            //test ohne NetworkSpawn fürs gebäudesetzen
+            Instantiate(testGameobject, transform.position, transform.rotation);
         }else {
             isActive = false;
         }
