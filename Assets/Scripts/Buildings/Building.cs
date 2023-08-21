@@ -23,7 +23,7 @@ public class Building : MonoBehaviour
             transform.position = position.getVec3Mouse();
         }
 
-        if(GetMouseButtonDown(0) && !gesetzt){
+        if(Input.GetMouseButtonDown(0) && !gesetzt){
             transform.position = position.getVec3Mouse();
             gesetzt = true;
         }
