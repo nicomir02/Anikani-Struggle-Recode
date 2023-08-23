@@ -29,6 +29,7 @@ public class TilemapHover : MonoBehaviour
         }
     }
 
+    //nach Mapgenerierung einmal aufgerufen um eine Liste aller Tilemaps zu erstellen
     public void afterGeneration() {
         tilemaps = new List<Tilemap>();
         int z=mapBehaviour.maxZ;
@@ -60,6 +61,8 @@ public class TilemapHover : MonoBehaviour
 
     public Vector3 getVec3Mouse(){
         Vector3Int from = getMousePosition();
-        return tilemap.CellToWorld(from);
+        Vector3 v = tilemap.CellToWorld(from);
+        v.z += 1;
+        return v;
     }
 }
