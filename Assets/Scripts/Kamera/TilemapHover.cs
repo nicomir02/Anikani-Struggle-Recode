@@ -19,6 +19,7 @@ public class TilemapHover : MonoBehaviour
     {
         if(tilemaps.Count == 0) return;
         Vector3Int newVec = getMousePosition();
+        if(tilemap == null) return;
         if(oldVec == null || oldVec != newVec || oldtilemap != tilemap) {
             if(oldVec != null && oldtilemap != null) oldtilemap.SetColor(oldVec, oldColor);
 
@@ -27,6 +28,8 @@ public class TilemapHover : MonoBehaviour
             tilemap.SetColor(newVec, selectColor);
             oldVec = newVec;
         }
+
+        if(Input.GetMouseButtonDown(0)) Debug.Log(oldVec);
     }
 
     //nach Mapgenerierung einmal aufgerufen um eine Liste aller Tilemaps zu erstellen
@@ -45,13 +48,22 @@ public class TilemapHover : MonoBehaviour
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
         //vector.y += 0.8f * (tilemaps.Count-1);
         vector.z += 1f * (tilemaps.Count-1);
+        List<Tilemap> hoeher = new List<Tilemap>(); //Speichert schon höhere Tilemaps um zu schauen ob dadrüber noch ein Tile ist
         foreach(Tilemap tm in tilemaps) {
             
             Vector3Int result = tm.transform.parent.GetComponent<Grid>().WorldToCell(vector);
-            tilemap = tm;
+            
             if(tm.HasTile(result)) {
+                foreach(Tilemap tilem in hoeher) {
+                    if(tilem.HasTile(result)) {
+                        tilemap = tilem;
+                        return result;
+                    }
+                }
+                tilemap = tm;
                 return result;
             }
+            hoeher.Add(tm);
             vector.z -= 1f;
             //vector.y -= 0.8f;
         }
@@ -61,7 +73,12 @@ public class TilemapHover : MonoBehaviour
 
     public Vector3 getVec3Mouse(){
         Vector3Int from = getMousePosition();
-        Vector3 v = tilemap.CellToWorld(from);
+        Vector3 v = transform.position;
+        if(tilemap != null) {
+            v = tilemap.CellToWorld(from);
+        }else {
+            v = tilemaps[0].CellToWorld(from);
+        }
         v.z += 1;
         return v;
     }
