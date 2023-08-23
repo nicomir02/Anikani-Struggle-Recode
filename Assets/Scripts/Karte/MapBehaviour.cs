@@ -11,7 +11,7 @@ public class MapBehaviour : NetworkBehaviour
     private static Random rand = new Random();
 
     //Einstellungen:
-    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private GameObject prefabTilemap;
     [SerializeField] private Biom[] biome;
     [SerializeField] private Ressource[] ressourcen;
     //[SerializeField] private Biom[] biomInBiom;
@@ -21,6 +21,8 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] public int maxZ = 3;
 
     [SerializeField] private TileBase unterErde;
+
+    [SerializeField] private TilemapHover tilemapHover;
     
 
 
@@ -67,7 +69,7 @@ public class MapBehaviour : NetworkBehaviour
         Debug.Log("[MapBehaviour] Terrain wird geprüft");
         if(allVectors.Count > 0) generateTerrain();
         Debug.Log("[MapBehaviour] Terrain wird erstellt!");
-        for(int x=0; x<width; x++) {
+        /*for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 for(int z=0;z<=maxZ+2;z++) {
                     Vector3Int v = new Vector3Int(x, y, z);
@@ -76,12 +78,23 @@ public class MapBehaviour : NetworkBehaviour
                     if(allVectors.ContainsKey(v)) allVectors.Remove(v);
                 }
             }
-        }
+        }*/
 
         for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
                 tempVecList.Add(new Vector3Int(x, y, 0));
             }
+        }
+        float test = maxZ*0.4f;
+        for(int z=maxZ; z>=0; z--) {
+            GameObject instance = Instantiate(prefabTilemap, new Vector3(0, 0, 0), Quaternion.identity);
+            instance.name = "Height" + z;
+            Vector3 setvec = instance.transform.position;
+            setvec.z = z;
+            setvec.y = test;
+            instance.transform.position = setvec;
+            NetworkServer.Spawn(instance);
+            test -= 0.4f;
         }
         
         while(tempVecList.Count > 0) {
@@ -123,7 +136,8 @@ public class MapBehaviour : NetworkBehaviour
         if(z == -1) {
             z = rand.Next(Math.Min(biom.minheight, maxZ+1), Math.Min(biom.maxheight+1, maxZ+1));
         }
-        vec.z = z;
+        
+        vec.z = 0;
         //biom.getBlock().setTile(tilemap, vec);
 
         List<Vector3Int> nachbarn = new List<Vector3Int>();
@@ -187,22 +201,25 @@ public class MapBehaviour : NetworkBehaviour
                     break;
                 }
             }
-
-            b.getBlock().setTile(tilemap, vec);
             int z = vec.z;
+            Tilemap tilemap = GameObject.Find("Height" + vec.z).transform.GetChild(0).GetComponent<Tilemap>();
+            vec.z = 0;
+            b.getBlock().setTile(tilemap, vec);
             if(z > 0) {
                 for(int j=0; j<z; j++) {
-                    vec.z = j;
+                    tilemap = GameObject.Find("Height" + j).transform.GetChild(0).GetComponent<Tilemap>();
                     tilemap.SetTile(vec, unterErde);
                 }
             }
         }
 
         foreach(KeyValuePair<Vector3Int, int> kvp in allRessourcen) {
-            ressourcen[kvp.Value].setTile(tilemap, kvp.Key);
+            Tilemap tilemap = GameObject.Find("Height" + kvp.Key.z).transform.GetChild(0).GetComponent<Tilemap>();
+            ressourcen[kvp.Value].setTile(tilemap, new Vector3Int(kvp.Key.x, kvp.Key.y, 0));
         }
-
+        Debug.Log("[MapBehaviour] Finished");
         loading.SetActive(false);
+        tilemapHover.afterGeneration();
     }
 
     public bool insideField(Vector3Int vec) {

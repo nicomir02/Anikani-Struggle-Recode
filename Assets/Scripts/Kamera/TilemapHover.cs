@@ -5,20 +5,22 @@ using UnityEngine.Tilemaps;
 
 public class TilemapHover : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
+    public List<Tilemap> tilemaps = new List<Tilemap>();
+    private Tilemap tilemap; //derzeitige Tilemap
+    public Tilemap oldtilemap; //alte Tilemap
     [SerializeField] private Color selectColor;
     [SerializeField] private MapBehaviour mapBehaviour;
-    [SerializeField] private float offset = 13f;
 
-    Vector3Int oldVec;
+    public Vector3Int oldVec;
     Color oldColor;
 
     // Update is called once per frame
     void Update()
     {
+        if(tilemaps.Count == 0) return;
         Vector3Int newVec = getMousePosition();
-        if(oldVec == null || oldVec != newVec) {
-            tilemap.SetColor(oldVec, oldColor);
+        if(oldVec == null || oldVec != newVec || oldtilemap != tilemap) {
+            if(oldVec != null && oldtilemap != null) oldtilemap.SetColor(oldVec, oldColor);
 
             tilemap.SetTileFlags(newVec, TileFlags.None);
             oldColor = tilemap.GetColor(newVec);
@@ -27,16 +29,33 @@ public class TilemapHover : MonoBehaviour
         }
     }
 
+    public void afterGeneration() {
+        tilemaps = new List<Tilemap>();
+        int z=mapBehaviour.maxZ;
+        while(z >= 0) {
+            if(GameObject.Find("Height"+z) != null) tilemaps.Add(GameObject.Find("Height"+z).transform.GetChild(0).GetComponent<Tilemap>());
+            z--;
+        }
+    }
+
     public Vector3Int getMousePosition() {
+        oldtilemap = tilemap;
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = offset;
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3Int result = tilemap.LocalToCell(vector);
-        /*result.x -= 7;
-        result.y -= 7;*/
-        result.z = mapBehaviour.getZ(result);
+        //vector.y += 0.8f * (tilemaps.Count-1);
+        vector.z += 1f * (tilemaps.Count-1);
+        foreach(Tilemap tm in tilemaps) {
+            
+            Vector3Int result = tm.transform.parent.GetComponent<Grid>().WorldToCell(vector);
+            tilemap = tm;
+            if(tm.HasTile(result)) {
+                return result;
+            }
+            vector.z -= 1f;
+            //vector.y -= 0.8f;
+        }
         
-        return result;
+        return new Vector3Int(-1,-1,-1);
     }
 
     public Vector3 getVec3Mouse(){

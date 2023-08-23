@@ -13,20 +13,20 @@ public class Building : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
+        //position = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(!gesetzt){
+        /*if(!gesetzt){
             transform.position = position.getVec3Mouse();
         }
 
         if(Input.GetMouseButtonDown(0) && !gesetzt){
             transform.position = position.getVec3Mouse();
             gesetzt = true;
-        }
+        }*/
     }
 
     
