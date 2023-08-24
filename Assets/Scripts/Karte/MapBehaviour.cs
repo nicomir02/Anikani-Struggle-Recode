@@ -33,7 +33,7 @@ public class MapBehaviour : NetworkBehaviour
 
     //Liste mit allen Vectoren
     private readonly SyncDictionary<Vector3Int, int> allVectors = new SyncDictionary<Vector3Int, int>();
-    public readonly SyncDictionary<Vector3Int, int> allRessourcen = new SyncDictionary<Vector3Int, int>();
+    private readonly SyncDictionary<Vector3Int, int> allRessourcen = new SyncDictionary<Vector3Int, int>();
 
 
     private List<Vector3Int> tempVecList = new List<Vector3Int>();
@@ -43,6 +43,10 @@ public class MapBehaviour : NetworkBehaviour
     void createBiom(); -> Erstellt Biom, nur in createTerrain() benutzen
     bool insideField(Vector3Int vec); -> Schaut ob Vektor im Feld ist
     */
+
+    public bool hasVec(Vector3Int vec) {
+        return allVectors.ContainsKey(vec);
+    }
 
     public int getZ(Vector3Int vec) {
         for(int z=0; z<=maxZ; z++) {

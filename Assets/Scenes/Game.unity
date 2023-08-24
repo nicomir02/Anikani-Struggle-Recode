@@ -5130,7 +5130,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.7
+  m_fontSize: 38.1
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5265,7 +5265,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.2
+  m_fontSize: 34
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6414,7 +6414,7 @@ MonoBehaviour:
   width: 50
   height: 50
   maxZ: 2
-  unterErde: {fileID: 11400000, guid: 716e9da89fffeaa40acf7dd8f6fd2a5f, type: 2}
+  unterErde: {fileID: 11400000, guid: 1cb301333579a684086174e2899a3b64, type: 2}
   tilemapHover: {fileID: 1938173203}
   sizeMultiplier: 100
   ressourceMultiplier: 2
@@ -6517,7 +6517,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.2
+  m_fontSize: 40.6
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7140,7 +7140,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.1
+  m_fontSize: 43.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7983,7 +7983,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 29.8
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -14,6 +14,10 @@ public class TilemapHover : MonoBehaviour
     public Vector3Int oldVec;
     Color oldColor;
 
+    public Color getSelectColor() {
+        return selectColor;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -73,6 +77,11 @@ public class TilemapHover : MonoBehaviour
 
     public Vector3 getVec3Mouse(){
         Vector3Int from = getMousePosition();
+        
+        return getVec3FromVec3Int(from);
+    }
+
+    public Vector3 getVec3FromVec3Int(Vector3Int from) {
         Vector3 v = transform.position;
         if(tilemap != null) {
             v = tilemap.CellToWorld(from);

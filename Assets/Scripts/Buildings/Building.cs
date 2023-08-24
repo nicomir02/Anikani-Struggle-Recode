@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
     void Start()
     {
         position = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
-        transparencyChange(0.2f);
+        transparencyChange(0.5f);
     }
 
     // Update is called once per frame
