@@ -5,41 +5,50 @@ using UnityEngine.Tilemaps;
 
 public class RadiusNeighborCheck : MonoBehaviour
 {
+    private MapBehaviour mb; 
+    void Start(){
+        mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
+    }
+
     //Check to see if tiles in the specifies radius are free/empty (for building placement i.e.)
     public bool checkRadius(int radius, Vector3Int currentPosition, List<Tilemap> tilemaps){
-        if(radius % 2 == 0) return false;   //nur ungeraden radius nutzen
+        //if(radius % 2 == 0) return false;   //falls nur ungeraden radius nutzen und man in der mitte anfängt
         //in die untere linke ecke des zu überprüfenden quadrats gehen
         //currentPosition.x -= (radius - 1) / 2;
         //currentPosition.y -= (radius - 1) / 2;
-
+        int z = mb.getZ(currentPosition);
         //nachbarsfelder anschauen mit allen tilemaps
+        
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
-                currentPosition.x += x;
-                currentPosition.y += y;
+                
+                Debug.Log(mb.getZ(currentPosition) + " - " + z);
+                Debug.Log(mb.insideField(currentPosition));
+                Debug.Log("current pos:" + currentPosition);
+                if(mb.getZ(currentPosition) != z) return false;
                 foreach(Tilemap tm in tilemaps){
-                    if(tm.HasTile(currentPosition) || checkWasser(currentPosition) 
-                        || checkRessourcen(currentPosition) || checkBuildings(currentPosition)
-                        || checkOwnArea(currentPosition)){
+                    if(!checkBaubar(currentPosition) || checkBuildings(currentPosition) 
+                    || checkOwnArea(currentPosition)){
                         return false;
                     }
                 }
+                currentPosition.y += 1;
             }
+            currentPosition.y -= radius;
+            currentPosition.x += 1;
         }
         return true;
     }
     //schaut ob Wasser an der Position
-    bool checkWasser(Vector3Int currentPosition){
-        return false;
+    bool checkBaubar(Vector3Int currentPosition){
+        return mb.getBiom(currentPosition).getBaubar();
     }
-    //schaut ob Ressource an der Position
-    bool checkRessourcen(Vector3Int currentPosition){
-        return false;
-    }
+   
     //schaut ob Gebäude an der Position (wird schwieriger glaube ich)
     bool checkBuildings(Vector3Int currentPosition){
-        //alle gameobjects nach building tag durchsuchen und dann deren public methode(für deren positionkoordinaten abfragen)
-        //oder irgendwo Liste mit allen durch gebäude besetzte koordinaten speichern und durchschauen
+        foreach(Building building in FindObjectsOfType<Building>()) {
+            if(building.getPosition().Contains(currentPosition)) return true;
+        }
         return false;
     }
 

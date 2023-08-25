@@ -15,9 +15,16 @@ public class Biom : MonoBehaviour
 
     [SerializeField] private Block mainBlock;
 
+    //auf diesem Biom baubar oder nicht? z.B. Wasser nicht baubar
+    [SerializeField] private bool baubar;
+
     private static System.Random rand = new System.Random();
 
     public Block getBlock() {
         return mainBlock;
+    }
+
+    public bool getBaubar() {
+        return baubar;
     }
 }

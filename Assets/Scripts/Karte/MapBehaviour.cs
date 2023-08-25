@@ -57,11 +57,18 @@ public class MapBehaviour : NetworkBehaviour
     }
 
     public Biom getBiom(Vector3Int vec) {
+        vec.z = getZ(vec);
         if(!allVectors.ContainsKey(vec)) return null;
         foreach(Biom b in biome) {
             if(b.id == allVectors[vec]) return b;
         }
         return null;
+    }
+
+    public Ressource getRessource(Vector3Int vec) {
+        vec.z = getZ(vec);
+        if(!allRessourcen.ContainsKey(vec)) return null;
+        return ressourcen[allRessourcen[vec]];
     }
 
     public void startGame() {

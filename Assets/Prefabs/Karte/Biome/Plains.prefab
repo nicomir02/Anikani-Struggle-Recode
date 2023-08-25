@@ -50,3 +50,4 @@ MonoBehaviour:
   minheight: 0
   maxheight: 2
   mainBlock: {fileID: 6607858569274282558, guid: 1b82fe184be726d4eaf2e0b106e2b19e, type: 3}
+  baubar: 1
