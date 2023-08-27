@@ -18,9 +18,6 @@ public class RoundManager : NetworkBehaviour
 
     [SerializeField] private GameManager gameManager;
 
-    //Test Gebäudebau
-    [SerializeField] private GameObject testGameobject;
-
     private bool isActive = false;
 
 
@@ -58,11 +55,13 @@ public class RoundManager : NetworkBehaviour
         roundText.text = round + "";
         activePlayer.text = list[curTurn];
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+        //schauen ob Spieler aktiv
         if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
             CMDchangeFarbe(pm.playerColor);
-            //test ohne NetworkSpawn fürs gebäudesetzen
-            Instantiate(testGameobject, transform.position, transform.rotation);
+            if(round == 0){
+                pm.setMainbuilding();
+            }
         }else {
             isActive = false;
         }

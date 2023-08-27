@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Mirror;
 
-public class Building : MonoBehaviour
+public class Building : NetworkBehaviour
 {
     //standardmäßg 3 gebäude radius (= 3x3 Feld)
     [SerializeField] private int radius = 3;
@@ -14,6 +15,9 @@ public class Building : MonoBehaviour
     private TilemapHover th;
     //mapBehaviour
     private MapBehaviour mb;
+
+    //RadiusNeighborCheck
+    private RadiusNeighborCheck radiusNeighborCheck;
 
     //Leben/Haltbarkeit des Gebäudes
     [SerializeField] private int health;
@@ -29,6 +33,7 @@ public class Building : MonoBehaviour
     {
         th = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
+        radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
 
         transparencyChange(0.5f);
     }
@@ -36,7 +41,10 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Vector3 newPos = th.getVec3Mouse();
+        Vector3Int vec = th.getMousePosition();
+        vec.x -= (radius-1)/2;
+        vec.y -= (radius-1)/2;
+        Vector3 newPos = th.getVec3FromVec3Int(vec);
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
@@ -44,7 +52,9 @@ public class Building : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && !gesetzt && setzbar()){
             transform.position = newPos;
-            gebaeudeBau(th.getMousePosition());
+            vec.x += (radius-1)/2;
+            vec.y += (radius-1)/2;
+            gebaeudeBau(vec);
             gesetzt = true;
             transparencyChange(1f);
         }
@@ -62,22 +72,28 @@ public class Building : MonoBehaviour
     }
 
     private bool setzbar(){
-        RadiusNeighborCheck radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
         Vector3Int neuPos = th.getMousePosition();
         return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps);
     }
 
     private void gebaeudeBau(Vector3Int pos){
+        PlayerHelperScript.findLocalPlayer().GetComponent<Area>().addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3)); //Hier ändern, falls anderer Radius
+
+        pos.x -= (radius-1)/2;
+        pos.y -= (radius-1)/2;
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
                 position.Add(pos);
                 pos.y += 1;
             }
-            pos.y -= radius;555
+            pos.y -= radius;
             pos.x += 1;
         }
+
+        
         ressourcenZerstoeren();
     }
+
     private void ressourcenZerstoeren() {
         foreach(Vector3Int vec in position) {
             Ressource ress = mb.getRessource(vec);

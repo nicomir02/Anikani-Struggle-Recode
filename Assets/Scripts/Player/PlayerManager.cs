@@ -25,6 +25,8 @@ public class PlayerManager : NetworkBehaviour
         get{return volkID;}
         set{volkID = value;}
     }
+    //nur zum testen. später in der lobby setzen
+    [SerializeField] private StandardVolk volk;
 
     /*
     Farbe des Spielers:
@@ -39,6 +41,14 @@ public class PlayerManager : NetworkBehaviour
     public int playerColor {
         get{return color;}
         set{color = value;}
+    }
+
+    public StandardVolk getVolk() {
+        return volk;
+    }
+
+    public void setMainbuilding() {
+        Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
     }
 
     void Start() {

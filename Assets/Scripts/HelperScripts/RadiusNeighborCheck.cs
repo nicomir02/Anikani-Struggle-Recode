@@ -14,8 +14,8 @@ public class RadiusNeighborCheck : MonoBehaviour
     public bool checkRadius(int radius, Vector3Int currentPosition, List<Tilemap> tilemaps){
         //if(radius % 2 == 0) return false;   //falls nur ungeraden radius nutzen und man in der mitte anfängt
         //in die untere linke ecke des zu überprüfenden quadrats gehen
-        //currentPosition.x -= (radius - 1) / 2;
-        //currentPosition.y -= (radius - 1) / 2;
+        currentPosition.x -= (radius - 1) / 2;
+        currentPosition.y -= (radius - 1) / 2;
         int z = mb.getZ(currentPosition);
         //nachbarsfelder anschauen mit allen tilemaps
         
@@ -57,5 +57,28 @@ public class RadiusNeighborCheck : MonoBehaviour
         //Hilfssckript für Area machen und in GameManager packen
         //Area ownArea = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         return false;
+    
+    }
+
+    //Nur ungerader Radius, damit Mitte gewählt werden kann 
+    public List<Vector3Int> getNeighborTiles(Vector3Int start, int radius) {
+        Debug.Log(start);
+        Debug.Log(radius);
+        List<Vector3Int> liste = new List<Vector3Int>();
+        
+        //in die ecke gehen, da start der mittelpunkt ist
+        start.x -= (radius - 1) / 2;
+        start.y -= (radius - 1) / 2;
+        Debug.Log(start);
+        for(int x = 0; x < radius; x++){
+            for(int y = 0; y < radius; y++){
+                start.z = mb.getZ(start);
+                liste.Add(start);
+                start.y += 1;
+            }
+            start.y -= radius;
+            start.x += 1;
+        }
+        return liste;
     }
 }
