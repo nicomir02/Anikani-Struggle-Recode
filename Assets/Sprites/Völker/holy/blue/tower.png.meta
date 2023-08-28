@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81f41f05539c3a44194bf4f86de75e19
+guid: 6f1136967c0918549953c98a2a153728
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,7 +108,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: tower_2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 9
+        width: 63
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f83645fbf5dcce40af9eb156c42eb2b
+      internalID: 2076172753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tower_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 9
+        width: 63
+        height: 94
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3d170df2baadc408da144dcbd4533f
+      internalID: 1722172903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tower_6
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 9
+        width: 63
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d6678ec1329c1438c21871af4b6599
+      internalID: -1686679121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tower_7
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 9
+        width: 63
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6f28af8d177f34b9f413b272f173b6
+      internalID: -1380351182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tower_8
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 9
+        width: 63
+        height: 94
+      alignment: 9
+      pivot: {x: 0.5, y: -0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c896330275bbd0b4ba1f91e7be495c28
+      internalID: 1487491455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +224,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tower_0: 1640781047
+      tower_1: -1382917137
+      tower_2: 2076172753
+      tower_3: -1220738894
+      tower_4: -1393787989
+      tower_5: 1722172903
+      tower_6: -1686679121
+      tower_7: -1380351182
+      tower_8: 1487491455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

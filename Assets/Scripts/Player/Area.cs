@@ -7,16 +7,18 @@ using UnityEngine.UI;
 
 public class Area : NetworkBehaviour
 {
-    public readonly SyncList<Vector3Int> area = new SyncList<Vector3Int>();
+    public readonly SyncHashSet<Vector3Int> area = new SyncHashSet<Vector3Int>();
     private Button showAreaButton;
     bool AreaShown = false;
     bool canvasGeladen = false;
     private GameManager gameManager;
+    private MapBehaviour mapBehaviour;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<GameManager>();
+        mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class Area : NetworkBehaviour
         }
     }
 
-    public SyncList<Vector3Int> playerArea {
+    public SyncHashSet<Vector3Int> playerArea {
         get{return area;}
     }
 
@@ -45,6 +47,11 @@ public class Area : NetworkBehaviour
             }
             if(!isClaimed) addVec(vec);
         }
+    }
+
+    public bool isOwnArea(Vector3Int vec) {
+        vec.z = mapBehaviour.getZ(vec);
+        return area.Contains(vec);
     }
 
     [Command(requiresAuthority=false)]

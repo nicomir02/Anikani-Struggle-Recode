@@ -10,6 +10,8 @@ public class BuildingKaufManager : MonoBehaviour
     //[SerializeField] private Button gebaeudeKaufBtn;
     [SerializeField] private GameObject panel;
 
+    [SerializeField] private Transform scrollviewTransfrom;
+
     [SerializeField] private GameObject prefab;
 
     private bool offen = false;
@@ -38,10 +40,13 @@ public class BuildingKaufManager : MonoBehaviour
 
     void openPanel(){
         panel.SetActive(true);
-        GameObject o = Instantiate(prefab, transform.position, transform.rotation);
-        o.transform.SetParent(GameObject.Find("___InGame___/Canvas/GebaeudeKaufPanel").transform, false);
-        o.transform.GetChild(2).GetComponent<BuildingID>().building_id = 0;
-        generatedPrefabs.Add(o);
+        foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllBuildingObjects()) {
+            GameObject o = Instantiate(prefab, transform.position, transform.rotation);
+            o.transform.SetParent(scrollviewTransfrom, false);
+            o.transform.GetChild(2).GetComponent<BuildingID>().building_id = kvp.Value;
+            o.transform.GetChild(0).GetComponent<Image>().sprite = kvp.Key.GetComponent<SpriteRenderer>().sprite;
+            generatedPrefabs.Add(o);
+        }
     }
 
     public void closePanel(){

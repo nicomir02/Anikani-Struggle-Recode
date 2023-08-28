@@ -7,19 +7,19 @@ using Mirror;
 public class Building : NetworkBehaviour
 {
     //standardmäßg 3 gebäude radius (= 3x3 Feld)
-    [SerializeField] private int radius = 3;
+    [SerializeField] protected int radius = 3;
     //ob Gebäude schon gesetzt
     private bool gesetzt = false;
     
     //Mouseposition
-    private TilemapHover th;
+    protected TilemapHover th;
     //mapBehaviour
     private MapBehaviour mb;
     //roundManager
     private RoundManager rm;
 
     //RadiusNeighborCheck
-    private RadiusNeighborCheck radiusNeighborCheck;
+    protected RadiusNeighborCheck radiusNeighborCheck;
 
     //Spawn Helper
     private ObjectSpawnHelper spawnHelper;
@@ -129,7 +129,7 @@ public class Building : NetworkBehaviour
         GetComponent<SpriteRenderer>().color = tmp;
     }
 
-    private bool setzbar(){
+    public virtual bool setzbar(){
         Vector3Int neuPos = th.getMousePosition();
         return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps);
     }

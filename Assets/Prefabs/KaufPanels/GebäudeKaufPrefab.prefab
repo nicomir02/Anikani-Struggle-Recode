@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.74200004, y: 0.42900002}
   m_AnchorMax: {x: 0.9461631, y: 0.8624195}
-  m_AnchoredPosition: {x: 1.3800049, y: 0.024999619}
+  m_AnchoredPosition: {x: 1.3798828, y: 0.025009155}
   m_SizeDelta: {x: 5.0599976, y: -2.0620003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6640072491859050005
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.6
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -519,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22600001, y: 0.15874544}
   m_AnchorMax: {x: 0.6907348, y: 0.8624195}
-  m_AnchoredPosition: {x: 0.9147949, y: -1.5112152}
+  m_AnchoredPosition: {x: 0.9147949, y: -1.5112305}
   m_SizeDelta: {x: -0.07470703, y: 0.9869995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8343682193978733670
@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 150502016534358032}
   - component: {fileID: 1906925874686289749}
   - component: {fileID: 5191309891816897896}
+  - component: {fileID: 7751258980118414662}
   m_Layer: 0
   m_Name: "Geb\xE4udeKaufPrefab"
   m_TagString: Untagged
@@ -656,10 +657,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.03262042, y: 0.5327395}
-  m_AnchorMax: {x: 0.95282733, y: 0.93236226}
-  m_AnchoredPosition: {x: -0.3718872, y: 0.33460236}
-  m_SizeDelta: {x: -2.8163986, y: -1.0955963}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 550, y: -150}
+  m_SizeDelta: {x: 1100, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1906925874686289749
 CanvasRenderer:
@@ -699,3 +700,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7751258980118414662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598769609623328007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1100
+  m_PreferredHeight: -300
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1

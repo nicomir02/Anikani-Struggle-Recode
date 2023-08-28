@@ -11,25 +11,27 @@ public class RadiusNeighborCheck : MonoBehaviour
     }
 
     //Check to see if tiles in the specifies radius are free/empty (for building placement i.e.)
-    public bool checkRadius(int radius, Vector3Int currentPosition, List<Tilemap> tilemaps){
+    public bool checkRadius(int radius, Vector3Int currentPosition, List<Tilemap> tilemaps, bool checkArea=true){
         //if(radius % 2 == 0) return false;   //falls nur ungeraden radius nutzen und man in der mitte anfängt
         //in die untere linke ecke des zu überprüfenden quadrats gehen
         currentPosition.x -= (radius - 1) / 2;
         currentPosition.y -= (radius - 1) / 2;
         int z = mb.getZ(currentPosition);
         //nachbarsfelder anschauen mit allen tilemaps
-        
+        bool canBuild = !checkArea;
+
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
-                
-                Debug.Log(mb.getZ(currentPosition) + " - " + z);
-                Debug.Log(mb.insideField(currentPosition));
                 Debug.Log("current pos:" + currentPosition);
+                Debug.Log(checkOwnArea(currentPosition));
                 if(mb.getZ(currentPosition) != z) return false;
                 foreach(Tilemap tm in tilemaps){
-                    if(!checkBaubar(currentPosition) || checkBuildings(currentPosition) 
-                    || checkOwnArea(currentPosition)){
+                    if(!checkBaubar(currentPosition) || checkBuildings(currentPosition)){
                         return false;
+                    }
+                    if(checkArea && checkOwnArea(currentPosition)) {
+                        checkArea = false;
+                        canBuild = true;
                     }
                 }
                 currentPosition.y += 1;
@@ -37,7 +39,7 @@ public class RadiusNeighborCheck : MonoBehaviour
             currentPosition.y -= radius;
             currentPosition.x += 1;
         }
-        return true;
+        return canBuild;
     }
     //schaut ob Wasser an der Position
     bool checkBaubar(Vector3Int currentPosition){
@@ -54,10 +56,7 @@ public class RadiusNeighborCheck : MonoBehaviour
 
     //schaut ob im eigenen Gebiet
     bool checkOwnArea(Vector3Int currentPosition){
-        //Hilfssckript für Area machen und in GameManager packen
-        //Area ownArea = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
-        return false;
-    
+        return PlayerHelperScript.findLocalPlayer().GetComponent<Area>().isOwnArea(currentPosition);
     }
 
     //Nur ungerader Radius, damit Mitte gewählt werden kann 

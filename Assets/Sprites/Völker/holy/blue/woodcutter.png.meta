@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 72311503f6a3d774a99e40a9eb6de54b
+guid: 81f41f05539c3a44194bf4f86de75e19
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,154 +103,155 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Woodcutter_blue_0
+      name: woodcutter_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 15
-        width: 63
-        height: 51
+        x: 10
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24a380607e7085146a4e2bc81094f805
-      internalID: -214409934
+      spriteID: c82dbf451250d7a4a84e185d7ebc9f80
+      internalID: 645041808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_1
+      name: woodcutter_1
       rect:
         serializedVersion: 2
-        x: 116
-        y: 15
-        width: 63
-        height: 51
+        x: 106
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ee4d2e6c10f89a45acd446c773d31d6
-      internalID: -1713438984
+      spriteID: 53df44242b4412a48813b7167d362ccb
+      internalID: -1765998156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_2
+      name: woodcutter_2
       rect:
         serializedVersion: 2
-        x: 212
-        y: 15
-        width: 63
-        height: 51
+        x: 202
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f29c2ba3e3006241adac474aa579795
-      internalID: -241648695
+      spriteID: 6225c3513c84e19489f2b7b672e38a93
+      internalID: -2066977350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_3
+      name: woodcutter_3
       rect:
         serializedVersion: 2
-        x: 308
-        y: 15
-        width: 63
-        height: 51
+        x: 298
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75cb92ae4696b1d4ebdcaa214f7bcd05
-      internalID: 1307175213
+      spriteID: 83e0053c4b17f3145b5b50f2f084c20e
+      internalID: 1606492346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_4
+      name: woodcutter_4
       rect:
         serializedVersion: 2
-        x: 404
-        y: 15
-        width: 63
-        height: 51
+        x: 394
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 761813cc0e2699647a204a1293813f65
-      internalID: 1968812641
+      spriteID: 14c8f6e78877a4940be8052a78996015
+      internalID: 2014065658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_5
+      name: woodcutter_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 15
-        width: 63
-        height: 51
+        x: 490
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9bf6ed81e0918446bded1de86195e62
-      internalID: 2140203771
+      spriteID: b8c54ca7a1053d94e9f69d15dfad2426
+      internalID: -1006649282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Woodcutter_blue_6
+      name: woodcutter_6
       rect:
         serializedVersion: 2
-        x: 596
-        y: 15
-        width: 63
-        height: 51
+        x: 586
+        y: 9
+        width: 73
+        height: 66
       alignment: 9
-      pivot: {x: 0.4, y: -0.2}
+      pivot: {x: 0.5, y: -0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a784eaa2ab3aff34dacdbee691d8b962
-      internalID: 414186008
+      spriteID: 308da37acc08ef3419e2e550f700e924
+      internalID: 866948633
       vertices: []
       indices: 
       edges: []
@@ -262,16 +267,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Woodcutter_blue_0: -214409934
-      Woodcutter_blue_1: -1713438984
-      Woodcutter_blue_2: -241648695
-      Woodcutter_blue_3: 1307175213
-      Woodcutter_blue_4: 1968812641
-      Woodcutter_blue_5: 2140203771
-      Woodcutter_blue_6: 414186008
-  spritePackingTag: 
+      woodcutter_0: 645041808
+      woodcutter_1: -1765998156
+      woodcutter_2: -2066977350
+      woodcutter_3: 1606492346
+      woodcutter_4: 2014065658
+      woodcutter_5: -1006649282
+      woodcutter_6: 866948633
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

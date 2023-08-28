@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Mirror;
 using TMPro;
 
+
 public class RoundManager : NetworkBehaviour
 {
     [SyncVar] private int round;
@@ -20,6 +21,8 @@ public class RoundManager : NetworkBehaviour
 
     [SerializeField] private TMP_Text roundText;
     [SerializeField] private Button nextRoundBtn;
+
+    [SerializeField] private UnityEngine.Rendering.Universal.Light2D fogOfWar;
 
     [SerializeField] private GameManager gameManager;
 
@@ -66,6 +69,8 @@ public class RoundManager : NetworkBehaviour
             CMDchangeFarbe(pm.playerColor);
             if(round == 0){
                 pm.setBuilding(0);  //0 ist die ID für MainBuilding
+            }else if(round == 1) {
+                fogOfWar.color = Color.black;
             }
         }else {
             isActive = false;
