@@ -73,12 +73,11 @@ public class Building : NetworkBehaviour
     }
 
     [Command(requiresAuthority=false)]
-    public void CMDtransparencyChange(float f, GameObject o) {
+    public void CMDtransparencyChange(float f) {
         Color tmp = GetComponent<SpriteRenderer>().color;
         tmp.a = f;
         GetComponent<SpriteRenderer>().color = tmp;
         RPCtransparencyChange(f);
-        NetworkServer.Spawn(o);
     }
 
     [ClientRpc]

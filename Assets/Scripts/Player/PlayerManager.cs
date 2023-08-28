@@ -36,6 +36,8 @@ public class PlayerManager : NetworkBehaviour
     3 = Lila
     */
 
+    private ObjectSpawnHelper spawnHelper;
+
     
     private int color = -1;
     public int playerColor {
@@ -48,13 +50,21 @@ public class PlayerManager : NetworkBehaviour
     }
 
     public void setMainbuilding() {
-        GameObject o = Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
-        o.GetComponent<Building>().playerManager = this;
+        //GameObject o = Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
+        spawnHelper.spawnObject(volk.getMainBuilding().gameObject, transform, "Main Building " + name);
+        
+        foreach(Building b in FindObjectsOfType<Building>()) {
+            if(b.name == "Main Building " + name) {
+                b.playerManager = this;
+                break;
+            }
+        }
     }
 
     void Start() {
         if(isLocalPlayer) {
             changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveName>().name);
+            spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
         }
     }
 
