@@ -19,6 +19,12 @@ public class Building : NetworkBehaviour
     //RadiusNeighborCheck
     private RadiusNeighborCheck radiusNeighborCheck;
 
+    private PlayerManager pm;
+    public PlayerManager playerManager {
+        get{return pm;}
+        set{pm = value;}
+    }
+
     //Leben/Haltbarkeit des Gebäudes
     [SerializeField] private int health;
 
@@ -41,6 +47,7 @@ public class Building : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(pm == null || pm != PlayerHelperScript.findLocalPlayer()) return;
         Vector3Int vec = th.getMousePosition();
         vec.x -= (radius-1)/2;
         vec.y -= (radius-1)/2;
@@ -56,13 +63,29 @@ public class Building : NetworkBehaviour
             vec.y += (radius-1)/2;
             gebaeudeBau(vec);
             gesetzt = true;
-            transparencyChange(1f);
+            CMDtransparencyChange(1f);
         }
         //if(!setzbar()) Debug.Log("nicht setzbar");
     }
     
     public List<Vector3Int> getPosition() {
         return position;
+    }
+
+    [Command(requiresAuthority=false)]
+    public void CMDtransparencyChange(float f, GameObject o) {
+        Color tmp = GetComponent<SpriteRenderer>().color;
+        tmp.a = f;
+        GetComponent<SpriteRenderer>().color = tmp;
+        RPCtransparencyChange(f);
+        NetworkServer.Spawn(o);
+    }
+
+    [ClientRpc]
+    public void RPCtransparencyChange(float f) {
+        Color tmp = GetComponent<SpriteRenderer>().color;
+        tmp.a = f;
+        GetComponent<SpriteRenderer>().color = tmp;
     }
 
     private void transparencyChange(float f){
@@ -90,10 +113,15 @@ public class Building : NetworkBehaviour
             pos.x += 1;
         }
 
-        
+        CMDressourcenZerstoeren();
+    }
+
+    [Command(requiresAuthority=false)]
+    public void CMDressourcenZerstoeren() {
         ressourcenZerstoeren();
     }
 
+    [ClientRpc]
     private void ressourcenZerstoeren() {
         foreach(Vector3Int vec in position) {
             Ressource ress = mb.getRessource(vec);

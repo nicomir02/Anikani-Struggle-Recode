@@ -75,10 +75,28 @@ public class MapBehaviour : NetworkBehaviour
         createTerrain();
     }
 
+    [ClientRpc]
+    void changeName(GameObject o, string objectname) {
+        o.name = objectname;
+    }
+
     [Command(requiresAuthority=false)]
     public void createTerrain() {
-        Debug.Log("[MapBehaviour] Terrain wird geprüft");
-        if(allVectors.Count > 0) generateTerrain();
+        float test = maxZ*0.4f;
+        for(int z=maxZ; z>=0; z--) {
+            GameObject instance = Instantiate(prefabTilemap, new Vector3(0, 0, 0), Quaternion.identity);
+            instance.name = "Height" + z;
+            
+            Vector3 setvec = instance.transform.position;
+            setvec.z = z;
+            setvec.y = test;
+            instance.transform.position = setvec;
+            NetworkServer.Spawn(instance);
+            changeName(instance, "Height" + z);
+            test -= 0.4f;
+        }
+
+        //Debug.Log("[MapBehaviour] Terrain wird geprüft");
         Debug.Log("[MapBehaviour] Terrain wird erstellt!");
         /*for(int x=0; x<width; x++) {
             for(int y=0; y<width; y++) {
@@ -96,17 +114,7 @@ public class MapBehaviour : NetworkBehaviour
                 tempVecList.Add(new Vector3Int(x, y, 0));
             }
         }
-        float test = maxZ*0.4f;
-        for(int z=maxZ; z>=0; z--) {
-            GameObject instance = Instantiate(prefabTilemap, new Vector3(0, 0, 0), Quaternion.identity);
-            instance.name = "Height" + z;
-            Vector3 setvec = instance.transform.position;
-            setvec.z = z;
-            setvec.y = test;
-            instance.transform.position = setvec;
-            NetworkServer.Spawn(instance);
-            test -= 0.4f;
-        }
+        
         
         while(tempVecList.Count > 0) {
             createBiom();
@@ -130,7 +138,7 @@ public class MapBehaviour : NetworkBehaviour
             }
         }
         Debug.Log("[MapBehaviour] Terrain wurde erstellt!");
-
+        
         generateTerrain();
         
     }
@@ -202,6 +210,8 @@ public class MapBehaviour : NetworkBehaviour
 
     [ClientRpc]
     void generateTerrain() {
+        float test = maxZ*0.4f;
+
         Debug.Log("[MapBehaviour] Terrain wird generiert");
         foreach(KeyValuePair<Vector3Int, int> kvp in allVectors) {
             Biom b = null;

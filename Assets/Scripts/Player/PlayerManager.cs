@@ -48,7 +48,8 @@ public class PlayerManager : NetworkBehaviour
     }
 
     public void setMainbuilding() {
-        Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
+        GameObject o = Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
+        o.GetComponent<Building>().playerManager = this;
     }
 
     void Start() {
