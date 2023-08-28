@@ -49,17 +49,12 @@ public class PlayerManager : NetworkBehaviour
         return volk;
     }
 
-    public void setMainbuilding() {
-        //GameObject o = Instantiate(volk.getMainBuilding().gameObject, transform.position, transform.rotation);
-        spawnHelper.spawnObject(volk.getMainBuilding().gameObject, transform, "Main Building " + name);
-        
-        foreach(Building b in FindObjectsOfType<Building>()) {
-            if(b.name == "Main Building " + name) {
-                b.playerManager = this;
-                break;
-            }
-        }
+
+    public void setBuilding(int buildingID){
+        if(!isLocalPlayer) return;
+        spawnHelper.spawnBuilding(volk.id, buildingID, transform, "Building " + buildingID + " " + name);
     }
+    
 
     void Start() {
         if(isLocalPlayer) {

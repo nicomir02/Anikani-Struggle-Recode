@@ -13,6 +13,11 @@ public class RoundManager : NetworkBehaviour
     private static Random rand = new Random();
 
     [SerializeField] private TMP_Text activePlayer;
+
+    public string aktiverSpieler {
+        get{return activePlayer.text;}
+    }
+
     [SerializeField] private TMP_Text roundText;
     [SerializeField] private Button nextRoundBtn;
 
@@ -60,7 +65,7 @@ public class RoundManager : NetworkBehaviour
             isActive = true;
             CMDchangeFarbe(pm.playerColor);
             if(round == 0){
-                pm.setMainbuilding();
+                pm.setBuilding(0);  //0 ist die ID für MainBuilding
             }
         }else {
             isActive = false;

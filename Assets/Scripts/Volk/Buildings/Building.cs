@@ -15,9 +15,14 @@ public class Building : NetworkBehaviour
     private TilemapHover th;
     //mapBehaviour
     private MapBehaviour mb;
+    //roundManager
+    private RoundManager rm;
 
     //RadiusNeighborCheck
     private RadiusNeighborCheck radiusNeighborCheck;
+
+    //Spawn Helper
+    private ObjectSpawnHelper spawnHelper;
 
     private PlayerManager pm;
     public PlayerManager playerManager {
@@ -40,14 +45,36 @@ public class Building : NetworkBehaviour
         th = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
 
-        transparencyChange(0.5f);
+        spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
+
+        
+
+        //Spielersuche
+        if(pm == null) {
+            foreach(PlayerManager playerManager in FindObjectsOfType<PlayerManager>()) {
+                if(playerManager.name == rm.aktiverSpieler) {
+                    pm = playerManager;
+                    
+                    break;
+                }
+            }
+        }
+        if(pm == PlayerHelperScript.findLocalPlayer()){
+            transparencyChange(0.5f);
+        }else {
+            transparencyChange(0f);
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(pm == null || pm != PlayerHelperScript.findLocalPlayer()) return;
+        
+        
+        if(pm != PlayerHelperScript.findLocalPlayer()) return;
+        
         Vector3Int vec = th.getMousePosition();
         vec.x -= (radius-1)/2;
         vec.y -= (radius-1)/2;
@@ -63,7 +90,7 @@ public class Building : NetworkBehaviour
             vec.y += (radius-1)/2;
             gebaeudeBau(vec);
             gesetzt = true;
-            CMDtransparencyChange(1f);
+            CMDtransparencyChange(1f, newPos);
         }
         //if(!setzbar()) Debug.Log("nicht setzbar");
     }
@@ -73,18 +100,27 @@ public class Building : NetworkBehaviour
     }
 
     [Command(requiresAuthority=false)]
-    public void CMDtransparencyChange(float f) {
+    public void CMDtransparencyChange(float f, Vector3 vec) {
         Color tmp = GetComponent<SpriteRenderer>().color;
         tmp.a = f;
         GetComponent<SpriteRenderer>().color = tmp;
-        RPCtransparencyChange(f);
+
+        Vector3 curPosition = transform.position;
+        curPosition = vec;
+        transform.position = curPosition;
+
+        RPCtransparencyChange(f, vec);
     }
 
     [ClientRpc]
-    public void RPCtransparencyChange(float f) {
+    public void RPCtransparencyChange(float f, Vector3 vec) {
         Color tmp = GetComponent<SpriteRenderer>().color;
         tmp.a = f;
         GetComponent<SpriteRenderer>().color = tmp;
+
+        Vector3 curPosition = transform.position;
+        curPosition = vec;
+        transform.position = curPosition;
     }
 
     private void transparencyChange(float f){
@@ -111,7 +147,8 @@ public class Building : NetworkBehaviour
             pos.y -= radius;
             pos.x += 1;
         }
-
+        
+        
         CMDressourcenZerstoeren();
     }
 

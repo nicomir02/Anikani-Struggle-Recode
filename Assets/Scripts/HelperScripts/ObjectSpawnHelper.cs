@@ -5,16 +5,18 @@ using Mirror;
 
 public class ObjectSpawnHelper : NetworkBehaviour
 {
+    [SerializeField] private GameManager gameManager;
+
     [Command(requiresAuthority=false)]
-    public void spawnObject(GameObject o, Transform position, string objectname) {
-        o = Instantiate(o, position);
-        o.name = objectname;
-        NetworkServer.Spawn(o);
-        //RPCspawn(o, objectname);
+    public void spawnBuilding(int volk, int buildingid, Transform position, string objectname) {
+        
+        GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getBuildingByID(buildingid), position);
+        NetworkServer.Spawn(prefab);
+        RPCnamechange(prefab, objectname);
     }
 
     [ClientRpc]
-    void RPCspawn(GameObject o, string objectname) {
+    void RPCnamechange(GameObject o, string objectname) {
         o.name = objectname;
     }
 }
