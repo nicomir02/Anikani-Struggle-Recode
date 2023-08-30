@@ -7059,13 +7059,15 @@ MonoBehaviour:
   biome:
   - {fileID: 5185208240131323076, guid: 50cc700a7f129de439f4a62e8ca793f0, type: 3}
   - {fileID: 5185208240131323076, guid: d191a0fd45ec8b54c97a2e8c29a42514, type: 3}
+  - {fileID: 5185208240131323076, guid: 68132c41009680945ac422295591cb24, type: 3}
   ressourcen:
   - {fileID: 8694705376693512614, guid: 2b1f55296aaeb3a4aa075bdc80d7faca, type: 3}
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
-  width: 50
-  height: 50
-  maxZ: 2
+  - {fileID: 8694705376693512614, guid: c791cfe8fed5e4940a6ea607817a3c9a, type: 3}
+  width: 75
+  height: 75
+  maxZ: 3
   unterErde: {fileID: 11400000, guid: 1cb301333579a684086174e2899a3b64, type: 2}
   tilemapHover: {fileID: 1938173203}
   sizeMultiplier: 100

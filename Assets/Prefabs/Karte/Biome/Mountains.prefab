@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646df69f884860845b9ce958c4191c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  probability: 0.93
-  size: 0.02
-  minheight: 1
-  maxheight: 2
+  id: 2
+  probability: 0.18
+  size: 0.1
+  minheight: 3
+  maxheight: 3
   mainBlock: {fileID: 6607858569274282558, guid: 3dcbba86f599b2847afc543a32136cf0, type: 3}
+  baubar: 0

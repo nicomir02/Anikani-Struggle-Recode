@@ -82,6 +82,22 @@ public class Building : NetworkBehaviour
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
+            /*
+            Leider ist setzbar() sehr ineffizient
+            
+            if(setzbar()) {
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp = Color.white;
+                tmp.a = 0.5f;
+
+                GetComponent<SpriteRenderer>().color = tmp;
+            }else {
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp = Color.red;
+                tmp.a = 0.5f;
+
+                GetComponent<SpriteRenderer>().color = tmp;
+            }*/
         }
 
         if(Input.GetMouseButtonDown(0) && !gesetzt && setzbar()){
