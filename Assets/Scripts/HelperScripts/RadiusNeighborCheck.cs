@@ -22,8 +22,8 @@ public class RadiusNeighborCheck : MonoBehaviour
 
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
-                Debug.Log("current pos:" + currentPosition);
-                Debug.Log(checkOwnArea(currentPosition));
+                //Debug.Log("current pos:" + currentPosition);
+                //Debug.Log(checkOwnArea(currentPosition));
                 if(mb.getZ(currentPosition) != z) return false;
                 foreach(Tilemap tm in tilemaps){
                     if(!checkBaubar(currentPosition) || checkBuildings(currentPosition)){
@@ -61,14 +61,14 @@ public class RadiusNeighborCheck : MonoBehaviour
 
     //Nur ungerader Radius, damit Mitte gewählt werden kann 
     public List<Vector3Int> getNeighborTiles(Vector3Int start, int radius) {
-        Debug.Log(start);
-        Debug.Log(radius);
+        //Debug.Log(start);
+        //Debug.Log(radius);
         List<Vector3Int> liste = new List<Vector3Int>();
         
         //in die ecke gehen, da start der mittelpunkt ist
         start.x -= (radius - 1) / 2;
         start.y -= (radius - 1) / 2;
-        Debug.Log(start);
+        //Debug.Log(start);
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
                 start.z = mb.getZ(start);

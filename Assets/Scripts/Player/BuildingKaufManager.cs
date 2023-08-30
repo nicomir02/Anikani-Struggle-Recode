@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BuildingKaufManager : MonoBehaviour
 {
@@ -45,6 +46,17 @@ public class BuildingKaufManager : MonoBehaviour
             o.transform.SetParent(scrollviewTransfrom, false);
             o.transform.GetChild(2).GetComponent<BuildingID>().building_id = kvp.Value;
             o.transform.GetChild(0).GetComponent<Image>().sprite = kvp.Key.GetComponent<SpriteRenderer>().sprite;
+
+            TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
+            Building b = PlayerHelperScript.findLocalPlayer().getVolk().getBuildingByID(kvp.Value).GetComponent<Building>();
+            text.text = "";
+            Dictionary<Ressource, int> buildingKosten = b.getKosten();
+            foreach(KeyValuePair<Ressource, int> kosten in buildingKosten) {
+                text.text += kosten.Key.name + ": " + kosten.Value + "\n";
+            }
+
+            o.transform.GetChild(2).GetComponent<BuildingID>().Kosten = buildingKosten;
+
             generatedPrefabs.Add(o);
         }
     }
@@ -67,4 +79,6 @@ public class BuildingKaufManager : MonoBehaviour
                 offen = false;
             }
     }
+
+    
 }

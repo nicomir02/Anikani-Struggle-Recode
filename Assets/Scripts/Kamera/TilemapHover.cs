@@ -33,7 +33,7 @@ public class TilemapHover : MonoBehaviour
             oldVec = newVec;
         }
 
-        if(Input.GetMouseButtonDown(0)) Debug.Log(new Vector3Int(oldVec.x,oldVec.y, mapBehaviour.getZ(oldVec)));
+        //if(Input.GetMouseButtonDown(0)) Debug.Log(new Vector3Int(oldVec.x,oldVec.y, mapBehaviour.getZ(oldVec)));
     }
 
     //nach Mapgenerierung einmal aufgerufen um eine Liste aller Tilemaps zu erstellen

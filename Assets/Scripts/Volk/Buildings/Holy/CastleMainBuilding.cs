@@ -8,4 +8,5 @@ public class CastleMainBuilding : Building
         Vector3Int neuPos = th.getMousePosition();
         return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps, false);
     }
+    
 }

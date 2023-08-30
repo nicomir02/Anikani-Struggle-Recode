@@ -29,6 +29,7 @@ public class RoundManager : NetworkBehaviour
     private bool isActive = false;
 
 
+
     
 
     void nextRound() {
@@ -69,13 +70,26 @@ public class RoundManager : NetworkBehaviour
             CMDchangeFarbe(pm.playerColor);
             if(round == 0){
                 pm.setBuilding(0);  //0 ist die ID für MainBuilding
+                //alexänderung
+                /* if(!pm.playerHauptgebaeude){
+                    isActive = false;
+                    pm.setBuilding(0);
+                } else {
+                    isActive = true;
+                } */
             }else if(round == 1) {
                 fogOfWar.color = Color.black;
+            }
+            foreach(Building b in FindObjectsOfType<Building>()) {
+                if(b.playerManager == pm) {
+                    b.nextRound();
+                }
             }
         }else {
             isActive = false;
         }
     }
+
 
     [Command(requiresAuthority=false)]
     void CMDchangeFarbe(int id) {

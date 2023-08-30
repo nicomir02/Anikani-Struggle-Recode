@@ -10,6 +10,10 @@ public class Building : NetworkBehaviour
     [SerializeField] protected int radius = 3;
     //ob Gebäude schon gesetzt
     private bool gesetzt = false;
+
+    public bool buildingGesetzt {
+        get{return gesetzt;}
+    }
     
     //Mouseposition
     protected TilemapHover th;
@@ -38,6 +42,16 @@ public class Building : NetworkBehaviour
 
     //liste der zerstörten Ressourcen unter Gebäude
     private Dictionary<Ressource, int> ressourcen = new Dictionary<Ressource, int>();
+    
+    public Dictionary<Ressource, int> Ressourcen {
+        get{return ressourcen;}
+    }
+
+    //Kosten des Gebäudes
+    [SerializeField] private List<Ressource> RessourcenFuerKosten;
+    [SerializeField] private List<int> kostenFuerRessource;
+    [SerializeField] private List<float> kostenMultiplierFuerRessource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +70,6 @@ public class Building : NetworkBehaviour
             foreach(PlayerManager playerManager in FindObjectsOfType<PlayerManager>()) {
                 if(playerManager.name == rm.aktiverSpieler) {
                     pm = playerManager;
-                    
                     break;
                 }
             }
@@ -66,6 +79,7 @@ public class Building : NetworkBehaviour
         }else {
             transparencyChange(0f);
         }
+
     }
 
     // Update is called once per frame
@@ -188,5 +202,41 @@ public class Building : NetworkBehaviour
                 tm.SetTile(new Vector3Int(vec.x, vec.y, 1), null);
             }
         }
+    }
+
+    public virtual void nextRound() {}
+
+    public Dictionary<Ressource, int> getKosten(){
+        Dictionary<Ressource, int> result = new Dictionary<Ressource, int>();
+        
+        int anzahl = 0;
+
+        /*
+        Optimierungsvorschlg:
+        für anzahl der gebäude: Beim PlayerManager speichern wen Gebäude gebaut als dictinary     
+        */
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
+        
+        foreach(Building b in FindObjectsOfType<Building>()) {
+            string activePlayer = "";
+
+            foreach(PlayerManager player in FindObjectsOfType<PlayerManager>()) {
+                if(player.name == rm.aktiverSpieler) {
+                    activePlayer = player.name;
+                    break;
+                }
+            }
+
+            if(b.name == name + " " + activePlayer) {
+                anzahl++;
+            }
+        }
+
+        for(int i = 0; i < RessourcenFuerKosten.Count; i++){
+            float wert = anzahl*kostenMultiplierFuerRessource[i];
+            int convert = (int) Mathf.Round(wert);
+            result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievielegebäudeDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
+        }
+        return result;
     }
 }
