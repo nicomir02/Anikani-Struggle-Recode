@@ -118,7 +118,7 @@ TextureImporter:
         width: 63
         height: 88
       alignment: 9
-      pivot: {x: 0.5, y: -0.05}
+      pivot: {x: 0.4, y: -0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
         width: 63
         height: 94
       alignment: 9
-      pivot: {x: 0.5, y: -0.05}
+      pivot: {x: 0.4, y: -0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
         width: 63
         height: 91
       alignment: 9
-      pivot: {x: 0.5, y: -0.05}
+      pivot: {x: 0.4, y: -0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: tower_7
       rect:
         serializedVersion: 2
-        x: 306
+        x: 307
         y: 9
         width: 63
         height: 91
       alignment: 9
-      pivot: {x: 0.5, y: -0.05}
+      pivot: {x: 0.4, y: -0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +202,7 @@ TextureImporter:
         width: 63
         height: 94
       alignment: 9
-      pivot: {x: 0.5, y: -0.05}
+      pivot: {x: 0.4, y: -0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

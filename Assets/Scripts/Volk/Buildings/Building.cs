@@ -34,6 +34,8 @@ public class Building : NetworkBehaviour
         set{pm = value;}
     }
 
+    [SerializeField] private GameObject lightObject;
+
     //Leben/Haltbarkeit des Gebäudes
     [SerializeField] private int health;
 
@@ -177,7 +179,7 @@ public class Building : NetworkBehaviour
             pos.y -= radius;
             pos.x += 1;
         }
-        
+        lightObject.SetActive(true);
         
         CMDressourcenZerstoeren();
     }
