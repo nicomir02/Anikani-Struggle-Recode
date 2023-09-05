@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Mirror;
+using System.Linq;
 
 public class TrainUnitBuilding : Building
 {
@@ -44,10 +45,9 @@ public class TrainUnitBuilding : Building
         if(ausbildungen.Count == 0) {
             ausbildungen.Add(u.getAusbildungszeit(), u);
         }else {
-            int highestValue = 0;
-            foreach(KeyValuePair<int, Unit> kvp in ausbildungen) {
-                if(kvp.Key > highestValue) highestValue = kvp.Key;
-            }
+            int highestValue = ausbildungen.Keys.Max();
+            Debug.Log("insert " + ausbildungen.Count);
+
             ausbildungen.Add(highestValue + u.getAusbildungszeit(), u);
         }
         return true;

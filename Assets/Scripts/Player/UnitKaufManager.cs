@@ -63,12 +63,21 @@ public class UnitKaufManager : MonoBehaviour
     }
 
     public void reloadAusbildungen() {
+        foreach(GameObject o in generatedPrefabsUnits) {
+            Destroy(o);
+        }
+        generatedPrefabsUnits = new List<GameObject>();
         //liste der aktuell am ausbildenden Einheiten innerhalb dieser Barracke
-        foreach(KeyValuePair<int, Unit> kvp in saveBuilding.Ausbildungen){
+        List<int> sort = new List<int>(saveBuilding.Ausbildungen.Keys);
+        sort.Sort();
+        
+
+        foreach(int i in sort){
             GameObject o = Instantiate(prefabUnit, transform.position, transform.rotation);
             o.transform.SetParent(ausbildungsleiste.GetComponent<Transform>(), false);
-            o.transform.GetChild(0).GetComponent<Image>().sprite = kvp.Value.GetComponent<SpriteRenderer>().sprite;
-            o.transform.GetChild(1).GetComponent<TMP_Text>().text = "" + (kvp.Key - saveBuilding.Zahl);
+            o.transform.GetChild(0).GetComponent<Image>().sprite = saveBuilding.Ausbildungen[i].GetComponent<SpriteRenderer>().sprite;
+            o.transform.GetChild(1).GetComponent<TMP_Text>().text = "" + (i - saveBuilding.Zahl);
+            generatedPrefabsUnits.Add(o);
         }
     }
 
