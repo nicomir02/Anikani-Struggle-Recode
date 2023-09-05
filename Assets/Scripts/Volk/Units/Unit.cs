@@ -9,8 +9,53 @@ public class Unit : MonoBehaviour
     private int steps;
     private TilemapHover tilemapHover;
     private MapBehaviour mapBehaviour;
+    private RoundManager rm;
     private Vector3Int currentPosition;
     bool selected = false;
+
+    [SerializeField] private int ausbildungszeit;
+    public int getAusbildungszeit() {
+        return ausbildungszeit;
+    }
+
+
+    [SerializeField] private List<Ressource> RessourcenFuerKosten;
+    [SerializeField] private List<int> kostenFuerRessource;
+    [SerializeField] private List<float> kostenMultiplierFuerRessource;
+
+    public Dictionary<Ressource, int> getKosten(){
+        Dictionary<Ressource, int> result = new Dictionary<Ressource, int>();
+        
+        int anzahl = 0;
+
+        /*
+        Optimierungsvorschlg:
+        für anzahl der gebäude: Beim PlayerManager speichern wen Gebäude gebaut als dictinary     
+        */
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
+        
+        foreach(Unit u in FindObjectsOfType<Unit>()) {
+            string activePlayer = "";
+
+            foreach(PlayerManager player in FindObjectsOfType<PlayerManager>()) {
+                if(player.name == rm.aktiverSpieler) {
+                    activePlayer = player.name;
+                    break;
+                }
+            }
+
+            if(u.name == name + " " + activePlayer) {
+                anzahl++;
+            }
+        }
+
+        for(int i = 0; i < RessourcenFuerKosten.Count; i++){
+            float wert = anzahl*kostenMultiplierFuerRessource[i];
+            int convert = (int) Mathf.Round(wert);
+            result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievieleEinheitenDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
+        }
+        return result;
+    }
 
     void Start() {
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
@@ -34,6 +79,10 @@ public class Unit : MonoBehaviour
     //Nachdem neue Runde anfängt Aufladungsmethode
     public void roundAufladen() {
         steps = maxSteps;
+    }
+
+    public void spawnUnit(Vector3Int vec) {
+        
     }
 
 

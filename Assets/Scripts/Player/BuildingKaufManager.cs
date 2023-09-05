@@ -28,7 +28,7 @@ public class BuildingKaufManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.B)){
             if(!offen ){
                 openPanel();
                 offen = true;
@@ -40,6 +40,7 @@ public class BuildingKaufManager : MonoBehaviour
     }
 
     void openPanel(){
+        offen = true;
         panel.SetActive(true);
         foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllBuildingObjects()) {
             GameObject o = Instantiate(prefab, transform.position, transform.rotation);
@@ -62,6 +63,7 @@ public class BuildingKaufManager : MonoBehaviour
     }
 
     public void closePanel(){
+        offen = false;
         panel.SetActive(false);
         foreach(GameObject gameObject in generatedPrefabs) {
             Destroy(gameObject);
@@ -73,10 +75,8 @@ public class BuildingKaufManager : MonoBehaviour
     void openClosePanel(){
         if(!offen ){
                 openPanel();
-                offen = true;
             } else {
                 closePanel();
-                offen = false;
             }
     }
 

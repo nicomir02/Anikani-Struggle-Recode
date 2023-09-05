@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1916190920523734727}
   - component: {fileID: -9162810588990643665}
   m_Layer: 0
-  m_Name: TestKnight
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,3 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteps: 4
+  ausbildungszeit: 1
+  RessourcenFuerKosten:
+  - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
+  - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
+  kostenFuerRessource: 0100000001000000
+  kostenMultiplierFuerRessource:
+  - 1.2
+  - 1.1

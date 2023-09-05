@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3214761667861719317
 MonoBehaviour:
@@ -47,5 +47,7 @@ MonoBehaviour:
   hauptGebaeude: {fileID: -1864038161657043744, guid: 435b6613f707a2c4aac0381d0c5c4c3e, type: 3}
   quarry: {fileID: 4157904445678943923, guid: 151f40afe9a0d5c4a89242ebb7f226bd, type: 3}
   woodCutter: {fileID: -6469586152435052321, guid: bf476ff9278feeb449cd4ad005866d32, type: 3}
-  tower: {fileID: 8521705001746250553, guid: 0033ea3bf85417b44ac7d8ccce2a40a6, type: 3}
+  tower: {fileID: 1912368084208151826, guid: 0033ea3bf85417b44ac7d8ccce2a40a6, type: 3}
   id: 0
+  units:
+  - {fileID: -9162810588990643665, guid: d16844bccb3cd1b4a94ca6bf93aeca25, type: 3}

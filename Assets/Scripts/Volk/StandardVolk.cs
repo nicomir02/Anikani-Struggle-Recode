@@ -11,6 +11,8 @@ public class StandardVolk : MonoBehaviour
     [SerializeField] private Building tower;
     [SerializeField] public int id;
 
+    [SerializeField] private List<Unit> units;
+
     // Start is called before the first frame update
     public Building getMainBuilding() {
         return hauptGebaeude;
@@ -29,6 +31,19 @@ public class StandardVolk : MonoBehaviour
         objects.Add(woodCutter.gameObject, 1);
         objects.Add(quarry.gameObject, 2);
         objects.Add(tower.gameObject, 3);
+        
+        return objects;
+    }
+
+    public GameObject getUnitByID(int id) {
+        return units[id].gameObject;
+    }
+
+    public Dictionary<GameObject, int> getAllUnits() {
+        Dictionary<GameObject, int> objects = new Dictionary<GameObject, int>();
+        for(int i=0; i<units.Count;i++) {
+            objects.Add(units[i].gameObject, i);
+        }
         
         return objects;
     }
