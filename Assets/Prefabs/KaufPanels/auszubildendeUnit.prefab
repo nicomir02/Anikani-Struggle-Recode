@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5975921919940345105}
   - component: {fileID: 4771440058485273574}
   - component: {fileID: 2493284772051957236}
+  - component: {fileID: 6676107145550506082}
   m_Layer: 0
   m_Name: auszubildendeUnit
   m_TagString: Untagged
@@ -213,6 +214,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6676107145550506082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7492213126141169603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 100
+  m_PreferredHeight: 100
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: 1
+  m_LayoutPriority: 1
 --- !u!1 &7647901057274505904
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.807}
   m_AnchorMin: {x: 0.08389047, y: 0.16288774}
   m_AnchorMax: {x: 0.8788249, y: 0.8588306}
-  m_AnchoredPosition: {x: 2, y: -1.0000076}
+  m_AnchoredPosition: {x: 2, y: -1.0000153}
   m_SizeDelta: {x: 5.296301, y: 3.3332005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8685935272400152683

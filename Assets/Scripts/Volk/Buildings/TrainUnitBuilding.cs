@@ -10,6 +10,10 @@ public class TrainUnitBuilding : Building
     [SerializeField] private int maxAusbildungen = 4;
     //Liste der aktuellen auszubildenden Einheiten und die Anzahl der noch benötigten Runden.
     private Dictionary<int, Unit> ausbildungen = new Dictionary<int, Unit>();
+    
+    public bool istVoll {
+        get{return ausbildungen.Count >= maxAusbildungen;}
+    }
 
     public Dictionary<int, Unit> Ausbildungen {
         get{return ausbildungen;}
@@ -25,11 +29,17 @@ public class TrainUnitBuilding : Building
         if(ausbildungen.Count > 0) zahl++;
         if(ausbildungen.ContainsKey(zahl)) {
             //Ausbildung gespawned;
+            PlayerManager pm = PlayerHelperScript.findLocalPlayer();
             
+            pm.setUnit(ausbildungen[zahl], transform);
             ausbildungen.Remove(zahl);//um dictionary zu pflegen und nicht größer werden zu lassen
-            if(ausbildungen.Count == 0) zahl = 0;
+            if(ausbildungen.Count == 0) {
+                zahl = 0;
+    	        
+            }
         }
     }
+
 
     /*
     Erklärung für nextROundMethode:

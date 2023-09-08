@@ -113,6 +113,11 @@ public class PlayerManager : NetworkBehaviour
         if(!isLocalPlayer) return;
         spawnHelper.spawnBuilding(volk.id, buildingID, transform, volk.getBuildingByID(buildingID).name + " " + name);
     }
+
+    public void setUnit(Unit unit, Transform transform){
+        if(!isLocalPlayer) return;
+        spawnHelper.spawnUnit(volk.id, volk.getUnitID(unit), transform, unit.name + " " + name);
+    }
     
 
     void Start() {

@@ -10,6 +10,10 @@ public class Unit : MonoBehaviour
     private TilemapHover tilemapHover;
     private MapBehaviour mapBehaviour;
     private RoundManager rm;
+
+    //Spawn Helper
+    private ObjectSpawnHelper spawnHelper;
+    
     private Vector3Int currentPosition;
     bool selected = false;
 
@@ -62,6 +66,8 @@ public class Unit : MonoBehaviour
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         transform.position = getPosition(new Vector3Int(0,0,0));
         currentPosition = new Vector3Int(0,0,0);
+
+        spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
     }
 
     void Update() {

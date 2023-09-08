@@ -7,6 +7,12 @@ public class UnitID : MonoBehaviour
 {
     private int unitID = -1;
     private Dictionary<Ressource, int> kosten;
+    private TrainUnitBuilding building;
+
+    public TrainUnitBuilding Building {
+        get{return building;}
+        set{building = value;}
+    }
 
     public int unit_ID {
         get{return unitID;}
@@ -25,9 +31,10 @@ public class UnitID : MonoBehaviour
 
 
     public void click(){
-        if(unitID == -1) return;
+        if(unitID == -1 || building.istVoll) return;
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if(pm.genugRessourceVorhanden(kosten)) {
+            
             GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<UnitKaufManager>().addUnit(unitID);
             Debug.Log("UnitPanel] " + pm.name + " hat Unit gekauft");
         }else {

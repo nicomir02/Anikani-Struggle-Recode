@@ -103,6 +103,7 @@ public class UnitKaufManager : MonoBehaviour
             }
 
             o.transform.GetChild(2).GetComponent<UnitID>().Kosten = unitKosten;
+            o.transform.GetChild(2).GetComponent<UnitID>().Building = b;
 
             generatedPrefabs.Add(o);
         }

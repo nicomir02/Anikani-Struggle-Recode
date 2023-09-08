@@ -19,4 +19,12 @@ public class ObjectSpawnHelper : NetworkBehaviour
     void RPCnamechange(GameObject o, string objectname) {
         o.name = objectname;
     }
+
+    [Command(requiresAuthority=false)]
+    public void spawnUnit(int volk, int unitID, Transform position, string objectname) {
+        GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getUnitByID(unitID), position);
+        NetworkServer.Spawn(prefab);
+        RPCnamechange(prefab, objectname);
+    }
+
 }

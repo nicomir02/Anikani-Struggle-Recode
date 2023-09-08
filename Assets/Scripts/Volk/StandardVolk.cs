@@ -39,6 +39,13 @@ public class StandardVolk : MonoBehaviour
         return units[id].gameObject;
     }
 
+    public int getUnitID(Unit u) {
+        for(int i=0;i<units.Count;i++) {
+            if(u == units[i]) return i;
+        }
+        return -1;
+    }
+
     public Dictionary<GameObject, int> getAllUnits() {
         Dictionary<GameObject, int> objects = new Dictionary<GameObject, int>();
         for(int i=0; i<units.Count;i++) {
