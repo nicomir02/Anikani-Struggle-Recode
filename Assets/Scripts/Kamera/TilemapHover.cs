@@ -51,28 +51,11 @@ public class TilemapHover : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
         //vector.y += 0.8f * (tilemaps.Count-1);
-        vector.z += 1f * (tilemaps.Count-1);
-        List<Tilemap> hoeher = new List<Tilemap>(); //Speichert schon höhere Tilemaps um zu schauen ob dadrüber noch ein Tile ist
-        foreach(Tilemap tm in tilemaps) {
-            
-            Vector3Int result = tm.transform.parent.GetComponent<Grid>().WorldToCell(vector);
-            
-            if(tm.HasTile(result)) {
-                foreach(Tilemap tilem in hoeher) {
-                    if(tilem.HasTile(result)) {
-                        tilemap = tilem;
-                        return result;
-                    }
-                }
-                tilemap = tm;
-                return result;
-            }
-            hoeher.Add(tm);
-            vector.z -= 1f;
-            //vector.y -= 0.8f;
-        }
+        //vector.z += 1f * (tilemaps.Count-1);
         
-        return new Vector3Int(-1,-1,-1);
+
+        
+        return getVec3IntFromVec3(vector);
     }
 
     public Vector3 getVec3Mouse(){
@@ -89,6 +72,31 @@ public class TilemapHover : MonoBehaviour
             v = tilemaps[0].CellToWorld(from);
         }
         v.z += 1;
+        return v;
+    }
+
+    public Vector3Int getVec3IntFromVec3(Vector3 from){
+        Vector3Int v = new Vector3Int(-1,-1,-1);
+        from.z = 1f * (tilemaps.Count-1);
+        List<Tilemap> hoeher = new List<Tilemap>(); //Speichert schon höhere Tilemaps um zu schauen ob dadrüber noch ein Tile ist
+        foreach(Tilemap tm in tilemaps) {
+            
+            Vector3Int result = tm.transform.parent.GetComponent<Grid>().WorldToCell(from);
+            
+            if(tm.HasTile(result)) {
+                foreach(Tilemap tilem in hoeher) {
+                    if(tilem.HasTile(result)) {
+                        tilemap = tilem;
+                        return result;
+                    }
+                }
+                tilemap = tm;
+                return result;
+            }
+            hoeher.Add(tm);
+            from.z -= 1f;
+            //vector.y -= 0.8f;
+        }
         return v;
     }
 }

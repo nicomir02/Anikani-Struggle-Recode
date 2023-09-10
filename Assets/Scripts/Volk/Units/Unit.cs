@@ -10,9 +10,6 @@ public class Unit : MonoBehaviour
     private TilemapHover tilemapHover;
     private MapBehaviour mapBehaviour;
     private RoundManager rm;
-
-    //Spawn Helper
-    private ObjectSpawnHelper spawnHelper;
     
     private Vector3Int currentPosition;
     bool selected = false;
@@ -64,31 +61,25 @@ public class Unit : MonoBehaviour
     void Start() {
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
-        transform.position = getPosition(new Vector3Int(0,0,0));
-        currentPosition = new Vector3Int(0,0,0);
-
-        spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
+        /*transform.position = getPosition(new Vector3Int(0,0,0));
+        currentPosition = new Vector3Int(0,0,0);*/
     }
 
     void Update() {
         if(Input.GetMouseButtonDown(0)) {
             if(!selected && tilemapHover.getMousePosition() == currentPosition) {
+                Debug.Log("selected" + name);
                 GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
             }else {
                 schritteGehen(tilemapHover.getMousePosition());
             }
-            selected = !selected;
         }
     }
 
 
     //Nachdem neue Runde anfängt Aufladungsmethode
-    public void roundAufladen() {
+    public void nextRound() {
         steps = maxSteps;
-    }
-
-    public void spawnUnit(Vector3Int vec) {
-        
     }
 
 
@@ -97,12 +88,20 @@ public class Unit : MonoBehaviour
         if(end.z == -1 && end.x == -1 && end.z == -1 || !mapBehaviour.insideField(end)) return;
         end.z = mapBehaviour.getZ(end);
         Pathfinding path = new Pathfinding(currentPosition, end, this);
+        if(path == null || path.FindPath() == null) {
+            selected = !selected;
+            GetComponent<SpriteRenderer>().color = Color.white;
+            return;
+        }
         List<Vector3Int> liste = path.FindPath();
-        if(path.getAllCost() < maxSteps) { //muss noch richtig gemacht werden
+        if(liste.Count <= maxSteps) { //muss noch richtig gemacht werden
             Debug.Log(path.getAllCost());
             transform.position = getPosition(end); // Hier noch normale Bewegung machen
+            end.z = 0;
+            currentPosition = end;
         }else {
-            Debug.Log("Position kann nicht erreicht werden");
+            selected = !selected;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 

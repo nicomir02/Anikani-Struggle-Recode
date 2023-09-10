@@ -125,6 +125,13 @@ public class Building : NetworkBehaviour
             CMDtransparencyChange(1f, newPos);
         }
         //if(!setzbar()) Debug.Log("nicht setzbar");
+
+
+        if(Input.GetMouseButtonDown(0) && isSelected()){
+            Debug.Log("gebäude wurde ausgewaehlt");
+            Debug.Log(gameObject.name);
+            //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
+        }
     }
     
     public List<Vector3Int> getPosition() {
@@ -240,5 +247,12 @@ public class Building : NetworkBehaviour
             result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievielegebäudeDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
         }
         return result;
+    }
+
+    private bool isSelected(){
+        if(position.Contains(th.getMousePosition())){
+            return true;
+        }
+        return false;
     }
 }

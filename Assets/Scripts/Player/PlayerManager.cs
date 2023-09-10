@@ -114,9 +114,9 @@ public class PlayerManager : NetworkBehaviour
         spawnHelper.spawnBuilding(volk.id, buildingID, transform, volk.getBuildingByID(buildingID).name + " " + name);
     }
 
-    public void setUnit(Unit unit, Transform transform){
+    public void setUnit(Unit unit, Transform t){
         if(!isLocalPlayer) return;
-        spawnHelper.spawnUnit(volk.id, volk.getUnitID(unit), transform, unit.name + " " + name);
+        spawnHelper.spawnUnit(volk.id, volk.getUnitID(unit), t, unit.name + " " + name);
     }
     
 

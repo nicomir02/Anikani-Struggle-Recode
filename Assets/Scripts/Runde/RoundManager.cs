@@ -85,6 +85,11 @@ public class RoundManager : NetworkBehaviour
                     b.nextRound();
                 }
             }
+            foreach(Unit u in FindObjectsOfType<Unit>()) {
+                if(u.transform.parent.GetComponent<PlayerManager>() == pm) {
+                    u.nextRound();
+                }
+            }
         }else {
             isActive = false;
         }
