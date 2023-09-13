@@ -46,10 +46,15 @@ public class PlayerManager : NetworkBehaviour
     private TMP_Text stoneCounter;
 
     
-    private int color = -1;
+    [SyncVar] private int color = -1;
     public int playerColor {
         get{return color;}
-        set{color = value;}
+        set{changePlayerColor(value);}
+    }
+
+    [Command(requiresAuthority=false)]
+    public void changePlayerColor(int value) {
+        color = value;
     }
 
     //testen ob Obere Leiste schon geladen für die RessourcenCounter
@@ -109,8 +114,11 @@ public class PlayerManager : NetworkBehaviour
     }
 
 
-    public void setBuilding(int buildingID){
+    public void setBuilding(int buildingID) {
         if(!isLocalPlayer) return;
+        Debug.Log(volk.id);
+        Debug.Log(name);
+        Debug.Log(volk.getBuildingByID(buildingID).name + " " + name);
         spawnHelper.spawnBuilding(volk.id, buildingID, transform, volk.getBuildingByID(buildingID).name + " " + name);
     }
 

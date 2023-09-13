@@ -13,23 +13,23 @@ public class ObjectSpawnHelper : NetworkBehaviour
         
         GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getBuildingByID(buildingid), t);
         NetworkServer.Spawn(prefab);
-        RPCnamechange(prefab, objectname);
+        RPCnamechange(prefab, objectname, t);
     }
 
     [ClientRpc]
-    void RPCnamechange(GameObject o, string objectname) {
+    void RPCnamechange(GameObject o, string objectname, Transform parent) {
         o.name = objectname;
+        o.transform.parent = parent;
     }
 
     [Command(requiresAuthority=false)]
     public void spawnUnit(int volk, int unitID, Transform t, string objectname) {
-        Debug.Log(tilemapHover.getVec3IntFromVec3(t.position));
+        //Debug.Log(tilemapHover.getVec3IntFromVec3(t.position));
         t.position = tilemapHover.getVec3FromVec3Int(tilemapHover.getVec3IntFromVec3(t.position));
         GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getUnitByID(unitID), t);
         prefab.transform.parent = t.parent;
         NetworkServer.Spawn(prefab);
-
-        RPCnamechange(prefab, objectname);
+        RPCnamechange(prefab, objectname, t.parent);
     }
 
     

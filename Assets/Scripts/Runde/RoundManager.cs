@@ -42,6 +42,7 @@ public class RoundManager : NetworkBehaviour
 
     void Start() {
         nextRoundBtn.onClick.AddListener(nextRound);
+
     }
 
     [Command(requiresAuthority=false)]
@@ -65,6 +66,9 @@ public class RoundManager : NetworkBehaviour
         activePlayer.text = list[curTurn];
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         //schauen ob Spieler aktiv
+        if(round == 1) {
+            fogOfWar.color = Color.black;
+        }
         if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
             CMDchangeFarbe(pm.playerColor);
@@ -77,8 +81,6 @@ public class RoundManager : NetworkBehaviour
                 } else {
                     isActive = true;
                 } */
-            }else if(round == 1) {
-                fogOfWar.color = Color.black;
             }
             foreach(Building b in FindObjectsOfType<Building>()) {
                 if(b.playerManager == pm) {

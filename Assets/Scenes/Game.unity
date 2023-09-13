@@ -1967,7 +1967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.042503413, y: 0.143}
   m_AnchorMax: {x: 0.9727285, y: 0.88251865}
-  m_AnchoredPosition: {x: -1.502594, y: 0.91137695}
+  m_AnchoredPosition: {x: -1.5026093, y: 0.91137695}
   m_SizeDelta: {x: 6.146, y: 2.8099976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322099830
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 18
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6018,7 +6018,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.25
+  m_fontSize: 10
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7762,7 +7762,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.75
+  m_fontSize: 22.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8561,7 +8561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.4
+  m_fontSize: 12.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9829,6 +9829,10 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 1188935928725620420, guid: 1c209c690a59d0d4ca783fb8d8f8c901, type: 3}
   - {fileID: 7220863251501962979, guid: 435b6613f707a2c4aac0381d0c5c4c3e, type: 3}
+  - {fileID: 7220863251501962979, guid: 0033ea3bf85417b44ac7d8ccce2a40a6, type: 3}
+  - {fileID: 7220863251501962979, guid: 151f40afe9a0d5c4a89242ebb7f226bd, type: 3}
+  - {fileID: 7220863251501962979, guid: bf476ff9278feeb449cd4ad005866d32, type: 3}
+  - {fileID: 5245397461154391697, guid: d16844bccb3cd1b4a94ca6bf93aeca25, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1

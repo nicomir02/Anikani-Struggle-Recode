@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<StandardVolk> voelker;
 
     public Color getColor(int id) {
-        return gameFarben[id];
+        if(id < gameFarben.Count) return gameFarben[id];
+        return Color.white;
     }
 
     public StandardVolk getVolkByID(int id) {

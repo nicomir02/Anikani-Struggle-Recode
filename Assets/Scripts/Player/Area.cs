@@ -70,9 +70,9 @@ public class Area : NetworkBehaviour
                     Vector3Int v = vec;
                     v.z = 0;
                     foreach(Tilemap t in FindObjectsOfType<Tilemap>()){
-                        Debug.Log("Area aufruf 4");
+                        Debug.Log("Area aufruf 4 " + r.GetComponent<PlayerManager>().playerColor);
                         t.SetTileFlags(v, TileFlags.None);
-                        t.SetColor(v, gameManager.getColor(r.GetComponent<PlayerManager>().playerColor));
+                        if(gameManager.getColor(r.GetComponent<PlayerManager>().playerColor) != Color.white) t.SetColor(v, gameManager.getColor(r.GetComponent<PlayerManager>().playerColor));
                     }
                 }
             }
