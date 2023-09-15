@@ -74,10 +74,10 @@ public class BuildingKaufManager : MonoBehaviour
 
     void openClosePanel(){
         if(!offen ){
-                openPanel();
-            } else {
-                closePanel();
-            }
+            openPanel();
+        } else {
+            closePanel();
+        }
     }
 
     

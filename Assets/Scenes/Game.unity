@@ -1967,7 +1967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.042503413, y: 0.143}
   m_AnchorMax: {x: 0.9727285, y: 0.88251865}
-  m_AnchoredPosition: {x: -1.5026093, y: 0.91137695}
+  m_AnchoredPosition: {x: -1.502594, y: 0.91137695}
   m_SizeDelta: {x: 6.146, y: 2.8099976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322099830
@@ -7762,7 +7762,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.45
+  m_fontSize: 22.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8561,7 +8561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.7
+  m_fontSize: 18.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10440,6 +10440,7 @@ GameObject:
   - component: {fileID: 1938173205}
   - component: {fileID: 1938173206}
   - component: {fileID: 1938173207}
+  - component: {fileID: 1938173208}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10556,6 +10557,25 @@ MonoBehaviour:
   prefab: {fileID: 357398215895747425, guid: 98f94fe8bf56c674c886597b9af53e45, type: 3}
   ausbildungsleiste: {fileID: 194669176}
   prefabUnit: {fileID: 7492213126141169603, guid: f2a086a6b6ab07e48bdde271545ace43, type: 3}
+--- !u!114 &1938173208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938173199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7950bbe68d2104e4c858f31b903e7407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  gameManager: {fileID: 1938173202}
+  mapBehaviour: {fileID: 1537992389}
+  roundManager: {fileID: 2014179073}
+  showAreaButton: {fileID: 1617842965}
 --- !u!1 &1955036949
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ public class RadiusNeighborCheck : MonoBehaviour
 
     //schaut ob im eigenen Gebiet
     bool checkOwnArea(Vector3Int currentPosition){
-        return PlayerHelperScript.findLocalPlayer().GetComponent<Area>().isOwnArea(currentPosition);
+        return GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>().isOwnArea(currentPosition);
     }
 
     //Nur ungerader Radius, damit Mitte gewählt werden kann 

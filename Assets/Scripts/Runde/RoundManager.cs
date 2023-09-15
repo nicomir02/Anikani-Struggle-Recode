@@ -10,6 +10,12 @@ public class RoundManager : NetworkBehaviour
 {
     [SyncVar] private int round;
     [SyncVar] private int curTurn = 0;
+
+    [SyncVar] private int activeID = -1;
+    public int ActiveID {
+        get{return activeID;}
+    }
+
     public readonly SyncList<string> list = new SyncList<string>();
     private static Random rand = new Random();
 
@@ -29,6 +35,9 @@ public class RoundManager : NetworkBehaviour
     private bool isActive = false;
 
 
+    public bool isYourTurn() {
+        return isActive;
+    }
 
     
 
@@ -71,6 +80,7 @@ public class RoundManager : NetworkBehaviour
         }
         if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
+            changeActivePlayerID(pm.playerColor);
             CMDchangeFarbe(pm.playerColor);
             if(round == 0){
                 pm.setBuilding(0);  //0 ist die ID für MainBuilding
@@ -97,6 +107,11 @@ public class RoundManager : NetworkBehaviour
         }
     }
 
+    [Command(requiresAuthority=false)]
+    public void changeActivePlayerID(int id) {
+        activeID = id;
+    }
+
 
     [Command(requiresAuthority=false)]
     void CMDchangeFarbe(int id) {
@@ -118,5 +133,7 @@ public class RoundManager : NetworkBehaviour
         roundText.text = round + "";
         roundChange();
     }
+
+
 
 }

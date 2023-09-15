@@ -22,6 +22,8 @@ public class Building : NetworkBehaviour
     //roundManager
     private RoundManager rm;
 
+    private Area area;
+
     //RadiusNeighborCheck
     protected RadiusNeighborCheck radiusNeighborCheck;
 
@@ -59,6 +61,7 @@ public class Building : NetworkBehaviour
     void Start()
     {
         th = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
+        area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
@@ -174,7 +177,8 @@ public class Building : NetworkBehaviour
     }
 
     private void gebaeudeBau(Vector3Int pos){
-        PlayerHelperScript.findLocalPlayer().GetComponent<Area>().addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3)); //Hier ändern, falls anderer Radius
+
+        if(!area.addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3), radiusNeighborCheck.getNeighborTiles(pos, radius))) return; //Hier ändern, falls anderer Radius
 
         pos.x -= (radius-1)/2;
         pos.y -= (radius-1)/2;
