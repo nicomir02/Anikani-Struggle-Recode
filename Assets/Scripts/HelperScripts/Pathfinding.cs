@@ -23,6 +23,7 @@ public class Pathfinding
     public Vector3Int start;
     public Vector3Int target;
     public List<Vector3Int> Path;
+    Unit u;
 
     private int allCost = -1;
 
@@ -33,10 +34,24 @@ public class Pathfinding
         start = StartPoint;
         target = EndPoint;
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
+        u = unit;
     }
 
     public int getAllCost() {
         return allCost;
+    }
+
+    public List<Vector3Int> resultListe(List<Vector3Int> liste) {
+        start.z = 0;
+        List<Vector3Int> resultliste = new List<Vector3Int>();
+        foreach(Vector3Int vec in liste) {
+            Vector3Int v = new Vector3Int(vec.x, vec.y, 0);
+            if(!resultliste.Contains(v) && start != v) {
+                resultliste.Add(v);
+                Debug.Log(v);
+            }
+        }
+        return resultliste;
     }
 
     // Hauptmethode zur Pfadsuche
@@ -66,7 +81,7 @@ public class Pathfinding
             if (current.Position.Equals(target))
             {
                 allCost = current.FScore;
-                return ReconstructPath(current);
+                return resultListe(ReconstructPath(current));
             }
 
             // Aktuellen Knoten aus der offenen Liste entfernen und zur geschlossenen Liste hinzufügen

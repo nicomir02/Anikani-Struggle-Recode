@@ -64,13 +64,21 @@ public class TilemapHover : MonoBehaviour
         return getVec3FromVec3Int(from);
     }
 
-    public Vector3 getVec3FromVec3Int(Vector3Int from) {
+    public Vector3 getVec3FromVec3Int(Vector3Int from, bool abfrage = false) {
         Vector3 v = transform.position;
-        if(tilemap != null) {
-            v = tilemap.CellToWorld(from);
-        }else {
-            v = tilemaps[0].CellToWorld(from);
+        int hoehe = mapBehaviour.getZ(from);
+        if(abfrage) Debug.Log(hoehe);
+        foreach(Tilemap t in tilemaps) {
+            if(abfrage) Debug.Log(t.transform.parent.name);
+            if(t.transform.parent.name.Contains(hoehe+"")) {
+                from.z = 0;
+                v = t.CellToWorld(from);
+                if(abfrage) Debug.Log("finished");
+                break;
+            }
         }
+        
+        
         v.z += 1;
         return v;
     }

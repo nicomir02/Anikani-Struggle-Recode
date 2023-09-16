@@ -18,6 +18,7 @@ public class ObjectSpawnHelper : NetworkBehaviour
 
     [ClientRpc]
     void RPCnamechange(GameObject o, string objectname, Transform parent) {
+
         o.name = objectname;
         o.transform.parent = parent;
     }
@@ -27,7 +28,6 @@ public class ObjectSpawnHelper : NetworkBehaviour
         //Debug.Log(tilemapHover.getVec3IntFromVec3(t.position));
         t.position = tilemapHover.getVec3FromVec3Int(tilemapHover.getVec3IntFromVec3(t.position));
         GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getUnitByID(unitID), t);
-        prefab.transform.parent = t.parent;
         NetworkServer.Spawn(prefab);
         RPCnamechange(prefab, objectname, t.parent);
     }

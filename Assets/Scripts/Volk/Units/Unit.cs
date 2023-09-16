@@ -7,7 +7,10 @@ using Mirror;
 public class Unit : NetworkBehaviour
 {
     [SerializeField] private int maxSteps = 4;
-    private int steps = 0;
+    public int steps = 0; //Wieder private machen nach test
+    public int Steps {
+        get{return steps;}
+    }
 
     [SerializeField] private int maxHealth = 100;
     
@@ -16,9 +19,11 @@ public class Unit : NetworkBehaviour
     private MapBehaviour mapBehaviour;
     private RoundManager rm;
     
-    private Vector3Int currentPosition;
+    public Vector3Int currentPosition; //Wieder private machen nach test
 
     bool selected = false;
+
+    bool instanziiert = false;
 
     [SerializeField] private int ausbildungszeit;
     public int getAusbildungszeit() {
@@ -37,7 +42,7 @@ public class Unit : NetworkBehaviour
 
         /*
         Optimierungsvorschlg:
-        für anzahl der gebäude: Beim PlayerManager speichern wen Gebäude gebaut als dictinary     
+        für anzahl der gebäude: Beim PlayerManager speichern sobald Gebäude gebaut als dictinary     
         */
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         
@@ -71,19 +76,25 @@ public class Unit : NetworkBehaviour
         currentPosition = new Vector3Int(0,0,0);*/
 
         currentPosition = tilemapHover.getVec3IntFromVec3(transform.position);
+        transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
         Debug.Log("Start" + currentPosition);
         steps = 0;
         health = maxHealth;
     }
 
     void Update() {
+        /* if(!instanziiert){
+            transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
+            instanziiert = true;
+        } */
         if(Input.GetMouseButtonDown(0)) {
             if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y) {
                 Debug.Log("selected" + name);
                 GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
                 selected = true;
-            }else if(selected){
+            }else if(selected && steps > 0){
                 schritteGehen(tilemapHover.getMousePosition());
+                deselect(); //nach gehen soll Einheit nicht noch selected sein
             }else {
                 deselect();
             }
@@ -112,22 +123,24 @@ public class Unit : NetworkBehaviour
         end.z = mapBehaviour.getZ(end);
         Pathfinding path = new Pathfinding(currentPosition, end, this);
         if(path == null || path.FindPath() == null) {
-            deselect();
             return;
         }
+
         List<Vector3Int> liste = path.FindPath();
+        
+        //Animationsbewegung über pfad in dieser liste
+
         if(liste.Count <= steps) { //muss noch richtig gemacht werden
             transform.position = getPosition(end); // Hier noch normale Bewegung machen
             end.z = 0;
             currentPosition = end;
             steps-= liste.Count;
-        }else {
-            deselect();
         }
     }
 
     //Sollten Umrechnungen gemacht werden müssen
     Vector3 getPosition(Vector3Int old) {
+
         Vector3 position = tilemapHover.getVec3FromVec3Int(old);
         return position;
     }
