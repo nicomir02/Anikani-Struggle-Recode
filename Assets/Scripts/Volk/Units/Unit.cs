@@ -23,8 +23,6 @@ public class Unit : NetworkBehaviour
 
     bool selected = false;
 
-    bool instanziiert = false;
-
     [SerializeField] private int ausbildungszeit;
     public int getAusbildungszeit() {
         return ausbildungszeit;
@@ -126,16 +124,15 @@ public class Unit : NetworkBehaviour
             return;
         }
 
-        List<Vector3Int> liste = path.FindPath();
         
         //Animationsbewegung über pfad in dieser liste
-
-        if(liste.Count <= steps) { //muss noch richtig gemacht werden
-            transform.position = getPosition(end); // Hier noch normale Bewegung machen
-            end.z = 0;
-            currentPosition = end;
-            steps-= liste.Count;
+        List<Vector3Int> liste = path.FindPath();
+        foreach(Vector3Int v in liste) {
+            Debug.Log(v + " " + end);
+            transform.position = getPosition(v);
+            currentPosition = new Vector3Int(v.x, v.y, 0);
         }
+        steps-= path.endkosten;
     }
 
     //Sollten Umrechnungen gemacht werden müssen

@@ -1,8 +1,188 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
+using System.Linq;
 
 public class Pathfinding
 {
+
+    private class Node {
+        public Vector3Int position;
+        public Node parent;
+        public int gCost;
+        public int hCost;
+
+        public int FCost { get { return gCost + hCost; } }
+    }
+
+    public Vector3Int start;
+    public Vector3Int target;
+    public List<Vector3Int> Path;
+    Unit u;
+
+    private MapBehaviour mapBehaviour;
+    private TilemapHover tilemapHover;
+
+    public int endkosten = -1;
+
+
+
+    public Pathfinding(Vector3Int StartPoint, Vector3Int EndPoint, Unit unit){
+        start = StartPoint;
+        target = EndPoint;
+        mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
+        tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
+        u = unit;
+    }
+
+   
+
+    public List<Vector3Int> FindPath(){
+        Vector3Int currentPoint = start;
+       
+        
+
+        List<Node> openList = new List<Node>();
+        List<Node> closedList = new List<Node>();
+
+        Node startNode = new Node { position = start };
+        Node targetNode = new Node { position = target };
+
+        openList.Add(startNode);
+        
+        while (openList.Count > 0) {
+            Node currentNode = openList[0];
+
+            for (int i = 1; i < openList.Count; i++) {
+                if (openList[i].FCost < currentNode.FCost || 
+                    (openList[i].FCost == currentNode.FCost && openList[i].hCost < currentNode.hCost)) {
+                    currentNode = openList[i];
+                }
+            }
+
+            openList.Remove(currentNode);
+            closedList.Add(currentNode);
+
+            if (currentNode.position == targetNode.position)
+            {
+                // Pfad gefunden, rekonstruieren Sie den Pfad
+                return RetracePath(startNode, currentNode);
+            }
+
+            foreach (Vector3Int neighborPosition in getNeighborTiles(currentNode.position))
+            {
+                if (!CanWalk(neighborPosition) || closedList.Any(n => n.position == neighborPosition))
+                    continue;
+
+                int moveCostToNeighbor = currentNode.gCost + 1;
+
+        
+                if(Mathf.Abs(mapBehaviour.getZ(currentNode.position) - mapBehaviour.getZ(neighborPosition)) > 1) {     //wenn mehr als ein Höhenunterschied ist dann soll es nicht möglich sein
+                    moveCostToNeighbor += 1000;
+                }else if(Mathf.Abs(mapBehaviour.getZ(currentNode.position) - mapBehaviour.getZ(neighborPosition)) == 1) {
+                    moveCostToNeighbor++;     //kostet mehr wenn man hoch oder runter geht auf z Höhe
+                }  
+
+                Debug.Log(Mathf.Abs(mapBehaviour.getZ(currentNode.position)) + " " + Mathf.Abs(mapBehaviour.getZ(neighborPosition)));
+                
+                Node neighborNode = new Node
+                {
+                    position = neighborPosition,
+                    parent = currentNode,
+                    gCost = moveCostToNeighbor,
+                    hCost = GetDistance(neighborPosition, target)
+                };
+
+                if (!openList.Contains(neighborNode))
+                {
+                    openList.Add(neighborNode);
+                }
+                
+            }
+        }
+
+        // Kein Pfad gefunden
+        return null;
+    }
+
+    public int GetDistance(Vector3Int pointA, Vector3Int pointB) {
+        int dx = Mathf.Abs(pointA.x - pointB.x);
+        int dy = Mathf.Abs(pointA.y - pointB.y);
+
+        int dz = Mathf.Abs(mapBehaviour.getZ(pointA) - mapBehaviour.getZ(pointB));
+        return dx + dy + dz;
+    }
+
+    private List<Vector3Int> RetracePath(Node startNode, Node endNode) {
+        List<Vector3Int> path = new List<Vector3Int>();
+        Node currentNode = endNode;
+
+        endkosten = endNode.gCost;
+
+        //if(endkosten == 0 && startNode.position != endNode.position) endkosten = 1;
+
+        if(endkosten > u.Steps) {
+            return null;
+        }
+
+        
+        
+        while (currentNode.position != startNode.position)
+        {
+            Debug.Log(currentNode);
+            path.Add(currentNode.position);
+            currentNode = currentNode.parent;
+            Debug.Log("Parent: " + currentNode);
+            Debug.Log("StartNode:" + startNode);
+        }
+
+        // Der Pfad ist derzeit rückwärts, also müssen wir ihn umdrehen
+        path.Reverse();
+
+        return path;
+    }
+
+    private List<Vector3Int> getNeighborTiles(Vector3Int currentPoint){
+        List<Vector3Int> neighborTiles = new List<Vector3Int>();
+        Vector3Int temp = currentPoint;
+        temp.x += 1;
+        temp.z = mapBehaviour.getZ(temp);
+        neighborTiles.Add(temp);
+        temp = currentPoint;
+        temp.x -= 1;
+        temp.z = mapBehaviour.getZ(temp);
+        neighborTiles.Add(temp);
+        temp = currentPoint;
+        temp.y += 1;
+        temp.z = mapBehaviour.getZ(temp);
+        neighborTiles.Add(temp);
+        temp = currentPoint;
+        temp.y -= 1;
+        temp.z = mapBehaviour.getZ(temp);
+        neighborTiles.Add(temp);
+        return neighborTiles;
+    }
+
+    private bool CanWalk(Vector3Int vec){
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     public class Node
     {
         public Vector3Int Position;
@@ -194,4 +374,6 @@ public class Pathfinding
         if(!mapBehaviour.hasVec(neighbor)) return false;
         return true;
     }
+
+    */
 }

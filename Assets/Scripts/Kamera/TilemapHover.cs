@@ -83,6 +83,11 @@ public class TilemapHover : MonoBehaviour
         return v;
     }
 
+    public Tilemap getTilemapByVec(Vector3Int vec) {
+        if(GameObject.Find("Height"+ vec.z) != null) return GameObject.Find("Height"+ vec.z).transform.GetChild(0).GetComponent<Tilemap>();
+        return null;
+    }
+
     public Vector3Int getVec3IntFromVec3(Vector3 from){
         Vector3Int v = new Vector3Int(-1,-1,-1);
         from.z = 1f * (tilemaps.Count-1);
