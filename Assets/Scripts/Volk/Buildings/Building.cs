@@ -101,6 +101,7 @@ public class Building : NetworkBehaviour
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
+            GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
             /*
             Leider ist setzbar() sehr ineffizient
             

@@ -75,6 +75,9 @@ public class Unit : NetworkBehaviour
 
         currentPosition = tilemapHover.getVec3IntFromVec3(transform.position);
         transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
+
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
+
         Debug.Log("Start" + currentPosition);
         steps = 0;
         health = maxHealth;
@@ -103,7 +106,6 @@ public class Unit : NetworkBehaviour
     //Nachdem neue Runde anfängt Aufladungsmethode
     public void nextRound() {
         steps = maxSteps;
-        changeHealth(-10);
         Debug.Log(health);
     }
 
@@ -124,20 +126,46 @@ public class Unit : NetworkBehaviour
             return;
         }
 
-        
+
         //Animationsbewegung über pfad in dieser liste
         List<Vector3Int> liste = path.FindPath();
-        foreach(Vector3Int v in liste) {
-            Debug.Log(v + " " + end);
-            transform.position = getPosition(v);
-            currentPosition = new Vector3Int(v.x, v.y, 0);
-        }
+
+        StartCoroutine(MoveToPosition(liste, 0.5f, currentPosition));
+
+        currentPosition = end;
+        end.z = 0;
+
         steps-= path.endkosten;
+    }
+
+    public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
+    {
+        Vector3 startingPosition;
+        for(int i=-1; i<positions.Count-1; i++) {
+            float elapsedTime = 0f;
+
+            if(i == -1) {
+                startingPosition = tilemapHover.getVec3FromVec3Int(from);
+            }else {
+                startingPosition = tilemapHover.getVec3FromVec3Int(positions[i]);
+            }
+
+            Vector3 position = tilemapHover.getVec3FromVec3Int(positions[i+1]);
+
+            
+
+            while (elapsedTime < timeToMove) {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / timeToMove);
+                transform.position = Vector3.Lerp(startingPosition, position, t);
+                GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
+                yield return null;
+            }
+        }
     }
 
     //Sollten Umrechnungen gemacht werden müssen
     Vector3 getPosition(Vector3Int old) {
-
         Vector3 position = tilemapHover.getVec3FromVec3Int(old);
         return position;
     }

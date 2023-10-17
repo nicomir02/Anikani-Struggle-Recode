@@ -86,12 +86,17 @@ public class MapBehaviour : NetworkBehaviour
         for(int z=maxZ; z>=0; z--) {
             GameObject instance = Instantiate(prefabTilemap, new Vector3(0, 0, 0), Quaternion.identity);
             instance.name = "Height" + z;
+
             
             Vector3 setvec = instance.transform.position;
             setvec.z = z;
             setvec.y = test;
             instance.transform.position = setvec;
             NetworkServer.Spawn(instance);
+
+            /*prefabTilemap.transform.GetChild(0).GetComponent<TilemapRenderer>().sortingOrder = z+1;
+            Debug.Log(z+1);*/
+
             changeName(instance, "Height" + z);
             test -= 0.4f;
         }

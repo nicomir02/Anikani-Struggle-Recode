@@ -14,18 +14,20 @@ public class TilemapHover : MonoBehaviour
     public Vector3Int oldVec;
     Color oldColor;
 
-    public Color getSelectColor() {
+    public Color getSelectColor()
+    {
         return selectColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(tilemaps.Count == 0) return;
+        if (tilemaps.Count == 0) return;
         Vector3Int newVec = getMousePosition();
-        if(tilemap == null) return;
-        if(oldVec == null || oldVec != newVec || oldtilemap != tilemap) {
-            if(oldVec != null && oldtilemap != null) oldtilemap.SetColor(oldVec, oldColor);
+        if (tilemap == null) return;
+        if (oldVec == null || oldVec != newVec || oldtilemap != tilemap)
+        {
+            if (oldVec != null && oldtilemap != null) oldtilemap.SetColor(oldVec, oldColor);
 
             tilemap.SetTileFlags(newVec, TileFlags.None);
             oldColor = tilemap.GetColor(newVec);
@@ -37,68 +39,81 @@ public class TilemapHover : MonoBehaviour
     }
 
     //nach Mapgenerierung einmal aufgerufen um eine Liste aller Tilemaps zu erstellen
-    public void afterGeneration() {
+    public void afterGeneration()
+    {
         tilemaps = new List<Tilemap>();
-        int z=mapBehaviour.maxZ;
-        while(z >= 0) {
-            if(GameObject.Find("Height"+z) != null) tilemaps.Add(GameObject.Find("Height"+z).transform.GetChild(0).GetComponent<Tilemap>());
+        int z = mapBehaviour.maxZ;
+        while (z >= 0)
+        {
+            if (GameObject.Find("Height" + z) != null) tilemaps.Add(GameObject.Find("Height" + z).transform.GetChild(0).GetComponent<Tilemap>());
             z--;
         }
     }
 
-    public Vector3Int getMousePosition() {
+    public Vector3Int getMousePosition()
+    {
         oldtilemap = tilemap;
         Vector3 mousePos = Input.mousePosition;
         Vector3 vector = Camera.main.ScreenToWorldPoint(mousePos);
         //vector.y += 0.8f * (tilemaps.Count-1);
         //vector.z += 1f * (tilemaps.Count-1);
-        
 
-        
+
+
         return getVec3IntFromVec3(vector);
     }
 
-    public Vector3 getVec3Mouse(){
+    public Vector3 getVec3Mouse()
+    {
         Vector3Int from = getMousePosition();
-        
+
         return getVec3FromVec3Int(from);
     }
 
-    public Vector3 getVec3FromVec3Int(Vector3Int from, bool abfrage = false) {
+    public Vector3 getVec3FromVec3Int(Vector3Int from, bool abfrage = false)
+    {
         Vector3 v = transform.position;
         int hoehe = mapBehaviour.getZ(from);
-        if(abfrage) Debug.Log(hoehe);
-        foreach(Tilemap t in tilemaps) {
-            if(abfrage) Debug.Log(t.transform.parent.name);
-            if(t.transform.parent.name.Contains(hoehe+"")) {
+        if (abfrage) Debug.Log(hoehe);
+        foreach (Tilemap t in tilemaps)
+        {
+            if (abfrage) Debug.Log(t.transform.parent.name);
+            if (t.transform.parent.name.Contains(hoehe + ""))
+            {
                 from.z = 0;
                 v = t.CellToWorld(from);
-                if(abfrage) Debug.Log("finished");
+                if (abfrage) Debug.Log("finished");
                 break;
             }
         }
-        
-        
+
+
         v.z += 1;
         return v;
     }
 
-    public Tilemap getTilemapByVec(Vector3Int vec) {
-        if(GameObject.Find("Height"+ vec.z) != null) return GameObject.Find("Height"+ vec.z).transform.GetChild(0).GetComponent<Tilemap>();
+    public Tilemap getTilemapByVec(Vector3Int vec)
+    {
+        if (GameObject.Find("Height" + vec.z) != null) return GameObject.Find("Height" + vec.z).transform.GetChild(0).GetComponent<Tilemap>();
         return null;
     }
 
-    public Vector3Int getVec3IntFromVec3(Vector3 from){
-        Vector3Int v = new Vector3Int(-1,-1,-1);
-        from.z = 1f * (tilemaps.Count-1);
+    public Vector3Int getVec3IntFromVec3(Vector3 from)
+    {
+        Vector3Int v = new Vector3Int(-1, -1, -1);
+        from.z = 1f * (tilemaps.Count - 1);
         List<Tilemap> hoeher = new List<Tilemap>(); //Speichert schon höhere Tilemaps um zu schauen ob dadrüber noch ein Tile ist
-        foreach(Tilemap tm in tilemaps) {
-            
+        foreach (Tilemap tm in tilemaps)
+        {
+
             Vector3Int result = tm.transform.parent.GetComponent<Grid>().WorldToCell(from);
-            
-            if(tm.HasTile(result)) {
-                foreach(Tilemap tilem in hoeher) {
-                    if(tilem.HasTile(result)) {
+
+            if (tm.HasTile(result))
+            {
+                foreach (Tilemap tilem in hoeher)
+                {
+                    if (tilem.HasTile(result))
+                    {
                         tilemap = tilem;
                         return result;
                     }
