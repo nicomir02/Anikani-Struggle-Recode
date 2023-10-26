@@ -201,9 +201,11 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  radius: 3
-  lightObject: {fileID: 390609869062261948}
   health: 0
+  attackValue: 0
+  healValue: 0
+  maxHealth: 100
+  attackRange: 1
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
@@ -211,4 +213,6 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.6
+  radius: 3
+  lightObject: {fileID: 390609869062261948}
   maxAusbildungen: 4

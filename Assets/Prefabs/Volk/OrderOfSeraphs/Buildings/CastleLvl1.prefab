@@ -201,9 +201,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  radius: 3
-  lightObject: {fileID: 390609869062261948}
   health: 0
+  attackValue: 0
+  healValue: 0
+  maxHealth: 100
+  attackRange: 1
   RessourcenFuerKosten: []
   kostenFuerRessource: 
   kostenMultiplierFuerRessource: []
+  radius: 3
+  lightObject: {fileID: 390609869062261948}

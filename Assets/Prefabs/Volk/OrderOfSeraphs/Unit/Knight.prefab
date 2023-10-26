@@ -185,11 +185,11 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  maxSteps: 4
-  steps: 0
+  health: 0
+  attackValue: 60
+  healValue: 0
   maxHealth: 100
-  currentPosition: {x: 0, y: 0, z: 0}
-  ausbildungszeit: 1
+  attackRange: 1
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
@@ -197,6 +197,10 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.1
+  maxSteps: 4
+  steps: 0
+  currentPosition: {x: 36, y: 47, z: 1}
+  ausbildungszeit: 1
 --- !u!114 &5341467422155483903
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 
 //
-public class Unit : NetworkBehaviour
+public class Unit : VolkObject
 {
     [SerializeField] private int maxSteps = 4;
     public int steps = 0; //Wieder private machen nach test
@@ -12,14 +12,12 @@ public class Unit : NetworkBehaviour
         get{return steps;}
     }
 
-    [SerializeField] private int maxHealth = 100;
     
-    [SyncVar] private int health;
     private TilemapHover tilemapHover;
     private MapBehaviour mapBehaviour;
     private RoundManager rm;
     
-    public Vector3Int currentPosition; //Wieder private machen nach test
+    [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
     bool selected = false;
 
@@ -28,10 +26,10 @@ public class Unit : NetworkBehaviour
         return ausbildungszeit;
     }
 
+    bool instanziiert = true;
 
-    [SerializeField] private List<Ressource> RessourcenFuerKosten;
-    [SerializeField] private List<int> kostenFuerRessource;
-    [SerializeField] private List<float> kostenMultiplierFuerRessource;
+
+
 
     public Dictionary<Ressource, int> getKosten(){
         Dictionary<Ressource, int> result = new Dictionary<Ressource, int>();
@@ -67,27 +65,36 @@ public class Unit : NetworkBehaviour
         return result;
     }
 
+    
+
     void Start() {
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
         currentPosition = new Vector3Int(0,0,0);*/
 
+        Debug.Log(transform.position);
         currentPosition = tilemapHover.getVec3IntFromVec3(transform.position);
+        Debug.Log(currentPosition);
         transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
-
-        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
+        Debug.Log(transform.position);
+        
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
+        changeHealth(maxHealth);
 
         Debug.Log("Start" + currentPosition);
         steps = 0;
-        health = maxHealth;
+        instanziiert = false;
     }
 
+    [Command(requiresAuthority=false)]
+    public void changeCurrentPosition(Vector3Int v) {
+        Debug.Log(v);
+        currentPosition = v;
+    }
+
+
     void Update() {
-        /* if(!instanziiert){
-            transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
-            instanziiert = true;
-        } */
         if(Input.GetMouseButtonDown(0)) {
             if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y) {
                 Debug.Log("selected" + name);
@@ -102,11 +109,17 @@ public class Unit : NetworkBehaviour
         }
     }
 
+    //schauen ob position dieses objects mit dem übergebenen vector vec übereinstimmt
+    public override bool isObjectAtPosition(Vector3Int vec) {
+        Debug.Log("Object at " + currentPosition + " other at " + vec);
+        return currentPosition.x == vec.x && currentPosition.y == vec.y;
+    }
 
     //Nachdem neue Runde anfängt Aufladungsmethode
     public void nextRound() {
         steps = maxSteps;
-        Debug.Log(health);
+        Debug.Log(tilemapHover.getVec3IntFromVec3(transform.position));
+        changeCurrentPosition(tilemapHover.getVec3IntFromVec3(transform.position));
     }
 
     public void deselect(){
@@ -116,6 +129,7 @@ public class Unit : NetworkBehaviour
 
 
     //Einheit soll sich bewegen
+    [Command(requiresAuthority=false)]
     void schritteGehen(Vector3Int end) {
 
         //klappt noch nicht ganz. auch abfragen dass nur der spieler der dran ist sich bewegen kann.
@@ -126,18 +140,33 @@ public class Unit : NetworkBehaviour
             return;
         }
 
-
         //Animationsbewegung über pfad in dieser liste
         List<Vector3Int> liste = path.FindPath();
+
+        //schauen ob es sich um einen Angriff handelt
+        foreach(VolkObject obj in FindObjectsOfType<VolkObject>()) {
+            if(obj.isObjectAtPosition(end)) { //falls dort ein Object ist
+                Debug.Log("Liste " + liste.Count);
+                Debug.Log("Range " + attackRange);
+                if(attackRange+1 <= liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
+                    if(tryAttack(end)) {    //probieren ob man dieses Object attackieren kann
+                        steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
+                    }
+                }
+                return; //auf kein Objekt draufgehen(erstmal!!)
+            }
+        }
+
+        if(liste[liste.Count-1] != end) liste.Add(end);
 
         StartCoroutine(MoveToPosition(liste, 0.5f, currentPosition));
 
         currentPosition = end;
-        end.z = 0;
 
         steps-= path.endkosten;
     }
 
+    
     public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
     {
         Vector3 startingPosition;
@@ -162,6 +191,9 @@ public class Unit : NetworkBehaviour
                 yield return null;
             }
         }
+
+        transform.position = tilemapHover.getVec3FromVec3Int(positions[positions.Count-1]);
+
     }
 
     //Sollten Umrechnungen gemacht werden müssen
@@ -179,17 +211,4 @@ public class Unit : NetworkBehaviour
     //.......
 
     //angegriffen und geheilt
-
-    [Command (requiresAuthority=false)]
-    public void changeHealth(int value){
-        health += value;
-        if(health <= 0) destroyUnit();
-    }
-
-    //einheit zerstören
-
-    [Command (requiresAuthority = false)]
-    public void destroyUnit(){
-        NetworkServer.Destroy(gameObject);
-    }
 }

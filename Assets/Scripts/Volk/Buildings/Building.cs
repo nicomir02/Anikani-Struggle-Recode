@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Mirror;
 
-public class Building : NetworkBehaviour
+public class Building : VolkObject
 {
     //standardmäßg 3 gebäude radius (= 3x3 Feld)
     [SerializeField] protected int radius = 3;
@@ -38,11 +38,8 @@ public class Building : NetworkBehaviour
 
     [SerializeField] private GameObject lightObject;
 
-    //Leben/Haltbarkeit des Gebäudes
-    [SerializeField] private int health;
-
     //position des Gebäudes
-    private List<Vector3Int> position = new List<Vector3Int>();
+    private readonly SyncList<Vector3Int> position = new SyncList<Vector3Int>();
 
     //liste der zerstörten Ressourcen unter Gebäude
     private Dictionary<Ressource, int> ressourcen = new Dictionary<Ressource, int>();
@@ -51,10 +48,7 @@ public class Building : NetworkBehaviour
         get{return ressourcen;}
     }
 
-    //Kosten des Gebäudes
-    [SerializeField] private List<Ressource> RessourcenFuerKosten;
-    [SerializeField] private List<int> kostenFuerRessource;
-    [SerializeField] private List<float> kostenMultiplierFuerRessource;
+    
 
 
     // Start is called before the first frame update
@@ -68,7 +62,7 @@ public class Building : NetworkBehaviour
 
         spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
 
-        
+        changeHealth(maxHealth);
 
         //Spielersuche
         if(pm == null) {
@@ -101,7 +95,7 @@ public class Building : NetworkBehaviour
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
-            GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
+            GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
             /*
             Leider ist setzbar() sehr ineffizient
             
@@ -139,7 +133,7 @@ public class Building : NetworkBehaviour
     }
     
     public List<Vector3Int> getPosition() {
-        return position;
+        return new List<Vector3Int>(position);
     }
 
     [Command(requiresAuthority=false)]
@@ -172,20 +166,26 @@ public class Building : NetworkBehaviour
         GetComponent<SpriteRenderer>().color = tmp;
     }
 
+    public override bool isObjectAtPosition(Vector3Int vec) {
+        foreach(Vector3Int ve in position) {
+            return ve.x == vec.x && ve.y == vec.y;
+        }
+        return false;
+    }
+
     public virtual bool setzbar(){
         Vector3Int neuPos = th.getMousePosition();
         return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps);
     }
 
     private void gebaeudeBau(Vector3Int pos){
-
         if(!area.addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3), radiusNeighborCheck.getNeighborTiles(pos, radius))) return; //Hier ändern, falls anderer Radius
 
         pos.x -= (radius-1)/2;
         pos.y -= (radius-1)/2;
         for(int x = 0; x < radius; x++){
             for(int y = 0; y < radius; y++){
-                position.Add(pos);
+                addPosition(pos);
                 pos.y += 1;
             }
             pos.y -= radius;
@@ -194,6 +194,11 @@ public class Building : NetworkBehaviour
         lightObject.SetActive(true);
         
         CMDressourcenZerstoeren();
+    }
+
+    [Command(requiresAuthority=false)]
+    public void addPosition(Vector3Int vec) {
+        position.Add(vec);
     }
 
     [Command(requiresAuthority=false)]
