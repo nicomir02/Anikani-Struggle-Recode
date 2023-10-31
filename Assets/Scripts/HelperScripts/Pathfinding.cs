@@ -50,7 +50,8 @@ public class Pathfinding
         Node targetNode = new Node { position = target };
 
         openList.Add(startNode);
-        
+        Debug.Log("[Pathfinding] Try to find Path from " + startNode.position + " to " + targetNode.position +".");
+
         while (openList.Count > 0) {
             Node currentNode = openList[0];
 
@@ -66,6 +67,7 @@ public class Pathfinding
 
             if (currentNode.position == targetNode.position)
             {
+                Debug.Log("[Pathfinding] Path found");
                 // Pfad gefunden, rekonstruieren Sie den Pfad
                 return RetracePath(startNode, currentNode);
             }
@@ -101,7 +103,7 @@ public class Pathfinding
                 
             }
         }
-
+        Debug.Log("[Pathfinding] No path found.");
         // Kein Pfad gefunden
         return null;
     }
@@ -121,7 +123,7 @@ public class Pathfinding
         endkosten = endNode.gCost;
 
         //if(endkosten == 0 && startNode.position != endNode.position) endkosten = 1;
-
+        
         if(endkosten > u.Steps) {
             return null;
         }

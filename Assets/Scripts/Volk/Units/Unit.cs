@@ -22,14 +22,12 @@ public class Unit : VolkObject
     bool selected = false;
 
     [SerializeField] private int ausbildungszeit;
+
+
+    [SerializeField] private GameObject lightObject;
     public int getAusbildungszeit() {
         return ausbildungszeit;
     }
-
-    bool instanziiert = true;
-
-
-
 
     public Dictionary<Ressource, int> getKosten(){
         Dictionary<Ressource, int> result = new Dictionary<Ressource, int>();
@@ -78,29 +76,46 @@ public class Unit : VolkObject
         Debug.Log(currentPosition);
         transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
         Debug.Log(transform.position);
-        
-        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
+
         changeHealth(maxHealth);
 
         Debug.Log("Start" + currentPosition);
         steps = 0;
-        instanziiert = false;
+        
+        foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
+            if(PlayerHelperScript.findLocalPlayer() != transform.parent.GetComponent<PlayerManager>()) {
+                lightObject.SetActive(false);
+            }else {
+                lightObject.SetActive(true);
+            }
+        }
     }
 
     [Command(requiresAuthority=false)]
-    public void changeCurrentPosition(Vector3Int v) {
-        Debug.Log(v);
-        currentPosition = v;
+    public void changeCurrentPosition() {
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
+        RPCchangeCurrentPosition(currentPosition);
+    }
+
+    [ClientRpc]
+    void RPCchangeCurrentPosition(Vector3Int vec) {
+        currentPosition = vec;
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
     }
 
 
     void Update() {
+        if(currentPosition == new Vector3Int(0,0,0)) {
+            changeCurrentPosition();
+        }
+
         if(Input.GetMouseButtonDown(0)) {
             if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y) {
                 Debug.Log("selected" + name);
                 GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
                 selected = true;
             }else if(selected && steps > 0){
+                Debug.Log("Try Schritte gehen");
                 schritteGehen(tilemapHover.getMousePosition());
                 deselect(); //nach gehen soll Einheit nicht noch selected sein
             }else {
@@ -116,10 +131,15 @@ public class Unit : VolkObject
     }
 
     //Nachdem neue Runde anfängt Aufladungsmethode
+    [Command(requiresAuthority=false)]
     public void nextRound() {
         steps = maxSteps;
-        Debug.Log(tilemapHover.getVec3IntFromVec3(transform.position));
-        changeCurrentPosition(tilemapHover.getVec3IntFromVec3(transform.position));
+        changeSteps(steps);
+    }
+
+    [ClientRpc]
+    void changeSteps(int m_steps) {
+        steps = m_steps;
     }
 
     public void deselect(){
@@ -131,12 +151,15 @@ public class Unit : VolkObject
     //Einheit soll sich bewegen
     [Command(requiresAuthority=false)]
     void schritteGehen(Vector3Int end) {
-
+        Debug.Log("Try Schritte gehen zu " + end);
         //klappt noch nicht ganz. auch abfragen dass nur der spieler der dran ist sich bewegen kann.
         if(end.z == -1 && end.x == -1 && end.z == -1 || !mapBehaviour.insideField(end)) return;
         end.z = mapBehaviour.getZ(end);
-        Pathfinding path = new Pathfinding(currentPosition, end, this);
+        Vector3Int start = currentPosition;
+        start.z = mapBehaviour.getZ(start);
+        Pathfinding path = new Pathfinding(start, end, this);
         if(path == null || path.FindPath() == null) {
+            Debug.Log("ww" + path);
             return;
         }
 
@@ -162,8 +185,10 @@ public class Unit : VolkObject
         StartCoroutine(MoveToPosition(liste, 0.5f, currentPosition));
 
         currentPosition = end;
+        RPCchangeCurrentPosition(end);
 
         steps-= path.endkosten;
+        changeSteps(steps);
     }
 
     

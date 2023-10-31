@@ -95,7 +95,7 @@ public class Building : VolkObject
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
-            GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
+            sortingLayer();
             /*
             Leider ist setzbar() sehr ineffizient
             
@@ -130,6 +130,17 @@ public class Building : VolkObject
             Debug.Log(gameObject.name);
             //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
         }
+    }
+
+    [Command(requiresAuthority=false)]
+    public void sortingLayer() {
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
+        RpcSortingLayer();
+    }
+
+    [ClientRpc]
+    void RpcSortingLayer() {
+        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 5;
     }
     
     public List<Vector3Int> getPosition() {
