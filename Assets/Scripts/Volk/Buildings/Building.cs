@@ -48,12 +48,10 @@ public class Building : VolkObject
         get{return ressourcen;}
     }
 
-    
-
-
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        Debug.Log("Start");
         th = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
@@ -78,8 +76,10 @@ public class Building : VolkObject
         }else {
             transparencyChange(0f);
         }
-
+        base.Start();
     }
+
+    
 
     // Update is called once per frame
     private void Update()

@@ -65,7 +65,7 @@ public class Unit : VolkObject
 
     
 
-    void Start() {
+    public override void Start() {
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
@@ -89,6 +89,7 @@ public class Unit : VolkObject
                 lightObject.SetActive(true);
             }
         }
+        base.Start();
     }
 
     [Command(requiresAuthority=false)]
