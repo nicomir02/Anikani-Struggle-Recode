@@ -12,14 +12,12 @@ public class Unit : VolkObject
         get{return steps;}
     }
 
-    
-    private TilemapHover tilemapHover;
     private MapBehaviour mapBehaviour;
     private RoundManager rm;
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
-    bool selected = false;
+    bool m_selected = false;
 
     [SerializeField] private int ausbildungszeit;
 
@@ -66,7 +64,7 @@ public class Unit : VolkObject
     
 
     public override void Start() {
-        tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
+        base.Start();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
         currentPosition = new Vector3Int(0,0,0);*/
@@ -89,7 +87,6 @@ public class Unit : VolkObject
                 lightObject.SetActive(true);
             }
         }
-        base.Start();
     }
 
     [Command(requiresAuthority=false)]
@@ -111,11 +108,9 @@ public class Unit : VolkObject
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y && transform.parent.GetComponent<PlayerManager>() == PlayerHelperScript.findLocalPlayer()) {
-                Debug.Log("selected" + name);
-                GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
-                selected = true;
-            }else if(selected && steps > 0){
+            if(!m_selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y && transform.parent.GetComponent<PlayerManager>() == PlayerHelperScript.findLocalPlayer()) {
+                selected();
+            }else if(m_selected && steps > 0){
                 Debug.Log("Try Schritte gehen");
                 schritteGehen(tilemapHover.getMousePosition());
                 deselect(); //nach gehen soll Einheit nicht noch selected sein
@@ -123,6 +118,11 @@ public class Unit : VolkObject
                 deselect();
             }
         }
+    }
+
+    public override void selected() {
+        GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
+        m_selected = true;
     }
 
     //schauen ob position dieses objects mit dem übergebenen vector vec übereinstimmt
@@ -143,10 +143,7 @@ public class Unit : VolkObject
         steps = m_steps;
     }
 
-    public void deselect(){
-        selected = false;
-        GetComponent<SpriteRenderer>().color = Color.white;
-    }
+
 
 
     //Einheit soll sich bewegen
@@ -174,9 +171,9 @@ public class Unit : VolkObject
                 Debug.Log("Range " + attackRange);
                 if(attackRange == liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
                     Debug.Log("test");
-                    if(tryAttack(end, obj)) {    //probieren ob man dieses Object attackieren kann
-                        steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
-                    }
+                    tryAttack(end, obj);   //probieren ob man dieses Object attackieren kann
+                    steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
+                    
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)
             }

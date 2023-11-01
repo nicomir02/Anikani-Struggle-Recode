@@ -5,8 +5,8 @@ using UnityEngine;
 public class CastleMainBuilding : Building
 {
     public override bool setzbar() {
-        Vector3Int neuPos = th.getMousePosition();
-        return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps, false);
+        Vector3Int neuPos = tilemapHover.getMousePosition();
+        return radiusNeighborCheck.checkRadius(radius, neuPos, tilemapHover.tilemaps, false);
     }
     
 }

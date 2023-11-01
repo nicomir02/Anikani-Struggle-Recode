@@ -51,8 +51,7 @@ public class Building : VolkObject
     // Start is called before the first frame update
     public override void Start()
     {
-        Debug.Log("Start");
-        th = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
+        base.Start();
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
@@ -76,7 +75,7 @@ public class Building : VolkObject
         }else {
             transparencyChange(0f);
         }
-        base.Start();
+        
     }
 
     
@@ -88,10 +87,10 @@ public class Building : VolkObject
         
         if(pm != PlayerHelperScript.findLocalPlayer()) return;
         
-        Vector3Int vec = th.getMousePosition();
+        Vector3Int vec = tilemapHover.getMousePosition();
         vec.x -= (radius-1)/2;
         vec.y -= (radius-1)/2;
-        Vector3 newPos = th.getVec3FromVec3Int(vec);
+        Vector3 newPos = tilemapHover.getVec3FromVec3Int(vec);
         newPos.z += 1;
         if(!gesetzt){
             transform.position = newPos;
@@ -124,13 +123,20 @@ public class Building : VolkObject
         }
         //if(!setzbar()) Debug.Log("nicht setzbar");
 
-
-        if(Input.GetMouseButtonDown(0) && isSelected()){
-            Debug.Log("gebäude wurde ausgewaehlt");
-            Debug.Log(gameObject.name);
-            //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
+        if(Input.GetMouseButtonDown(0)) {
+            if(isSelected()) {
+                Debug.Log("gebäude wurde ausgewaehlt");
+                Debug.Log(gameObject.name);
+                //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
+                selected();
+            }else {
+                deselect();
+            }
         }
     }
+    
+
+    
 
     [Command(requiresAuthority=false)]
     public void sortingLayer() {
@@ -185,8 +191,8 @@ public class Building : VolkObject
     }
 
     public virtual bool setzbar(){
-        Vector3Int neuPos = th.getMousePosition();
-        return radiusNeighborCheck.checkRadius(radius, neuPos, th.tilemaps);
+        Vector3Int neuPos = tilemapHover.getMousePosition();
+        return radiusNeighborCheck.checkRadius(radius, neuPos, tilemapHover.tilemaps);
     }
 
     private void gebaeudeBau(Vector3Int pos){
@@ -228,7 +234,7 @@ public class Building : VolkObject
                     ressourcen.Add(ress, 1);
                 }
             } 
-            foreach(Tilemap tm in th.tilemaps) {
+            foreach(Tilemap tm in tilemapHover.tilemaps) {
                 tm.SetTile(new Vector3Int(vec.x, vec.y, 1), null);
             }
         }
@@ -271,7 +277,7 @@ public class Building : VolkObject
     }
 
     private bool isSelected(){
-        if(position.Contains(th.getMousePosition())){
+        if(position.Contains(tilemapHover.getMousePosition())){
             return true;
         }
         return false;

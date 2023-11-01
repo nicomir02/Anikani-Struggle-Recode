@@ -81,7 +81,7 @@ public class UnitKaufManager : MonoBehaviour
         }
     }
 
-    void openPanel(TrainUnitBuilding b) {
+    public void openPanel(TrainUnitBuilding b) {
         saveBuilding = b;
         panel.SetActive(true);
         

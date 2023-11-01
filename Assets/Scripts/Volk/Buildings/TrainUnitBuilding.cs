@@ -23,6 +23,14 @@ public class TrainUnitBuilding : Building
     public int Zahl {
         get{return zahl;}
     }
+
+    public override void selected() {
+        base.selected();    //führt sachen aus selected Methode von Building aus.
+        //Jetzt spezielle Aktionen für TrainUnitBuildings wie z.B. Barracke
+
+        
+
+    }
     
 
     public override void nextRound() {
