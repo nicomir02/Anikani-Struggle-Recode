@@ -111,7 +111,7 @@ public class Unit : VolkObject
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y) {
+            if(!selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y && transform.parent.GetComponent<PlayerManager>() == PlayerHelperScript.findLocalPlayer()) {
                 Debug.Log("selected" + name);
                 GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
                 selected = true;
@@ -172,8 +172,9 @@ public class Unit : VolkObject
             if(obj.isObjectAtPosition(end)) { //falls dort ein Object ist
                 Debug.Log("Liste " + liste.Count);
                 Debug.Log("Range " + attackRange);
-                if(attackRange+1 <= liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
-                    if(tryAttack(end)) {    //probieren ob man dieses Object attackieren kann
+                if(attackRange == liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
+                    Debug.Log("test");
+                    if(tryAttack(end, obj)) {    //probieren ob man dieses Object attackieren kann
                         steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
                     }
                 }

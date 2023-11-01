@@ -55,19 +55,18 @@ public class VolkObject : NetworkBehaviour
     public void destroyObject(){
         NetworkServer.Destroy(gameObject);
     }
+    
 
-    public bool tryAttack(Vector3Int v) {
-        foreach(VolkObject obj in FindObjectsOfType<VolkObject>()) {
-            if(obj.isObjectAtPosition(v)) {
-                if(obj.transform.parent == transform.parent) {
-                    obj.changeHealth(healValue);
-                    return true;
-                }else {
-                    obj.changeHealth(-attackValue);
-                    return true;
-                }
-            }
+    
+    public bool tryAttack(Vector3Int v, VolkObject obj) {
+        if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
+            obj.changeHealth(healValue);
+        }else {
+            obj.changeHealth(-attackValue);
         }
+        return true;
+    
+
         return false;
     }
 }
