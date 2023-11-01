@@ -20,8 +20,7 @@ public class VolkObject : NetworkBehaviour
     [SerializeField] public List<float> kostenMultiplierFuerRessource;
 
 
-    [SerializeField] private List<Sprite> animationList = new List<Sprite>();
-    [SerializeField] private float animationAbstand = 0.2f;
+    
 
     private InfoboxManager im;
 
@@ -34,22 +33,33 @@ public class VolkObject : NetworkBehaviour
 
     protected TilemapHover tilemapHover;
 
+    
+    protected List<Sprite> animationList = new List<Sprite>();
+    [SerializeField] private float animationAbstand = 0.2f;
+    [SerializeField] public List<Sprite> idle = new List<Sprite>();
+
+    Sprite safe;
+
     public virtual void Start() {
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
-
-        if(animationList.Count > 0) StartCoroutine(animationStart(0));
+        animationList = idle;
+        Debug.Log(animationList.Count);
+        safe = GetComponent<SpriteRenderer>().sprite;
+        StartCoroutine(animationStart(0));
     }
 
     public IEnumerator animationStart(int cur) {
-        Debug.Log("In Enumerator: " + cur);
-        if(cur >= animationList.Count) cur = 0;
+        if(animationList.Count == 0) animationList.Add(safe);
+
+        if(++cur >= animationList.Count) cur = 0;
+        
         GetComponent<SpriteRenderer>().sprite = animationList[cur];
-        cur++;
-        Debug.Log("a");
+
         yield return new WaitForSecondsRealtime(animationAbstand);
-        animationStart(cur);
+
+        StartCoroutine(animationStart(cur));
     }
 
     public virtual bool isObjectAtPosition(Vector3Int vec) {

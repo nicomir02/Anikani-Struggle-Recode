@@ -197,6 +197,11 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.1
+  specificButtonsInfobox: []
+  animationAbstand: 0.2
+  idle: []
+  frontWalk: []
+  backWalk: []
   maxSteps: 4
   steps: 0
   currentPosition: {x: 36, y: 47, z: 1}

@@ -213,8 +213,14 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.5
+  animationList:
+  - {fileID: 1841578547, guid: 36ee1768fc9d53f4abc05147444b3744, type: 3}
+  - {fileID: 996419708, guid: 36ee1768fc9d53f4abc05147444b3744, type: 3}
+  - {fileID: 1915974116, guid: 36ee1768fc9d53f4abc05147444b3744, type: 3}
+  - {fileID: -1209909869, guid: 36ee1768fc9d53f4abc05147444b3744, type: 3}
+  - {fileID: -100253460, guid: 36ee1768fc9d53f4abc05147444b3744, type: 3}
+  animationAbstand: 0.2
+  specificButtonsInfobox: []
   radius: 3
   lightObject: {fileID: 390609869062261948}
-  animationList: []
-  animationAbstand: 0.2
   ressource: {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}

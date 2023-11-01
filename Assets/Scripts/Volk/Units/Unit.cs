@@ -6,6 +6,9 @@ using Mirror;
 //
 public class Unit : VolkObject
 {
+    [SerializeField] private List<Sprite> frontWalk = new List<Sprite>();
+    [SerializeField] private List<Sprite> backWalk = new List<Sprite>();
+
     [SerializeField] private int maxSteps = 4;
     public int steps = 0; //Wieder private machen nach test
     public int Steps {
@@ -20,6 +23,9 @@ public class Unit : VolkObject
     bool m_selected = false;
 
     [SerializeField] private int ausbildungszeit;
+
+    
+    
 
 
     [SerializeField] private GameObject lightObject;
@@ -205,7 +211,15 @@ public class Unit : VolkObject
 
             Vector3 position = tilemapHover.getVec3FromVec3Int(positions[i+1]);
 
-            
+            if(startingPosition.x > position.x) {
+                animationList = frontWalk;
+            }else if(startingPosition.x < position.x) {
+                animationList = backWalk;
+            }else if(startingPosition.y > position.y) {
+                animationList = frontWalk;
+            }else if(startingPosition.y < position.y) {
+                animationList = backWalk;
+            }
 
             while (elapsedTime < timeToMove) {
                 elapsedTime += Time.deltaTime;
@@ -217,9 +231,11 @@ public class Unit : VolkObject
         }
 
         transform.position = tilemapHover.getVec3FromVec3Int(positions[positions.Count-1]);
+        animationList = idle;
 
     }
 
+    
     //Sollten Umrechnungen gemacht werden müssen
     Vector3 getPosition(Vector3Int old) {
         Vector3 position = tilemapHover.getVec3FromVec3Int(old);

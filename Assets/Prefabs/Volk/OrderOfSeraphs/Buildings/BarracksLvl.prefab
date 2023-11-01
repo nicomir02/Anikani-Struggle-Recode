@@ -213,8 +213,9 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.6
+  animationList: []
+  animationAbstand: 0.3
+  specificButtonsInfobox: []
   radius: 3
   lightObject: {fileID: 390609869062261948}
-  animationList: []
-  animationAbstand: 0.2
   maxAusbildungen: 4
