@@ -213,9 +213,11 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.6
-  animationList: []
+  specificButtonsInfobox:
+  - {fileID: 6462048890079275521, guid: eb6cf14f8adf9cd409e3ab0e2457a848, type: 3}
   animationAbstand: 0.3
-  specificButtonsInfobox: []
+  idle: []
+  m_selected: 0
   radius: 3
   lightObject: {fileID: 390609869062261948}
   maxAusbildungen: 4

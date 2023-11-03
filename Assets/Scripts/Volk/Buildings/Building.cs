@@ -123,7 +123,7 @@ public class Building : VolkObject
         }
         //if(!setzbar()) Debug.Log("nicht setzbar");
 
-        if(Input.GetMouseButtonDown(0)) {
+        if(Input.GetMouseButtonDown(0) && SelectHelper.canSelect()) {
             if(isSelected()) {
                 Debug.Log("gebäude wurde ausgewaehlt");
                 Debug.Log(gameObject.name);

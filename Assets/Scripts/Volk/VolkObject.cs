@@ -22,7 +22,7 @@ public class VolkObject : NetworkBehaviour
 
     
 
-    private InfoboxManager im;
+    protected InfoboxManager im;
 
     //special Volkobject InfoboxButtons
     [SerializeField] private List<GameObject> specificButtonsInfobox;
@@ -59,6 +59,8 @@ public class VolkObject : NetworkBehaviour
         }
     }
 
+
+
     
 
     public IEnumerator animationStart(int cur) {
@@ -88,7 +90,14 @@ public class VolkObject : NetworkBehaviour
 
     [Command (requiresAuthority = false)]
     public void destroyObject(){
+        destroyedObject();
         NetworkServer.Destroy(gameObject);
+        
+    }
+
+    [ClientRpc]
+    public void destroyedObject() {
+        if(m_selected) deselect();
     }
     
     //methode die alle aktionen listet die ausgeführt werden sollen sobald ein VolkObject selected ist.

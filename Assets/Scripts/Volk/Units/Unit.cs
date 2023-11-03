@@ -114,7 +114,7 @@ public class Unit : VolkObject
             changeCurrentPosition();
         }
 
-        if(Input.GetMouseButtonDown(0)) {
+        if(Input.GetMouseButtonDown(0) && SelectHelper.canSelect()) {
             if(!m_selected && tilemapHover.getMousePosition().x == currentPosition.x && tilemapHover.getMousePosition().y == currentPosition.y && transform.parent.GetComponent<PlayerManager>() == PlayerHelperScript.findLocalPlayer()) {
                 selected();
             }else if(m_selected && steps > 0){
