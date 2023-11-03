@@ -20,7 +20,7 @@ public class Unit : VolkObject
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
-    bool m_selected = false;
+    
 
     [SerializeField] private int ausbildungszeit;
 
@@ -108,7 +108,8 @@ public class Unit : VolkObject
     }
 
 
-    void Update() {
+    public override void Update() {
+        base.Update();
         if(currentPosition == new Vector3Int(0,0,0)) {
             changeCurrentPosition();
         }
@@ -120,7 +121,7 @@ public class Unit : VolkObject
                 Debug.Log("Try Schritte gehen");
                 schritteGehen(tilemapHover.getMousePosition());
                 deselect(); //nach gehen soll Einheit nicht noch selected sein
-            }else {
+            }else{
                 deselect();
             }
         }

@@ -81,9 +81,9 @@ public class Building : VolkObject
     
 
     // Update is called once per frame
-    private void Update()
+    public override void Update()
     {
-        
+        base.Update();
         
         if(pm != PlayerHelperScript.findLocalPlayer()) return;
         
@@ -129,7 +129,7 @@ public class Building : VolkObject
                 Debug.Log(gameObject.name);
                 //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
                 selected();
-            }else {
+            }else if(!isSelected() && m_selected){
                 deselect();
             }
         }
