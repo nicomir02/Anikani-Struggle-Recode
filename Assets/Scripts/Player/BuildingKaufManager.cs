@@ -19,6 +19,8 @@ public class BuildingKaufManager : MonoBehaviour
 
     private List<GameObject> generatedPrefabs = new List<GameObject>();
 
+    [SerializeField] private Pause pause;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class BuildingKaufManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if(Input.GetKeyDown(KeyCode.B)){
             if(!offen ){
@@ -36,6 +38,10 @@ public class BuildingKaufManager : MonoBehaviour
                 closePanel();
                 offen = false;
             }
+        }
+        if(Input.GetButtonDown("Cancel") && !pause.IsPause && offen) {
+            Debug.Log(pause.IsPause);
+            closePanel();
         }
     }
 

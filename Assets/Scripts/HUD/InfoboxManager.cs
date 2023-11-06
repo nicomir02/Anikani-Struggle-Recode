@@ -13,8 +13,12 @@ public class InfoboxManager : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject listBtns;
 
+    [SerializeField] private Pause pause;
+
 
     List<GameObject> instantiatedBtns = new List<GameObject>();
+
+    bool bigInfobox = false;
 
     //angeklicktes VolkObject
     VolkObject obj;
@@ -56,7 +60,14 @@ public class InfoboxManager : MonoBehaviour
     }   
 
     public void openAllgemeineInfos(){
+        bigInfobox = true;
         panel.transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    void LateUpdate() {
+        if(Input.GetButtonDown("Cancel") && !pause.IsPause && bigInfobox) {
+            closeInfo();
+        }
     }
 
     public void destroyObject(){
@@ -67,6 +78,11 @@ public class InfoboxManager : MonoBehaviour
 
     public void einheitenAusbildung(){
         GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<UnitKaufManager>().openPanel((TrainUnitBuilding) obj);
+    }
+
+    public void closeInfo() {
+        bigInfobox = false;
+        panel.transform.GetChild(1).gameObject.SetActive(false);
     }
 
 

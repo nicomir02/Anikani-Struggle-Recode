@@ -351,7 +351,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.65
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.15
+  m_fontSize: 19.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4794,7 +4794,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 20.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6383,7 +6383,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 119.4
+  m_fontSize: 25.05
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6517,7 +6517,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.65
+  m_fontSize: 23.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7942,7 +7942,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.3
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8339,7 +8339,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 129.25
+  m_fontSize: 30.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9258,7 +9258,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 133.45
+  m_fontSize: 33.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10295,7 +10295,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 20.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10450,7 +10450,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89.3
+  m_fontSize: 19
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10721,7 +10721,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.8
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11272,7 +11272,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pause: {fileID: 865270185}
-  continueBtn: {fileID: 0}
+  continueBtn: {fileID: 1132111446}
+  cannotPause:
+  - {fileID: 745848859}
+  - {fileID: 322099828}
+  - {fileID: 949580260}
 --- !u!114 &1938173205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11300,6 +11304,7 @@ MonoBehaviour:
   panel: {fileID: 949580260}
   scrollviewTransfrom: {fileID: 1811080870}
   prefab: {fileID: 8598769609623328007, guid: 7e8682b42af904948bd837af1f35258f, type: 3}
+  pause: {fileID: 1938173204}
 --- !u!114 &1938173207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11317,6 +11322,7 @@ MonoBehaviour:
   prefab: {fileID: 357398215895747425, guid: 98f94fe8bf56c674c886597b9af53e45, type: 3}
   ausbildungsleiste: {fileID: 194669176}
   prefabUnit: {fileID: 7492213126141169603, guid: f2a086a6b6ab07e48bdde271545ace43, type: 3}
+  pause: {fileID: 1938173204}
 --- !u!114 &1938173208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11355,6 +11361,7 @@ MonoBehaviour:
   AllButtonsBuilding: []
   panel: {fileID: 978761686}
   listBtns: {fileID: 1809474224}
+  pause: {fileID: 1938173204}
 --- !u!1 &1941706552
 GameObject:
   m_ObjectHideFlags: 0

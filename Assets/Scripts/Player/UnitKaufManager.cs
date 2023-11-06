@@ -27,6 +27,8 @@ public class UnitKaufManager : MonoBehaviour
 
     private bool offen = false;
 
+    [SerializeField] private Pause pause;
+
     
 
     // Start is called before the first frame update
@@ -41,7 +43,7 @@ public class UnitKaufManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if(Input.GetKeyDown(KeyCode.U)){
             if(!offen){
@@ -59,6 +61,9 @@ public class UnitKaufManager : MonoBehaviour
                 closePanel();
                 offen = false;
             }
+        }
+        if(Input.GetButtonDown("Cancel") && !pause.IsPause && offen) {
+            closePanel();
         }
     }
 
