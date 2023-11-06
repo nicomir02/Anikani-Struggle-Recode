@@ -30,7 +30,7 @@ public class BuildingKaufManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.B)){
+        if(Input.GetKeyDown(KeyCode.B) && !pause.IsPause){
             if(!offen ){
                 openPanel();
                 offen = true;
@@ -39,8 +39,10 @@ public class BuildingKaufManager : MonoBehaviour
                 offen = false;
             }
         }
-        if(Input.GetButtonDown("Cancel") && !pause.IsPause && offen) {
-            Debug.Log(pause.IsPause);
+
+
+        if(Input.GetButtonDown("Cancel") && offen) {
+            
             closePanel();
         }
     }

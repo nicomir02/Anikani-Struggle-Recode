@@ -45,7 +45,7 @@ public class UnitKaufManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.U)){
+        if(Input.GetKeyDown(KeyCode.U) && !pause.IsPause){
             if(!offen){
                 TrainUnitBuilding building = null; 
                 foreach(TrainUnitBuilding b in FindObjectsOfType<TrainUnitBuilding>()) {
