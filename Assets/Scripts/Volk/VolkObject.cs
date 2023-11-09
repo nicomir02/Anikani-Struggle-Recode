@@ -14,6 +14,19 @@ public class VolkObject : NetworkBehaviour
 
     [SerializeField] public int attackRange = 1;
 
+    [SerializeField] private float moralWert = 0f;
+    public float MoralWert {
+        get{return moralWert;}
+        set{moralWert = value;}
+    }
+
+    protected List<Moral> vorlieben = new List<Moral>();
+    public List<Moral> Vorlieben {
+        get{return vorlieben;}
+    }
+
+    protected MoralManager mm;
+
     //Kosten des Objekts
     [SerializeField] public List<Ressource> RessourcenFuerKosten;
     [SerializeField] public List<int> kostenFuerRessource;
@@ -46,6 +59,7 @@ public class VolkObject : NetworkBehaviour
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
+        mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         animationList = idle;
         Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;

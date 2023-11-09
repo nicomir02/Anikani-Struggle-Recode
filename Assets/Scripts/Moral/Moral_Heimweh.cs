@@ -12,8 +12,8 @@ public class Moral_Heimweh : Moral
     }
         
     
-    public override float auswerten(Unit u) {
-        int howlong = u.WieLangNichtGebiet;
+    public override float auswerten(VolkObject o) {
+        int howlong = ((Unit)o).WieLangNichtGebiet;
 
         if(moral == 0) {
             if(howlong < 10) {

@@ -31,6 +31,7 @@ public class RoundManager : NetworkBehaviour
     [SerializeField] private UnityEngine.Rendering.Universal.Light2D fogOfWar;
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private MoralManager moralManager;
 
     private bool isActive = false;
 
@@ -102,6 +103,7 @@ public class RoundManager : NetworkBehaviour
                     u.nextRound();
                 }
             }
+            moralManager.nextRound(pm);
         }else {
             isActive = false;
         }

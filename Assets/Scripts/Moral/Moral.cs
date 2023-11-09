@@ -25,12 +25,22 @@ public abstract class Moral
         if(isValidCase(1)) cases.Add(1);
         if(isValidCase(2)) cases.Add(2);
 
+        moral = cases[rand.Next(cases.Count)];
+
         return cases[rand.Next(cases.Count)];
+    }
+
+    public override string ToString() {
+        if(moral==0) return positive;
+        if(moral==1) return neutral;
+        if(moral==2) return negative;
+
+        return "Not Selected";
     }
 
     public bool isValidCase(int newCase) {
         return (newCase == 0 && positive != null && positive != "") || (newCase == 1 && neutral != null && neutral != "") || (newCase == 2 && negative != null && negative != "");
     }
 
-    public abstract float auswerten(Unit u);
+    public abstract float auswerten(VolkObject o);
 }

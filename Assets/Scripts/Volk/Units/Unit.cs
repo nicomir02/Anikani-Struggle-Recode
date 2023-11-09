@@ -25,6 +25,7 @@ public class Unit : VolkObject
     private Area area;
     private RoundManager rm;
     
+    
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
     [SerializeField] private int ausbildungszeit;
@@ -73,6 +74,11 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
+        vorlieben = mm.getMoral(0);
+        foreach(Moral m in vorlieben) {
+            m.setCase();
+            Debug.Log(m);
+        }
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
