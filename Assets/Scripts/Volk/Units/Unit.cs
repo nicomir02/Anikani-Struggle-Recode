@@ -15,17 +15,19 @@ public class Unit : VolkObject
         get{return steps;}
     }
 
+    private int wieLangNichtGebiet = 0;
+    public int WieLangNichtGebiet {
+        get{return wieLangNichtGebiet;}
+    }
+
     private MapBehaviour mapBehaviour;
+
+    private Area area;
     private RoundManager rm;
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
-    
-
     [SerializeField] private int ausbildungszeit;
-
-    
-    
 
 
     [SerializeField] private GameObject lightObject;
@@ -71,6 +73,7 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
+        area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
         currentPosition = new Vector3Int(0,0,0);*/
@@ -142,6 +145,11 @@ public class Unit : VolkObject
     [Command(requiresAuthority=false)]
     public void nextRound() {
         steps = maxSteps;
+        if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerColor)) {
+            wieLangNichtGebiet = 0;
+        }else {
+            wieLangNichtGebiet++;
+        }
         changeSteps(steps);
     }
 

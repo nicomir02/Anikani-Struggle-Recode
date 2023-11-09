@@ -54,6 +54,11 @@ public class Area : NetworkBehaviour
         return PlayerHelperScript.findLocalPlayer().playerColor == roundManager.ActiveID && ((area.ContainsKey(vec) && area[vec] == roundManager.ActiveID) || (!build && !area.ContainsKey(vec)));
     }
 
+    public bool isAreaByID(Vector3Int vec, int id) {
+        vec.z = mapBehaviour.getZ(vec);
+        return area.ContainsKey(vec) && area[vec] == id;
+    }
+
     public bool isEnemyArea(Vector3Int vec) {
         vec.z = mapBehaviour.getZ(vec);
         
