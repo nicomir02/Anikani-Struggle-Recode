@@ -12,6 +12,9 @@ public class MoralManager : NetworkBehaviour
 
     void Start() {
         unitMoral.Add(new Moral_Heimweh());
+        unitMoral.Add(new Moral_Attack());
+
+        allgemeinMoral.Add(new Moral_Schaden());
     }
 
     [Command(requiresAuthority=false)]

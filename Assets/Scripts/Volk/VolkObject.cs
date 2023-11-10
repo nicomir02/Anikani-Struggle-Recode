@@ -14,7 +14,12 @@ public class VolkObject : NetworkBehaviour
 
     [SerializeField] public int attackRange = 1;
 
-    [SerializeField] private float moralWert = 0f;
+    protected int lastAttack = 0;
+    public int LastAttack {
+        get{return lastAttack;}
+    }
+
+    [SerializeField] [SyncVar] private float moralWert = 0f;
     public float MoralWert {
         get{return moralWert;}
         set{moralWert = value;}
@@ -135,6 +140,7 @@ public class VolkObject : NetworkBehaviour
             obj.changeHealth(healValue);
         }else {
             obj.changeHealth(-attackValue);
+            lastAttack = 0;
         }
     }
 

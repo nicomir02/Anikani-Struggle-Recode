@@ -5,8 +5,8 @@ using UnityEngine;
 public class Moral_Heimweh : Moral
 {
     public Moral_Heimweh() {
-        positive = "Heimweh";
-        negative = "Fernweh";
+        positive = "Homesick";
+        negative = "Desire to travel";
 
         setCase();
     }

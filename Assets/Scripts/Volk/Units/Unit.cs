@@ -79,6 +79,7 @@ public class Unit : VolkObject
             m.setCase();
             Debug.Log(m);
         }
+        mm.nextRound(transform.parent.GetComponent<PlayerManager>());
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
@@ -157,6 +158,7 @@ public class Unit : VolkObject
             wieLangNichtGebiet++;
         }
         changeSteps(steps);
+        lastAttack++;
     }
 
     [ClientRpc]

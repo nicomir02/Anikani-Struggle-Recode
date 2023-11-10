@@ -52,6 +52,14 @@ public class Building : VolkObject
     public override void Start()
     {
         base.Start();
+
+        vorlieben = mm.getMoral(1);
+        foreach(Moral m in vorlieben) {
+            m.setCase();
+            Debug.Log(m);
+        }
+        mm.nextRound(transform.parent.GetComponent<PlayerManager>());
+
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
