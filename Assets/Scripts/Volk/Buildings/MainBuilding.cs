@@ -10,10 +10,11 @@ public class MainBuilding : Building
     }
 
     public override void selected() {
-        Debug.Log("[" + name + "]" + " Selected");
+        /*Debug.Log("[" + name + "]" + " Selected");
         GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
         im.openRightBox(this, false);
-        m_selected = true;
+        m_selected = true;*/
+        base.selected();
     }
     
 }

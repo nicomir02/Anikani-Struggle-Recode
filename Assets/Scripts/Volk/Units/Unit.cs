@@ -129,8 +129,9 @@ public class Unit : VolkObject
     }
 
     public override void selected() {
-        GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
-        m_selected = true;
+        /*GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
+        m_selected = true;*/
+        base.selected();
     }
 
     //schauen ob position dieses objects mit dem übergebenen vector vec übereinstimmt
