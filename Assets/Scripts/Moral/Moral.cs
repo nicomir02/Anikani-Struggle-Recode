@@ -22,7 +22,11 @@ public abstract class Moral
 
         List<int> cases = new List<int>();
         if(isValidCase(0)) cases.Add(0);
-        if(isValidCase(1)) cases.Add(1);
+        if(isValidCase(1)) {
+            cases.Add(1);
+            cases.Add(1);
+            cases.Add(1);
+        }
         if(isValidCase(2)) cases.Add(2);
 
         moral = cases[rand.Next(cases.Count)];

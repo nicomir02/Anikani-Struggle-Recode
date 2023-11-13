@@ -15,7 +15,7 @@ public class Unit : VolkObject
         get{return steps;}
     }
 
-    private int wieLangNichtGebiet = 0;
+    [SyncVar] private int wieLangNichtGebiet = 0;
     public int WieLangNichtGebiet {
         get{return wieLangNichtGebiet;}
     }
@@ -74,35 +74,26 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
-        vorlieben = mm.getMoral(0);
-        foreach(Moral m in vorlieben) {
-            m.setCase();
-            Debug.Log(m);
-        }
+        vorlieben = mm.getMoral(0, healValue > 0);
+        
         mm.nextRound(transform.parent.GetComponent<PlayerManager>());
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
         currentPosition = new Vector3Int(0,0,0);*/
 
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
         currentPosition = tilemapHover.getVec3IntFromVec3(transform.position);
-        Debug.Log(currentPosition);
+        //Debug.Log(currentPosition);
         transform.position = tilemapHover.getVec3FromVec3Int(currentPosition, true);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
 
         changeHealth(maxHealth);
 
-        Debug.Log("Start" + currentPosition);
+        //Debug.Log("Start" + currentPosition);
         steps = 0;
         
-        foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
-            if(PlayerHelperScript.findLocalPlayer() != transform.parent.GetComponent<PlayerManager>()) {
-                lightObject.SetActive(false);
-            }else {
-                lightObject.SetActive(true);
-            }
-        }
+        
     }
 
     [Command(requiresAuthority=false)]
@@ -159,6 +150,7 @@ public class Unit : VolkObject
         }
         changeSteps(steps);
         lastAttack++;
+        lastHeal++;
     }
 
     [ClientRpc]
@@ -172,6 +164,14 @@ public class Unit : VolkObject
     //Einheit soll sich bewegen
     [Command(requiresAuthority=false)]
     void schritteGehen(Vector3Int end) {
+        
+        foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
+            if(PlayerHelperScript.findLocalPlayer() != transform.parent.GetComponent<PlayerManager>()) {
+                lightObject.SetActive(false);
+            }else {
+                lightObject.SetActive(true);
+            }
+        }
         Debug.Log("Try Schritte gehen zu " + end);
         //klappt noch nicht ganz. auch abfragen dass nur der spieler der dran ist sich bewegen kann.
         if(end.z == -1 && end.x == -1 && end.z == -1 || !mapBehaviour.insideField(end)) return;

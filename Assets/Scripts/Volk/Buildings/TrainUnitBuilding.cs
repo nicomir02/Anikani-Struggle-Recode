@@ -64,7 +64,7 @@ public class TrainUnitBuilding : Building
             ausbildungen.Add(u.getAusbildungszeit(), u);
         }else {
             int highestValue = ausbildungen.Keys.Max();
-            Debug.Log("insert " + ausbildungen.Count);
+            //Debug.Log("insert " + ausbildungen.Count);
 
             ausbildungen.Add(highestValue + u.getAusbildungszeit(), u);
         }

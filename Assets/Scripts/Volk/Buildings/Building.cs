@@ -54,10 +54,6 @@ public class Building : VolkObject
         base.Start();
 
         vorlieben = mm.getMoral(1);
-        foreach(Moral m in vorlieben) {
-            m.setCase();
-            Debug.Log(m);
-        }
         mm.nextRound(transform.parent.GetComponent<PlayerManager>());
 
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
@@ -133,8 +129,8 @@ public class Building : VolkObject
 
         if(Input.GetMouseButtonDown(0) && SelectHelper.canSelect()) {
             if(isSelected()) {
-                Debug.Log("gebäude wurde ausgewaehlt");
-                Debug.Log(gameObject.name);
+                //Debug.Log("gebäude wurde ausgewaehlt");
+                //Debug.Log(gameObject.name);
                 //hier auch infoboxen und upgrade/zerstörungs/bewegungs(bei wanderern) buttons aktivieren!
                 selected();
             }else if(!isSelected() && m_selected){

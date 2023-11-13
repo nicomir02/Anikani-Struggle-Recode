@@ -14,9 +14,19 @@ public class VolkObject : NetworkBehaviour
 
     [SerializeField] public int attackRange = 1;
 
-    protected int lastAttack = 0;
+    [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
         get{return lastAttack;}
+    }
+
+    private float moralBoost = 1f;
+    public float MoralBoost {
+        get{return moralBoost;}
+    }
+
+    [SyncVar] protected int lastHeal = 0;
+    public int LastHeal {
+        get{return lastHeal;}
     }
 
     [SerializeField] [SyncVar] private float moralWert = 0f;
@@ -66,7 +76,7 @@ public class VolkObject : NetworkBehaviour
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         animationList = idle;
-        Debug.Log(animationList.Count);
+        //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
         StartCoroutine(animationStart(0));
     }
@@ -138,6 +148,7 @@ public class VolkObject : NetworkBehaviour
     public void tryAttack(Vector3Int v, VolkObject obj) {
         if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
             obj.changeHealth(healValue);
+            lastHeal = 0;
         }else {
             obj.changeHealth(-attackValue);
             lastAttack = 0;
@@ -145,14 +156,14 @@ public class VolkObject : NetworkBehaviour
     }
 
     public void cycleObjectMethod(){
-        Debug.Log("cycleObjectMethod");
+        //Debug.Log("cycleObjectMethod");
         if(Input.GetAxisRaw("CycleObjects") > 0) {  //Next Object durch .
-            Debug.Log("NextObjektMethod");
-            Debug.Log("TypAusgewähltesObjektNex" + this.GetType());
+            //Debug.Log("NextObjektMethod");
+            //Debug.Log("TypAusgewähltesObjektNex" + this.GetType());
             nextObject();
         }else if(Input.GetAxisRaw("CycleObjects") < 0) { // Previous Object durch ,
-            Debug.Log("TypAusgewähltesObjektPrev" + this.GetType());
-            Debug.Log("PreviousObjektMethod");
+            //Debug.Log("TypAusgewähltesObjektPrev" + this.GetType());
+            //Debug.Log("PreviousObjektMethod");
             previousObject();
             
         }
@@ -162,28 +173,28 @@ public class VolkObject : NetworkBehaviour
         bool vorbei = false;
         VolkObject first = null;
         foreach(VolkObject o in FindObjectsOfType<VolkObject>()) {
-            Debug.Log("found Object next" + o.GetType());
+            //Debug.Log("found Object next" + o.GetType());
 
-            Debug.Log(o.transform.parent.GetComponent<PlayerManager>() != transform.parent.GetComponent<PlayerManager>());
-            Debug.Log(o.GetType() == GetType());
+            //Debug.Log(o.transform.parent.GetComponent<PlayerManager>() != transform.parent.GetComponent<PlayerManager>());
+            //Debug.Log(o.GetType() == GetType());
             
             if(o.transform.parent.GetComponent<PlayerManager>() != transform.parent.GetComponent<PlayerManager>() || o.GetType() != GetType()) continue; //nur Objekte von diesem Spieler relevant
             
             if(first == null) first = o;//setzen des ersten Objektes von diesem Typ als Variable first
             if(vorbei) { //am nächsten Objekt angekommen von diesem Typ, falls es keins gibt, dann wird die foreach schleife ienfach bis zum ende durchgegangen
-                Debug.Log(vorbei);
-                Debug.Log("thisName:" + this.name);
+                //Debug.Log(vorbei);
+                //Debug.Log("thisName:" + this.name);
                 deselect();
                 o.selected();
-                Debug.Log("selectedObjectName: " + o.name);
+                //Debug.Log("selectedObjectName: " + o.name);
                 break;
             }
             if(o == this) vorbei = true; //am jetzigen Objekt angekommen und nun im nächsten Schritt vorbeigegangen
         }
         if(m_selected) { //falls dieses Objekt noch selected ist, dann gab es kein FolgeObjekt von diesem Typ
-            Debug.Log("after selected next maybe same?");
+            ///Debug.Log("after selected next maybe same?");
             deselect();
-            if(first == null) Debug.Log("first ist null");
+            //if(first == null) Debug.Log("first ist null");
             first.selected(); //daher springt man zum ersten Objekt dieses Typs (könnte auch dieses hier sein, was egal ist)
         }
     }
@@ -192,20 +203,20 @@ public class VolkObject : NetworkBehaviour
         VolkObject previous = null;
         
         foreach(VolkObject o in FindObjectsOfType<VolkObject>()) {
-            Debug.Log("cur Object in foreach" + o.GetType());
+            //Debug.Log("cur Object in foreach" + o.GetType());
             if(o.transform.parent.GetComponent<PlayerManager>() != transform.parent.GetComponent<PlayerManager>() || o.GetType() != GetType()) continue; //nur Objekte von diesem Spieler relevant
-            Debug.Log("found Object prev" );
+            //Debug.Log("found Object prev" );
             if(o == this && previous != null) { 
-                Debug.Log("previous found");
+                //Debug.Log("previous found");
                 deselect();
                 previous.selected();
-                Debug.Log(previous.name);
+                //Debug.Log(previous.name);
                 break;
             }
             previous = o;   //falls this das erste Objekt war, dann wird previous auf dieses gesetzt aber die Schleife geht durch bis zum Ende ohne this zu deselecten und previous wird das letzte Objekt der Schleife
         }
         if(m_selected) {    //falls dieses Objekt weiterhin selected ist, springen wir zu unserem previous(kann das letzte Objekt sein falls this das erste war)
-            Debug.Log("after selected previous maybe same?"); 
+            //Debug.Log("after selected previous maybe same?"); 
             deselect();
             previous.selected();
         }

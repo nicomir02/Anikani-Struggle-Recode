@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.002000004, y: -0.000049993396, z: 0}
-    m_Extent: {x: 0.5029, y: 0.25005, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.25, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   healValue: 0
   maxHealth: 100
   attackRange: 1
+  moralWert: 0
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
@@ -200,6 +201,7 @@ MonoBehaviour:
   specificButtonsInfobox: []
   animationAbstand: 0.2
   idle: []
+  m_selected: 0
   frontWalk: []
   backWalk: []
   maxSteps: 4

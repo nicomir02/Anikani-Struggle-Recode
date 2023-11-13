@@ -10,11 +10,15 @@ public class MoralManager : NetworkBehaviour
 
     private List<Moral> allgemeinMoral = new List<Moral>();
 
+    private List<Moral> healer = new List<Moral>();
+
     void Start() {
         unitMoral.Add(new Moral_Heimweh());
         unitMoral.Add(new Moral_Attack());
 
         allgemeinMoral.Add(new Moral_Schaden());
+
+        healer.Add(new Moral_Heal());
     }
 
     [Command(requiresAuthority=false)]
@@ -30,14 +34,14 @@ public class MoralManager : NetworkBehaviour
                     moral += m.auswerten(vo);
                 }
 
-                vo.MoralWert = moral / howMany;
+                vo.MoralWert = Mathf.Min((moral / howMany)*vo.MoralBoost,1f);
                 Debug.Log(vo.MoralWert);
                 
             }
         }
     }
 
-    public List<Moral> getMoral(int volkObject) {
+    public List<Moral> getMoral(int volkObject, bool heal=false) {
         //volkObject = 0 = Unit
         //volkObject = 1 = Building
         List<Moral> auswahl = new List<Moral>(); 
@@ -45,7 +49,7 @@ public class MoralManager : NetworkBehaviour
             foreach(Moral m in unitMoral) {
                 auswahl.Add(m);
             }
-        }else {
+        }else if(volkObject==1){
             foreach(Moral m in buildingMoral) {
                 auswahl.Add(m);
             }
@@ -54,11 +58,17 @@ public class MoralManager : NetworkBehaviour
             auswahl.Add(m);
         }
 
-        if(auswahl.Count < 3) {
-            return auswahl;
+        if(heal) {
+            foreach(Moral m in healer) {
+                auswahl.Add(m);
+            }
+        }
+        
+        foreach(Moral m in auswahl) {
+            m.setCase();
         }
 
         return auswahl; //später zufällig 2-3 Vorlieben..
         
-    } 
+    }
 }
