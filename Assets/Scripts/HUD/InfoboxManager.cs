@@ -72,7 +72,7 @@ public class InfoboxManager : MonoBehaviour
             if(i++ > 0) {
                 allgemeineInfos.text += ", ";
             }
-            allgemeineInfos.text += m + " ";
+            allgemeineInfos.text += m;
             
         }
 
