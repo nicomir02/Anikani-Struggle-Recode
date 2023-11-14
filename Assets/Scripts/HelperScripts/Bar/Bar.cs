@@ -4,25 +4,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public abstract class Bar : MonoBehaviour
 {
-    [SerializeField] public int MaxValue; //Später durch Max Leben von Unit ersetzen 
-    [SerializeField] public int Value; //Momentane Wert (HealthManager)
+    [SerializeField] protected float MaxValue; //Später durch Max Leben von Unit ersetzen 
+    [SerializeField] protected float Value; //Momentane Wert (HealthManager)
 
-    [SerializeField] private RectTransform bottomBar;
-    [SerializeField] private RectTransform topBar;
+    [SerializeField] protected RectTransform bottomBar;
+    [SerializeField] protected RectTransform topBar;
 
-    [SerializeField] private float speed = 10f;
+    [SerializeField] protected float speed = 10f;
 
-    [SerializeField] private TextMeshProUGUI reichweite;
-    [SerializeField] private GameObject reichweitenBackground;
+    protected float fullWidth;
+    protected float targetWidth => Value * fullWidth / MaxValue;
 
-    private float fullWidth;
-    private float targetWidth => Value * fullWidth / MaxValue;
+    protected Coroutine adjustBarWidthCoroutine;
 
-    private Coroutine adjustBarWidthCoroutine;
-
-    public void Change(int amount) {
+    public void Change(float amount) {
+        newMaxValue();
         Value = Mathf.Clamp(Value+amount, 0, MaxValue); 
         Debug.Log(Value);
         //if(Value <= 0) gameObject.transform.parent.GetComponent<AudioUnit>().startAudio(2);
@@ -33,7 +31,9 @@ public class HealthBar : MonoBehaviour
         adjustBarWidthCoroutine = StartCoroutine(AdjustBarWidth(amount));
     }
 
-    private IEnumerator AdjustBarWidth(int amount) {
+    public abstract void newMaxValue();
+
+    private IEnumerator AdjustBarWidth(float amount) {
         RectTransform suddenChangeBar;
         RectTransform slowChangeBar;
 
@@ -57,16 +57,5 @@ public class HealthBar : MonoBehaviour
         
 
         slowChangeBar.SetWidth(targetWidth);
-    }
-
-    public void changeReichweite(int rw) {
-        this.reichweitenBackground.SetActive(true);
-        this.reichweite.text = rw +"";
-    }
-
-    protected virtual void Start() {
-        fullWidth = topBar.rect.width; 
-        MaxValue = gameObject.transform.parent.GetComponent<VolkObject>().health;
-        Value = MaxValue;
     }
 }

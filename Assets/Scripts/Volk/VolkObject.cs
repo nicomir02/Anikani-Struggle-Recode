@@ -14,6 +14,9 @@ public class VolkObject : NetworkBehaviour
 
     [SerializeField] public int attackRange = 1;
 
+    [SerializeField] protected Healthbar healthbar;
+    [SerializeField] protected Moralbar moralbar;
+
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
         get{return lastAttack;}
@@ -111,6 +114,7 @@ public class VolkObject : NetworkBehaviour
     [Command (requiresAuthority=false)]
     public void changeHealth(int value){
         health += value;
+        if(healthbar != null) healthbar.Change(value);
         if(health > maxHealth) health = maxHealth;
         if(health <= 0) destroyObject();
     }
