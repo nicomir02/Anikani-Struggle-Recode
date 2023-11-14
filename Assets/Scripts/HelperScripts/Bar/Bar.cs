@@ -21,6 +21,7 @@ public abstract class Bar : MonoBehaviour
 
     public void Change(float amount) {
         newMaxValue();
+        Debug.Log(amount);
         Value = Mathf.Clamp(Value+amount, 0, MaxValue); 
         Debug.Log(Value);
         //if(Value <= 0) gameObject.transform.parent.GetComponent<AudioUnit>().startAudio(2);

@@ -16,6 +16,9 @@ public class VolkObject : NetworkBehaviour
 
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
+    public Moralbar Moralb {
+        get{return moralbar;}
+    }
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
@@ -32,7 +35,7 @@ public class VolkObject : NetworkBehaviour
         get{return lastHeal;}
     }
 
-    [SerializeField] [SyncVar] private float moralWert = 0f;
+    [SerializeField] [SyncVar] private float moralWert = 1f;
     public float MoralWert {
         get{return moralWert;}
         set{moralWert = value;}
