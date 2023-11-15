@@ -76,7 +76,6 @@ public class Unit : VolkObject
         base.Start();
         vorlieben = mm.getMoral(0, healValue > 0);
         
-        mm.nextRound(transform.parent.GetComponent<PlayerManager>());
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         /*transform.position = getPosition(new Vector3Int(0,0,0));
