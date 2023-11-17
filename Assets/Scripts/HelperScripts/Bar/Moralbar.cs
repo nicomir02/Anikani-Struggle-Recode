@@ -12,6 +12,6 @@ public class Moralbar : Bar
     }
 
     public override void newMaxValue() {
-        MaxValue = 1.0f;
+        MaxValue = 1f;
     }
 }

@@ -19,7 +19,7 @@ public abstract class Bar : MonoBehaviour
 
     protected Coroutine adjustBarWidthCoroutine;
 
-    public void Change(float amount) {
+    public virtual void Change(float amount) {
         newMaxValue();
         Debug.Log(amount);
         Value = Mathf.Clamp(Value+amount, 0, MaxValue); 
