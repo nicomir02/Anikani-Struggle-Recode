@@ -21,9 +21,7 @@ public abstract class Bar : MonoBehaviour
 
     public virtual void Change(float amount) {
         newMaxValue();
-        Debug.Log(amount);
         Value = Mathf.Clamp(Value+amount, 0, MaxValue); 
-        Debug.Log(Value);
         //if(Value <= 0) gameObject.transform.parent.GetComponent<AudioUnit>().startAudio(2);
         if(adjustBarWidthCoroutine != null) {
             StopCoroutine(adjustBarWidthCoroutine);

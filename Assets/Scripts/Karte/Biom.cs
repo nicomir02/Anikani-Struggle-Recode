@@ -13,6 +13,11 @@ public class Biom : MonoBehaviour
     [SerializeField] public int minheight = 0;
     [SerializeField] public int maxheight = 0;
 
+    [SerializeField] private bool goodForField = false;
+    public bool GoodForField {
+        get{return goodForField;}
+    }
+
     [SerializeField] private Block mainBlock;
 
     //auf diesem Biom baubar oder nicht? z.B. Wasser nicht baubar

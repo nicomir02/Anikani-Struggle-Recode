@@ -68,6 +68,10 @@ public class PlayerManager : NetworkBehaviour
 
      //Ressourcen die Spieler hat
     private Dictionary<Ressource, int> playerRessourcen = new Dictionary<Ressource, int>();
+    public Dictionary<Ressource, int> PlayerRessourcen {
+        get{return playerRessourcen;}
+    }
+
     //abfrage ob genug Ressourcen für Kauf vorhanden
     public bool genugRessourceVorhanden(Dictionary<Ressource, int> ress){
         foreach(KeyValuePair<Ressource,int> kvp in ress){

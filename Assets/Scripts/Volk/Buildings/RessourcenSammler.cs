@@ -6,7 +6,7 @@ using Mirror;
 
 public class RessourcenSammler : Building
 {
-    [SerializeField] private Ressource ressource;
+    [SerializeField] protected Ressource ressource;
 
     public override void nextRound() {
         if(Ressourcen.ContainsKey(ressource)) {

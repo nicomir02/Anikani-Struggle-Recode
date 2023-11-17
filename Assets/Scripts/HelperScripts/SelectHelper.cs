@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class SelectHelper
 {
     public static bool canSelect() {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
         return EventSystem.current.currentSelectedGameObject == null;
     }
 }

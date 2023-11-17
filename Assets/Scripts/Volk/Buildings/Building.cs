@@ -18,7 +18,7 @@ public class Building : VolkObject
     //Mouseposition
     protected TilemapHover th;
     //mapBehaviour
-    private MapBehaviour mb;
+    protected MapBehaviour mb;
     //roundManager
     private RoundManager rm;
 
@@ -40,6 +40,7 @@ public class Building : VolkObject
 
     //position des Gebäudes
     private readonly SyncList<Vector3Int> position = new SyncList<Vector3Int>();
+    [SyncVar] protected Vector3Int middlePoint;
 
     //liste der zerstörten Ressourcen unter Gebäude
     private Dictionary<Ressource, int> ressourcen = new Dictionary<Ressource, int>();
@@ -91,12 +92,20 @@ public class Building : VolkObject
         if(pm != PlayerHelperScript.findLocalPlayer()) return;
         
         Vector3Int vec = tilemapHover.getMousePosition();
+
+        middlePoint = vec;
+        
         vec.x -= (radius-1)/2;
         vec.y -= (radius-1)/2;
+        
         Vector3 newPos = tilemapHover.getVec3FromVec3Int(vec);
+
         newPos.z += 1;
+        newPos.z += 1;
+
         if(!gesetzt){
-            transform.position = newPos;
+            middlePoint = tilemapHover.getMousePosition();
+            CMDtransparencyChange(0.5f, newPos);
             sortingLayer();
             /*
             Leider ist setzbar() sehr ineffizient
@@ -200,6 +209,8 @@ public class Building : VolkObject
 
     private void gebaeudeBau(Vector3Int pos){
         if(!area.addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3), radiusNeighborCheck.getNeighborTiles(pos, radius))) return; //Hier ändern, falls anderer Radius
+
+        middlePoint = pos;
 
         pos.x -= (radius-1)/2;
         pos.y -= (radius-1)/2;

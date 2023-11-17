@@ -49,11 +49,11 @@ public class MapBehaviour : NetworkBehaviour
     }
 
     public int getZ(Vector3Int vec) {
-        for(int z=0; z<=maxZ; z++) {
+        for(int z=-1; z<=maxZ; z++) {
             vec.z = z;
             if(allVectors.ContainsKey(vec)) return z;
         }
-        return -1;
+        return -2;
     }
 
     public Biom getBiom(Vector3Int vec) {
