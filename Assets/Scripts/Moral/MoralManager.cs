@@ -17,6 +17,7 @@ public class MoralManager : NetworkBehaviour
         unitMoral.Add(new Moral_Attack());
 
         allgemeinMoral.Add(new Moral_Schaden());
+        allgemeinMoral.Add(new Moral_Food());
 
         healer.Add(new Moral_Heal());
     }
@@ -25,12 +26,14 @@ public class MoralManager : NetworkBehaviour
     public void nextRound(PlayerManager pm) {
         float moral = 0f;
         int howMany = 0;
+        
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
                 moral = 0f;
                 howMany = 0;
                 foreach(Moral m in vo.Vorlieben) {
                     howMany++;
+
                     moral += m.auswerten(vo);
                 }
                 float old = vo.MoralWert;

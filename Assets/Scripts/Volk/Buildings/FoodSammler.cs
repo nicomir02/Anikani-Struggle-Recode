@@ -7,20 +7,9 @@ public class FoodSammler : RessourcenSammler
     // Start is called before the first frame update
     int howmany = -1;
 
-    void Start()
-    {
-        base.Start();   
-    }
-
-    public override void nextRound() {
-        Debug.Log(1);
+    public override float howMany() {
         if(howmany == -1) fieldAusrechnen();
-        if(Ressourcen.ContainsKey(ressource)) {
-            playerManager.addRessource(ressource, Ressourcen[ressource]+howmany);
-        }else {
-            playerManager.addRessource(ressource, howmany);
-        }
-        Debug.Log("Nahrung:" + playerManager.PlayerRessourcen[ressource]);
+        return howmany;
     }
 
     public void fieldAusrechnen() {

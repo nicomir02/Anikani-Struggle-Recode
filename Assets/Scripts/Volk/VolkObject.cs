@@ -5,10 +5,10 @@ using Mirror;
 
 public class VolkObject : NetworkBehaviour
 {
-    [SyncVar] public int health;
+    [SyncVar] public float health;
     
-    [SyncVar] public int attackValue = 0;
-    [SyncVar] public int healValue = 0;
+    [SyncVar] public float attackValue = 0;
+    [SyncVar] public float healValue = 0;
 
     [SerializeField] public int maxHealth = 100;
 
@@ -76,6 +76,55 @@ public class VolkObject : NetworkBehaviour
 
     Sprite safe;
 
+    private float currentNahrung = 0f;
+    public float CurrentNahrung {
+        get{return currentNahrung;}
+        set{currentNahrung = value;}
+    }
+
+    private float neededFood = -1f;
+
+    public float NeededFood {
+        get{
+            if(neededFood != -1f) return neededFood;
+            foreach(Moral m in vorlieben) {
+                if(m.overviewName == "Food") {
+                    if(m.m_Moral == 0) {
+                        neededFood = 0.5f;
+                        return 0.5f;
+                    }else if(m.m_Moral == 1) {
+                        neededFood = 1f;
+                        return 1f;
+                    }else if(m.m_Moral == 2) {
+                        neededFood = 2f;
+                        return 2f;
+                    }
+                    break;
+                }
+            }
+            return 0f;
+        }
+    }
+
+    public virtual string description() {
+        string result = 
+        "Name: "+name.Replace(transform.parent.name, "")+
+        "\nLeben: " + Mathf.Round(health*10)*0.1f + "/" + Mathf.Round(maxHealth*10)*0.1f +
+        "\nMoral: " + Mathf.Round(MoralWert*10)*0.1f + "/1" +
+        "\nNahrung: " + Mathf.Round(currentNahrung*10)*0.1f + "/" +NeededFood;
+        if(currentNahrung < NeededFood*0.25) result += " - starvation"; 
+
+        result += "\n\nVorlieben:\n";
+        int i =0;
+        foreach(Moral m in vorlieben) {
+            if(i++ > 0) {
+                result += "\n";
+            }
+            result += m;
+        }
+        return result;
+    }
+
     public virtual void Start() {
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
@@ -94,8 +143,10 @@ public class VolkObject : NetworkBehaviour
         }
     }
 
-
-
+    [Command(requiresAuthority=false)]
+    public virtual void nextRound() {
+        currentNahrung = 0f;
+    }
     
 
     public IEnumerator animationStart(int cur) {
@@ -115,7 +166,7 @@ public class VolkObject : NetworkBehaviour
     }
 
     [Command (requiresAuthority=false)]
-    public void changeHealth(int value){
+    public void changeHealth(float value){
         health += value;
         if(healthbar != null) healthbar.Change(value);
         if(health > maxHealth) health = maxHealth;

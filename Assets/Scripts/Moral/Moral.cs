@@ -4,11 +4,15 @@ using UnityEngine;
 
 public abstract class Moral
 {
+    public string overviewName = "";
     public string positive = "";
     public string neutral = "";
     public string negative = "";
 
-    protected int moral = -1;
+    protected int moral = -1; //0 positive, 1 neutral, 2 negative
+    public int m_Moral {
+        get{return moral;}
+    }
 
     private static System.Random rand = new System.Random();
 

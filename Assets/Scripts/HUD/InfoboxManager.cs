@@ -65,16 +65,8 @@ public class InfoboxManager : MonoBehaviour
         bigInfobox = true;
         panel.transform.GetChild(1).gameObject.SetActive(true);
 
-        allgemeineInfos.text = "Name: "+obj.name+"\nLeben: " + obj.health + "/" + obj.maxHealth +"\nMoral: " + obj.MoralWert + "/1"
-        + "\nVorlieben: ";
-        int i =0;
-        foreach(Moral m in obj.Vorlieben) {
-            if(i++ > 0) {
-                allgemeineInfos.text += ", ";
-            }
-            allgemeineInfos.text += m;
-            
-        }
+        allgemeineInfos.text = obj.description();
+        
 
     }
 

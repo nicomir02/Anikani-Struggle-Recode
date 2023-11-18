@@ -59,8 +59,8 @@ public class BuildingKaufManager : MonoBehaviour
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
             Building b = PlayerHelperScript.findLocalPlayer().getVolk().getBuildingByID(kvp.Value).GetComponent<Building>();
             text.text = "";
-            Dictionary<Ressource, int> buildingKosten = b.getKosten();
-            foreach(KeyValuePair<Ressource, int> kosten in buildingKosten) {
+            Dictionary<Ressource, float> buildingKosten = b.getKosten();
+            foreach(KeyValuePair<Ressource, float> kosten in buildingKosten) {
                 text.text += kosten.Key.name + ": " + kosten.Value + "\n";
             }
 

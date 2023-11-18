@@ -43,9 +43,9 @@ public class Building : VolkObject
     [SyncVar] protected Vector3Int middlePoint;
 
     //liste der zerstörten Ressourcen unter Gebäude
-    private Dictionary<Ressource, int> ressourcen = new Dictionary<Ressource, int>();
+    private Dictionary<Ressource, float> ressourcen = new Dictionary<Ressource, float>();
     
-    public Dictionary<Ressource, int> Ressourcen {
+    public Dictionary<Ressource, float> Ressourcen {
         get{return ressourcen;}
     }
 
@@ -254,10 +254,14 @@ public class Building : VolkObject
         }
     }
 
-    public virtual void nextRound() {}
 
-    public Dictionary<Ressource, int> getKosten(){
-        Dictionary<Ressource, int> result = new Dictionary<Ressource, int>();
+    [Command(requiresAuthority=false)]
+    public override void nextRound() {
+        base.nextRound();
+    }
+
+    public Dictionary<Ressource, float> getKosten(){
+        Dictionary<Ressource, float> result = new Dictionary<Ressource, float>();
         
         int anzahl = 0;
 
@@ -284,7 +288,7 @@ public class Building : VolkObject
 
         for(int i = 0; i < RessourcenFuerKosten.Count; i++){
             float wert = anzahl*kostenMultiplierFuerRessource[i];
-            int convert = (int) Mathf.Round(wert);
+            float convert = Mathf.Round(wert * 10.0f) * 0.1f;
             result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievielegebäudeDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
         }
         return result;

@@ -102,8 +102,8 @@ public class UnitKaufManager : MonoBehaviour
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
             Unit u = PlayerHelperScript.findLocalPlayer().getVolk().getUnitByID(kvp.Value).GetComponent<Unit>();
             text.text = "";
-            Dictionary<Ressource, int> unitKosten = u.getKosten();
-            foreach(KeyValuePair<Ressource, int> kosten in unitKosten) {
+            Dictionary<Ressource, float> unitKosten = u.getKosten();
+            foreach(KeyValuePair<Ressource, float> kosten in unitKosten) {
                 text.text += kosten.Key.name + ": " + kosten.Value + "\n";
             }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnitID : MonoBehaviour
 {
     private int unitID = -1;
-    private Dictionary<Ressource, int> kosten;
+    private Dictionary<Ressource, float> kosten;
     private TrainUnitBuilding building;
 
     public TrainUnitBuilding Building {
@@ -19,7 +19,7 @@ public class UnitID : MonoBehaviour
         set{unitID = value;}
     }
 
-    public Dictionary<Ressource, int> Kosten {
+    public Dictionary<Ressource, float> Kosten {
         get{return kosten;}
         set{kosten = value;}
     }

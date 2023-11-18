@@ -34,6 +34,7 @@ public class TrainUnitBuilding : Building
     
 
     public override void nextRound() {
+        base.nextRound();
         if(ausbildungen.Count > 0) zahl++;
         if(ausbildungen.ContainsKey(zahl)) {
             //Ausbildung gespawned;

@@ -67,14 +67,14 @@ public class PlayerManager : NetworkBehaviour
     }
 
      //Ressourcen die Spieler hat
-    private Dictionary<Ressource, int> playerRessourcen = new Dictionary<Ressource, int>();
-    public Dictionary<Ressource, int> PlayerRessourcen {
+    private Dictionary<Ressource, float> playerRessourcen = new Dictionary<Ressource, float>();
+    public Dictionary<Ressource, float> PlayerRessourcen {
         get{return playerRessourcen;}
     }
 
     //abfrage ob genug Ressourcen für Kauf vorhanden
-    public bool genugRessourceVorhanden(Dictionary<Ressource, int> ress){
-        foreach(KeyValuePair<Ressource,int> kvp in ress){
+    public bool genugRessourceVorhanden(Dictionary<Ressource, float> ress){
+        foreach(KeyValuePair<Ressource,float> kvp in ress){
             if(kvp.Value == 0) continue;
             if(!playerRessourcen.ContainsKey(kvp.Key) || playerRessourcen[kvp.Key] < kvp.Value){
                 return false;
@@ -84,15 +84,15 @@ public class PlayerManager : NetworkBehaviour
         return true;
     }
     
-    private void ressourcenAbzug(Dictionary<Ressource, int> ress){
-        foreach(KeyValuePair<Ressource,int> kvp in ress){
+    private void ressourcenAbzug(Dictionary<Ressource, float> ress){
+        foreach(KeyValuePair<Ressource,float> kvp in ress){
             if(kvp.Value == 0) continue;
             playerRessourcen[kvp.Key] -= kvp.Value;
         }
         ressourcenReload();
     }
 
-    public void addRessource(Ressource r, int value){
+    public void addRessource(Ressource r, float value){
         if(playerRessourcen.ContainsKey(r)){ 
             playerRessourcen[r] += value;
         } else {
@@ -103,11 +103,11 @@ public class PlayerManager : NetworkBehaviour
 
 //Veränderung der Ressource in der oberen Leiste
     private void ressourcenReload() {
-        foreach(KeyValuePair<Ressource,int> kvp in playerRessourcen){
+        foreach(KeyValuePair<Ressource,float> kvp in playerRessourcen){
             if(kvp.Key.name == "Tree") {
-                woodCounter.text = kvp.Value + "";
+                woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
             }else if(kvp.Key.name == "Stone") {
-                stoneCounter.text = kvp.Value + "";
+                stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
             }
         }
     }

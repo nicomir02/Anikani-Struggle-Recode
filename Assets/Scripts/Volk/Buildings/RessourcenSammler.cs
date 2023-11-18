@@ -8,13 +8,17 @@ public class RessourcenSammler : Building
 {
     [SerializeField] protected Ressource ressource;
 
-    public override void nextRound() {
+    public virtual float howMany() {
         if(Ressourcen.ContainsKey(ressource)) {
-            playerManager.addRessource(ressource, Ressourcen[ressource]+1);
+            return Ressourcen[ressource]+1;
         }else {
-            playerManager.addRessource(ressource, 1);
+            return 1;
         }
-        
+    }
+
+    public override void nextRound() {
+        base.nextRound();
+        playerManager.addRessource(ressource, howMany());
     }
 
 }
