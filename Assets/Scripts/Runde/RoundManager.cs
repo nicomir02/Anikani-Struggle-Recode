@@ -111,7 +111,7 @@ public class RoundManager : NetworkBehaviour
                     float f = vo.NeededFood;
                     count += f;
 
-                    if(nahrung >= 0.5f) {
+                    if(nahrung >= 0.5f && vo.CurrentNahrung < 0.5f) {
                         vo.CurrentNahrung = 0.5f;
                         nahrung -= 0.5f;
                     }
@@ -169,6 +169,7 @@ public class RoundManager : NetworkBehaviour
                     }
                 }
             }
+            Debug.Log("abzug:"+(testNahrung-nahrung));
             Dictionary<Ressource, float> abzug = new Dictionary<Ressource, float>();
             abzug.Add(nahrungsRessource, testNahrung-nahrung);
             pm.genugRessourceVorhanden(abzug);

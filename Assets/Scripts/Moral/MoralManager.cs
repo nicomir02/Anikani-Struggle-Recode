@@ -38,6 +38,7 @@ public class MoralManager : NetworkBehaviour
                 }
                 float old = vo.MoralWert;
                 vo.MoralWert = Mathf.Min((moral / howMany)*vo.MoralBoost,1f);
+                Debug.Log(vo.MoralWert);
                 if(vo.Moralb != null) vo.Moralb.Change(vo.MoralWert-old);
                 
             }

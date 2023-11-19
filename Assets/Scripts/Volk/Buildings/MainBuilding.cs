@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class MainBuilding : Building
 {
+    [SerializeField] private Ressource nahrung;
+
     public override bool setzbar() {
         Vector3Int neuPos = tilemapHover.getMousePosition();
         return radiusNeighborCheck.checkRadius(radius, neuPos, tilemapHover.tilemaps, false);
     }
 
-    public override void selected() {
-        /*Debug.Log("[" + name + "]" + " Selected");
-        GetComponent<SpriteRenderer>().color = tilemapHover.getSelectColor();
-        im.openRightBox(this, false);
-        m_selected = true;*/
-        base.selected();
+    public override void nextRound() {
+        base.nextRound();
+        currentNahrung = 0.5f;
     }
     
 }

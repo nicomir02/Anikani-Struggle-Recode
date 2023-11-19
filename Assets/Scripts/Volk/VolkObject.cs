@@ -76,7 +76,7 @@ public class VolkObject : NetworkBehaviour
 
     Sprite safe;
 
-    private float currentNahrung = 0f;
+    protected float currentNahrung = 0f;
     public float CurrentNahrung {
         get{return currentNahrung;}
         set{currentNahrung = value;}

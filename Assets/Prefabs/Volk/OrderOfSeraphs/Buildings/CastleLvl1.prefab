@@ -270,7 +270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 3839.03, y: 1085.8251}
+  m_AnchoredPosition: {x: 3839.98, y: 1082.75}
   m_SizeDelta: {x: 3839.9385, y: 2159.9893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &841010501868538486
@@ -849,6 +849,7 @@ MonoBehaviour:
   m_selected: 0
   radius: 3
   lightObject: {fileID: 390609869062261948}
+  nahrung: {fileID: 8694705376693512614, guid: c083658d46b2dd943ad887f81e469b0c, type: 3}
 --- !u!1 &8382981511862698693
 GameObject:
   m_ObjectHideFlags: 0
