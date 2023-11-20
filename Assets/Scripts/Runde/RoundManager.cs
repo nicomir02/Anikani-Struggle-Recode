@@ -96,96 +96,7 @@ public class RoundManager : NetworkBehaviour
                 } */
             }
             //count für Nahrung
-            float count = 0f;
-            float nahrung = 0f;
-            if(pm.PlayerRessourcen.ContainsKey(nahrungsRessource)) {
-                nahrung = pm.PlayerRessourcen[nahrungsRessource];
-            }
             
-            float testNahrung = nahrung;
-
-            foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                    vo.nextRound();
-                    
-                    float f = vo.NeededFood;
-                    count += f;
-
-                    if(nahrung >= 0.5f && vo.CurrentNahrung < 0.5f) {
-                        vo.CurrentNahrung = 0.5f;
-                        nahrung -= 0.5f;
-                    }
-                    
-                }
-            }
-
-            
-            //Automatische Nahrungsverteilung Später auch manuelle lösung......
-            if(count <= testNahrung) {
-                nahrung = testNahrung;
-                foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                    if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                        vo.CurrentNahrung = vo.NeededFood;
-                        nahrung -= vo.NeededFood;
-                    }
-                }
-            }else {
-                if(nahrung > 0.5f) {
-                    foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                        if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                            if(nahrung >= 0.5f && vo.NeededFood > 0.5f) {
-                                vo.CurrentNahrung += 0.5f;
-                                nahrung -= 0.5f;
-                            }else {
-                                break;
-                            }
-                        }
-                    }
-                    if(nahrung > 1f) {
-                        foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                            if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                                if(nahrung >= 1f && vo.NeededFood > 1f) {
-                                    vo.CurrentNahrung += 1f;
-                                    nahrung -= 1f;
-                                }else {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if(nahrung > 0f) {
-                    foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                        if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                            if(nahrung >= 0f && vo.NeededFood > vo.CurrentNahrung) {
-                                float berechnen = Mathf.Min(nahrung, vo.NeededFood-vo.CurrentNahrung);
-                                vo.CurrentNahrung += berechnen;
-                                nahrung -= berechnen;
-                            }else {
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            Debug.Log("abzug:"+(testNahrung-nahrung));
-            Dictionary<Ressource, float> abzug = new Dictionary<Ressource, float>();
-            abzug.Add(nahrungsRessource, testNahrung-nahrung);
-            pm.genugRessourceVorhanden(abzug);
-
-            foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-                if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                    //5 Abschnitte jeweils 3% von maxhealth verlieren, maximal 15%
-                    if(vo.CurrentNahrung < vo.NeededFood*0.25f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                    if(vo.CurrentNahrung < vo.NeededFood*0.2f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                    if(vo.CurrentNahrung < vo.NeededFood*0.15f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                    if(vo.CurrentNahrung < vo.NeededFood*0.1f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                    if(vo.CurrentNahrung < vo.NeededFood*0.05f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                        
-                        
-                }
-            }
 
             //Ende Nahrungsverteilung
 
@@ -200,6 +111,107 @@ public class RoundManager : NetworkBehaviour
             moralManager.nextRound(pm);
         }else {
             isActive = false;
+        }
+    }
+
+    public void nahrungsVerteilung(PlayerManager pm) {
+        float count = 0f;
+        float nahrung = 0f;
+        if(pm.PlayerRessourcen.ContainsKey(nahrungsRessource)) {
+            nahrung = pm.PlayerRessourcen[nahrungsRessource];
+        }
+            
+        float testNahrung = nahrung;
+
+        foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+            if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                vo.nextRound();                    
+                float f = vo.NeededFood;
+                count += f;
+
+                if(nahrung >= 0.5f && vo.CurrentNahrung < 0.5f) {
+                    vo.CurrentNahrung = 0.5f;
+                    nahrung -= 0.5f;
+                }
+                    
+            }
+        }
+            
+        Dictionary<Ressource, float> abzug = new Dictionary<Ressource, float>();
+        abzug.Add(nahrungsRessource, testNahrung-nahrung);
+        pm.genugRessourceVorhanden(abzug);
+
+        if(pm.PlayerRessourcen.ContainsKey(nahrungsRessource)) {
+            nahrung = pm.PlayerRessourcen[nahrungsRessource];
+        }
+            
+        testNahrung = nahrung;
+            
+        //Automatische Nahrungsverteilung Später auch manuelle lösung......
+        if(count <= testNahrung) {
+            nahrung = testNahrung;
+            foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                    vo.CurrentNahrung = vo.NeededFood-vo.CurrentNahrung;
+                    nahrung -= vo.NeededFood;
+                }
+            }
+        }else {
+                
+            if(nahrung > 0.5f) {
+                foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                    if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                        if(nahrung >= 0.5f && vo.NeededFood > 0.5f) {
+                            vo.CurrentNahrung += 0.5f;
+                            nahrung -= 0.5f;
+                        }else {
+                            break;
+                        }
+                    }
+                }
+                if(nahrung > 1f) {
+                    foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                        if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                            if(nahrung >= 1f && vo.NeededFood > 1f) {
+                                vo.CurrentNahrung += 1f;
+                                nahrung -= 1f;
+                            }else {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(nahrung > 0f) {
+                foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                    if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                        if(nahrung >= 0f && vo.NeededFood > vo.CurrentNahrung) {
+                            float berechnen = Mathf.Min(nahrung, vo.NeededFood-vo.CurrentNahrung);
+                            vo.CurrentNahrung += berechnen;
+                            nahrung -= berechnen;
+                        }else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        abzug = new Dictionary<Ressource, float>();
+        abzug.Add(nahrungsRessource, testNahrung-nahrung);
+        pm.genugRessourceVorhanden(abzug);
+
+        foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+            if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                //5 Abschnitte jeweils 3% von maxhealth verlieren, maximal 15%
+                if(vo.CurrentNahrung < vo.NeededFood*0.25f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                if(vo.CurrentNahrung < vo.NeededFood*0.2f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                if(vo.CurrentNahrung < vo.NeededFood*0.15f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                if(vo.CurrentNahrung < vo.NeededFood*0.1f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                if(vo.CurrentNahrung < vo.NeededFood*0.05f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                        
+                        
+            }
         }
     }
 

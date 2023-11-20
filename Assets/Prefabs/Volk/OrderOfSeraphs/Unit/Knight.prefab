@@ -356,8 +356,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0.0048000067, z: 0}
-    m_Extent: {x: 0.5, y: 0.25480002, z: 0}
+    m_Center: {x: 0.00040000677, y: 0.00045000017, z: 0}
+    m_Extent: {x: 0.5004, y: 0.25045002, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   frontWalk: []
   backWalk: []
   maxSteps: 4
-  steps: 0
+  reichweitenText: {fileID: 1829708506095464769}
   currentPosition: {x: 36, y: 47, z: 1}
   ausbildungszeit: 1
   lightObject: {fileID: 1993530594792640057}

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
+
 
 //
 public class Unit : VolkObject
@@ -10,12 +12,15 @@ public class Unit : VolkObject
     [SerializeField] private List<Sprite> backWalk = new List<Sprite>();
 
     [SerializeField] private int maxSteps = 4;
-    public int steps = 0; //Wieder private machen nach test
+    private int steps = 0; //Wieder private machen nach test
     public int Steps {
         get{return steps;}
     }
 
     [SyncVar] private int wieLangNichtGebiet = 0;
+
+    [SerializeField] private TMP_Text reichweitenText;
+
     public int WieLangNichtGebiet {
         get{return wieLangNichtGebiet;}
     }
@@ -91,6 +96,7 @@ public class Unit : VolkObject
 
         //Debug.Log("Start" + currentPosition);
         steps = 0;
+        reichweitenText.text = 0+"";
         
         
     }
@@ -144,6 +150,7 @@ public class Unit : VolkObject
     public override void nextRound() {
         base.nextRound();
         steps = maxSteps;
+        reichweitenText.text = maxSteps +"";
         if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerColor)) {
             wieLangNichtGebiet = 0;
         }else {
@@ -157,6 +164,7 @@ public class Unit : VolkObject
     [ClientRpc]
     void changeSteps(int m_steps) {
         steps = m_steps;
+        reichweitenText.text = steps+"";
     }
 
 
@@ -197,6 +205,8 @@ public class Unit : VolkObject
                     Debug.Log("test");
                     tryAttack(end, obj);   //probieren ob man dieses Object attackieren kann
                     steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
+                    reichweitenText.text = steps+"";
+                    changeSteps(0);
                     
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)

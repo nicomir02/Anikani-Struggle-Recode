@@ -365,8 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdafc4012a298a045a149e0a2b166fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxValue: 0
-  Value: 0
+  MaxValue: 1
+  Value: 1
   bottomBar: {fileID: 250494199274068697}
   topBar: {fileID: 7456249325730924254}
   speed: 1

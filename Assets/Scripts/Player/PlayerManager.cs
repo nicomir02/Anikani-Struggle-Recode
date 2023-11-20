@@ -44,6 +44,7 @@ public class PlayerManager : NetworkBehaviour
 
     private TMP_Text woodCounter;
     private TMP_Text stoneCounter;
+    private TMP_Text nahrungsCounter;
 
     
     [SyncVar] private int color = -1;
@@ -108,6 +109,8 @@ public class PlayerManager : NetworkBehaviour
                 woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
             }else if(kvp.Key.name == "Stone") {
                 stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+            }else if(kvp.Key.name == "Nahrung") {
+                nahrungsCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
             }
         }
     }
@@ -142,6 +145,7 @@ public class PlayerManager : NetworkBehaviour
     void Update() {
         if(!eingetragen && GameObject.Find("___InGame___/Canvas/LeisteOben/WoodCounter") != null) {
             woodCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/WoodCounter").GetComponent<TMP_Text>();
+            nahrungsCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/NahrungsCounter").GetComponent<TMP_Text>();
             stoneCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/StoneCounter").GetComponent<TMP_Text>();
             eingetragen = true;
         }

@@ -13,7 +13,7 @@ public class FoodSammler : RessourcenSammler
     }
 
     public void fieldAusrechnen() {
-        List<Vector3Int> vecs = radiusNeighborCheck.getNeighborTiles(middlePoint, 5);
+        List<Vector3Int> vecs = radiusNeighborCheck.getNeighborTiles(middlePoint, 7);
         int waterCount = 1;
         foreach(Vector3Int vec in vecs) {
             Vector3Int v = vec;

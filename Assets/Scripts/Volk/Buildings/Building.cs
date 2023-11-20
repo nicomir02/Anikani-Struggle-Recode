@@ -92,8 +92,6 @@ public class Building : VolkObject
         if(pm != PlayerHelperScript.findLocalPlayer()) return;
         
         Vector3Int vec = tilemapHover.getMousePosition();
-
-        middlePoint = vec;
         
         vec.x -= (radius-1)/2;
         vec.y -= (radius-1)/2;
@@ -104,7 +102,6 @@ public class Building : VolkObject
         newPos.z += 1;
 
         if(!gesetzt){
-            middlePoint = tilemapHover.getMousePosition();
             CMDtransparencyChange(0.5f, newPos);
             sortingLayer();
             /*
@@ -126,9 +123,12 @@ public class Building : VolkObject
         }
 
         if(Input.GetMouseButtonDown(0) && !gesetzt && setzbar()){
+            
             transform.position = newPos;
+            
             vec.x += (radius-1)/2;
             vec.y += (radius-1)/2;
+            
             gebaeudeBau(vec);
             gesetzt = true;
             CMDtransparencyChange(1f, newPos);
@@ -208,9 +208,8 @@ public class Building : VolkObject
     }
 
     private void gebaeudeBau(Vector3Int pos){
-        if(!area.addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3), radiusNeighborCheck.getNeighborTiles(pos, radius))) return; //Hier ändern, falls anderer Radius
-
         middlePoint = pos;
+        if(!area.addArea(radiusNeighborCheck.getNeighborTiles(pos, radius*3), radiusNeighborCheck.getNeighborTiles(pos, radius))) return; //Hier ändern, falls anderer Radius
 
         pos.x -= (radius-1)/2;
         pos.y -= (radius-1)/2;
