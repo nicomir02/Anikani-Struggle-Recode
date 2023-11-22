@@ -22,5 +22,7 @@ public class InfoboxButtons : MonoBehaviour
     public void einheitenAusbildung(){
         im.einheitenAusbildung();
     }
+
+    
     
 }

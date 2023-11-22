@@ -10,9 +10,9 @@ public class VolkObject : NetworkBehaviour
     [SyncVar] public float attackValue = 0;
     [SyncVar] public float healValue = 0;
 
-    [SerializeField] public int maxHealth = 100;
+    [SyncVar] [SerializeField] public int maxHealth = 100;
 
-    [SerializeField] public int attackRange = 1;
+    [SyncVar] [SerializeField] public int attackRange = 1;
 
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
@@ -25,7 +25,7 @@ public class VolkObject : NetworkBehaviour
         get{return lastAttack;}
     }
 
-    private float moralBoost = 1f;
+    [SyncVar] private float moralBoost = 1f;
     public float MoralBoost {
         get{return moralBoost;}
     }
@@ -82,7 +82,9 @@ public class VolkObject : NetworkBehaviour
         set{currentNahrung = value;}
     }
 
-    private float neededFood = -1f;
+    [SyncVar] private int[] suchtL = [-1, -1]
+
+    [SyncVar] private float neededFood = -1f;
 
     public float NeededFood {
         get{
@@ -104,6 +106,24 @@ public class VolkObject : NetworkBehaviour
             }
             return 0f;
         }
+    }
+
+    public float moralAuswertung() {
+        float moral = 0f;
+        int howMany = 0;
+
+        foreach(Moral m in vorlieben) {
+            howMany++;
+
+            moral += m.auswerten(this);
+        }
+
+        float old = MoralWert;
+        MoralWert = Mathf.Min((moral / howMany)*MoralBoost,1f);
+        Debug.Log(MoralWert);
+        if(Moralb != null) Moralb.Change(MoralWert-old);
+
+        return MoralWert;
     }
 
     public virtual string description() {

@@ -91,6 +91,10 @@ public class InfoboxManager : MonoBehaviour
         panel.transform.GetChild(1).gameObject.SetActive(false);
     }
 
+    public void useDrugs() {
+
+    }
+
 
     public void closeAllPanels() {
         foreach(GameObject o in instantiatedBtns) {

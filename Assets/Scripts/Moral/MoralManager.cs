@@ -29,18 +29,8 @@ public class MoralManager : NetworkBehaviour
         
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                moral = 0f;
-                howMany = 0;
-                foreach(Moral m in vo.Vorlieben) {
-                    howMany++;
-
-                    moral += m.auswerten(vo);
-                }
-                float old = vo.MoralWert;
-                vo.MoralWert = Mathf.Min((moral / howMany)*vo.MoralBoost,1f);
-                Debug.Log(vo.MoralWert);
-                if(vo.Moralb != null) vo.Moralb.Change(vo.MoralWert-old);
-                
+                moral += vo.moralAuswertung();
+                howMany++;
             }
         }
     }
