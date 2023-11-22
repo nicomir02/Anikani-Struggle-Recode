@@ -95,10 +95,7 @@ public class RoundManager : NetworkBehaviour
                     isActive = true;
                 } */
             }
-            //count für Nahrung
-            
-
-            //Ende Nahrungsverteilung
+            nahrungsVerteilung(pm);
 
 
 
@@ -200,17 +197,18 @@ public class RoundManager : NetworkBehaviour
         abzug = new Dictionary<Ressource, float>();
         abzug.Add(nahrungsRessource, testNahrung-nahrung);
         pm.genugRessourceVorhanden(abzug);
-
-        foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
-            if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                //5 Abschnitte jeweils 3% von maxhealth verlieren, maximal 15%
-                if(vo.CurrentNahrung < vo.NeededFood*0.25f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                if(vo.CurrentNahrung < vo.NeededFood*0.2f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                if(vo.CurrentNahrung < vo.NeededFood*0.15f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                if(vo.CurrentNahrung < vo.NeededFood*0.1f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                if(vo.CurrentNahrung < vo.NeededFood*0.05f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
-                        
-                        
+        if(round > 0) {
+            foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
+                    //5 Abschnitte jeweils 3% von maxhealth verlieren, maximal 15%
+                    if(vo.CurrentNahrung < vo.NeededFood*0.25f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                    if(vo.CurrentNahrung < vo.NeededFood*0.2f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                    if(vo.CurrentNahrung < vo.NeededFood*0.15f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                    if(vo.CurrentNahrung < vo.NeededFood*0.1f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                    if(vo.CurrentNahrung < vo.NeededFood*0.05f) vo.changeHealth(Mathf.Round(-vo.maxHealth*0.03f));
+                            
+                            
+                }
             }
         }
     }

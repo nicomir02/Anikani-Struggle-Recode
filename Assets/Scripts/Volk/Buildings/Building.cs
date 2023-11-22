@@ -103,7 +103,6 @@ public class Building : VolkObject
 
         if(!gesetzt){
             CMDtransparencyChange(0.5f, newPos);
-            sortingLayer();
             /*
             Leider ist setzbar() sehr ineffizient
             
@@ -147,19 +146,6 @@ public class Building : VolkObject
         }
     }
     
-
-    
-
-    [Command(requiresAuthority=false)]
-    public void sortingLayer() {
-        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 3;
-        RpcSortingLayer();
-    }
-
-    [ClientRpc]
-    void RpcSortingLayer() {
-        GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 5;
-    }
     
     public List<Vector3Int> getPosition() {
         return new List<Vector3Int>(position);

@@ -11,6 +11,12 @@ public class MainBuilding : Building
         return radiusNeighborCheck.checkRadius(radius, neuPos, tilemapHover.tilemaps, false);
     }
 
+    public override void selected() {
+        base.selected();
+        im.closeInfo();
+        im.openRightBox(this, false);
+    }
+
     public override void nextRound() {
         base.nextRound();
         currentNahrung = 0.5f;

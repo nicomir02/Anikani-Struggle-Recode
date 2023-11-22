@@ -23,6 +23,8 @@ public class InfoboxButtons : MonoBehaviour
         im.einheitenAusbildung();
     }
 
-    
+    public void drugsButton(){
+        im.useDrugs();
+    }
     
 }

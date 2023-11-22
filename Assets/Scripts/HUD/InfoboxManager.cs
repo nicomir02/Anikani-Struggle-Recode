@@ -92,7 +92,7 @@ public class InfoboxManager : MonoBehaviour
     }
 
     public void useDrugs() {
-
+        obj.useDrugs();
     }
 
 

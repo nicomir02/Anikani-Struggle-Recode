@@ -24,9 +24,10 @@ public class Moral_Food : Moral
         }else if(moral == 1) { //Ab >0.5 etwas Moral, 1 volle Moral
             result = (o.CurrentNahrung-0.5f)*2;
         }else { //Ab 1 etwas Moral, 2 volle Moral
-            return result = (o.CurrentNahrung-1f)*2;
+            result = (o.CurrentNahrung-1f)*2;
         }
         result = Mathf.Min(Mathf.Max(result, 0f), 1f);
+        Debug.Log(result);
         return result;
     }
 }

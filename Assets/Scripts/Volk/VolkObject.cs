@@ -82,7 +82,7 @@ public class VolkObject : NetworkBehaviour
         set{currentNahrung = value;}
     }
 
-    [SyncVar] private int[] suchtL = [-1, -1]
+    private readonly SyncList<int> suchtLvl = new SyncList<int>(); 
 
     [SyncVar] private float neededFood = -1f;
 
@@ -108,9 +108,29 @@ public class VolkObject : NetworkBehaviour
         }
     }
 
+    public float boostAuswertung() {
+        float otherBoost = 0f; //Später bspw. Anikani Ressource
+        float drugboost = 0f;
+
+        if(suchtLvl.Count > 1) {
+            if(suchtLvl[0] > 0) {
+                drugboost = (suchtLvl[0]-suchtLvl[1]) * 0.1f;
+            }else {
+                drugboost = 0f;
+            }
+            
+        }
+        moralBoost = drugboost + otherBoost + 1f;
+        Debug.Log(moralBoost);
+
+        return moralBoost;
+    }
+
     public float moralAuswertung() {
         float moral = 0f;
         int howMany = 0;
+
+        boostAuswertung();
 
         foreach(Moral m in vorlieben) {
             howMany++;
@@ -133,6 +153,7 @@ public class VolkObject : NetworkBehaviour
         "\nMoral: " + Mathf.Round(MoralWert*10)*0.1f + "/1" +
         "\nNahrung: " + Mathf.Round(currentNahrung*10)*0.1f + "/" +NeededFood;
         if(currentNahrung < NeededFood*0.25) result += " - starvation"; 
+        result += "\nMoralboost: " + boostAuswertung();
 
         result += "\n\nVorlieben:\n";
         int i =0;
@@ -140,12 +161,14 @@ public class VolkObject : NetworkBehaviour
             if(i++ > 0) {
                 result += "\n";
             }
-            result += m;
+            result += m + ": " + m.auswerten(this) + "/1";
         }
         return result;
     }
 
     public virtual void Start() {
+        suchtLvl.Add(-1);
+        suchtLvl.Add(-1);
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
@@ -166,6 +189,10 @@ public class VolkObject : NetworkBehaviour
     [Command(requiresAuthority=false)]
     public virtual void nextRound() {
         currentNahrung = 0f;
+        if(suchtLvl.Count > 1 && suchtLvl[0] > -1) {
+            suchtLvl[0] = suchtLvl[0]-1;
+        }
+        
     }
     
 
@@ -199,12 +226,18 @@ public class VolkObject : NetworkBehaviour
     public void destroyObject(){
         destroyedObject();
         NetworkServer.Destroy(gameObject);
-        
     }
 
     [ClientRpc]
     public void destroyedObject() {
         if(m_selected) deselect();
+    }
+
+    [Command(requiresAuthority=false)]
+    public void useDrugs() {
+        suchtLvl[0] += 5;
+        suchtLvl[1] += 2;
+        moralAuswertung();
     }
     
     //methode die alle aktionen listet die ausgeführt werden sollen sobald ein VolkObject selected ist.
