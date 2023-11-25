@@ -26,5 +26,9 @@ public class InfoboxButtons : MonoBehaviour
     public void drugsButton(){
         im.useDrugs();
     }
+
+    public void voiceButton() {
+        im.voiceCommand();
+    }
     
 }

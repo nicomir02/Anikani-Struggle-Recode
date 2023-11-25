@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class InfoboxManager : MonoBehaviour
 {
@@ -104,5 +105,10 @@ public class InfoboxManager : MonoBehaviour
         listBtns.SetActive(false);
         //all children deactivate still to do
         panel.SetActive(false);
+    }
+
+    internal void voiceCommand()
+    {
+        throw new NotImplementedException();
     }
 }
