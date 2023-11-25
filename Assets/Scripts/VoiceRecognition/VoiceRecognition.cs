@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
-using HuggingFace.API
+using HuggingFace.API;
 
 public class VoiceControlManager : MonoBehaviour {
     [SerializeField] private Button startButton;
