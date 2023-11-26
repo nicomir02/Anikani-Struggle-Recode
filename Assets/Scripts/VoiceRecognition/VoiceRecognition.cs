@@ -27,14 +27,14 @@ public class VoiceControlManager : MonoBehaviour {
         }
     }
 
-    private void StartRecording() {
+    public void StartRecording() {
         startButton.interactable = false;
         stopButton.interactable = true;
         clip = Microphone.Start(null, false, 10, 44100);
         recording = true;
     }
 
-    private void StopRecording() {
+    public void StopRecording() {
         var position = Microphone.GetPosition(null);
         Microphone.End(null);
         var samples = new float[position * clip.channels];

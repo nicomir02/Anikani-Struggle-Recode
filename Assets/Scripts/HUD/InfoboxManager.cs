@@ -107,8 +107,8 @@ public class InfoboxManager : MonoBehaviour
         panel.SetActive(false);
     }
 
-    internal void voiceCommand()
+    public void voiceCommand()
     {
-        throw new NotImplementedException();
+        Debug.Log("voice button");
     }
 }
