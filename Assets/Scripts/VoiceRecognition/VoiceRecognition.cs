@@ -27,7 +27,7 @@ public class VoiceControlManager : MonoBehaviour {
         }
     }
 
-    public void StartRecording() {.
+    public void StartRecording() {
         Debug.Log("StartRecording called.");
         if (clip == null) {
           Debug.Log("Clip is null.");
@@ -37,7 +37,7 @@ public class VoiceControlManager : MonoBehaviour {
         }
         if (stopButton == null) {
             Debug.Log("stopButton is not assigned.");
-         }  
+        }  
 
         startButton.interactable = false;
         stopButton.interactable = true;
