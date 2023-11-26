@@ -27,7 +27,18 @@ public class VoiceControlManager : MonoBehaviour {
         }
     }
 
-    public void StartRecording() {
+    public void StartRecording() {.
+        Debug.Log("StartRecording called.");
+        if (clip == null) {
+          Debug.Log("Clip is null.");
+        }
+        if (startButton == null) {
+         Debug.Log("startButton is not assigned.");
+        }
+        if (stopButton == null) {
+            Debug.Log("stopButton is not assigned.");
+         }  
+
         startButton.interactable = false;
         stopButton.interactable = true;
         clip = Microphone.Start(null, false, 10, 44100);
