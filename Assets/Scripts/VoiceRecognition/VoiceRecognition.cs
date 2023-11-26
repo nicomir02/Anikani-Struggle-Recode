@@ -48,9 +48,9 @@ public class VoiceControlManager : MonoBehaviour {
         text.text = "Sending...";
         stopButton.interactable = false;
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            ProcessVoiceCommand
+            ProcessVoiceCommand(bytes);
         }, error => {
-            Debug.Log("HuggingFaceAPI error")
+            Debug.Log("HuggingFaceAPI error");
         });
      }
 
