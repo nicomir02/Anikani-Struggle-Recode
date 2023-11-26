@@ -11,6 +11,7 @@ public class VoiceControlManager : MonoBehaviour {
 
     private AudioClip clip;
     private bool recording = false;
+    private byte[] bytes;
 
     private void Start() {
         startButton.onClick.AddListener(StartRecording);
@@ -44,11 +45,10 @@ public class VoiceControlManager : MonoBehaviour {
     }
 
     private void SendRecording() {
-        text.color = Color.yellow;
-        text.text = "Sending...";
+        Debug.Log("Sending...");
         stopButton.interactable = false;
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            ProcessVoiceCommand(bytes);
+            ProcessVoiceCommand(response);
         }, error => {
             Debug.Log("HuggingFaceAPI error");
         });
@@ -79,12 +79,6 @@ public class VoiceControlManager : MonoBehaviour {
                 return memoryStream.ToArray();
             }
         }
-
-    private void SendRecording(byte[] bytes) {
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-
-        });
-    }
 
 
     private void ProcessVoiceCommand(string transcription) {
