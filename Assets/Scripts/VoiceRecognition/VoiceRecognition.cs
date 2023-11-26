@@ -33,15 +33,26 @@ public class VoiceControlManager : MonoBehaviour {
         recording = true;
     }
 
-    private IEnumerator StopRecording() {
+    private void StopRecording() {
         var position = Microphone.GetPosition(null);
         Microphone.End(null);
         var samples = new float[position * clip.channels];
         clip.GetData(samples, 0);
-        var bytes = EncodeAsWAV(samples, clip.frequency, clip.channels);
+        bytes = EncodeAsWAV(samples, clip.frequency, clip.channels);
         recording = false;
-        yield return StartCoroutine(SendRecording(bytes));
+        SendRecording();
     }
+
+    private void SendRecording() {
+        text.color = Color.yellow;
+        text.text = "Sending...";
+        stopButton.interactable = false;
+        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
+            ProcessVoiceCommand
+        }, error => {
+            Debug.Log("HuggingFaceAPI error")
+        });
+     }
 
 
     private byte[] EncodeAsWAV(float[] samples, int frequency, int channels) {
