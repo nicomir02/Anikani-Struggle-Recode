@@ -26,7 +26,7 @@
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.nuget.newtonsoft-json": "3.0.1"
       },
-      "hash": "31c7aae2ee02c2f3d069f2b9e3e8ddca346a4355"
+      "hash": "cb0acecbe258f68a872ced2120fb20dfc79d59e8"
     },
     "com.rlabrecque.steamworks.net": {
       "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net",
