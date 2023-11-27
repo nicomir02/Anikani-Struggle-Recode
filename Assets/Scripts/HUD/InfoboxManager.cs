@@ -56,8 +56,8 @@ public class InfoboxManager : MonoBehaviour
         InstantiateButtons(obj.SpecificButtonsInfobox);
 
         // Instantiate the new buttons
-        InstantiateNewButton(newButtonPrefab1);
-        InstantiateNewButton(newButtonPrefab2);
+        InstantiateNewButton(startButton);
+        InstantiateNewButton(stopButton);
     }
 
     private void InstantiateButtons(List<GameObject> buttonList)
