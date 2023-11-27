@@ -5,12 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
+
 public class InfoboxManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> AllButtonsVolkObject;
     [SerializeField] private List<GameObject> AllButtonsUnit;
     [SerializeField] private List<GameObject> AllButtonsBuilding;
-    //Main Infobox Panel
+
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject stopButton;
+
+    // Main Infobox Panel
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject listBtns;
 
@@ -18,49 +23,57 @@ public class InfoboxManager : MonoBehaviour
 
     [SerializeField] private Pause pause;
 
-
     List<GameObject> instantiatedBtns = new List<GameObject>();
 
     bool bigInfobox = false;
 
-    //angeklicktes VolkObject
+    // Angeklicktes VolkObject
     VolkObject obj;
     bool destroyable = true;
 
-    public void openRightBox(VolkObject o, bool canDestroy=true) {
+    public void openRightBox(VolkObject o, bool canDestroy = true)
+    {
         closeAllPanels();
         listBtns.SetActive(true);
         obj = o;
         panel.SetActive(true);
         destroyable = canDestroy;
         panel.transform.GetChild(0).gameObject.SetActive(true);
-        //volkobject alle buttons noch
-        foreach(GameObject ob in AllButtonsVolkObject) {
-            GameObject a = Instantiate(ob);
-            a.transform.SetParent(listBtns.transform);
-            instantiatedBtns.Add(a);
+
+        // Instantiate buttons for volkobject, unit, and building
+        InstantiateButtons(AllButtonsVolkObject);
+
+        if (o.GetType() == typeof(Unit))
+        {
+            InstantiateButtons(AllButtonsUnit);
+        }
+        else if (o.GetType() == typeof(Building))
+        {
+            InstantiateButtons(AllButtonsBuilding);
         }
 
-        if(o.GetType() == typeof(Unit)) {
-            foreach(GameObject ob in AllButtonsUnit) {
-                GameObject a = Instantiate(ob);
-                a.transform.SetParent(listBtns.transform);
-                instantiatedBtns.Add(a);
-            }
-            
-        }else if(o.GetType() == typeof(Building)){
-            foreach(GameObject ob in AllButtonsBuilding) {
-                GameObject a = Instantiate(ob);
-                a.transform.SetParent(listBtns.transform);
-                instantiatedBtns.Add(a);
-            }
-        }
-        foreach(GameObject ob in obj.SpecificButtonsInfobox) {
-            GameObject a = Instantiate(ob);
-            a.transform.SetParent(listBtns.transform);
+        // Instantiate specific buttons for the object
+        InstantiateButtons(obj.SpecificButtonsInfobox);
+
+        // Instantiate the new buttons
+        InstantiateNewButton(newButtonPrefab1);
+        InstantiateNewButton(newButtonPrefab2);
+    }
+
+    private void InstantiateButtons(List<GameObject> buttonList)
+    {
+        foreach (GameObject ob in buttonList)
+        {
+            GameObject a = Instantiate(ob, listBtns.transform);
             instantiatedBtns.Add(a);
         }
-    }   
+    }
+
+    private void InstantiateNewButton(GameObject buttonPrefab)
+    {
+        GameObject a = Instantiate(buttonPrefab, listBtns.transform);
+        instantiatedBtns.Add(a);
+    }
 
     public void openAllgemeineInfos(){
         bigInfobox = true;
