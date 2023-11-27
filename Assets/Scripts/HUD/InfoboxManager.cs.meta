@@ -4,6 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - startButton: {fileID: 1556572132687831296, guid: a1b1bbdea150846409bbbf6241217a1c, type: 3}
+  - stopButton: {fileID: 8843707389994128581, guid: 89bf6ffbd6075cc4a9fc2d95eea13355, type: 3}
   - panel: {instanceID: 0}
   - listBtns: {instanceID: 0}
   - allgemeineInfos: {instanceID: 0}

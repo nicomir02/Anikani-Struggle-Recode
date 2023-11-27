@@ -27,8 +27,13 @@ public class InfoboxButtons : MonoBehaviour
         im.useDrugs();
     }
 
-    public void voiceButton() {
-        im.voiceCommand();
+    public void startButton() {
+        im.startRecording();
     }
-    
+
+    public void stopButton()
+    {
+        im.stopRecording();
+    }
+
 }

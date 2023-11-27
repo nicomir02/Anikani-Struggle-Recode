@@ -66,6 +66,7 @@ public class InfoboxManager : MonoBehaviour
         {
             GameObject a = Instantiate(ob, listBtns.transform);
             instantiatedBtns.Add(a);
+            Debug.Log("Instantiated new button: " + a.name);
         }
     }
 
@@ -73,6 +74,7 @@ public class InfoboxManager : MonoBehaviour
     {
         GameObject a = Instantiate(buttonPrefab, listBtns.transform);
         instantiatedBtns.Add(a);
+        Debug.Log("Instantiated new button: " + a.name);
     }
 
     public void openAllgemeineInfos(){
@@ -120,8 +122,13 @@ public class InfoboxManager : MonoBehaviour
         panel.SetActive(false);
     }
 
-    public void voiceCommand()
+    public void startRecording() 
     {
-        Debug.Log("voice button");
+        Debug.Log("starting recording");
+    }
+
+    public void stopRecording()
+    {
+        Debug.Log("stopping recording");
     }
 }
