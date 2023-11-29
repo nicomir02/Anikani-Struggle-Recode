@@ -18,8 +18,6 @@ public class FoodSammler : RessourcenSammler
         foreach(Vector3Int vec in vecs) {
             Vector3Int v = vec;
             v.z = mb.getZ(vec);
-            Debug.Log(v + " "+ mb.getBiom(v));
-
             if(mb.getBiom(v) != null && mb.getBiom(v).GoodForField) waterCount++; 
         }
 

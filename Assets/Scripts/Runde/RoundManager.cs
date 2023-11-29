@@ -95,22 +95,15 @@ public class RoundManager : NetworkBehaviour
                     isActive = true;
                 } */
             }
+            Debug.Log("fuwefiuewf");
             nahrungsVerteilung(pm);
-
-
-
-            
-
-            
-
-
 
             moralManager.nextRound(pm);
         }else {
             isActive = false;
         }
     }
-
+    
     public void nahrungsVerteilung(PlayerManager pm) {
         float count = 0f;
         float nahrung = 0f;
@@ -119,6 +112,8 @@ public class RoundManager : NetworkBehaviour
         }
             
         float testNahrung = nahrung;
+        Debug.Log("nahrung: "+ nahrung);
+        
 
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {

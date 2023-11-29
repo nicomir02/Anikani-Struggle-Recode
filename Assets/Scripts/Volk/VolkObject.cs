@@ -121,7 +121,6 @@ public class VolkObject : NetworkBehaviour
             
         }
         moralBoost = drugboost + otherBoost + 1f;
-        Debug.Log(moralBoost);
 
         return moralBoost;
     }
@@ -140,7 +139,6 @@ public class VolkObject : NetworkBehaviour
 
         float old = MoralWert;
         MoralWert = Mathf.Min((moral / howMany)*MoralBoost,1f);
-        Debug.Log(MoralWert);
         if(Moralb != null) Moralb.Change(MoralWert-old);
 
         return MoralWert;

@@ -67,33 +67,57 @@ public class PlayerManager : NetworkBehaviour
         get{return hauptGebaeudeIstGesetzt;}
     }
 
+    [SerializeField] private List<Ressource> alleRessourcen = new List<Ressource>();
+
      //Ressourcen die Spieler hat
-    private Dictionary<Ressource, float> playerRessourcen = new Dictionary<Ressource, float>();
+    private readonly SyncDictionary<int, float> playerRessourcen = new SyncDictionary<int, float>();
+    
+    
     public Dictionary<Ressource, float> PlayerRessourcen {
-        get{return playerRessourcen;}
+        get{
+            Dictionary<Ressource, float> result = new Dictionary<Ressource, float>();
+            foreach(KeyValuePair<int, float> kvp in playerRessourcen) {
+                foreach(Ressource r in alleRessourcen) {
+                    if(r.Id == kvp.Key) {
+                        result.Add(r, kvp.Value);
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
     }
 
     //abfrage ob genug Ressourcen für Kauf vorhanden
     public bool genugRessourceVorhanden(Dictionary<Ressource, float> ress){
+        List<int> result1 = new List<int>();
+        List<float> result2 = new List<float>();
         foreach(KeyValuePair<Ressource,float> kvp in ress){
+            result1.Add(kvp.Key.Id);
+            result2.Add(kvp.Value);
             if(kvp.Value == 0) continue;
-            if(!playerRessourcen.ContainsKey(kvp.Key) || playerRessourcen[kvp.Key] < kvp.Value){
+            if(!playerRessourcen.ContainsKey(kvp.Key.Id) || playerRessourcen[kvp.Key.Id] < kvp.Value){
                 return false;
             }
         }
-        ressourcenAbzug(ress);
+        ressourcenAbzug(result1, result2);
         return true;
     }
-    
-    private void ressourcenAbzug(Dictionary<Ressource, float> ress){
-        foreach(KeyValuePair<Ressource,float> kvp in ress){
-            if(kvp.Value == 0) continue;
-            playerRessourcen[kvp.Key] -= kvp.Value;
+    [Command(requiresAuthority=false)]
+    private void ressourcenAbzug(List<int> l1, List<float> l2){
+        for(int i=0; i<l1.Count; i++){
+            if(l2[i] == 0) continue;
+            playerRessourcen[l1[i]] -= l2[i];
         }
-        ressourcenReload();
     }
 
+    
     public void addRessource(Ressource r, float value){
+        ServerAddRessource(r.Id, value);
+    }
+
+    [Command(requiresAuthority=false)]
+    private void ServerAddRessource(int r, float value){
         if(playerRessourcen.ContainsKey(r)){ 
             playerRessourcen[r] += value;
         } else {
@@ -103,14 +127,16 @@ public class PlayerManager : NetworkBehaviour
     }
 
 //Veränderung der Ressource in der oberen Leiste
+    [ClientRpc]
     private void ressourcenReload() {
-        foreach(KeyValuePair<Ressource,float> kvp in playerRessourcen){
-            if(kvp.Key.name == "Tree") {
-                woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
-            }else if(kvp.Key.name == "Stone") {
-                stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
-            }else if(kvp.Key.name == "Nahrung") {
-                nahrungsCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+        if(PlayerHelperScript.findLocalPlayer() != this) return;
+        foreach(KeyValuePair<int,float> kvp in playerRessourcen){
+            foreach(Ressource r in alleRessourcen) {
+                if(r.Id == kvp.Key) {
+                    if(r.Id == 0) woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+                    if(r.Id == 1) stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+                    if(r.Id == 2) nahrungsCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+                }
             }
         }
     }
@@ -123,9 +149,6 @@ public class PlayerManager : NetworkBehaviour
 
     public void setBuilding(int buildingID) {
         if(!isLocalPlayer) return;
-        Debug.Log(volk.id);
-        Debug.Log(name);
-        Debug.Log(volk.getBuildingByID(buildingID).name + " " + name);
         spawnHelper.spawnBuilding(volk.id, buildingID, transform, volk.getBuildingByID(buildingID).name + " " + name);
     }
 
@@ -150,25 +173,9 @@ public class PlayerManager : NetworkBehaviour
             eingetragen = true;
         }
 
-        //alexänderung
-        /* if(!hauptGebaeudeIstGesetzt){
-            RoundManager rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
-            foreach(Building b in FindObjectsOfType<Building>()) {
-                if(b.GetComponent<CastleMainBuilding>() == null) continue;
-                string activePlayer = "";
-                if(name == rm.aktiverSpieler) {
-                    activePlayer = name;
-                    break;
-                }
-                if(b.name == name + " " + activePlayer) {
-                    hauptGebaeudeIstGesetzt = true;
-                }
-            }
-        } */
-
-
+        
     }
-
+    
     [Command(requiresAuthority=false)]
     public void changePlayername(string pname) {
         name = pname;
@@ -181,3 +188,21 @@ public class PlayerManager : NetworkBehaviour
     }
 
 }
+
+
+//alexänderung
+/* if(!hauptGebaeudeIstGesetzt){
+    RoundManager rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
+    foreach(Building b in FindObjectsOfType<Building>()) {
+        if(b.GetComponent<CastleMainBuilding>() == null) continue;
+        string activePlayer = "";
+        if(name == rm.aktiverSpieler) {
+            activePlayer = name;
+            break;
+        }
+        if(b.name == name + " " + activePlayer) {
+            hauptGebaeudeIstGesetzt = true;
+        }
+    }
+} */
+    

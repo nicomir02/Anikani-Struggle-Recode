@@ -5,7 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class Ressource : MonoBehaviour
 {
+    [SerializeField] private int id = -1;
+    public int Id {
+        get{return id;}
+    }
+
     [SerializeField] private TileBase[] tilebase;
+    
     [SerializeField] private List<Biom> biom;
     [SerializeField, Range(0, 1)] private List<float> probability;
     [SerializeField, Range(0, 1)] private float standardProbality = 0f;

@@ -66,3 +66,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   volk: {fileID: 3214761667861719317, guid: 0db26498eb8a61e4195ab9730133dbaa, type: 3}
+  alleRessourcen:
+  - {fileID: 8694705376693512614, guid: c083658d46b2dd943ad887f81e469b0c, type: 3}
+  - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
+  - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
