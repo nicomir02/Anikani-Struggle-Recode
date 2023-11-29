@@ -19,7 +19,6 @@ public class MainBuilding : Building
 
     public override void nextRound() {
         base.nextRound();
-        currentNahrung = 0.5f;
     }
     
 }

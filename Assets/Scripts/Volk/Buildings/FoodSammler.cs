@@ -14,7 +14,7 @@ public class FoodSammler : RessourcenSammler
 
     public void fieldAusrechnen() {
         List<Vector3Int> vecs = radiusNeighborCheck.getNeighborTiles(middlePoint, 7);
-        int waterCount = 1;
+        int waterCount = 3;
         foreach(Vector3Int vec in vecs) {
             Vector3Int v = vec;
             v.z = mb.getZ(vec);
@@ -25,6 +25,5 @@ public class FoodSammler : RessourcenSammler
     }
     public override void nextRound() {
         base.nextRound();
-        currentNahrung = 0.5f;
     }
 }

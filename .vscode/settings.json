@@ -58,5 +58,8 @@
     },
     "dotnet.defaultSolution": "Anikani-Struggle-Recode.sln",
     "editor.accessibilitySupport": "on",
-    "editor.suggest.selectionMode": "never"
+    "editor.suggest.selectionMode": "never",
+    "csharp.inlayHints.enableInlayHintsForImplicitObjectCreation": true,
+    "csharp.inlayHints.enableInlayHintsForImplicitVariableTypes": true,
+    "csharp.inlayHints.enableInlayHintsForLambdaParameterTypes": false
 }

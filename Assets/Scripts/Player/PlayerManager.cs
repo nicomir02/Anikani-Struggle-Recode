@@ -68,6 +68,7 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [SerializeField] private List<Ressource> alleRessourcen = new List<Ressource>();
+    [SerializeField] private Ressource nahrung;
 
      //Ressourcen die Spieler hat
     private readonly SyncDictionary<int, float> playerRessourcen = new SyncDictionary<int, float>();
@@ -104,11 +105,12 @@ public class PlayerManager : NetworkBehaviour
         return true;
     }
     [Command(requiresAuthority=false)]
-    private void ressourcenAbzug(List<int> l1, List<float> l2){
+    public void ressourcenAbzug(List<int> l1, List<float> l2){
         for(int i=0; i<l1.Count; i++){
             if(l2[i] == 0) continue;
             playerRessourcen[l1[i]] -= l2[i];
         }
+        ressourcenReload();
     }
 
     
@@ -171,6 +173,7 @@ public class PlayerManager : NetworkBehaviour
             nahrungsCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/NahrungsCounter").GetComponent<TMP_Text>();
             stoneCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/StoneCounter").GetComponent<TMP_Text>();
             eingetragen = true;
+            addRessource(nahrung, 10f);
         }
 
         
