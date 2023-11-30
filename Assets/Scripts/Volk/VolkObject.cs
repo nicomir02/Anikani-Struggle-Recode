@@ -74,6 +74,8 @@ public class VolkObject : NetworkBehaviour
 
     public bool m_selected = false;
 
+    protected RoundManager rm;
+
     Sprite safe;
 
     protected float currentNahrung = 0f;
@@ -171,6 +173,7 @@ public class VolkObject : NetworkBehaviour
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         animationList = idle;
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
@@ -190,6 +193,8 @@ public class VolkObject : NetworkBehaviour
         if(suchtLvl.Count > 1 && suchtLvl[0] > -1) {
             suchtLvl[0] = suchtLvl[0]-1;
         }
+
+        if(rm != null && rm.Round > 0) changeHealth(maxHealth*0.01f);
         
     }
     
@@ -212,9 +217,13 @@ public class VolkObject : NetworkBehaviour
 
     [Command (requiresAuthority=false)]
     public void changeHealth(float value){
-        health += value;
+        
+        if((health+value) > maxHealth) {
+            value = maxHealth-health;
+            health = maxHealth;
+        }else health += value;
         if(healthbar != null) healthbar.Change(value);
-        if(health > maxHealth) health = maxHealth;
+        
         if(health <= 0) destroyObject();
     }
 

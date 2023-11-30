@@ -137,7 +137,7 @@ public class MapBehaviour : NetworkBehaviour
                 foreach(Ressource ress in ressourcen) {
                     float before = ressFloat;
                     ressFloat += ress.getProbality(getBiom(kvp.Key));
-                    if(value > before && value <=ressFloat) allRessourcen.Add(kvp.Key, i);
+                    if(value > before && value <=ressFloat && !allRessourcen.ContainsKey(kvp.Key)) allRessourcen.Add(kvp.Key, i);
                     i++;
                 }
             }

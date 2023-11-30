@@ -19,8 +19,6 @@ public class Building : VolkObject
     protected TilemapHover th;
     //mapBehaviour
     protected MapBehaviour mb;
-    //roundManager
-    private RoundManager rm;
 
     private Area area;
 
@@ -54,12 +52,11 @@ public class Building : VolkObject
     {
         base.Start();
 
-        vorlieben = mm.getMoral(1);
+        vorlieben = mm.getMoral(1);//
 
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
         radiusNeighborCheck = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<RadiusNeighborCheck>(); 
-        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
 
         spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
 

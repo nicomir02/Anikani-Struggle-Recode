@@ -45,6 +45,7 @@ public class PlayerManager : NetworkBehaviour
     private TMP_Text woodCounter;
     private TMP_Text stoneCounter;
     private TMP_Text nahrungsCounter;
+    private TMP_Text anikaniCounter;
 
     
     [SyncVar] private int color = -1;
@@ -138,6 +139,7 @@ public class PlayerManager : NetworkBehaviour
                     if(r.Id == 0) woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
                     if(r.Id == 1) stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
                     if(r.Id == 2) nahrungsCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
+                    if(r.Id == 3) anikaniCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
                 }
             }
         }
@@ -172,6 +174,7 @@ public class PlayerManager : NetworkBehaviour
             woodCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/WoodCounter").GetComponent<TMP_Text>();
             nahrungsCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/NahrungsCounter").GetComponent<TMP_Text>();
             stoneCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/StoneCounter").GetComponent<TMP_Text>();
+            anikaniCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/AnikaniCounter").GetComponent<TMP_Text>();
             eingetragen = true;
             addRessource(nahrung, 10f);
         }

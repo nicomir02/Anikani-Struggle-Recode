@@ -12,6 +12,13 @@ public class MoralManager : NetworkBehaviour
 
     private List<Moral> healer = new List<Moral>();
 
+    [SerializeField] RoundManager rm;
+
+    [SerializeField] Ressource anikani;
+
+    float gesamtMoral = 1f;
+    [SerializeField] private Moralbar moralbar;
+
     void Start() {
         unitMoral.Add(new Moral_Heimweh());
         unitMoral.Add(new Moral_Attack());
@@ -24,6 +31,7 @@ public class MoralManager : NetworkBehaviour
 
     [Command(requiresAuthority=false)]
     public void nextRound(PlayerManager pm) {
+        if(rm.Round == 0) return;
         float moral = 0f;
         int howMany = 0;
         
@@ -32,6 +40,14 @@ public class MoralManager : NetworkBehaviour
                 moral += vo.moralAuswertung();
                 howMany++;
             }
+        }
+
+        float newGesamtMoral = moral/howMany;
+        moralbar.Change(newGesamtMoral-gesamtMoral);
+        gesamtMoral = newGesamtMoral;
+
+        if(newGesamtMoral > 0.9f) {
+            pm.addRessource(anikani, 0.5f);
         }
     }
 

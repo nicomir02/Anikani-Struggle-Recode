@@ -16,9 +16,5 @@ public class MainBuilding : Building
         im.closeInfo();
         im.openRightBox(this, false);
     }
-
-    public override void nextRound() {
-        base.nextRound();
-    }
     
 }

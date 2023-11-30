@@ -38,7 +38,7 @@ public class Area : NetworkBehaviour
                 area.Add(new Vector3Int(vec.x, vec.y, mapBehaviour.getZ(vec)), roundManager.ActiveID);
             }
         }
-        Debug.Log(roundManager.ActiveID);
+        //Debug.Log(roundManager.ActiveID);
         RpcUpdateArea();
     }
 

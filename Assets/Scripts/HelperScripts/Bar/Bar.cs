@@ -20,6 +20,7 @@ public abstract class Bar : MonoBehaviour
     protected Coroutine adjustBarWidthCoroutine;
 
     public virtual void Change(float amount) {
+        if(GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().Round == 0) return;
         newMaxValue();
         Value = Mathf.Clamp(Value+amount, 0, MaxValue); 
         //if(Value <= 0) gameObject.transform.parent.GetComponent<AudioUnit>().startAudio(2);

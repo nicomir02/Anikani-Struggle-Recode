@@ -28,7 +28,6 @@ public class Unit : VolkObject
     private MapBehaviour mapBehaviour;
 
     private Area area;
-    private RoundManager rm;
     
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
@@ -50,7 +49,6 @@ public class Unit : VolkObject
         Optimierungsvorschlg:
         für anzahl der gebäude: Beim PlayerManager speichern sobald Gebäude gebaut als dictinary     
         */
-        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         
         foreach(Unit u in FindObjectsOfType<Unit>()) {
             string activePlayer = "";

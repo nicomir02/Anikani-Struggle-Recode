@@ -27,7 +27,6 @@ public class Moral_Food : Moral
             result = (o.CurrentNahrung-1f)*2;
         }
         result = Mathf.Min(Mathf.Max(result, 0f), 1f);
-        Debug.Log(result);
         return result;
     }
 }

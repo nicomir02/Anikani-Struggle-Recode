@@ -21,7 +21,7 @@ public class Ressource : MonoBehaviour
             tilemap.SetTile(vec, tb);
             vec.z++;
         }
-    } 
+    }
 
     public float getProbality(Biom b) {
         if(b == null) return standardProbality;

@@ -9,6 +9,9 @@ using TMPro;
 public class RoundManager : NetworkBehaviour
 {
     [SyncVar] private int round;
+    public int Round {
+        get{return round;}
+    }
     [SyncVar] private int curTurn = 0;
 
     [SyncVar] private int activeID = -1;
@@ -95,7 +98,6 @@ public class RoundManager : NetworkBehaviour
                     isActive = true;
                 } */
             }
-            Debug.Log("fuwefiuewf");
             nextRoundBuildings(pm);
 
             moralManager.nextRound(pm);
