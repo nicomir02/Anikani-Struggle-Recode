@@ -11,10 +11,6 @@ public class InfoboxManager : MonoBehaviour
     [SerializeField] private List<GameObject> AllButtonsVolkObject;
     [SerializeField] private List<GameObject> AllButtonsUnit;
     [SerializeField] private List<GameObject> AllButtonsBuilding;
-
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private GameObject stopButton;
-
     // Main Infobox Panel
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject listBtns;
@@ -55,9 +51,6 @@ public class InfoboxManager : MonoBehaviour
         // Instantiate specific buttons for the object
         InstantiateButtons(obj.SpecificButtonsInfobox);
 
-        // Instantiate the new buttons
-        InstantiateNewButton(startButton);
-        InstantiateNewButton(stopButton);
     }
 
     private void InstantiateButtons(List<GameObject> buttonList)
@@ -66,15 +59,7 @@ public class InfoboxManager : MonoBehaviour
         {
             GameObject a = Instantiate(ob, listBtns.transform);
             instantiatedBtns.Add(a);
-            Debug.Log("Instantiated new button: " + a.name);
         }
-    }
-
-    private void InstantiateNewButton(GameObject buttonPrefab)
-    {
-        GameObject a = Instantiate(buttonPrefab, listBtns.transform);
-        instantiatedBtns.Add(a);
-        Debug.Log("Instantiated new button: " + a.name);
     }
 
     public void openAllgemeineInfos(){
@@ -82,8 +67,6 @@ public class InfoboxManager : MonoBehaviour
         panel.transform.GetChild(1).gameObject.SetActive(true);
 
         allgemeineInfos.text = obj.description();
-        
-
     }
 
     void LateUpdate() {
@@ -120,15 +103,5 @@ public class InfoboxManager : MonoBehaviour
         listBtns.SetActive(false);
         //all children deactivate still to do
         panel.SetActive(false);
-    }
-
-    public void startRecording() 
-    {
-        Debug.Log("starting recording");
-    }
-
-    public void stopRecording()
-    {
-        Debug.Log("stopping recording");
     }
 }

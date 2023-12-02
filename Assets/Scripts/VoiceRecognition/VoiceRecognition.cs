@@ -5,19 +5,38 @@ using System.Collections;
 using HuggingFace.API;
 
 public class VoiceControlManager : MonoBehaviour {
-    [SerializeField] private Button startButton;
-    [SerializeField] private Button stopButton;
+    private Button startButton;
+    private Button stopButton;
     public bool isActive = true;
 
     private AudioClip clip;
     private bool recording = false;
     private byte[] bytes;
 
-    private void Start() {
-        startButton.onClick.AddListener(StartRecording);
-        stopButton.onClick.AddListener(StopRecording);
-        stopButton.interactable = false;
+    private void Start()
+    {
+        FindButtons();
     }
+
+    private void FindButtons() {
+        Button[] buttons = FindObjectsOfType<Button>();
+        foreach (Button btn in buttons) {
+            if (btn.name.Contains("StartButton")) {
+                startButton = btn;
+                startButton.onClick.AddListener(StartRecording);
+            }
+            else if (btn.name.Contains("StopButton")) {
+                stopButton = btn;
+                stopButton.onClick.AddListener(StopRecording);
+            }
+        }
+        if (startButton == null || stopButton == null) {
+            Debug.LogError("Buttons not found in the scene");
+        } else {
+            stopButton.interactable = false;
+        }
+    }
+
 
     private void Update() {
          if (isActive) {
@@ -94,6 +113,8 @@ public class VoiceControlManager : MonoBehaviour {
 
     private void ProcessVoiceCommand(string transcription) {
     transcription = transcription.ToLower();
+    
+    Debug.Log(transcription);
 
     if (transcription.Contains("move up")) {
         MoveUnit(Vector3Int.up);
