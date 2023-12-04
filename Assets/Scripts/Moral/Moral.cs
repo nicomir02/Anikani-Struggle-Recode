@@ -14,6 +14,10 @@ public abstract class Moral
         get{return moral;}
     }
 
+    public object Clone() {
+        return this.MemberwiseClone();
+    }
+
     private static System.Random rand = new System.Random();
 
     public int setCase(int newCase=-1) {

@@ -52,7 +52,7 @@ public class Building : VolkObject
     {
         base.Start();
 
-        vorlieben = mm.getMoral(1);//
+        vorlieben = mm.getMoral(1);
 
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();

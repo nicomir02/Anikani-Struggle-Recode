@@ -137,6 +137,7 @@ public class VolkObject : NetworkBehaviour
             howMany++;
 
             moral += m.auswerten(this);
+            Debug.Log(name + " " + m);
         }
 
         float old = MoralWert;
@@ -157,7 +158,7 @@ public class VolkObject : NetworkBehaviour
 
         result += "\n\nVorlieben:\n";
         int i =0;
-        foreach(Moral m in vorlieben) {
+        foreach(Moral m in Vorlieben) {
             if(i++ > 0) {
                 result += "\n";
             }

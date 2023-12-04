@@ -78,7 +78,14 @@ public class MoralManager : NetworkBehaviour
             m.setCase();
         }
 
-        return auswahl; //später zufällig 2-3 Vorlieben..
+        List<Moral> result = new List<Moral>(); 
+        foreach(Moral m in auswahl) {
+            result.Add((Moral) m.Clone());
+        }
+
+
+
+        return result; //später zufällig 2-3 Vorlieben..
         
     }
 }
