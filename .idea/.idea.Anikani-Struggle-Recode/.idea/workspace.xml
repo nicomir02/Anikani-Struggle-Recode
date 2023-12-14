@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5751b41-714f-403c-b699-08978bc3b6dd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/README.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/icons8-light-96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/icons8-light-96.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a/libpv_rhino.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a/libpv_rhino.so.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a/libpv_rhino.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a/libpv_rhino.so.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/PvRhino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/PvRhino.h.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/picovoice.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/picovoice.h.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/pv_rhino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/pv_rhino.h.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Info.plist.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules/module.modulemap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules/module.modulemap.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/PvRhino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/PvRhino.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64/libpv_rhino.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64/libpv_rhino.so.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64/libpv_rhino.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64/libpv_rhino.dylib.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64/libpv_rhino.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64/libpv_rhino.dylib.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64/pv_rhino.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64/pv_rhino.dll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoException.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessorException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessorException.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/SaveWav.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/SaveWav.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper Sample.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper Sample.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/fill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/fill.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mono_crash.0.0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognition/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognition/VoiceRecognition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2ZE3gNRwLRs1ZjUWt8LnFm8s0eY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "picovoice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
+      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
+      "/Users/louisn/.local/share/Symbols/src"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5751b41-714f-403c-b699-08978bc3b6dd" name="Changes" comment="" />
+      <created>1701973521723</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701973521723</updated>
+      <workItem from="1701973522899" duration="4085000" />
+      <workItem from="1702585864804" duration="4753000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
