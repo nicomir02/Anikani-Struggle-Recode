@@ -7,8 +7,7 @@ namespace HelperScripts
     public class VoiceRecognition : MonoBehaviour
     {
         private RhinoManager _rhinoManager;
-        private const string ACCESS_KEY = "VlY6Wf6Y287CQj0X/JNmzk39F3UyLZ0f+4Bth0EzH4icSZXuBVWdVw=="; // AccessKey obtained from Picovoice Console (https://console.picovoice.ai/)
-
+        private const string ACCESS_KEY = "VlY6Wf6Y287CQj0X/JNmzk39F3UyLZ0f+4Bth0EzH4icSZXuBVWdVw=="; // AccessKey obtained from Picovoice Console
 
         void Start()
         {
@@ -23,34 +22,67 @@ namespace HelperScripts
             _rhinoManager.Delete();
         }
 
+        public void StartListening()
+        {
+            Debug.Log("Voice recognition started. Listening for commands...");
+            // Start processing voice input
+            _rhinoManager.Process();
+        }
+
         private void OnInferenceResult(Inference inference)
         {
             if (inference.IsUnderstood)
             {
-                // Handle the understood intent and slots
                 string intent = inference.Intent;
-                Debug.Log($"Intent: {intent}");
+                Debug.Log($"Command processed. Intent recognized: {intent}");
 
-                foreach (KeyValuePair<string, string> slot in inference.Slots)
+                Unit selectedUnit = FindSelectedUnit();
+                if (selectedUnit != null)
                 {
-                    Debug.Log($"{slot.Key}: {slot.Value}");
+                    Vector3Int moveDirection = GetMoveDirection(intent);
+                    Vector3Int targetPosition = selectedUnit.currentPosition + moveDirection;
+                    selectedUnit.schritteGehen(targetPosition);
                 }
-
-                // Implement your actions based on the intent
-                // For example: if (intent == "go left") { ... }
+                else
+                {
+                    Debug.Log("No unit selected.");
+                }
             }
             else
             {
-                Debug.Log("Did not understand the command.");
+                Debug.Log("Command not understood.");
             }
         }
 
-        // Implement a method to start voice recognition
-        public void StartListening()
+        private Unit FindSelectedUnit()
         {
-            Debug.Log("Button pressed, starting voice recognition.");
-            Debug.Log("Picovoice processing started.");
-            _rhinoManager.Process();
+            foreach (Unit unit in FindObjectsOfType<Unit>())
+            {
+                if (unit.m_selected) // Assuming m_selected indicates if the unit is selected
+                {
+                    return unit;
+                }
+            }
+            return null;
         }
+
+        private Vector3Int GetMoveDirection(string intent)
+        {
+            switch (intent.ToLower())
+            {
+                case "up":
+                    return Vector3Int.up;
+                case "down":
+                    return Vector3Int.down;
+                case "left":
+                    return Vector3Int.left;
+                case "right":
+                    return Vector3Int.right;
+                default:
+                    return Vector3Int.zero;
+            }
+        }
+
+
     }
 }

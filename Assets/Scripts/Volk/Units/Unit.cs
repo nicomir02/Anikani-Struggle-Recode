@@ -170,7 +170,7 @@ public class Unit : VolkObject
 
     //Einheit soll sich bewegen
     [Command(requiresAuthority=false)]
-    void schritteGehen(Vector3Int end) {
+    public void schritteGehen(Vector3Int end) {
         
         foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
             if(PlayerHelperScript.findLocalPlayer() != transform.parent.GetComponent<PlayerManager>()) {
