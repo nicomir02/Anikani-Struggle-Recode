@@ -10,9 +10,13 @@ public class VolkObject : NetworkBehaviour
     [SyncVar] public float attackValue = 0;
     [SyncVar] public float healValue = 0;
 
-    [SyncVar] [SerializeField] public int maxHealth = 100;
+//vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
+    [SerializeField] public int standardMaxHealth = 100;
+    [SyncVar] public int maxHealth = 100;   //vielleicht als float?
 
-    [SyncVar] [SerializeField] public int attackRange = 1;
+//ähnlich wie bei maxhealth:
+    [SerializeField] public int standardAttackRange = 1;
+    [SyncVar] public int attackRange = 1;
 
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
@@ -40,6 +44,10 @@ public class VolkObject : NetworkBehaviour
         get{return moralWert;}
         set{moralWert = value;}
     }
+
+    //Moral der vorherigen RUnde
+    private float prevMoralWert = 1f;
+
 
     protected List<Moral> vorlieben = new List<Moral>();
     public List<Moral> Vorlieben {
@@ -179,6 +187,9 @@ public class VolkObject : NetworkBehaviour
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
         StartCoroutine(animationStart(0));
+        //für moralsuwirkungen erstmal zu testen
+        maxHealth = standardMaxHealth;
+        attackRange = standardAttackRange;
     }
     
     public virtual void Update() {
@@ -197,6 +208,11 @@ public class VolkObject : NetworkBehaviour
 
         if(rm != null && rm.Round > 0) changeHealth(maxHealth*0.01f);
         
+    }
+
+    //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen
+    public void prevMoralAnpassung(){
+        prevMoralWert = moralWert;
     }
     
 
@@ -339,5 +355,33 @@ public class VolkObject : NetworkBehaviour
             deselect();
             previous.selected();
         }
+    }
+    
+    //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (25%, 50%, 75%, 100%, 125%, 150%, 200%)
+    private bool checkAuswirkungsSkala(){
+        //noch nicht ganz sicher wie ich das prüfen könnte. Vorerst Moralanpassung in prozent hat Prozentuale AUswirkung auf Attribute(siehe unten)
+
+    }
+
+    //Moralauswirkungen geplante Attribute pro Volksobjekt
+    private void moralAuswirkung(){
+        //andere Möglichkeit wäre mit Moralwert zu multiplizieren, und standardwert zu nehmen für attribute
+        float veraenderungsanteil = moralWert / prevMoralWert;
+        if (fabs(veraenderungsanteil) - 0,0001 <= 1f) return;        //nah an 1, also kaum veränderung
+        //allgemeine Attribute von allen VOlkobjekten:
+        //Health:
+        float healthchange = maxHealth * veraenderungsanteil;
+        maxHealth += healthchange;
+        health += healthchange; //aktuelles leben auch verändern oder nur maxLeben?
+        //hier mal andere Variante
+        attackRange = round(standardAttackRange * moralWert);   //runden auf nächsten integer
+
+        if(obj.GetType() == Building){ //schauen ob das so funktioniert
+
+        } else if(obj.GetType() == Unit){
+
+        }
+        }
+
     }
 }

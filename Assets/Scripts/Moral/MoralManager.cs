@@ -39,6 +39,9 @@ public class MoralManager : NetworkBehaviour
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
                 moral += vo.moralAuswertung();
                 howMany++;
+                //neu dazu für Moralauswirkungen
+                vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
+                vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
             }
         }
 
