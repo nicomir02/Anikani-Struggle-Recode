@@ -6,9 +6,12 @@ using Mirror;
 public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
+
     
     [SyncVar] public float attackValue = 0;
+   
     [SyncVar] public float healValue = 0;
+
 
 //vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
     [SerializeField] public int standardMaxHealth = 100;
@@ -23,6 +26,9 @@ public class VolkObject : NetworkBehaviour
     public Moralbar Moralb {
         get{return moralbar;}
     }
+
+//für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
+    private float[] moralskalaArray = {0f,0.1f,0.25f,0.5f,0.75f,0.90f,1f};
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
@@ -357,12 +363,41 @@ public class VolkObject : NetworkBehaviour
         }
     }
     
-    //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (25%, 50%, 75%, 100%, 125%, 150%, 200%)
-    private bool checkAuswirkungsSkala(){
-        //noch nicht ganz sicher wie ich das prüfen könnte. Vorerst Moralanpassung in prozent hat Prozentuale AUswirkung auf Attribute(siehe unten)
+    //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (0%, 10%, 25%, 50%, 75%, 90%, 100%)
+    private void moralskalaAusfuehrung(){
+        
         //durch array schauen solange kleiner ist mroalwert um zu guckenin welchem bereich
         //dann scwitch case und dann schauen in moralskala skript
-        return true;
+        int count = 0;
+        for (int i = 0; i < moralskalaArray.Length; i++){
+            if(moralWert < moralskalaArray[i]) break;
+            count++;
+        }
+        switch(count) {
+            case 0:
+            //zugriff auf moralskala? an volkobject anhägen? über moralmanager? noch überlegen wie am besten
+                //ms.klasse1(this);
+                break;
+            /* case 1:
+                ms.klasse2(this);
+                break;
+            case 2:
+                ms.klasse3(this);
+                break;
+            case 3:
+                ms.klasse4(this);
+                break;
+            case 4:
+                ms.klasse5(this);
+                break;
+            case 5:
+                ms.klasse6(this);
+                break; */
+            default:
+                Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
+                break;
+        }
+        
     }
 
     //Moralauswirkungen geplante Attribute pro Volksobjekt
@@ -385,5 +420,35 @@ public class VolkObject : NetworkBehaviour
         }
         }*/
 
+
+        //Getter und Setter für Variablen für Moralskala
+        
+    public float Health {
+        get{return health;}
+        set{health = value;}
     }
+    public float AttackValue {
+        get{return attackValue;}
+        set{attackValue = value;}
+    }
+        public float HealValue {
+        get{return healValue;}
+        set{healValue = value;}
+    }
+    public int MaxHealth {
+        get{return maxHealth;}
+        set{maxHealth = value;}
+    }
+    public int StandardMaxHealth {
+        get{return standardMaxHealth;}
+    }
+    public int AttackRange {
+        get{return attackRange;}
+        set{attackRange = value;}
+    }
+    public int StandardAttackRange {
+        get{return standardAttackRange;}
+    }
+
+}
 

@@ -18,7 +18,13 @@ public class RessourcenSammler : Building
 
     public override void nextRound() {
         base.nextRound();
-        playerManager.addRessource(ressource, howMany());
+        playerManager.addRessource(ressource, howMany() + ressourcenMoralAuswirkung);
+    }
+
+    private float ressourcenMoralAuswirkung = 0f;
+    public float RessourcenMoralAuswirkung {
+        get{return ressourcenMoralAuswirkung;}
+        set{ressourcenMoralAuswirkung = value;}
     }
 
 }

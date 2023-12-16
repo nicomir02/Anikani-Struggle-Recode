@@ -7,7 +7,9 @@ using System.Linq;
 
 public class TrainUnitBuilding : Building
 {
-    [SerializeField] private int maxAusbildungen = 4;
+    //für Moralauswirkungen StandardmaxAubildungen eingeführt
+    [SerializeField] private int standardMaxAusbildungen = 4;
+    private int maxAusbildungen = 4;  
     //Liste der aktuellen auszubildenden Einheiten und die Anzahl der noch benötigten Runden.
     private Dictionary<int, Unit> ausbildungen = new Dictionary<int, Unit>();
     
@@ -23,6 +25,10 @@ public class TrainUnitBuilding : Building
     public int Zahl {
         get{return zahl;}
     }
+
+    /* void Start(){
+        maxAusbildungen = standardMaxAusbildungen;
+    } hides inherited Start von BUilding? wie löse ich das?*/
 
     public override void selected() {
         base.selected();    //führt sachen aus selected Methode von Building aus.
@@ -72,6 +78,14 @@ public class TrainUnitBuilding : Building
         return true;
     }
 
-
+//Getter und Setter für Moralauswirkungen
+    public int MaxAusbildungen {
+        get{return maxAusbildungen;}
+        set{maxAusbildungen = value;}
+    }
+    public int StandardMaxAusbildungen {
+        get{return standardMaxAusbildungen;}
+        set{standardMaxAusbildungen = value;}
+    }
 
 }
