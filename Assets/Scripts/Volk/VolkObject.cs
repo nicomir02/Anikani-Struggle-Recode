@@ -362,6 +362,7 @@ public class VolkObject : NetworkBehaviour
         //noch nicht ganz sicher wie ich das prüfen könnte. Vorerst Moralanpassung in prozent hat Prozentuale AUswirkung auf Attribute(siehe unten)
         //durch array schauen solange kleiner ist mroalwert um zu guckenin welchem bereich
         //dann scwitch case und dann schauen in moralskala skript
+        return true;
     }
 
     //Moralauswirkungen geplante Attribute pro Volksobjekt

@@ -41,7 +41,7 @@ public class MoralManager : NetworkBehaviour
                 howMany++;
                 //neu dazu für Moralauswirkungen
                 vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
-                vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
+                //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
             }
         }
 
