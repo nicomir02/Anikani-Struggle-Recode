@@ -360,11 +360,12 @@ public class VolkObject : NetworkBehaviour
     //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (25%, 50%, 75%, 100%, 125%, 150%, 200%)
     private bool checkAuswirkungsSkala(){
         //noch nicht ganz sicher wie ich das prüfen könnte. Vorerst Moralanpassung in prozent hat Prozentuale AUswirkung auf Attribute(siehe unten)
-
+        //durch array schauen solange kleiner ist mroalwert um zu guckenin welchem bereich
+        //dann scwitch case und dann schauen in moralskala skript
     }
 
     //Moralauswirkungen geplante Attribute pro Volksobjekt
-    private void moralAuswirkung(){
+    /*private void moralAuswirkung(){
         //andere Möglichkeit wäre mit Moralwert zu multiplizieren, und standardwert zu nehmen für attribute
         float veraenderungsanteil = moralWert / prevMoralWert;
         if (fabs(veraenderungsanteil) - 0,0001 <= 1f) return;        //nah an 1, also kaum veränderung
@@ -381,7 +382,7 @@ public class VolkObject : NetworkBehaviour
         } else if(obj.GetType() == Unit){
 
         }
-        }
+        }*/
 
     }
-}
+
