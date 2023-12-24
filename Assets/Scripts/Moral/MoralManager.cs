@@ -16,7 +16,7 @@ public class MoralManager : NetworkBehaviour
 
     [SerializeField] Ressource anikani;
 
-    float gesamtMoral = 1f;
+    float gesamtMoral = 0.5f;
     [SerializeField] private Moralbar moralbar;
 
     //noch MOralskala an ein Gameobject anfügen: [SerializeField] private Moralskala ms;

@@ -1,17 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Moralbar : Bar
+public class Moralbar : MonoBehaviour
 {
-    void Start()
-    {
-        fullWidth = topBar.rect.width; 
-        newMaxValue();
-        Value = MaxValue;
-    }
+    [SerializeField] private Slider slider;
 
-    public override void newMaxValue() {
-        MaxValue = 1f;
+    public void Change(float value) {
+        slider.value += value;
     }
 }
