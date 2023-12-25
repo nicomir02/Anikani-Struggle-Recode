@@ -105,7 +105,7 @@ public class OnlineMenu : MonoBehaviour
 
 
     void kcpConnect() {
-        if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
+        if(manager.GetComponent<SaveHelper>().checkAndSave(chooseName.text)) {
             if(ipAdress.text.Length > 0) {
                 manager.networkAddress = ipAdress.text;
             }else {
@@ -121,7 +121,7 @@ public class OnlineMenu : MonoBehaviour
     }
 
     void kcpHost() {
-        if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
+        if(manager.GetComponent<SaveHelper>().checkAndSave(chooseName.text)) {
             connected();
             manager.StartHost();
         }else {

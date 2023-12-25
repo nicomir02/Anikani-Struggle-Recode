@@ -23,11 +23,19 @@ public class PlayerManager : NetworkBehaviour
 
     */
 
-    private int volkID = -1;
+    [SyncVar] private int volkID = -1;
 
     public int playerVolk {
         get{return volkID;}
-        set{volkID = value;}
+        set{
+            volkID = value;
+            Debug.Log(volkID);
+            foreach(StandardVolk v in FindObjectsOfType<SaveHelper>()[0].Voelker) {
+                if(v.id == volkID) {
+                    volk = v;
+                }
+            }
+        }
     }
     //nur zum testen. später in der lobby setzen
     [SerializeField] private StandardVolk volk;
@@ -164,7 +172,7 @@ public class PlayerManager : NetworkBehaviour
 
     void Start() {
         if(isLocalPlayer) {
-            changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveName>().name);
+            changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveHelper>().name);
             spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
         }
     }

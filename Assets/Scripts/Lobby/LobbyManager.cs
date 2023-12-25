@@ -13,6 +13,8 @@ public class LobbyManager : NetworkBehaviour {
 
     [SerializeField] private Button readyBtn;
 
+    [SerializeField] private TMP_Dropdown tribeOptions;
+
     [SerializeField] private Button blueBtn;
     [SerializeField] private Button redBtn;
     [SerializeField] private Button greenBtn;
@@ -24,6 +26,8 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private MapBehaviour mapBehaviour;
     [SerializeField] private RoundManager roundManager;
 
+    [SerializeField] private SaveHelper saveAttributes;
+
     bool registered = false;
 
     void Start() {
@@ -32,8 +36,48 @@ public class LobbyManager : NetworkBehaviour {
         redBtn.onClick.AddListener(() => OnButtonClicked(redBtn));
         greenBtn.onClick.AddListener(() => OnButtonClicked(greenBtn));
         purpleBtn.onClick.AddListener(() => OnButtonClicked(purpleBtn));
+        tribeOptions.onValueChanged.AddListener(delegate {tribeChange(tribeOptions);});
+
+        
+
+        foreach(StandardVolk volk in saveAttributes.Voelker) {
+            string volkname = "";
+
+            char old = '1';
+            foreach(char c in volk.name) {
+                if(c >= 'A' && c <= 'Z' && old != '1') volkname += " ";
+                volkname += c;
+                old = c;
+            }
+
+            tribeOptions.options.Add(new TMP_Dropdown.OptionData(volkname));
+        }
 
         readyBtn.onClick.AddListener(ready);
+    }
+
+    void tribeChange(TMP_Dropdown change) {
+        string volkname = "";
+
+        char old = '1';
+
+        int options = change.value;
+
+        if(options == 0) {
+            Random rand = new Random();
+            options = rand.Next(1, tribeOptions.options.Count);
+        }
+
+        foreach(char c in tribeOptions.options[options].text) {
+            if(c != ' ') volkname += c;
+        }
+
+        foreach(StandardVolk volk in saveAttributes.Voelker) {
+            if(volk.name == volkname) {
+                PlayerHelperScript.findLocalPlayer().playerVolk = volk.id;
+                break;
+            }
+        }
     }
 
     public void OnButtonClicked(Button buttonClicked) {
@@ -95,8 +139,9 @@ public class LobbyManager : NetworkBehaviour {
 
     void Update() {
         if(!registered && NetworkClient.ready) {
-            serverPlayerConnect(networkManager.GetComponent<SaveName>().name);
+            serverPlayerConnect(networkManager.GetComponent<SaveHelper>().name);
             registered = true;
+            tribeChange(tribeOptions);
         }
     }
    
@@ -119,6 +164,10 @@ public class LobbyManager : NetworkBehaviour {
  
 
     void ready() {
+        
+
+        tribeOptions.interactable = false;
+
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if(pm.playerColor == -1) return;
         readyPlayer(pm.name);
