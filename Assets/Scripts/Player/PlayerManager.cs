@@ -124,6 +124,7 @@ public class PlayerManager : NetworkBehaviour
 
     
     public void addRessource(Ressource r, float value){
+        if(PlayerHelperScript.findLocalPlayer() != this) return;
         ServerAddRessource(r.Id, value);
     }
 
