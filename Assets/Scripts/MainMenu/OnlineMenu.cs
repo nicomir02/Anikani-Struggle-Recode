@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 using Steamworks;
+using UnityEngine.SceneManagement;
 
 public class OnlineMenu : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class OnlineMenu : MonoBehaviour
 
     public ulong CurrentLobbyID;
     private const string HostAddressKey = "HostAddress";
+
+    public void loadMainMenu() {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     void Start() {
         hostBtn.onClick.AddListener(hostServer);

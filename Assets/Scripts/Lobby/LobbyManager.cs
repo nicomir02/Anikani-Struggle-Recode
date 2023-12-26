@@ -59,8 +59,6 @@ public class LobbyManager : NetworkBehaviour {
     void tribeChange(TMP_Dropdown change) {
         string volkname = "";
 
-        char old = '1';
-
         int options = change.value;
 
         if(options == 0) {

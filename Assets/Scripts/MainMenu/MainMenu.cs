@@ -6,14 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Button startGame;
-    [SerializeField] private Button stopGame;
-
-    void Start() {
-        startGame.onClick.AddListener(onStartMultiplayer);
+    public void close() {
+        Application.Quit();
     }
 
-    void onStartMultiplayer() {
-        SceneManager.LoadScene(1);
+    public void startMultiplayer() {
+        SceneManager.LoadScene("Game");
     }
 }
