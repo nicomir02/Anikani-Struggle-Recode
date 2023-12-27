@@ -206,13 +206,12 @@ public class Unit : VolkObject
             if(obj.isObjectAtPosition(end)) { //falls dort ein Object ist
                 Debug.Log("Liste " + liste.Count);
                 Debug.Log("Range " + attackRange);
-                if(attackRange == liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
+                if(attackRange <= liste.Count || mapBehaviour.getZ(start)-mapBehaviour.getZ(end)+attackRange <= liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
                     Debug.Log("test");
                     tryAttack(end, obj);   //probieren ob man dieses Object attackieren kann
                     steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
                     reichweitenText.text = steps+"";
                     changeSteps(0);
-                    
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)
             }
