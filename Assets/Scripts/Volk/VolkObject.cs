@@ -182,8 +182,7 @@ public class VolkObject : NetworkBehaviour
     }
 
     public virtual void Start() {
-        suchtLvl.Add(-1);
-        suchtLvl.Add(-1);
+        CMDStart();
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
@@ -196,6 +195,12 @@ public class VolkObject : NetworkBehaviour
         //für moralsuwirkungen erstmal zu testen
         maxHealth = standardMaxHealth;
         attackRange = standardAttackRange;
+    }
+
+    [Command(requiresAuthority=false)]
+    public void CMDStart() {
+        suchtLvl.Add(-1);
+        suchtLvl.Add(-1);
     }
     
     public virtual void Update() {

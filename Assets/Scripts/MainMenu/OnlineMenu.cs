@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 using Steamworks;
+using UnityEngine.SceneManagement;
 
 public class OnlineMenu : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class OnlineMenu : MonoBehaviour
 
     public ulong CurrentLobbyID;
     private const string HostAddressKey = "HostAddress";
+
+    public void loadMainMenu() {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     void Start() {
         hostBtn.onClick.AddListener(hostServer);
@@ -105,7 +110,7 @@ public class OnlineMenu : MonoBehaviour
 
 
     void kcpConnect() {
-        if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
+        if(manager.GetComponent<SaveHelper>().checkAndSave(chooseName.text)) {
             if(ipAdress.text.Length > 0) {
                 manager.networkAddress = ipAdress.text;
             }else {
@@ -121,7 +126,7 @@ public class OnlineMenu : MonoBehaviour
     }
 
     void kcpHost() {
-        if(manager.GetComponent<SaveName>().checkAndSave(chooseName.text)) {
+        if(manager.GetComponent<SaveHelper>().checkAndSave(chooseName.text)) {
             connected();
             manager.StartHost();
         }else {
