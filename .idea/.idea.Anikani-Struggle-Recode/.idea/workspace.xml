@@ -5,83 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5751b41-714f-403c-b699-08978bc3b6dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/README.md.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/RhinoDemo.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/icons8-light-96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Demo/icons8-light-96.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a/libpv_rhino.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/arm64-v8a/libpv_rhino.so.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a/libpv_rhino.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/android/armeabi-v7a/libpv_rhino.so.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/PvRhino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/PvRhino.h.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/picovoice.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/picovoice.h.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/pv_rhino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Headers/pv_rhino.h.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Info.plist.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules/module.modulemap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/Modules/module.modulemap.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/PvRhino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/ios/PvRhino.framework/PvRhino.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64/libpv_rhino.so" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/linux/x86_64/libpv_rhino.so.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64/libpv_rhino.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/arm64/libpv_rhino.dylib.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64/libpv_rhino.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/mac/x86_64/libpv_rhino.dylib.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64/pv_rhino.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Plugins/windows/amd64/pv_rhino.dll.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.asmdef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.asmdef.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/Rhino.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoException.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/RhinoManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessorException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rhino/VoiceProcessor/VoiceProcessorException.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/SaveWav.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/SaveWav.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper Sample.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper Sample.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/Whisper.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/fill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/OpenAI Unity/0.1.15/Whisper/fill.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mono_crash.0.0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognition/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognition/VoiceRecognition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
@@ -111,28 +37,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "picovoice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;picovoice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/louisn/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/Users/louisn/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
@@ -181,6 +107,13 @@
       <updated>1701973521723</updated>
       <workItem from="1701973522899" duration="4085000" />
       <workItem from="1702585864804" duration="4753000" />
+      <workItem from="1702655069582" duration="3559000" />
+      <workItem from="1702717416664" duration="1969000" />
+      <workItem from="1704134021022" duration="749000" />
+      <workItem from="1704134904076" duration="305000" />
+      <workItem from="1704135284258" duration="45000" />
+      <workItem from="1704135342010" duration="38000" />
+      <workItem from="1704135546168" duration="1075000" />
     </task>
     <servers />
   </component>

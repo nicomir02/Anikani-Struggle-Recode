@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pv.Unity;
-namespace HelperScripts
+namespace HelperScriptswe    
 
 {
     public class VoiceRecognition : MonoBehaviour
@@ -11,22 +11,37 @@ namespace HelperScripts
 
         void Start()
         {
-            // Initialize Rhino
-            string contextPath = "Assets/StreamingAssets/contexts/mac/VoiceRecognitionMovement.rhn";
-            _rhinoManager = RhinoManager.Create(ACCESS_KEY, contextPath, OnInferenceResult);
+            InitializeRhinoManager();
         }
 
         void OnDestroy()
         {
-            // Cleanup
             _rhinoManager.Delete();
+        }
+        
+        private void InitializeRhinoManager()
+        {
+            string contextPath = "Assets/StreamingAssets/contexts/mac/VoiceRecognitionMovement.rhn";
+            _rhinoManager = RhinoManager.Create(ACCESS_KEY, contextPath, OnInferenceResult);
         }
 
         public void StartListening()
         {
-            Debug.Log("Voice recognition started. Listening for commands...");
-            // Start processing voice input
-            _rhinoManager.Process();
+            if (_rhinoManager != null && !_rhinoManager.IsRecording)
+            {
+                Debug.Log("Voice recognition started. Listening for commands...");
+                _rhinoManager.Process();
+            }
+        }
+        
+        public void StopAndResetListening()
+        {
+            if (_rhinoManager != null)
+            {
+                _rhinoManager.Delete(); // Free the resources
+                InitializeRhinoManager(); // Reinitialize to start listening again
+                Debug.Log("Voice recognition stopped and reset.");
+            }
         }
 
         private void OnInferenceResult(Inference inference)
@@ -47,10 +62,12 @@ namespace HelperScripts
                 {
                     Debug.Log("No unit selected.");
                 }
+                StopAndResetListening();
             }
             else
             {
                 Debug.Log("Command not understood.");
+                StopAndResetListening();
             }
         }
 
@@ -82,7 +99,5 @@ namespace HelperScripts
                     return Vector3Int.zero;
             }
         }
-
-
     }
 }
