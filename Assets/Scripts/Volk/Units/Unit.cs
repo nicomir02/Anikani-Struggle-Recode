@@ -41,6 +41,7 @@ public class Unit : VolkObject
 
     [SerializeField] private GameObject lightObject;
     public int getAusbildungszeit() {
+        if (ausbildungszeit <= 0) ausbildungszeit = standardAusbildungszeit;
         return ausbildungszeit;
     }
 
@@ -228,7 +229,6 @@ public class Unit : VolkObject
         changeSteps(steps);
     }
 
-    
     public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
     {
         Vector3 startingPosition;
@@ -293,7 +293,10 @@ public class Unit : VolkObject
         get{return standardMaxSteps;}
     }
     public int Ausbildungszeit {
-        get{return ausbildungszeit;}
+        get{
+            if (ausbildungszeit <= 0) ausbildungszeit = standardAusbildungszeit;
+            return ausbildungszeit;
+            }
         set{ausbildungszeit = value;}
     }
     public int StandardAusbildungszeit {

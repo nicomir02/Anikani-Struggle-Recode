@@ -145,6 +145,7 @@ public class PlayerManager : NetworkBehaviour
         foreach(KeyValuePair<int,float> kvp in playerRessourcen){
             foreach(Ressource r in alleRessourcen) {
                 if(r.Id == kvp.Key) {
+                    Debug.Log(r.name + " " + kvp.Value);
                     if(r.Id == 0) woodCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
                     if(r.Id == 1) stoneCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
                     if(r.Id == 2) nahrungsCounter.text = Mathf.Round(kvp.Value * 10.0f) * 0.1f + "";
