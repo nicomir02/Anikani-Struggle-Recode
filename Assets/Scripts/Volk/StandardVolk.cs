@@ -7,11 +7,27 @@ public class StandardVolk : MonoBehaviour
     //allgemeine Gebäude für alle Völker(spezielle in spezifischen Volkskripten reinschreiben)
     [SerializeField] private Building hauptGebaeude;
 
+    public Building HauptGebaeude {
+        get{return hauptGebaeude;}
+    }
+
     [SerializeField] private List<Building> buildings = new List<Building>();
+
+    public List<Building> Buildings {
+        get {
+            return buildings;
+        }
+    }
     
     [SerializeField] public int id;
 
     [SerializeField] private List<Unit> units;
+
+    public List<Unit> Units {
+        get {
+            return units;
+        }
+    }
 
     // Start is called before the first frame update
     public Building getMainBuilding() {

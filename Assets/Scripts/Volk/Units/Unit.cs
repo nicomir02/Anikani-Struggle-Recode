@@ -11,7 +11,9 @@ public class Unit : VolkObject
     [SerializeField] private List<Sprite> frontWalk = new List<Sprite>();
     [SerializeField] private List<Sprite> backWalk = new List<Sprite>();
 
-    [SerializeField] private int maxSteps = 4;
+//StandardMaxSteps für Moralauswirkungen eingeführt
+    [SerializeField] private int standardMaxSteps = 4;
+    private int maxSteps = 4;
     private int steps = 0; //Wieder private machen nach test
     public int Steps {
         get{return steps;}
@@ -32,7 +34,9 @@ public class Unit : VolkObject
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
 
-    [SerializeField] private int ausbildungszeit;
+    //Standardausbildungszeit für moralauswirkungen eingeführt
+    [SerializeField] private int standardAusbildungszeit;
+    private int ausbildungszeit;
 
 
     [SerializeField] private GameObject lightObject;
@@ -78,6 +82,9 @@ public class Unit : VolkObject
     public override void Start() {
         base.Start();
         vorlieben = mm.getMoral(0, healValue > 0);
+        //Standardwerte für moralauswirkungen eingeführt
+        maxSteps = standardMaxSteps;
+        ausbildungszeit = standardAusbildungszeit;
         
         area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
         mapBehaviour = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
@@ -199,13 +206,12 @@ public class Unit : VolkObject
             if(obj.isObjectAtPosition(end)) { //falls dort ein Object ist
                 Debug.Log("Liste " + liste.Count);
                 Debug.Log("Range " + attackRange);
-                if(attackRange == liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
+                if(attackRange <= liste.Count || mapBehaviour.getZ(start)-mapBehaviour.getZ(end)+attackRange <= liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
                     Debug.Log("test");
                     tryAttack(end, obj);   //probieren ob man dieses Object attackieren kann
                     steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
                     reichweitenText.text = steps+"";
                     changeSteps(0);
-                    
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)
             }
@@ -277,4 +283,20 @@ public class Unit : VolkObject
     //.......
 
     //angegriffen und geheilt
+
+    //Getter und Setter für Moralauswirkungen
+    public int MaxSteps {
+        get{return maxSteps;}
+        set{maxSteps = value;}
+    }
+    public int StandardMaxSteps {
+        get{return standardMaxSteps;}
+    }
+    public int Ausbildungszeit {
+        get{return ausbildungszeit;}
+        set{ausbildungszeit = value;}
+    }
+    public int StandardAusbildungszeit {
+        get{return standardAusbildungszeit;}
+    }
 }

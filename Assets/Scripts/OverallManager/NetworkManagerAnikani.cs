@@ -27,6 +27,7 @@ public class NetworkManagerAnikani : NetworkManager
     {
         base.OnStopClient();
         Destroy(gameObject);
+        SceneManager.LoadScene("MainMenu");
         NetworkClient.Disconnect();
     }
 
@@ -34,6 +35,7 @@ public class NetworkManagerAnikani : NetworkManager
     {
         base.OnStopHost();
         Destroy(gameObject);
+        SceneManager.LoadScene("MainMenu");
         NetworkClient.Disconnect();
     }
 

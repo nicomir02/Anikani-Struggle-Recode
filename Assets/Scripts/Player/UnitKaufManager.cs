@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UnitKaufManager : MonoBehaviour
+public class UnitKaufManager : Panel
 {
     //[SerializeField] private Button gebaeudeKaufBtn;
-    [SerializeField] private GameObject panel;
+
 
     [SerializeField] private Transform scrollviewTransfrom;
 
@@ -45,7 +45,7 @@ public class UnitKaufManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.U) && !pause.IsPause){
+        if(Input.GetKeyDown(KeyCode.U) && canPause()){
             if(!offen){
                 TrainUnitBuilding building = null; 
                 foreach(TrainUnitBuilding b in FindObjectsOfType<TrainUnitBuilding>()) {
@@ -87,6 +87,7 @@ public class UnitKaufManager : MonoBehaviour
     }
 
     public void openPanel(TrainUnitBuilding b) {
+        if(!canPause()) return;
         saveBuilding = b;
         panel.SetActive(true);
         
@@ -114,7 +115,7 @@ public class UnitKaufManager : MonoBehaviour
         }
     }
 
-    public void closePanel(){
+    public override void closePanel(){
         offen = false;
         panel.SetActive(false);
         foreach(GameObject gameObject in generatedPrefabs) {

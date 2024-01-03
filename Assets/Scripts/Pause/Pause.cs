@@ -2,43 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Pause : MonoBehaviour
+public class Pause : Panel
 {
     //Noch nicht funktionabel;
     private bool isPause = false;
     public bool IsPause {
         get{return isPause;}
     }
-    [SerializeField] GameObject _pause;
     [SerializeField] Button continueBtn;
 
     [SerializeField] private List<GameObject> cannotPause = new List<GameObject>();
 
     void Update()
     {
-        if(Input.GetButtonDown("Cancel") && canPause()) {
-            updatePause();
+        if(Input.GetButtonDown("Cancel")) {
+            bool b = false;
+            foreach(Panel o in GameObject.FindObjectsOfType<Panel>()) {
+                if(o.panel.gameObject.activeSelf) {
+                    o.closePanel();
+                    b = true;
+                    break;
+                }
+            }
+            Debug.Log(b);
+            if(!b) updatePause();
         }
     }
 
-    bool canPause() {
-        foreach(GameObject o in cannotPause) {
-            if(o.activeSelf) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     void updatePause() {
         isPause = !isPause;
         if(isPause) {
-            _pause.SetActive(true);
+            panel.SetActive(true);
             Time.timeScale = 0f;
         }else {
-            _pause.SetActive(false);
-            Time.timeScale = 1f;
+            closePanel();
         }
+    }
+
+    public override void closePanel() {
+        base.closePanel();
+        isPause = false;
+        Time.timeScale = 1f;
+    }
+
+    public void disconnect() {
+        NetworkClient.Disconnect();
     }
 }

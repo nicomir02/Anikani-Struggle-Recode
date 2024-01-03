@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BuildingKaufManager : MonoBehaviour
+public class BuildingKaufManager : Panel
 {
-
-
-    //[SerializeField] private Button gebaeudeKaufBtn;
-    [SerializeField] private GameObject panel;
 
     [SerializeField] private Transform scrollviewTransfrom;
 
@@ -30,7 +26,7 @@ public class BuildingKaufManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.B) && !pause.IsPause){
+        if(Input.GetKeyDown(KeyCode.B) && canPause()){
             if(!offen ){
                 openPanel();
                 offen = true;
@@ -39,15 +35,10 @@ public class BuildingKaufManager : MonoBehaviour
                 offen = false;
             }
         }
-
-
-        if(Input.GetButtonDown("Cancel") && offen) {
-            
-            closePanel();
-        }
     }
 
     void openPanel(){
+        if(!canPause()) return;
         offen = true;
         panel.SetActive(true);
         foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllBuildingObjects()) {
@@ -70,9 +61,9 @@ public class BuildingKaufManager : MonoBehaviour
         }
     }
 
-    public void closePanel(){
+    public override void closePanel(){
+        base.closePanel();
         offen = false;
-        panel.SetActive(false);
         foreach(GameObject gameObject in generatedPrefabs) {
             Destroy(gameObject);
         }

@@ -6,19 +6,29 @@ using Mirror;
 public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
+
     
     [SyncVar] public float attackValue = 0;
+   
     [SyncVar] public float healValue = 0;
 
-    [SyncVar] [SerializeField] public int maxHealth = 100;
 
-    [SyncVar] [SerializeField] public int attackRange = 1;
+//vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
+    [SerializeField] public int standardMaxHealth = 100;
+    [SyncVar] public int maxHealth = 100;   //vielleicht als float?
+
+//ähnlich wie bei maxhealth:
+    [SerializeField] public int standardAttackRange = 1;
+    [SyncVar] public int attackRange = 1;
 
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
     public Moralbar Moralb {
         get{return moralbar;}
     }
+
+//für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
+    private float[] moralskalaArray = {0f,0.1f,0.25f,0.5f,0.75f,0.90f,1f};
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
@@ -40,6 +50,10 @@ public class VolkObject : NetworkBehaviour
         get{return moralWert;}
         set{moralWert = value;}
     }
+
+    //Moral der vorherigen RUnde
+    private float prevMoralWert = 1f;
+
 
     protected List<Moral> vorlieben = new List<Moral>();
     public List<Moral> Vorlieben {
@@ -168,8 +182,7 @@ public class VolkObject : NetworkBehaviour
     }
 
     public virtual void Start() {
-        suchtLvl.Add(-1);
-        suchtLvl.Add(-1);
+        CMDStart();
         Debug.Log("[" + name + "] instanziert");
         tilemapHover = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<TilemapHover>();
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
@@ -179,6 +192,15 @@ public class VolkObject : NetworkBehaviour
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
         StartCoroutine(animationStart(0));
+        //für moralsuwirkungen erstmal zu testen
+        maxHealth = standardMaxHealth;
+        attackRange = standardAttackRange;
+    }
+
+    [Command(requiresAuthority=false)]
+    public void CMDStart() {
+        suchtLvl.Add(-1);
+        suchtLvl.Add(-1);
     }
     
     public virtual void Update() {
@@ -197,6 +219,11 @@ public class VolkObject : NetworkBehaviour
 
         if(rm != null && rm.Round > 0) changeHealth(maxHealth*0.01f);
         
+    }
+
+    //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen
+    public void prevMoralAnpassung(){
+        prevMoralWert = moralWert;
     }
     
 
@@ -340,4 +367,93 @@ public class VolkObject : NetworkBehaviour
             previous.selected();
         }
     }
+    
+    //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (0%, 10%, 25%, 50%, 75%, 90%, 100%)
+    private void moralskalaAusfuehrung(){
+        
+        //durch array schauen solange kleiner ist mroalwert um zu guckenin welchem bereich
+        //dann scwitch case und dann schauen in moralskala skript
+        int count = 0;
+        for (int i = 0; i < moralskalaArray.Length; i++){
+            if(moralWert < moralskalaArray[i]) break;
+            count++;
+        }
+        switch(count) {
+            case 0:
+            //zugriff auf moralskala? an volkobject anhägen? über moralmanager? noch überlegen wie am besten
+                //ms.klasse1(this);
+                break;
+            /* case 1:
+                ms.klasse2(this);
+                break;
+            case 2:
+                ms.klasse3(this);
+                break;
+            case 3:
+                ms.klasse4(this);
+                break;
+            case 4:
+                ms.klasse5(this);
+                break;
+            case 5:
+                ms.klasse6(this);
+                break; */
+            default:
+                Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
+                break;
+        }
+        
+    }
+
+    //Moralauswirkungen geplante Attribute pro Volksobjekt
+    /*private void moralAuswirkung(){
+        //andere Möglichkeit wäre mit Moralwert zu multiplizieren, und standardwert zu nehmen für attribute
+        float veraenderungsanteil = moralWert / prevMoralWert;
+        if (fabs(veraenderungsanteil) - 0,0001 <= 1f) return;        //nah an 1, also kaum veränderung
+        //allgemeine Attribute von allen VOlkobjekten:
+        //Health:
+        float healthchange = maxHealth * veraenderungsanteil;
+        maxHealth += healthchange;
+        health += healthchange; //aktuelles leben auch verändern oder nur maxLeben?
+        //hier mal andere Variante
+        attackRange = round(standardAttackRange * moralWert);   //runden auf nächsten integer
+
+        if(obj.GetType() == Building){ //schauen ob das so funktioniert
+
+        } else if(obj.GetType() == Unit){
+
+        }
+        }*/
+
+
+        //Getter und Setter für Variablen für Moralskala
+        
+    public float Health {
+        get{return health;}
+        set{health = value;}
+    }
+    public float AttackValue {
+        get{return attackValue;}
+        set{attackValue = value;}
+    }
+        public float HealValue {
+        get{return healValue;}
+        set{healValue = value;}
+    }
+    public int MaxHealth {
+        get{return maxHealth;}
+        set{maxHealth = value;}
+    }
+    public int StandardMaxHealth {
+        get{return standardMaxHealth;}
+    }
+    public int AttackRange {
+        get{return attackRange;}
+        set{attackRange = value;}
+    }
+    public int StandardAttackRange {
+        get{return standardAttackRange;}
+    }
+
 }
+

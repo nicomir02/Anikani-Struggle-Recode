@@ -48,8 +48,10 @@ MonoBehaviour:
   buildings:
   - {fileID: 1912368084208151826, guid: 0033ea3bf85417b44ac7d8ccce2a40a6, type: 3}
   - {fileID: 4157904445678943923, guid: 151f40afe9a0d5c4a89242ebb7f226bd, type: 3}
-  - {fileID: -6469586152435052321, guid: bf476ff9278feeb449cd4ad005866d32, type: 3}
   - {fileID: -4492628895403585771, guid: 74f3b2082d2d8304280a951795a68d52, type: 3}
+  - {fileID: -6469586152435052321, guid: bf476ff9278feeb449cd4ad005866d32, type: 3}
   id: 0
   units:
   - {fileID: 4004221862323873089, guid: e94a3726079c3234fba4e7d9df67aee9, type: 3}
+  - {fileID: 4004221862323873089, guid: e80afb8bf364f05469b72a3af64f5f13, type: 3}
+  - {fileID: 4004221862323873089, guid: 63015797dbb42714697e88481e42cb68, type: 3}
