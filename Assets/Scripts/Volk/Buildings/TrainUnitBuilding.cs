@@ -48,7 +48,7 @@ public class TrainUnitBuilding : Building
             
             pm.setUnit(ausbildungen[zahl], transform);
             ausbildungen.Remove(zahl);//um dictionary zu pflegen und nicht größer werden zu lassen
-            if(ausbildungen.Count == 0) {
+            if(ausbildungen.Count <= 0) {
                 zahl = 0;
     	        
             }
@@ -67,7 +67,7 @@ public class TrainUnitBuilding : Building
 
     public bool addTrainUnit(Unit u) {
         if(ausbildungen.Count >= maxAusbildungen) return false;
-        if(ausbildungen.Count == 0) {
+        if(ausbildungen.Count <= 0) {
             ausbildungen.Add(u.getAusbildungszeit(), u);
         }else {
             int highestValue = ausbildungen.Keys.Max();
@@ -87,5 +87,4 @@ public class TrainUnitBuilding : Building
         get{return standardMaxAusbildungen;}
         set{standardMaxAusbildungen = value;}
     }
-
 }
