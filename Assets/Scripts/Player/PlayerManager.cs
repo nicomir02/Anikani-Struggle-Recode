@@ -17,10 +17,9 @@ public class PlayerManager : NetworkBehaviour
 
     /*
     Volk des Spielers
-    0 = Order of Seraphs
-    1 = Ancient Wanderers
+    0 = Order of Seraph
+    1 = Curse Bearer
     ....
-
     */
 
     [SyncVar] private int volkID = -1;
