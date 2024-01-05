@@ -4,71 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Samples.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/1 - Audio Clip.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/1 - Audio Clip.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/AudioClipDemo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/AudioClipDemo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/jfk.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/1 - Audio Clip/jfk.wav.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/2 - Microphone.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/2 - Microphone/2 - Microphone.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/2 - Microphone/2 - Microphone.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/2 - Microphone/MicrophoneDemo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/2 - Microphone/MicrophoneDemo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/3 - Languages.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/3 - Languages/3 - Languages.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/3 - Languages/3 - Languages.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/3 - Languages/LanguagesDemo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/3 - Languages/LanguagesDemo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/4 - Subtitles.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/4 - Subtitles.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/SubtitlesDemo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/SubtitlesDemo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/churchill.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/4 - Subtitles/churchill.wav.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/5 - Streaming.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/5 - Streaming/5 - Streaming.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/5 - Streaming/5 - Streaming.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/5 - Streaming/StreamingSampleMic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Samples/5 - Streaming/StreamingSampleMic.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper/ggml-tiny.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper/ggml-tiny.bin.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mono_crash.137d23b687.0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mono_crash.mem.1171.1.blob" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/TrainingSection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/TrainingSection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/android.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/android/smart_lighting_android.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/android/smart_lighting_android.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/ios.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/ios/smart_lighting_ios.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/ios/smart_lighting_ios.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/linux.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/linux/smart_lighting_linux.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/linux/smart_lighting_linux.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/mac.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/mac/VoiceRecognitionMovement.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/mac/VoiceRecognitionMovement.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/mac/smart_lighting_mac.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/mac/smart_lighting_mac.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/windows.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/windows/smart_lighting_windows.rhn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/contexts/windows/smart_lighting_windows.rhn.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/rhino_params.pv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/rhino_params.pv.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,25 +29,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;picovoice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "picovoice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
-      &quot;/Users/louisn/.local/share/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
+      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
+      "/Users/louisn/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Standalone Player.Start Unity">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
@@ -158,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704306938356</updated>
-      <workItem from="1704306939685" duration="1915000" />
+      <workItem from="1704306939685" duration="2152000" />
     </task>
     <servers />
   </component>
@@ -167,4 +104,15 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
 </project>
