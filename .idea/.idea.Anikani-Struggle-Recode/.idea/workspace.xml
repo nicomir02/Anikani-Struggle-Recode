@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular SDF.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular SDF.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/ConversationExample.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/ConversationExample.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/SpeechRecognitionExample.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/SpeechRecognitionExample.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/TextToImageExample.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/TextToImageExample.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/ConversationExample.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/ConversationExample.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/TextToImageExample.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/TextToImageExample.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds/tutorial.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds/tutorial.wav.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/TrainingData/TrainedData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/TrainingData/TrainedData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704306938356</updated>
       <workItem from="1704306939685" duration="2152000" />
-      <workItem from="1704457357413" duration="7872000" />
+      <workItem from="1704457357413" duration="8735000" />
     </task>
     <servers />
   </component>
