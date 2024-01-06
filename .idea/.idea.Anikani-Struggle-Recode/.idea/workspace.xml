@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="" />
+    <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular SDF.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular SDF.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Fonts/Roboto-Regular.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/ConversationExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/ConversationExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/SpeechRecognitionExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/SpeechRecognitionExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/TextToImageExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scenes/TextToImageExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/ConversationExample.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/ConversationExample.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/SpeechRecognitionExample.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/TextToImageExample.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Scripts/TextToImageExample.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds/tutorial.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HuggingFaceAPI/Examples/Sounds/tutorial.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/Scenes/SentimentAnalysis.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SentimentAnalysis/TrainingData/TrainedData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SentimentAnalysis/TrainingData/TrainedData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +47,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Samples/2 - Microphone/MicrophoneDemo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HelperScripts/SentimentAnalysis.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.whisper.unity@25c8d267cf/Runtime/Utils/MicrophoneRecord.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -29,29 +62,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "picovoice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;picovoice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/louisn/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/Users/louisn/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Standalone Player.Start Unity">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -59,7 +92,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.12f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -96,6 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704306938356</updated>
       <workItem from="1704306939685" duration="2152000" />
+      <workItem from="1704457357413" duration="7872000" />
     </task>
     <servers />
   </component>

@@ -1297,6 +1297,8 @@ GameObject:
   - component: {fileID: 168238279}
   - component: {fileID: 168238278}
   - component: {fileID: 168238277}
+  - component: {fileID: 168238281}
+  - component: {fileID: 168238280}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1395,6 +1397,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &168238280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168238275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292048f67330942c2a289bb6e1e0fd6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sentimentAnalysis: {fileID: 168238281}
+  voiceRecognition: {fileID: 1911893721}
+--- !u!114 &168238281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168238275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad379cc4debb1a499f5602b58c06cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositiveWordsFileText: SentimentDataTrained/positiveWordsStem
+  NegativeWordsFileText: SentimentDataTrained/negativeWordsStem
+  ContractionWordsFileText: SentimentDataTrained/contractionWords
+  StopWordsFileText: SentimentDataTrained/stopWords
+  SentimentValue: 0.5
 --- !u!1 &175865779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1982,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.2
+  m_fontSize: 29.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6598,7 +6631,7 @@ MonoBehaviour:
   modelPath: Whisper/ggml-tiny.bin
   isModelPathInStreamingAssets: 1
   initOnAwake: 1
-  language: de
+  language: en
   translateToEnglish: 0
   strategy: 0
   noContext: 1
@@ -8039,7 +8072,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 25.4
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8173,7 +8206,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.75
+  m_fontSize: 23.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10205,7 +10238,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.7
+  m_fontSize: 44.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11120,7 +11153,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
+  m_fontSize: 43.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12324,7 +12357,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 19.2
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
