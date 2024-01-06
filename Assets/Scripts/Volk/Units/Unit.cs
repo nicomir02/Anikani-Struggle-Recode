@@ -14,7 +14,7 @@ public class Unit : VolkObject
 //StandardMaxSteps für Moralauswirkungen eingeführt
     [SerializeField] private int standardMaxSteps = 4;
     private int maxSteps = 4;
-    private int steps = 0; //Wieder private machen nach test
+    private int steps = 0; 
     public int Steps {
         get{return steps;}
     }
@@ -54,6 +54,7 @@ public class Unit : VolkObject
         Optimierungsvorschlg:
         für anzahl der gebäude: Beim PlayerManager speichern sobald Gebäude gebaut als dictinary     
         */
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         
         foreach(Unit u in FindObjectsOfType<Unit>()) {
             string activePlayer = "";
