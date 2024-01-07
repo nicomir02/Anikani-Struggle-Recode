@@ -24,7 +24,7 @@ public class MoralManager : NetworkBehaviour
     void Start() {
         unitMoral.Add(new Moral_Heimweh());
         unitMoral.Add(new Moral_Attack());
-
+        unitMoral.Add(new Moral_Optimism());
         allgemeinMoral.Add(new Moral_Schaden());
         allgemeinMoral.Add(new Moral_Food());
 

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using HelperScripts;
 using UnityEngine;
 
 public class Moral_Heal : Moral
 {
-    public Moral_Heal() {
+    public Moral_Heal()
+    {
+        overviewName = "MoralHeal";
         positive = "Good Healer";
         negative = "Bad Teammate/Healer";
 
@@ -12,7 +15,7 @@ public class Moral_Heal : Moral
     }
         
     
-    public override float auswerten(VolkObject o) {
+    public override float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral) {
         int howlong = o.LastHeal;
 
         if(moral == 0) {

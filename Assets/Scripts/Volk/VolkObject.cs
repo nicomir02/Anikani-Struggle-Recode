@@ -68,8 +68,13 @@ public class VolkObject : NetworkBehaviour
     [SerializeField] public List<int> kostenFuerRessource;
     [SerializeField] public List<float> kostenMultiplierFuerRessource;
 
-
-    
+    public void ApplyMoraleChange(float change)
+    {
+        moralWert += change;
+        moralWert = Mathf.Clamp(moralWert, 0f, 1f);
+        if (Moralb != null) Moralb.Change(change);
+        Debug.Log($"[VolkObject] New Morale Value: {moralWert}");
+    }
 
     protected InfoboxManager im;
 

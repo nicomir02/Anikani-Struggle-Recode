@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using HelperScripts;
 using UnityEngine;
 
 public class Moral_Heimweh : Moral
 {
-    public Moral_Heimweh() {
+    public Moral_Heimweh()
+    {
+        overviewName = "moralHeimweh";
         positive = "Homesick";
         negative = "Desire to travel";
 
@@ -12,7 +15,7 @@ public class Moral_Heimweh : Moral
     }
         
     
-    public override float auswerten(VolkObject o) {
+    public override float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral) {
         int howlong = ((Unit)o).WieLangNichtGebiet;
 
         if(moral == 0) {
