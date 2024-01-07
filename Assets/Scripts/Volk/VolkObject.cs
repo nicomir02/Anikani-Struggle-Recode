@@ -7,10 +7,10 @@ public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
 
-    
-    [SyncVar] public float attackValue = 0;
-   
-    [SyncVar] public float healValue = 0;
+    private int moralSkalenKategorieWert = 0;       //die klasse/kategorie in der sich der Moralwert befindet (<10% = 1, <25% = 2, <50% = 3. <75% = 4, <90% = 5, >90% = 6)
+    public int MoralSkalenKategorieWert {
+        get{return moralSkalenKategorieWert;}
+    }
 
 
 //vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
@@ -21,6 +21,13 @@ public class VolkObject : NetworkBehaviour
     [SerializeField] public int standardAttackRange = 1;
     [SyncVar] public int attackRange = 1;
 
+//auch hier wieder: //aber wo wird attackValue gesetzt?
+    [SerializeField] public float standardAttackValue = 0;
+    [SyncVar] public float attackValue = 0;
+//und auch hier: //aber wo wird healvalue gesetzt?
+   [SerializeField] public float standardHealValue = 0; 
+    [SyncVar] public float healValue = 0;
+
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
     public Moralbar Moralb {
@@ -28,7 +35,7 @@ public class VolkObject : NetworkBehaviour
     }
 
 //für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
-    private float[] moralskalaArray = {0f,0.1f,0.25f,0.5f,0.75f,0.90f,1f};
+    private float[] moralskalaArray = {0.1f,0.25f,0.5f,0.75f,0.90f};    //0f und 1f braucht man nicht zum prüfen welche kategoie es ist
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
@@ -221,9 +228,28 @@ public class VolkObject : NetworkBehaviour
         
     }
 
-    //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen
-    public void prevMoralAnpassung(){
+    //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen. auch schauen ob Bereich auf der Skala sich verändert hat(andere klasse/kategoie nun)
+    public bool prevMoralAnpassung(){
+        int prevKategorieWert = moralSkalenKategorieWert;
+        checkSkalenKategorie();
+        //Debug.Log("aktuelles Objekttyp=" + this.GetType()); hier klappt es aber wenn ich volkobject übergebe dann nicht mehr
         prevMoralWert = moralWert;
+        if(prevKategorieWert == moralSkalenKategorieWert){
+            return false;   //keine anpassung nötig
+        } else{
+            return true;    //anpassung nötig
+        }
+    }
+
+//hilfsmethode für obige prevMoralAnpassung() und am Anfang um Kategoiewert für anfängliche Moral auch anzupassen(vershciedene einheiten könnten unterschiedliche startmoral haben)
+    private void checkSkalenKategorie(){
+        int count = 1;          //zählen der Kategoien/Klassen fangen bei 1 an
+        //schauen mit HIlfe des arrays in welcher kategoie der aktuelle moralwert liegt
+        for (int i = 0; i < moralskalaArray.Length; i++){
+            if(moralWert < moralskalaArray[i]) break;
+            count++;
+        }
+        moralSkalenKategorieWert = count;   //den aktuellen Kategoriewert anpassen
     }
     
 
@@ -368,8 +394,9 @@ public class VolkObject : NetworkBehaviour
         }
     }
     
+    //momentan im moralmanager geschaut in welchem bereich man sich befindet
     //schauen ob neuer Checkpunkt in Moralwert erreicht wurde und Attribute sich wieder verändern (0%, 10%, 25%, 50%, 75%, 90%, 100%)
-    private void moralskalaAusfuehrung(){
+    /* private void moralskalaAusfuehrung(){
         
         //durch array schauen solange kleiner ist mroalwert um zu guckenin welchem bereich
         //dann scwitch case und dann schauen in moralskala skript
@@ -383,7 +410,7 @@ public class VolkObject : NetworkBehaviour
             //zugriff auf moralskala? an volkobject anhägen? über moralmanager? noch überlegen wie am besten
                 //ms.klasse1(this);
                 break;
-            /* case 1:
+            case 1:
                 ms.klasse2(this);
                 break;
             case 2:
@@ -397,13 +424,13 @@ public class VolkObject : NetworkBehaviour
                 break;
             case 5:
                 ms.klasse6(this);
-                break; */
+                break;
             default:
                 Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
                 break;
         }
         
-    }
+    } */
 
     //Moralauswirkungen geplante Attribute pro Volksobjekt
     /*private void moralAuswirkung(){
@@ -436,9 +463,15 @@ public class VolkObject : NetworkBehaviour
         get{return attackValue;}
         set{attackValue = value;}
     }
+    public float StandardAttackValue {
+        get{return standardAttackValue;}
+    }
         public float HealValue {
         get{return healValue;}
         set{healValue = value;}
+    }
+    public float StandardHealValue {
+        get{return standardHealValue;}
     }
     public int MaxHealth {
         get{return maxHealth;}
@@ -454,6 +487,7 @@ public class VolkObject : NetworkBehaviour
     public int StandardAttackRange {
         get{return standardAttackRange;}
     }
+
 
 }
 

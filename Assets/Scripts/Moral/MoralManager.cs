@@ -19,7 +19,8 @@ public class MoralManager : NetworkBehaviour
     float gesamtMoral = 0.5f;
     [SerializeField] private Moralbar moralbar;
 
-    //noch MOralskala an ein Gameobject anfügen: [SerializeField] private Moralskala ms;
+    [SerializeField] private Moralskala moralskala;
+
 
     void Start() {
         unitMoral.Add(new Moral_Heimweh());
@@ -42,8 +43,11 @@ public class MoralManager : NetworkBehaviour
                 moral += vo.moralAuswertung();
                 howMany++;
                 //neu dazu für Moralauswirkungen
-                vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
-                //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
+                
+                if (vo.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute) methode direkt in moralskala implementiert momentan
+                    moralskala.checkSkala(vo, vo.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
             }
         }
 

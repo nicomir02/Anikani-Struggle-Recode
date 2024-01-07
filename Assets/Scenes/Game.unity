@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 22.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7658,7 +7658,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.35
+  m_fontSize: 18
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7792,7 +7792,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.3
+  m_fontSize: 20.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9694,7 +9694,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.7
+  m_fontSize: 20.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10352,6 +10352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1650865035}
   - component: {fileID: 1650865036}
+  - component: {fileID: 1650865037}
   m_Layer: 0
   m_Name: HelperScripts
   m_TagString: Untagged
@@ -10391,6 +10392,18 @@ MonoBehaviour:
   syncInterval: 0
   gameManager: {fileID: 1938173202}
   tilemapHover: {fileID: 1938173203}
+--- !u!114 &1650865037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650865034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a6ec86311511244ad4e6f06b8f531e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1652554774
 GameObject:
   m_ObjectHideFlags: 0
@@ -10730,7 +10743,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.7
+  m_fontSize: 22.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11934,7 +11947,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.1
+  m_fontSize: 18
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13172,6 +13185,7 @@ MonoBehaviour:
   rm: {fileID: 2014179073}
   anikani: {fileID: 8694705376693512614, guid: 4e8866fe3485e464c808196ae9128d45, type: 3}
   moralbar: {fileID: 1954460428}
+  moralskala: {fileID: 1650865037}
 --- !u!1 &1941706552
 GameObject:
   m_ObjectHideFlags: 0
