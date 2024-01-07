@@ -167,7 +167,7 @@ public class PlayerManager : NetworkBehaviour
 
     public void setUnit(Unit unit, Transform t){
         if(!isLocalPlayer) return;
-        spawnHelper.spawnUnit(volk.id, volk.getUnitID(unit), t, unit.name + " " + name);
+        spawnHelper.spawnUnit(volk.id, volk.getUnitID(unit), t, unit.name + " " + name, code);
     }
     
 
