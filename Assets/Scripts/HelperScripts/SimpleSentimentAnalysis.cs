@@ -1,5 +1,7 @@
 using UnityEngine;
-using SentimentAnalysis = UnitySentiment.SentimentAnalysis; // Use the correct namespace if different
+using UnitySentiment;
+using System;
+using OverallManager;
 
 namespace HelperScripts
 {
@@ -7,59 +9,46 @@ namespace HelperScripts
     {
         public SentimentAnalysis sentimentAnalysis;
         public VoiceRecognition voiceRecognition;
-    
+
         void Start()
         {
-            voiceRecognition = FindObjectOfType<VoiceRecognition>();
-            if(sentimentAnalysis != null)
+            if (sentimentAnalysis != null)
             {
                 sentimentAnalysis.Initialize();
-                SentimentAnalysis.OnAnlysisFinished += HandleAnalysisFinished;
+                SentimentAnalysis.OnAnlysisFinished += HandleAnalysisResult;
             }
         }
-    
+
         void OnDestroy()
         {
-            if(sentimentAnalysis != null)
+            if (sentimentAnalysis != null)
             {
-                SentimentAnalysis.OnAnlysisFinished -= HandleAnalysisFinished;
+                SentimentAnalysis.OnAnlysisFinished -= HandleAnalysisResult;
             }
         }
-    
-        public void AnalyzeSentiment(string text)
+
+        public void AnalyzeSentiment(string text, Action<SentimentResult> onAnalysisComplete)
         {
-            sentimentAnalysis.PredictSentimentText(text);
-        }
-    
-        private void HandleAnalysisFinished(Vector3 analysisResult)
-        {
-            // Convert the result to SentimentResult and process it
-            SentimentResult sentimentResult = new SentimentResult(analysisResult.x, analysisResult.y, analysisResult.z);
-            // Here, you might want to pass sentimentResult to some method that handles the next steps.
-            // For example:
-            ProcessSentimentResult(sentimentResult);
-        }
-    
-        private void ProcessSentimentResult(SentimentResult sentimentResult)
-        {
-            // This is an example. Adapt this logic to fit your game's needs.
-            switch (sentimentResult.GetDominantSentiment())
+            if (sentimentAnalysis != null)
             {
-                case SentimentType.Positive:
-                    // Handle positive sentiment
-                    voiceRecognition.HandlePositiveSentiment();
-                    break;
-                case SentimentType.Negative:
-                    // Handle negative sentiment
-                    voiceRecognition.HandleNegativeSentiment();
-                    break;
-                case SentimentType.Neutral:
-                    // Handle neutral sentiment
-                    voiceRecognition.HandleNeutralSentiment();
-                    break;
+                sentimentAnalysis.PredictSentimentText(text);
+                _onAnalysisComplete = onAnalysisComplete;
             }
+            else
+            {
+                Debug.LogError("SentimentAnalysis component is not initialized.");
+            }
+        }
+
+        private Action<SentimentResult> _onAnalysisComplete;
+
+        private void HandleAnalysisResult(Vector3 analysisResult)
+        {
+            MainThreadDispatcher.Instance.Enqueue(() =>
+            {
+                SentimentResult sentimentResult = new SentimentResult(analysisResult.x, analysisResult.y, analysisResult.z);
+                voiceRecognition.ProcessSentimentResult(sentimentResult);
+            });
         }
     }
 }
-
-

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnitySentiment;
 using Whisper;
 using Whisper.Utils;
 using Debug = UnityEngine.Debug;
@@ -13,6 +14,8 @@ namespace HelperScripts
     {
         public WhisperManager whisper;
         public MicrophoneRecord microphoneRecord;
+        public SentimentAnalysis sentimentAnalysis;
+        public VoiceRecognition voiceRecognition;
 
         private void Awake()
         {
@@ -24,6 +27,8 @@ namespace HelperScripts
         {
             if (!microphoneRecord.IsRecording)
             {
+                LogCurrentMoralValues();
+                
                 microphoneRecord.StartRecord();
                 Debug.Log("Voice recognition started. Listening for commands...");
             }
@@ -90,11 +95,11 @@ namespace HelperScripts
                 Debug.Log("No unit selected.");
                 return;
             }
-            
+
             SimpleSentimentAnalysis sentimentAnalysisComponent = FindObjectOfType<SimpleSentimentAnalysis>();
             if (sentimentAnalysisComponent != null)
             {
-                sentimentAnalysisComponent.AnalyzeSentiment(command);
+                sentimentAnalysisComponent.AnalyzeSentiment(command, ProcessSentimentResult);
             }
             else
             {
@@ -108,6 +113,7 @@ namespace HelperScripts
                 await ExecuteUnitMovement(selectedUnit, singleCommand.Trim());
             }
         }
+
 
         private async Task ExecuteUnitMovement(Unit unit, string command)
         {
@@ -181,22 +187,57 @@ namespace HelperScripts
             return 0; 
         }
 
-        public void HandlePositiveSentiment()
+        public void ProcessSentimentResult(SentimentResult sentimentResult)
         {
-            Debug.Log("Positive");
+            SentimentType dominantSentiment = sentimentResult.GetDominantSentiment();
+            Debug.Log($"Sentiment analysis result: {dominantSentiment}");
+            VolkObject targetObject = FindSelectedUnit().GetComponent<VolkObject>();
+
+            if (targetObject != null)
+            {
+                float initialMorale = targetObject.MoralWert;
+                Debug.Log($"Initial morale value: {initialMorale}");
+
+                foreach (Moral preference in targetObject.Vorlieben)
+                {
+                    float moralImpact = preference.auswerten(targetObject, sentimentResult.GetDominantSentiment());
+                    targetObject.ApplyMoraleChange(moralImpact);
+                }
+
+                float updatedMorale = targetObject.MoralWert;
+                Debug.Log($"Updated morale value : {updatedMorale}");
+
+                if (Mathf.Approximately(initialMorale, updatedMorale))
+                {
+                    Debug.Log("No change in morale value.");
+                }
+                else
+                {
+                    Debug.Log($"Morale value changed by: {updatedMorale - initialMorale}");
+                }
+            }
+            else
+            {
+                Debug.LogError("No selected VolkObject found.");
+            }
         }
 
-        public void HandleNegativeSentiment()
+
+        private void LogCurrentMoralValues()
         {
-            Debug.Log("Negative");
-
+            VolkObject targetObject = FindSelectedUnit().GetComponent<VolkObject>();
+            if (targetObject != null)
+            {
+                Debug.Log($"Current Moral Value: {targetObject.MoralWert}");
+                foreach (var vorliebe in targetObject.Vorlieben)
+                {
+                    Debug.Log($"{vorliebe.overviewName} - Current Score: {vorliebe.auswerten(targetObject)}");
+                }
+            }
+            else
+            {
+                Debug.Log("No VolkObject selected for moral value logging.");
+            }
         }
-
-        public void HandleNeutralSentiment()
-        {
-            Debug.Log("Neutral");
-        }
-
-
     }
 }
