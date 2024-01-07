@@ -28,7 +28,9 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private Button player4;
 
     [SerializeField] private Button chooseColorBtn;
-    [SerializeField] private TMP_InputField chooseColorTxt;
+    [SerializeField] private Slider red;
+    [SerializeField] private Slider green;
+    [SerializeField] private Slider blue;
 
     [SerializeField] private GameObject Lobby;
     [SerializeField] private GameObject Ingame;
@@ -49,7 +51,16 @@ public class LobbyManager : NetworkBehaviour {
         chooseColorBtn.onClick.AddListener(() => OnButtonClicked(chooseColorBtn));
         tribeOptions.onValueChanged.AddListener(delegate {tribeChange(tribeOptions);});
 
-        
+        red.interactable = false;
+        red.gameObject.SetActive(false);
+        red.onValueChanged.AddListener(delegate {valueChanged(red);});
+        green.interactable = false;
+        green.gameObject.SetActive(false);
+        green.onValueChanged.AddListener(delegate {valueChanged(green);});
+        blue.interactable = false;
+        blue.gameObject.SetActive(false);
+        blue.onValueChanged.AddListener(delegate {valueChanged(blue);});
+        chooseColorBtn.gameObject.SetActive(false);
 
         foreach(StandardVolk volk in saveAttributes.Voelker) {
             string volkname = "";
@@ -115,9 +126,44 @@ public class LobbyManager : NetworkBehaviour {
                         cmdUpdateButtonText(3, buttonTextComponent.text + " - " + pm.name);
                     }
                 }
+                red.interactable = true;
+                red.gameObject.SetActive(true);
+                green.interactable = true;
+                green.gameObject.SetActive(true);
+                blue.interactable = true;
+                blue.gameObject.SetActive(true);
+                chooseColorBtn.gameObject.SetActive(true);
             }
         }
-        if(buttonClicked == chooseColorBtn) chooseColor();
+        if(buttonClicked == chooseColorBtn) colorChosing();
+    }
+
+    public void valueChanged(Slider changedSlider) {
+        colorButtonUpdate();
+    }
+
+    private void colorChosing() {
+        float redVal = red.value;
+        float greenVal = green.value;
+        float blueVal = blue.value;
+        red.interactable = false;
+        red.gameObject.SetActive(false);
+        green.interactable = false;
+        green.gameObject.SetActive(false);
+        blue.interactable = false;
+        blue.gameObject.SetActive(false);
+        chooseColorBtn.gameObject.SetActive(false);
+
+        chooseColor(redVal, greenVal, blueVal);
+    }
+
+    private void colorButtonUpdate() {
+        float redVal = red.value;
+        float greenVal = green.value;
+        float blueVal = blue.value;
+
+        Color color = new Color(red.value, green.value, blue.value, 1f);
+        chooseColorBtn.image.color = color;
     }
 
     [Command(requiresAuthority=false)]
@@ -210,20 +256,8 @@ public class LobbyManager : NetworkBehaviour {
         onlineMenu.SetActive(false);
     }
 
-    void chooseColor() {
-        string tmp = chooseColorTxt.text;
-        string c1 = "" + tmp[0] + tmp[1] + tmp[2];
-        string c2 = "" + tmp[3] + tmp[4] + tmp[5];
-        string c3 = "" + tmp[6] + tmp[7] + tmp[8];
-        Debug.Log("1: " + c1 + "; 2: " + c2 + "; 3: " + c3);
-
-        float i1 = ((float)int.Parse(c1)) / 255;
-        float i2 = ((float)int.Parse(c2)) / 255;
-        float i3 = ((float)int.Parse(c3)) / 255;
-        Debug.Log("1: " + i1 + "; 2: " + i2 + "; 3: " + i3);
-        Debug.Log("sum: " + (i1+i2+i3));
-
-        Color color = new Color (i1, i2, i3, 1f);
+    void chooseColor(float red, float green, float blue) {
+        Color color = new Color (red, green, blue, 1f);
 
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if (pm.playerCode == -1 || !playerChosen) {
