@@ -71,11 +71,13 @@ public class Unit : VolkObject
             }
         }
 
+        /*
         for(int i = 0; i < RessourcenFuerKosten.Count; i++){
             float wert = anzahl*kostenMultiplierFuerRessource[i];
             float convert = Mathf.Round(wert * 10.0f) * 0.1f;
             result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievieleEinheitenDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
         }
+        */
         return result;
     }
 
@@ -158,7 +160,7 @@ public class Unit : VolkObject
         base.nextRound();
         steps = maxSteps;
         reichweitenText.text = maxSteps +"";
-        if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerColor)) {
+        if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerCode)) {
             wieLangNichtGebiet = 0;
         }else {
             wieLangNichtGebiet++;

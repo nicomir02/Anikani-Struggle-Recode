@@ -86,8 +86,8 @@ public class RoundManager : NetworkBehaviour
         }
         if(activePlayer.text.Equals(pm.name)) {
             isActive = true;
-            changeActivePlayerID(pm.playerColor);
-            CMDchangeFarbe(pm.playerColor);
+            changeActivePlayerID(pm.playerCode);
+            CMDchangeFarbe(pm.playerCode);
             if(round == 0){
                 pm.setBuilding(0);  //0 ist die ID für MainBuilding
                 //alexänderung

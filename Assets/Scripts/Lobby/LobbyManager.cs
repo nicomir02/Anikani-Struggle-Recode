@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 using TMPro;
+using System;
+using System.Text;
+using Unity.VisualScripting;
 
 public class LobbyManager : NetworkBehaviour {
     [SerializeField] private NetworkManagerAnikani networkManager;
@@ -11,14 +14,18 @@ public class LobbyManager : NetworkBehaviour {
 
     private readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
 
+    private bool playerChosen = false;
     [SerializeField] private Button readyBtn;
 
     [SerializeField] private TMP_Dropdown tribeOptions;
 
-    [SerializeField] private Button blueBtn;
-    [SerializeField] private Button redBtn;
-    [SerializeField] private Button greenBtn;
-    [SerializeField] private Button purpleBtn;
+    [SerializeField] private Button player1;
+    [SerializeField] private Button player2;
+    [SerializeField] private Button player3;
+    [SerializeField] private Button player4;
+
+    [SerializeField] private Button chooseColorBtn;
+    [SerializeField] private TMP_InputField chooseColorTxt;
 
     [SerializeField] private GameObject Lobby;
     [SerializeField] private GameObject Ingame;
@@ -32,10 +39,11 @@ public class LobbyManager : NetworkBehaviour {
 
     void Start() {
         Ingame.SetActive(false);
-        blueBtn.onClick.AddListener(() => OnButtonClicked(blueBtn));
-        redBtn.onClick.AddListener(() => OnButtonClicked(redBtn));
-        greenBtn.onClick.AddListener(() => OnButtonClicked(greenBtn));
-        purpleBtn.onClick.AddListener(() => OnButtonClicked(purpleBtn));
+        player1.onClick.AddListener(() => OnButtonClicked(player1));
+        player2.onClick.AddListener(() => OnButtonClicked(player2));
+        player3.onClick.AddListener(() => OnButtonClicked(player3));
+        player4.onClick.AddListener(() => OnButtonClicked(player4));
+        chooseColorBtn.onClick.AddListener(() => OnButtonClicked(chooseColorBtn));
         tribeOptions.onValueChanged.AddListener(delegate {tribeChange(tribeOptions);});
 
         
@@ -79,30 +87,34 @@ public class LobbyManager : NetworkBehaviour {
     }
 
     public void OnButtonClicked(Button buttonClicked) {
-        if(buttonClicked == blueBtn || buttonClicked == redBtn || buttonClicked == greenBtn || buttonClicked == purpleBtn) {
+        if(buttonClicked == player1 || buttonClicked == player2 || buttonClicked == player3 || buttonClicked == player4) {
+            if (playerChosen) {}
+            else {
+                playerChosen = true;
+                TMP_Text buttonTextComponent = buttonClicked.transform.GetChild(0).GetComponent<TMP_Text>();
+                PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+                if(!buttonTextComponent.text.Contains("-")) {
+                    if(pm.playerCode != -1) {
+                        cmdUpdateButtonText(pm.playerCode, "");
+                    }
 
-            TMP_Text buttonTextComponent = buttonClicked.transform.GetChild(0).GetComponent<TMP_Text>();
-            PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-            if(!buttonTextComponent.text.Contains("-")) {
-                if(pm.playerColor != -1) {
-                    cmdUpdateButtonText(pm.playerColor, "");
-                }
-
-                if(buttonClicked == blueBtn) {
-                    pm.playerColor = 0;
-                    cmdUpdateButtonText(0, buttonTextComponent.text + " - " + pm.name);
-                }else if(buttonClicked == redBtn) {
-                    pm.playerColor = 1;
-                    cmdUpdateButtonText(1, buttonTextComponent.text + " - " + pm.name);
-                }else if(buttonClicked == greenBtn) {
-                    pm.playerColor = 2;
-                    cmdUpdateButtonText(2, buttonTextComponent.text + " - " + pm.name);
-                }else if(buttonClicked == purpleBtn) {
-                    pm.playerColor = 3;
-                    cmdUpdateButtonText(3, buttonTextComponent.text + " - " + pm.name);
+                    if(buttonClicked == player1) {
+                        pm.playerCode = 0;
+                        cmdUpdateButtonText(0, buttonTextComponent.text + " - " + pm.name);
+                    }else if(buttonClicked == player2) {
+                        pm.playerCode = 1;
+                        cmdUpdateButtonText(1, buttonTextComponent.text + " - " + pm.name);
+                    }else if(buttonClicked == player3) {
+                        pm.playerCode = 2;
+                        cmdUpdateButtonText(2, buttonTextComponent.text + " - " + pm.name);
+                    }else if(buttonClicked == player4) {
+                        pm.playerCode = 3;
+                        cmdUpdateButtonText(3, buttonTextComponent.text + " - " + pm.name);
+                    }
                 }
             }
         }
+        if(buttonClicked == chooseColorBtn) chooseColor();
     }
 
     [Command(requiresAuthority=false)]
@@ -114,23 +126,23 @@ public class LobbyManager : NetworkBehaviour {
     void rpcUpdateButtonText(int btn, string text) {
         if(text != "") {
             if(btn == 0) {
-                blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+                player1.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
             }else if(btn == 1) {
-                redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+                player2.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
             }else if(btn == 2) {
-                greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+                player3.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
             }else if(btn == 3) {
-                purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
+                player4.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
             }
         }else {
             if(btn == 0) {
-                blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = blueBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+                player1.transform.GetChild(0).GetComponent<TMP_Text>().text = player1.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
             }else if(btn == 1) {
-                redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = redBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+                player2.transform.GetChild(0).GetComponent<TMP_Text>().text = player2.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
             }else if(btn == 2) {
-                greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = greenBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+                player3.transform.GetChild(0).GetComponent<TMP_Text>().text = player3.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
             }else if(btn == 3) {
-                purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text = purpleBtn.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
+                player4.transform.GetChild(0).GetComponent<TMP_Text>().text = player4.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
             }
         }
     }
@@ -167,7 +179,7 @@ public class LobbyManager : NetworkBehaviour {
         tribeOptions.interactable = false;
 
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-        if(pm.playerColor == -1) return;
+        if(pm.playerCode == -1) return;
         readyPlayer(pm.name);
     }
 
@@ -195,4 +207,32 @@ public class LobbyManager : NetworkBehaviour {
         onlineMenu.SetActive(false);
     }
 
+    void chooseColor() {
+        string tmp = chooseColorTxt.text;
+        string c1 = "" + tmp[0] + tmp[1] + tmp[2];
+        string c2 = "" + tmp[3] + tmp[4] + tmp[5];
+        string c3 = "" + tmp[6] + tmp[7] + tmp[8];
+        Debug.Log("1: " + c1 + "; 2: " + c2 + "; 3: " + c3);
+
+        float i1 = ((float)int.Parse(c1)) / 255;
+        float i2 = ((float)int.Parse(c2)) / 255;
+        float i3 = ((float)int.Parse(c3)) / 255;
+        Debug.Log("1: " + i1 + "; 2: " + i2 + "; 3: " + i3);
+        Debug.Log("sum: " + (i1+i2+i3));
+
+        Color color = new Color (i1, i2, i3, 1f);
+
+        PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+        if (pm.playerCode == -1 || !playerChosen) {
+            //Textfeld please select Player number
+        }
+        else {
+            int num = pm.playerCode;
+            if (num == 0) player1.GetComponent<Image>().color = color;
+            if (num == 1) player2.GetComponent<Image>().color = color;
+            if (num == 2) player3.GetComponent<Image>().color = color;
+            if (num == 3) player4.GetComponent<Image>().color = color;
+            //set Color to gameFarben Liste
+        }
+    }
 }

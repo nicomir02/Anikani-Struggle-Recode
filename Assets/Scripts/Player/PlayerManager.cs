@@ -55,15 +55,15 @@ public class PlayerManager : NetworkBehaviour
     private TMP_Text anikaniCounter;
 
     
-    [SyncVar] private int color = -1;
-    public int playerColor {
-        get{return color;}
-        set{changePlayerColor(value);}
+    [SyncVar][SerializeField] private int code = -1;
+    public int playerCode {
+        get{return code;}
+        set{changePlayerCode(value);}
     }
 
     [Command(requiresAuthority=false)]
-    public void changePlayerColor(int value) {
-        color = value;
+    public void changePlayerCode(int value) {
+        code = value;
     }
 
     //testen ob Obere Leiste schon geladen für die RessourcenCounter
