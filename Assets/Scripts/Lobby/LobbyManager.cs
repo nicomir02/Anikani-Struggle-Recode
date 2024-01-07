@@ -7,10 +7,13 @@ using TMPro;
 using System;
 using System.Text;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 
 public class LobbyManager : NetworkBehaviour {
     [SerializeField] private NetworkManagerAnikani networkManager;
     [SerializeField] private TMP_Text[] playerlist;
+
+    [SerializeField] private GameManager gameManager;
 
     private readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
 
@@ -232,7 +235,9 @@ public class LobbyManager : NetworkBehaviour {
             if (num == 1) player2.GetComponent<Image>().color = color;
             if (num == 2) player3.GetComponent<Image>().color = color;
             if (num == 3) player4.GetComponent<Image>().color = color;
+
             //set Color to gameFarben Liste
+            gameManager.setColor(num, color);
         }
     }
 }

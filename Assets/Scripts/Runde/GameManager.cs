@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
         return Color.white;
     }
 
+    public void setColor(int id, Color color) {
+        gameFarben[id] = color;
+    }
+
     public StandardVolk getVolkByID(int id) {
         foreach(StandardVolk v in voelker) {
             if(v.id == id) return v;

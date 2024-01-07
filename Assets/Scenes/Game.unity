@@ -9441,6 +9441,7 @@ MonoBehaviour:
   - {fileID: 1985648967}
   - {fileID: 1409551438}
   - {fileID: 346918567}
+  gameManager: {fileID: 1938173202}
   readyBtn: {fileID: 301411515}
   tribeOptions: {fileID: 1570820334}
   player1: {fileID: 175865781}
