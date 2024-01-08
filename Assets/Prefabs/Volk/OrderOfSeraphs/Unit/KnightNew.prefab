@@ -205,7 +205,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &1993530594792640057
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,8 +272,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0031499863, y: -0.00055000186, z: 0}
-    m_Extent: {x: 0.50315, y: 0.25055, z: 0}
+    m_Center: {x: 0.00060001016, y: 0.0015500039, z: 0}
+    m_Extent: {x: 0.5006, y: 0.25785, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -769,7 +769,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &6388566055404455327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1356,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &4004221862323873089
 MonoBehaviour:
   m_ObjectHideFlags: 0

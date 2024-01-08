@@ -44,7 +44,8 @@ public class SpriteMerger : MonoBehaviour
         }
 
         newTex.Apply();
-        finalSprite = Sprite.Create(newTex, new Rect(0, 0, newTex.width, newTex.height), new Vector2(1f, 1f));
+        newTex.filterMode = FilterMode.Point;
+        finalSprite = Sprite.Create(newTex, new Rect(0, 0, newTex.width, newTex.height), new Vector2(0.5f, 0f), 20f);
         finalSprite.name = "New Sprite"; 
         finalSpriteRenderer.sprite = finalSprite;
     }
