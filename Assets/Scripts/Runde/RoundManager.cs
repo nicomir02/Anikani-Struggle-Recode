@@ -77,24 +77,24 @@ public class RoundManager : NetworkBehaviour
     [ClientRpc]
     void roundChange() {
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-        nextRoundBuildings(pm);
-        moralManager.nextRound(pm);
-
+        Debug.Log(pm.name);
+        
+        activePlayer.color = gameManager.getColor(pm.playerCode);
         roundText.text = round + "";
         activePlayer.text = pm.name;
-
-        //schauen ob Spieler aktiv
-        if(round == 1) {
-            fogOfWar.color = Color.black;
-        }
-
         isActive = true;
-        /*changeActivePlayerID(pm.playerCode);
-        CMDchangeFarbe(pm.playerCode);*/
-        activePlayer.color = gameManager.getColor(pm.playerCode);
+        //schauen ob Spieler aktiv
         if(round == 0){
             pm.setBuilding(0);
+        }else if(round == 1) {
+            fogOfWar.color = Color.black;
         }
+        if(round > 0) {
+            nextRoundBuildings(pm);
+            moralManager.nextRound(pm);
+        }
+        /*changeActivePlayerID(pm.playerCode);
+        CMDchangeFarbe(pm.playerCode);*/
     }
     
     public void nextRoundBuildings(PlayerManager pm) {
