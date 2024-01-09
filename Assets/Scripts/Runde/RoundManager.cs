@@ -12,7 +12,6 @@ public class RoundManager : NetworkBehaviour
     public int Round {
         get{return round;}
     }
-    [SyncVar] private int curTurn = 0;
 
     [SyncVar] private int activeID = -1;
     public int ActiveID {
@@ -38,7 +37,9 @@ public class RoundManager : NetworkBehaviour
 
     [SerializeField] private Ressource nahrungsRessource;
 
-    private bool isActive = false;
+    private bool isActive = true;
+
+    private List<int> finished = new List<int>();
 
 
     public bool isYourTurn() {
@@ -51,7 +52,7 @@ public class RoundManager : NetworkBehaviour
         //Hier checken ob nächste Runde erlaubt ist:
 
         if(isActive) {
-            CMDnextRound();
+            CMDnextRound(PlayerHelperScript.findLocalPlayer().playerCode);
         }
     }
 
@@ -67,8 +68,6 @@ public class RoundManager : NetworkBehaviour
             list.Add(listOfPlayers[value]);
             listOfPlayers.Remove(listOfPlayers[value]);
         }
-
-        activePlayer.text = list[0];
         round = 0;
         roundText.text = round + "";
         
@@ -77,32 +76,24 @@ public class RoundManager : NetworkBehaviour
 
     [ClientRpc]
     void roundChange() {
-        roundText.text = round + "";
-        activePlayer.text = list[curTurn];
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+        nextRoundBuildings(pm);
+        moralManager.nextRound(pm);
+
+        roundText.text = round + "";
+        activePlayer.text = pm.name;
+
         //schauen ob Spieler aktiv
         if(round == 1) {
             fogOfWar.color = Color.black;
         }
-        if(activePlayer.text.Equals(pm.name)) {
-            isActive = true;
-            changeActivePlayerID(pm.playerCode);
-            CMDchangeFarbe(pm.playerCode);
-            if(round == 0){
-                pm.setBuilding(0);  //0 ist die ID für MainBuilding
-                //alexänderung
-                /* if(!pm.playerHauptgebaeude){
-                    isActive = false;
-                    pm.setBuilding(0);
-                } else {
-                    isActive = true;
-                } */
-            }
-            nextRoundBuildings(pm);
 
-            moralManager.nextRound(pm);
-        }else {
-            isActive = false;
+        isActive = true;
+        /*changeActivePlayerID(pm.playerCode);
+        CMDchangeFarbe(pm.playerCode);*/
+        activePlayer.color = gameManager.getColor(pm.playerCode);
+        if(round == 0){
+            pm.setBuilding(0);
         }
     }
     
@@ -182,14 +173,13 @@ public class RoundManager : NetworkBehaviour
     }
 
     [Command(requiresAuthority=false)]
-    void CMDnextRound() {
-        if(++curTurn >= list.Count) {
-            curTurn=0;
+    void CMDnextRound(int id) {
+        finished.Add(id);
+        if(finished.Count == list.Count) {
             round++;
+            finished = new List<int>();
+            roundChange();
         }
-        activePlayer.text = list[curTurn];
-        roundText.text = round + "";
-        roundChange();
     }
 
 

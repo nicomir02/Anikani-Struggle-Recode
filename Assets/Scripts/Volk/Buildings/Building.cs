@@ -99,7 +99,12 @@ public class Building : VolkObject
         newPos.z += 1;
 
         if(!gesetzt){
-            CMDtransparencyChange(0.5f, newPos);
+            if(transform.parent.GetComponent<PlayerManager>() != null) pm = transform.parent.GetComponent<PlayerManager>();
+            if(pm == PlayerHelperScript.findLocalPlayer()){
+                transparencyChange(0.5f);
+            }else {
+                transparencyChange(0f);
+            }
             /*
             Leider ist setzbar() sehr ineffizient
             
