@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private List<Color> gameFarben;
+    [SerializeField] private List<Color> gameFarben; 
     [SerializeField] private List<StandardVolk> voelker;
     [SerializeField] private SaveHelper saveHelper;
 
@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public Color getColor(int id) {
         if(id < gameFarben.Count) return gameFarben[id];
         return Color.white;
+    }
+
+    public void setColor(int id, Color color) {
+        gameFarben[id] = color;
     }
 
     public StandardVolk getVolkByID(int id) {

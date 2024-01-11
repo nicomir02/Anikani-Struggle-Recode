@@ -8,13 +8,20 @@ using TMPro;
 //
 public class Unit : VolkObject
 {
-    [SerializeField] private List<Sprite> frontWalk = new List<Sprite>();
-    [SerializeField] private List<Sprite> backWalk = new List<Sprite>();
+    private List<Sprite> frontWalk = new List<Sprite>();
+    private List<Sprite> backWalk = new List<Sprite>();
+
+    private void loadMoreAnimations() {
+        transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
+        frontWalk = transform.GetChild(5).GetComponent<AniSpriteMerger>().GetList(); 
+        transform.GetChild(6).GetComponent<AniSpriteMerger>().aniMerge();
+        backWalk = transform.GetChild(6).GetComponent<AniSpriteMerger>().GetList(); 
+    }
 
 //StandardMaxSteps für Moralauswirkungen eingeführt
     [SerializeField] private int standardMaxSteps = 4;
     private int maxSteps = 4;
-    private int steps = 0; //Wieder private machen nach test
+    private int steps = 0; 
     public int Steps {
         get{return steps;}
     }
@@ -54,6 +61,7 @@ public class Unit : VolkObject
         Optimierungsvorschlg:
         für anzahl der gebäude: Beim PlayerManager speichern sobald Gebäude gebaut als dictinary     
         */
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         
         foreach(Unit u in FindObjectsOfType<Unit>()) {
             string activePlayer = "";
@@ -70,11 +78,13 @@ public class Unit : VolkObject
             }
         }
 
+        /*
         for(int i = 0; i < RessourcenFuerKosten.Count; i++){
             float wert = anzahl*kostenMultiplierFuerRessource[i];
             float convert = Mathf.Round(wert * 10.0f) * 0.1f;
             result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievieleEinheitenDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
         }
+        */
         return result;
     }
 
@@ -82,6 +92,7 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
+        loadMoreAnimations();
         vorlieben = mm.getMoral(0, healValue > 0);
         //Standardwerte für moralauswirkungen eingeführt
         maxSteps = standardMaxSteps;
@@ -157,7 +168,7 @@ public class Unit : VolkObject
         base.nextRound();
         steps = maxSteps;
         reichweitenText.text = maxSteps +"";
-        if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerColor)) {
+        if(area.isAreaByID(currentPosition, transform.parent.GetComponent<PlayerManager>().playerCode)) {
             wieLangNichtGebiet = 0;
         }else {
             wieLangNichtGebiet++;

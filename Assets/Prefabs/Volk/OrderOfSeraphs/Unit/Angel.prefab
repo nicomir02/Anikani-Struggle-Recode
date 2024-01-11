@@ -1202,6 +1202,7 @@ MonoBehaviour:
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.1
+  - 2
   specificButtonsInfobox: []
   animationAbstand: 0.2
   idle: []

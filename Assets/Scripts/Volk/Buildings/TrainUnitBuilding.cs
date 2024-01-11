@@ -50,7 +50,6 @@ public class TrainUnitBuilding : Building
             ausbildungen.Remove(zahl);//um dictionary zu pflegen und nicht größer werden zu lassen
             if(ausbildungen.Count <= 0) {
                 zahl = 0;
-    	        
             }
         }
     }
