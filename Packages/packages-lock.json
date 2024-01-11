@@ -187,7 +187,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.26",
+      "version": "3.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -349,6 +349,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.whisper.unity": {
+      "version": "https://github.com/Macoron/whisper.unity.git?path=/Packages/com.whisper.unity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "25c8d267cf219f6a6728c6b35d6566c4a4d1aefd"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
