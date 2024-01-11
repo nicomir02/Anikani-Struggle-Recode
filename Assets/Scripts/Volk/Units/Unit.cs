@@ -10,6 +10,7 @@ public class Unit : VolkObject
 {
     private List<Sprite> frontWalk = new List<Sprite>();
     private List<Sprite> backWalk = new List<Sprite>();
+    [SyncVar] public bool lastMoveWasAttack = false;
 
     private void loadMoreAnimations() {
         transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
@@ -224,6 +225,7 @@ public class Unit : VolkObject
                     steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
                     reichweitenText.text = steps+"";
                     changeSteps(0);
+                    lastMoveWasAttack = true;
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)
             }
@@ -239,6 +241,7 @@ public class Unit : VolkObject
         steps-= path.endkosten;
         changeSteps(steps);
     }
+    
 
     public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
     {

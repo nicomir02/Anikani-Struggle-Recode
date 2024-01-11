@@ -13,7 +13,6 @@ public class VolkObject : NetworkBehaviour
    
     [SyncVar] public float healValue = 0;
 
-
 //vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
     [SerializeField] public int standardMaxHealth = 100;
     [SyncVar] public int maxHealth = 100;   //vielleicht als float?

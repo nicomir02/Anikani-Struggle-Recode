@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/SentimentResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/SentimentResult.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/SimpleSentimentAnalysis.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper/ggml-tiny.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Whisper/ggml-tiny.bin.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Volk/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Volk/VolkObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Volk/VolkObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +37,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/Users/louisn/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/louisn/Library/Application Support/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/Users/louisn/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Standalone Player.Start Unity">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity" />
@@ -116,7 +105,8 @@
       <updated>1704306938356</updated>
       <workItem from="1704306939685" duration="2152000" />
       <workItem from="1704457357413" duration="17046000" />
-      <workItem from="1704979633202" duration="921000" />
+      <workItem from="1704979633202" duration="1554000" />
+      <workItem from="1704988217936" duration="7603000" />
     </task>
     <servers />
   </component>

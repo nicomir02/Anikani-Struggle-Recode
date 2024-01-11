@@ -123,12 +123,21 @@ namespace HelperScripts
 
             if (moveDirection != Vector3Int.zero && steps > 0)
             {
+                bool attackOccurred = false;
                 for (int i = 0; i < steps; i++)
                 {
+                    Debug.Log("Trying to attack!");
                     Vector3Int targetPosition = unit.currentPosition + moveDirection;
                     Debug.Log($"Moving unit to {targetPosition}");
                     unit.schritteGehen(targetPosition);
-            
+                    attackOccurred = unit.lastMoveWasAttack;
+                    Debug.Log(attackOccurred);
+
+                    if (attackOccurred)
+                    {
+                        Debug.Log("Attack occured during movement!");
+                        break;
+                    }
                     await Task.Delay(500); 
                 }
             }
