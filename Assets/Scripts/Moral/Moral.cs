@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using HelperScripts;
 using UnityEngine;
 
 public abstract class Moral
@@ -55,5 +54,5 @@ public abstract class Moral
         return (newCase == 0 && positive != null && positive != "") || (newCase == 1 && neutral != null && neutral != "") || (newCase == 2 && negative != null && negative != "");
     }
 
-    public abstract float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral);
+    public abstract float auswerten(VolkObject o);
 }

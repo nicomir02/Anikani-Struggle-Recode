@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using HelperScripts;
 using UnityEngine;
 
 public class Moral_Schaden : Moral
 {
-    public Moral_Schaden()
-    {
-        overviewName = "moralSchaden";
+    public Moral_Schaden() {
         positive = "Loves damage"; //auf 100% nicht okay
         neutral = "Okay with damage"; // Neutral: Bis 50% okay
         negative = "Hates damage"; // 100% super, 50%=0
@@ -16,7 +13,7 @@ public class Moral_Schaden : Moral
     }
         
     
-    public override float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral) {
+    public override float auswerten(VolkObject o) {
         if(moral == 0) {
             if(o.health >= o.maxHealth) {
                 return 0f;

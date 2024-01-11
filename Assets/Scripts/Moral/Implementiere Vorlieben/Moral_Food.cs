@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using HelperScripts;
 using UnityEngine;
 
 public class Moral_Food : Moral
@@ -8,6 +7,7 @@ public class Moral_Food : Moral
     public Moral_Food() {
         
         overviewName = "Food";
+
         positive = "Less hungry";
         neutral = "Normal eating";
         negative = "Always hungry";
@@ -16,7 +16,7 @@ public class Moral_Food : Moral
     }
         
     
-    public override float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral) {
+    public override float auswerten(VolkObject o) {
         float result = 0f;
         
         if(moral == 0) { //Ab 0.5 volle Moral

@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using HelperScripts;
 using UnityEngine;
 
 public class Moral_Attack : Moral
 {
-    public Moral_Attack()
-    {
-        overviewName = "moralAttack";
+    public Moral_Attack() {
         positive = "Loves Attack";
         negative = "Hates Attack";
 
@@ -15,7 +12,7 @@ public class Moral_Attack : Moral
     }
         
     
-    public override float auswerten(VolkObject o, SentimentType sentiment = SentimentType.Neutral) {
+    public override float auswerten(VolkObject o) {
         int howlong = o.LastAttack;
 
         if(moral == 0) {
