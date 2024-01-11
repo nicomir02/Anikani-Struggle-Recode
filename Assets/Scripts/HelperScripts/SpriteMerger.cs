@@ -32,13 +32,11 @@ public class SpriteMerger : MonoBehaviour
                     else {
                         pixel = spritesToMerge[i].sprite.texture.GetPixel(x, y);
                         Color colorSprite = spritesToMerge[i].color;
-                        if (colorSprite != Color.white) {
-                            Color colorPixel = pixel;
-                            float r = (0.5f * ((float)System.Math.Pow(colorSprite.r, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.r, 2)));
-                            float g = (0.5f * ((float)System.Math.Pow(colorSprite.g, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.g, 2)));
-                            float b = (0.5f * ((float)System.Math.Pow(colorSprite.b, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.b, 2)));
-                            pixel = new Color(r, g, b, pixel.a);
-                        }
+                        Color colorPixel = pixel;
+                        float r = (0.5f * ((float)System.Math.Pow(colorSprite.r, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.r, 2)));
+                        float g = (0.5f * ((float)System.Math.Pow(colorSprite.g, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.g, 2)));
+                        float b = (0.5f * ((float)System.Math.Pow(colorSprite.b, 2)))+ (0.5f * ((float)System.Math.Pow(colorPixel.b, 2)));
+                        pixel = new Color(r, g, b, 1);
                     }
                     newTex.SetPixel(x, y, pixel);
                 }

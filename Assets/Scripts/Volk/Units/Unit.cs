@@ -8,15 +8,8 @@ using TMPro;
 //
 public class Unit : VolkObject
 {
-    private List<Sprite> frontWalk = new List<Sprite>();
-    private List<Sprite> backWalk = new List<Sprite>();
-
-    private void loadMoreAnimations() {
-        transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
-        frontWalk = transform.GetChild(5).GetComponent<AniSpriteMerger>().GetList(); 
-        transform.GetChild(6).GetComponent<AniSpriteMerger>().aniMerge();
-        backWalk = transform.GetChild(6).GetComponent<AniSpriteMerger>().GetList(); 
-    }
+    [SerializeField] private List<Sprite> frontWalk = new List<Sprite>();
+    [SerializeField] private List<Sprite> backWalk = new List<Sprite>();
 
 //StandardMaxSteps für Moralauswirkungen eingeführt
     [SerializeField] private int standardMaxSteps = 4;
@@ -92,7 +85,6 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
-        loadMoreAnimations();
         vorlieben = mm.getMoral(0, healValue > 0);
         //Standardwerte für moralauswirkungen eingeführt
         maxSteps = standardMaxSteps;

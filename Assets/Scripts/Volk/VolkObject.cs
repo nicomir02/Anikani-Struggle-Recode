@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Unity.VisualScripting;
 
 public class VolkObject : NetworkBehaviour
 {
@@ -90,12 +89,7 @@ public class VolkObject : NetworkBehaviour
     
     protected List<Sprite> animationList = new List<Sprite>();
     [SerializeField] private float animationAbstand = 0.2f;
-    public List<Sprite> idle = new List<Sprite>();
-
-    private void loadAnimations() {
-        transform.GetChild(4).GetComponent<AniSpriteMerger>().aniMerge();
-        idle = transform.GetChild(4).GetComponent<AniSpriteMerger>().GetList(); 
-    }
+    [SerializeField] public List<Sprite> idle = new List<Sprite>();
 
     public bool m_selected = false;
 
@@ -199,7 +193,6 @@ public class VolkObject : NetworkBehaviour
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
-        loadAnimations();
         animationList = idle;
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
