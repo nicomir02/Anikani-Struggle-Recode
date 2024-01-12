@@ -206,7 +206,7 @@ public class LobbyManager : NetworkBehaviour {
    
     [Command(requiresAuthority=false)]
     public void serverPlayerConnect(string playername) {
-        if(playername == null) playername = "RandomName " + new System.Random().Next(0, 1000);
+        playername = "RandomName " + new System.Random().Next(0, 1000);
         playernames.Add(playername, false);
         syncDictionary();
     }
