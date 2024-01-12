@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class VolkObject : NetworkBehaviour
 {
+    //Test
     [SyncVar] public float health;
 
     
