@@ -8,11 +8,9 @@ public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
 
-    
     [SyncVar] public float attackValue = 0;
    
     [SyncVar] public float healValue = 0;
-
 
 //vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
     [SerializeField] public int standardMaxHealth = 100;
@@ -85,7 +83,7 @@ public class VolkObject : NetworkBehaviour
     
     protected List<Sprite> animationList = new List<Sprite>();
     [SerializeField] private float animationAbstand = 0.2f;
-    public List<Sprite> idle = new List<Sprite>();
+    protected List<Sprite> idle = new List<Sprite>();
 
     private void loadAnimations() {
         transform.GetChild(4).GetComponent<AniSpriteMerger>().aniMerge();
@@ -235,7 +233,7 @@ public class VolkObject : NetworkBehaviour
     
 
     public IEnumerator animationStart(int cur) {
-        if(animationList.Count == 0) animationList.Add(safe);
+        if(animationList.Count <= 0) animationList.Add(safe);
 
         if(++cur >= animationList.Count) cur = 0;
         
@@ -298,15 +296,25 @@ public class VolkObject : NetworkBehaviour
         m_selected = false;
     }
     
-    public void tryAttack(Vector3Int v, VolkObject obj) {
+    /*public void tryAttack(Vector3Int v, VolkObject obj) {
         if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
             obj.changeHealth(healValue);
             lastHeal = 0;
         }else {
+            if(transform.position.x > obj.transform.position.x) {
+                animationList = frontAttack;
+            }else if(transform.position.x < obj.transform.position.x) {
+                animationList = backAttack;
+            }else if(transform.position.y > obj.transform.position.y) {
+                animationList = frontAttack;
+            }else if(transform.position.y < obj.transform.position.y) {
+                animationList = backAttack;
+            }
             obj.changeHealth(-attackValue);
             lastAttack = 0;
+            animationList = idle; 
         }
-    }
+    }*/ //In Einheit besser aufgehoben (Gebaeude greifen nicht an). 
 
     public void cycleObjectMethod(){
         //Debug.Log("cycleObjectMethod");

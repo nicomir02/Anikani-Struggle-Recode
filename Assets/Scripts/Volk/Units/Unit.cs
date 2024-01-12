@@ -11,11 +11,19 @@ public class Unit : VolkObject
     private List<Sprite> frontWalk = new List<Sprite>();
     private List<Sprite> backWalk = new List<Sprite>();
 
+    private List<Sprite> frontAttack = new List<Sprite>();
+    private List<Sprite> backAttack = new List<Sprite>();
+
     private void loadMoreAnimations() {
         transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
         frontWalk = transform.GetChild(5).GetComponent<AniSpriteMerger>().GetList(); 
         transform.GetChild(6).GetComponent<AniSpriteMerger>().aniMerge();
         backWalk = transform.GetChild(6).GetComponent<AniSpriteMerger>().GetList(); 
+
+        transform.GetChild(7).GetComponent<AniSpriteMerger>().aniMerge();
+        frontAttack = transform.GetChild(7).GetComponent<AniSpriteMerger>().GetList(); 
+        transform.GetChild(8).GetComponent<AniSpriteMerger>().aniMerge();
+        backAttack = transform.GetChild(8).GetComponent<AniSpriteMerger>().GetList(); 
     }
 
 //StandardMaxSteps für Moralauswirkungen eingeführt
@@ -114,8 +122,6 @@ public class Unit : VolkObject
         //Debug.Log("Start" + currentPosition);
         steps = 0;
         reichweitenText.text = 0+"";
-        
-        
     }
 
     [Command(requiresAuthority=false)]
@@ -240,6 +246,26 @@ public class Unit : VolkObject
         changeSteps(steps);
     }
 
+    public void tryAttack(Vector3Int v, VolkObject obj) {
+        if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
+            obj.changeHealth(healValue);
+            lastHeal = 0;
+        }else {
+            if(transform.position.x >= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
+                animationList = frontAttack;
+            }else if(transform.position.x >= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
+                animationList = backAttack;
+            }else if(transform.position.x <= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
+                animationList = frontAttack;
+            }else if(transform.position.x <= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
+                animationList = backAttack;
+            }
+            obj.changeHealth(-attackValue);
+            lastAttack = 0;
+            animationList = idle; 
+        }
+    }
+
     public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
     {
         Vector3 startingPosition;
@@ -254,13 +280,13 @@ public class Unit : VolkObject
 
             Vector3 position = tilemapHover.getVec3FromVec3Int(positions[i+1]);
 
-            if(startingPosition.x > position.x) {
+            if(startingPosition.x >= position.x && startingPosition.y >= position.y) {
                 animationList = frontWalk;
-            }else if(startingPosition.x < position.x) {
+            }else if(startingPosition.x >= position.x && startingPosition.y <= position.y) {
                 animationList = backWalk;
-            }else if(startingPosition.y > position.y) {
+            }else if(startingPosition.x <= position.x && startingPosition.y >= position.y) {
                 animationList = frontWalk;
-            }else if(startingPosition.y < position.y) {
+            }else if(startingPosition.x <= position.x && startingPosition.y <= position.y) {
                 animationList = backWalk;
             }
 

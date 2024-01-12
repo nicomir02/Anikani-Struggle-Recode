@@ -416,12 +416,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6c637e6b8de4f4ddaaf4d6d5b4228757, type: 3}
+  m_Sprite: {fileID: -461201308, guid: 0b146017f71e44a20b2439770f3b051d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.17, y: 0.25}
+  m_Size: {x: 6.4, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -502,52 +502,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2632361327093478432
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1544009509585739726}
-  - component: {fileID: 645995530243390537}
-  m_Layer: 0
-  m_Name: backAni
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1544009509585739726
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632361327093478432}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1663475, y: -6.246342, z: -3.0156307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1565484043293773196}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &645995530243390537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632361327093478432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17729e8e887a942569c417e363518e94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticSprites: []
-  colorSprites: []
 --- !u!1 &3113499890220228248
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,52 +698,6 @@ MonoBehaviour:
   bottomBar: {fileID: 7703710264527200281}
   topBar: {fileID: 89773283539494792}
   speed: 1
---- !u!1 &4435995412979291216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8414769718235332137}
-  - component: {fileID: 8214354014584857359}
-  m_Layer: 0
-  m_Name: frontAni
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8414769718235332137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435995412979291216}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1663475, y: -6.246342, z: -3.0156307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1565484043293773196}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8214354014584857359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435995412979291216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17729e8e887a942569c417e363518e94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticSprites: []
-  colorSprites: []
 --- !u!1 &4657762353011222702
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,12 +875,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0b604b16d30d5411c8e1edf967e58d79, type: 3}
+  m_Sprite: {fileID: 1987289789, guid: dc2827a0083514c0d91be50592d4aba9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.17, y: 0.25}
+  m_Size: {x: 6.4, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1023,6 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565484043293773196}
+  - component: {fileID: 8044248686948862451}
   - component: {fileID: 6219530997422260251}
   - component: {fileID: -4492628895403585771}
   - component: {fileID: -4369724155848389381}
@@ -1051,10 +960,25 @@ Transform:
   - {fileID: 4924412687297470278}
   - {fileID: 1681501735975753181}
   - {fileID: 2201782973058639882}
-  - {fileID: 8414769718235332137}
-  - {fileID: 1544009509585739726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8044248686948862451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220863251501962979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed9b073de0504886bf9451a6f4f89e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritesToMerge:
+  - {fileID: 7418802453530908314}
+  - {fileID: 9170610516738153195}
+  finalSpriteRenderer: {fileID: 6219530997422260251}
+  finalSprite: {fileID: 0}
 --- !u!212 &6219530997422260251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1137,7 +1061,6 @@ MonoBehaviour:
   kostenMultiplierFuerRessource: []
   specificButtonsInfobox: []
   animationAbstand: 0.2
-  idle: []
   m_selected: 0
   radius: 3
   lightObject: {fileID: 390609869062261948}
@@ -1203,8 +1126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17729e8e887a942569c417e363518e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staticSprites: []
-  colorSprites: []
+  staticSprites:
+  - {fileID: 1987289789, guid: dc2827a0083514c0d91be50592d4aba9, type: 3}
+  - {fileID: 1543665257, guid: dc2827a0083514c0d91be50592d4aba9, type: 3}
+  colorSprites:
+  - {fileID: -461201308, guid: 0b146017f71e44a20b2439770f3b051d, type: 3}
+  - {fileID: -1562791178, guid: 0b146017f71e44a20b2439770f3b051d, type: 3}
 --- !u!1 &8747276622695061906
 GameObject:
   m_ObjectHideFlags: 0

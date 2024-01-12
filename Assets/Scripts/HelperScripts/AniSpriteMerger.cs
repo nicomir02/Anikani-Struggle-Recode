@@ -6,31 +6,31 @@ public class AniSpriteMerger : MonoBehaviour
 {
     [SerializeField] private Sprite[] staticSprites;
     [SerializeField] private Sprite[] colorSprites;
-    private List<Sprite> coloredSprites;
-    private Color color;
-
-    // Start is called before the first frame update
+    private List<Sprite> coloredSprites = new List<Sprite>();
+    
     void Start()
-    {
-        aniMerge();
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         aniMerge();
     }
 
     public void aniMerge() {
         if (staticSprites.Length != colorSprites.Length) {
-            Debug.Log("Something wrong");
+            Debug.Log("Different number of sprites");
             return;
         }
 
-        color = transform.parent.transform.GetChild(3).GetComponent<SpriteRenderer>().color;
+        if (staticSprites.Length <= 0 || colorSprites.Length <= 0) {
+            Debug.Log("No sprites");
+            return;
+        }
+        
+        coloredSprites.Clear();
+        Color color = transform.parent.transform.GetChild(3).GetComponent<SpriteRenderer>().color;
 
+        Sprite tmp;
         for (int i = 0; i < staticSprites.Length; i++) {
-            coloredSprites.Add(concreteMerge(staticSprites[i], coloredSprites[i], color));
+            tmp = concreteMerge(staticSprites[i], colorSprites[i], color);
+            if (tmp != null) coloredSprites.Add(tmp);
         }
     }
 
@@ -40,10 +40,15 @@ public class AniSpriteMerger : MonoBehaviour
 
     public Sprite concreteMerge(Sprite staticSprite, Sprite colorSprite, Color teamColor) {
         var newTex = new Texture2D(staticSprite.texture.width, staticSprite.texture.height);
+        for (int x = 0; x < newTex.width; x++) {
+            for (int y = 0; y < newTex.height; y++) {
+                newTex.SetPixel(x, y, new Color(0, 0, 0, 0));
+            }
+        }
 
+        Color pixel;
         for (int x = 0; x < staticSprite.texture.width; x++) {
             for (int y = 0; y < staticSprite.texture.height; y++) {
-                var pixel = staticSprite.texture.GetPixel(x, y).a == 0 ? newTex.GetPixel(x, y) : staticSprite.texture.GetPixel(x, y);
                 if (staticSprite.texture.GetPixel(x, y).a == 0) pixel = newTex.GetPixel(x,y); 
                 else pixel = staticSprite.texture.GetPixel(x, y);
                 newTex.SetPixel(x, y, pixel);
@@ -52,7 +57,6 @@ public class AniSpriteMerger : MonoBehaviour
 
         for (int x = 0; x < colorSprite.texture.width; x++) {
             for (int y = 0; y < colorSprite.texture.height; y++) {
-                var pixel = colorSprite.texture.GetPixel(x, y).a == 0 ? newTex.GetPixel(x, y) : colorSprite.texture.GetPixel(x, y);
                 if (colorSprite.texture.GetPixel(x, y).a == 0) pixel = newTex.GetPixel(x,y); 
                 else {
                     pixel = colorSprite.texture.GetPixel(x, y);
@@ -60,7 +64,8 @@ public class AniSpriteMerger : MonoBehaviour
                     float r = (0.5f * ((float)System.Math.Pow(teamColor.r, 2)))+ (0.5f * ((float)System.Math.Pow(cp.r, 2)));
                     float g = (0.5f * ((float)System.Math.Pow(teamColor.g, 2)))+ (0.5f * ((float)System.Math.Pow(cp.g, 2)));
                     float b = (0.5f * ((float)System.Math.Pow(teamColor.b, 2)))+ (0.5f * ((float)System.Math.Pow(cp.b, 2)));
-                    pixel = new Color(r, g, b, pixel.a);
+                    float a = (0.5f * ((float)System.Math.Pow(teamColor.a, 2)))+ (0.5f * ((float)System.Math.Pow(cp.a, 2)));
+                    pixel = new Color(r, g, b, a); 
                 }
                 newTex.SetPixel(x, y, pixel);
             }
