@@ -71,8 +71,8 @@ public class VolkObject : NetworkBehaviour
     public void ApplyMoraleChange(float change)
     {
         moralWert += change;
-        moralWert = Mathf.Clamp(moralWert, 0f, 1f);
-        if (Moralb != null) Moralb.Change(change);
+        //moralWert = Mathf.Clamp(moralWert, 0f, 1f);*/
+        if (Moralb != null) Moralb.Change(moralWert);
         Debug.Log($"[VolkObject] New Morale Value: {moralWert}");
     }
 
@@ -167,7 +167,7 @@ public class VolkObject : NetworkBehaviour
 
         float old = MoralWert;
         MoralWert = Mathf.Min((moral / howMany)*MoralBoost,1f);
-        if(Moralb != null) Moralb.Change(MoralWert-old);
+        if(Moralb != null) Moralb.Change(MoralWert);
 
         return MoralWert;
     }

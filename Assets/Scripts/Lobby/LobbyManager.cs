@@ -198,15 +198,16 @@ public class LobbyManager : NetworkBehaviour {
 
     void Update() {
         if(!registered && NetworkClient.ready) {
-            serverPlayerConnect(networkManager.GetComponent<SaveHelper>().name);
+            string pname = networkManager.GetComponent<SaveHelper>().name;
+            if(pname == "" || pname == null) pname = "Random Name " + new Random().Next(0, 1000);
+            serverPlayerConnect(pname);
             registered = true;
             tribeChange(tribeOptions);
         }
     }
    
     [Command(requiresAuthority=false)]
-    public void serverPlayerConnect(string playername) {
-        playername = "RandomName " + new System.Random().Next(0, 1000);
+    public void serverPlayerConnect(string playername) {      
         playernames.Add(playername, false);
         syncDictionary();
     }

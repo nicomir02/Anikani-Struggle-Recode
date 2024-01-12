@@ -48,7 +48,7 @@ public class MoralManager : NetworkBehaviour
         }
 
         float newGesamtMoral = moral/howMany;
-        moralbar.Change(newGesamtMoral-gesamtMoral);
+        moralbar.Change(newGesamtMoral);
         gesamtMoral = newGesamtMoral;
 
         if(newGesamtMoral > 0.9f) {
