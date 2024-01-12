@@ -93,7 +93,7 @@ public class Unit : VolkObject
 
     public override void Start() {
         base.Start();
-        loadMoreAnimations();
+        //loadMoreAnimations();
         vorlieben = mm.getMoral(0, healValue > 0);
         //Standardwerte für moralauswirkungen eingeführt
         maxSteps = standardMaxSteps;
