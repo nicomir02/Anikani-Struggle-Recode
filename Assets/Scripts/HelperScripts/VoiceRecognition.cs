@@ -22,13 +22,25 @@ namespace HelperScripts
             if (microphoneRecord != null) 
                 microphoneRecord.OnRecordStop += OnRecordStop;
         }
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                StartListening();
+            }
+
+            if (Input.GetKeyUp(KeyCode.V))
+            {
+                StopListening();
+            }
+        }
 
         public void StartListening()
         {
             if (!microphoneRecord.IsRecording)
             {
                 LogCurrentMoralValues();
-                
                 microphoneRecord.StartRecord();
                 Debug.Log("Voice recognition started. Listening for commands...");
             }
@@ -126,7 +138,6 @@ namespace HelperScripts
                 bool attackOccurred = false;
                 for (int i = 0; i < steps; i++)
                 {
-                    Debug.Log("Trying to attack!");
                     Vector3Int targetPosition = unit.currentPosition + moveDirection;
                     Debug.Log($"Moving unit to {targetPosition}");
                     unit.schritteGehen(targetPosition);
