@@ -199,7 +199,7 @@ public class VolkObject : NetworkBehaviour
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         loadAnimations();
-        animationList = idle;
+        //animationList = idle;
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;
         StartCoroutine(animationStart(0));
