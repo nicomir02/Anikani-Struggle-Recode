@@ -7,7 +7,7 @@ public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
 
-    private int moralSkalenKategorieWert = 0;       //die klasse/kategorie in der sich der Moralwert befindet (<10% = 1, <25% = 2, <50% = 3. <75% = 4, <90% = 5, >90% = 6)
+    private int moralSkalenKategorieWert = 0;       //die klasse/kategorie in der sich der Moralwert befindet (<10% = 1, <25% = 2, <45% = 3. <55% = 4, <75% = 5, <90% = 6, >90% = 7)
     public int MoralSkalenKategorieWert {
         get{return moralSkalenKategorieWert;}
     }
@@ -35,7 +35,7 @@ public class VolkObject : NetworkBehaviour
     }
 
 //für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
-    private float[] moralskalaArray = {0.1f,0.25f,0.5f,0.75f,0.90f};    //0f und 1f braucht man nicht zum prüfen welche kategoie es ist
+    private float[] moralskalaArray = {0.1f,0.25f,0.45f,0.55f,0.75f,0.90f};    //0f und 1f braucht man nicht zum prüfen welche kategoie es ist
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {

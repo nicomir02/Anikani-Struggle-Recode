@@ -50,6 +50,53 @@ public class MoralManager : NetworkBehaviour
                 }
             }
         }
+        //für alle inherited classes auch, da casten (vo as Unit) nicht klappt:
+        //Unit
+        foreach(Unit u in FindObjectsOfType<Unit>()){
+            if(u.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(u.transform.parent);
+                Debug.Log("Unit");
+                Debug.Log(u.GetType());
+                if (u.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaUnit(u, u.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
+        //Building
+        foreach(MainBuilding mb in FindObjectsOfType<Building>()){
+            if(mb.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(mb.transform.parent);
+                Debug.Log("Building");
+                Debug.Log(mb.GetType());
+                /*if (mb.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaMainBuilding(mb, mb.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }*/
+            }
+        }
+
+        //Ressourcensammler
+        foreach(RessourcenSammler rs in FindObjectsOfType<RessourcenSammler>()){
+            if(rs.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(rs.transform.parent);
+                Debug.Log("RessourcenSammler");
+                Debug.Log(rs.GetType());
+                if (rs.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaRessourcenSammler(rs, rs.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
+
+        //TrainUnitBuilding
+        foreach(TrainUnitBuilding tub in FindObjectsOfType<TrainUnitBuilding>()){
+            if(tub.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(tub.transform.parent);
+                Debug.Log("TrainUnitBuilding");
+                Debug.Log(tub.GetType());
+                if (tub.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaTrainUnitBuilding(tub, tub.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
 
         float newGesamtMoral = moral/howMany;
         moralbar.Change(newGesamtMoral-gesamtMoral);

@@ -8,43 +8,359 @@ public class Moralskala : MonoBehaviour
     /*Skalenverteilung:
         klasse1: 0 - 10% Moral
         klasse2: 10 - 25% Moral
-        klasse3: 25 - 50% Moral
-        klasse4: 50 - 75% Moral
-        klasse5: 75 - 90% Moral
-        klasse6: 90 - 100% Moral
+        klasse3: 25 - 45% Moral
+        Klasse4: 45 - 55% Moral
+        klasse5: 55 - 75% Moral
+        klasse6: 75 - 90% Moral
+        klasse7: 90 - 100% Moral
     */
 
+    //allgemeine Volkobjekt attribute //nicht mehr genutzt
+    
     public void checkSkala(VolkObject vo, int moralkategoriewert){
         switch(moralkategoriewert) {
             case 1:
-                klasse1(vo);
+               
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.25f);
+                if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                vo.AttackValue = vo.StandardAttackValue * 0.25f;
+                vo.HealValue = vo.StandardHealValue * 0.25f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 0.25f);
+                //Debug.Log("Typ= " + vo.GetType());
                 break;
             //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
-            /*case 2:
-                klasse2(vo);
+            case 2:
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.5f);
+                if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                vo.AttackValue = vo.StandardAttackValue * 0.5f;
+                vo.HealValue = vo.StandardHealValue * 0.5f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 0.5f);
                 break;
             case 3:
-                klasse3(vo);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.75f);
+                if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                vo.AttackValue = vo.StandardAttackValue * 0.75f;
+                vo.HealValue = vo.StandardHealValue * 0.75f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 0.75f);
                 break;
             case 4:
-                klasse4(vo);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1f);
+                
+                vo.AttackValue = vo.StandardAttackValue * 1f;
+                vo.HealValue = vo.StandardHealValue * 1f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 1f);
                 break;
             case 5:
-                klasse5(vo);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1.25f);
+                
+                vo.AttackValue = vo.StandardAttackValue * 1.25f;
+                vo.HealValue = vo.StandardHealValue * 1.25f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 1.25f);
                 break;
             case 6:
-                klasse6(vo);
-                break;*/
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1.5f);
+                
+                vo.AttackValue = vo.StandardAttackValue * 1.5f;
+                vo.HealValue = vo.StandardHealValue * 1.5f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 1.5f);
+                break;
+            case 7:
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * 2f);
+                
+                vo.AttackValue = vo.StandardAttackValue * 2f;
+                vo.HealValue = vo.StandardHealValue * 2f;
+                vo.AttackRange = (int)(vo.StandardAttackRange * 2f);
+                break;
             default:
                 Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
                 break;
         }
-        //zufallsaenderung(vo, moralkategoriewert);     //immer ausführen, egal was für ein case
+        //zufallsaenderung(vo, moralkategoriewert);     //immer ausführen, egal was für ein case, eventuell nur unten bei den spezialisierungen/inherited classes?
+    }
+    
+
+    //spezielle VOlkobjekte
+
+    //Unit
+    public void checkSkalaUnit(Unit u, int moralkategoriewert){
+        switch(moralkategoriewert) {
+            case 1:
+               /*
+               //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 0.25f);
+                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                u.AttackValue = u.StandardAttackValue * 0.25f;
+                u.HealValue = u.StandardHealValue * 0.25f;
+                u.AttackRange = (int)(u.StandardAttackRange * 0.25f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps - 3;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
+            case 2:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 0.5f);
+                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                u.AttackValue = u.StandardAttackValue * 0.5f;
+                u.HealValue = u.StandardHealValue * 0.5f;
+                u.AttackRange = (int)(u.StandardAttackRange * 0.5f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps - 2;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 3:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 0.75f);
+                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                u.AttackValue = u.StandardAttackValue * 0.75f;
+                u.HealValue = u.StandardHealValue * 0.75f;
+                u.AttackRange = (int)(u.StandardAttackRange * 0.75f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps - 1;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 4:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 1f);
+                
+                u.AttackValue = u.StandardAttackValue * 1f;
+                u.HealValue = u.StandardHealValue * 1f;
+                u.AttackRange = (int)(u.StandardAttackRange * 1f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps - 0;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 5:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 1.25f);
+               
+                u.AttackValue = u.StandardAttackValue * 1.25f;
+                u.HealValue = u.StandardHealValue * 1.25f;
+                u.AttackRange = (int)(u.StandardAttackRange * 1.25f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + 1;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 6:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 1.5f);
+                
+                u.HealValue = u.StandardHealValue * 1.5f;
+                u.AttackRange = (int)(u.StandardAttackRange * 1.5f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + 2;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 7:
+                /*
+                //allgemeine Attribute
+                u.MaxHealth = (int)(u.StandardMaxHealth * 2f);
+                
+                u.AttackValue = u.StandardAttackValue * 2f;
+                u.HealValue = u.StandardHealValue * 2f;
+                u.AttackRange = (int)(u.StandardAttackRange * 2f);
+                */
+                //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + 3;
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            default:
+                Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
+                break;
+        }
+        //zufallsaenderung(u, moralkategoriewert);     //immer ausführen, egal was für ein case
     }
 
-    //Alkohol Boost auch noch beachten!, als Parameter übergeben?
+
+//Ressourcensammler
+    public void checkSkalaRessourcenSammler(RessourcenSammler rs, int moralkategoriewert){
+        switch(moralkategoriewert) {
+            case 1:
+            /*
+               //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 0.25f);
+                if(rs.Health > rs.MaxHealth) rs.Health = rs.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                rs.AttackValue = rs.StandardAttackValue * 0.25f;
+                rs.HealValue = rs.StandardHealValue * 0.25f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 0.25f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
+            case 2:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 0.5f);
+                if(u.Health > rs.MaxHealth) rs.Health = rs.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                rs.AttackValue = rs.StandardAttackValue * 0.5f;
+                rs.HealValue = rs.StandardHealValue * 0.5f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 0.5f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 3:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 0.75f);
+                if(u.Health > rs.MaxHealth) rs.Health = rs.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
+                rs.AttackValue = rs.StandardAttackValue * 0.75f;
+                rs.HealValue = rs.StandardHealValue * 0.75f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 0.75f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 4:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 1f);
+                
+                rs.AttackValue = rs.StandardAttackValue * 1f;
+                rs.HealValue = rs.StandardHealValue * 1f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 1f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 5:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 1.25f);
+               
+                rs.AttackValue = rs.StandardAttackValue * 1.25f;
+                rs.HealValue = rs.StandardHealValue * 1.25f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 1.25f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 6:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 1.5f);
+                
+                rs.HealValue = rs.StandardHealValue * 1.5f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 1.5f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 7:
+                /*
+                //allgemeine Attribute
+                rs.MaxHealth = (int)(rs.StandardMaxHealth * 2f);
+                
+                rs.AttackValue = rs.StandardAttackValue * 2f;
+                rs.HealValue = rs.StandardHealValue * 2f;
+                rs.AttackRange = (int)(rs.StandardAttackRange * 2f);
+                */
+                //speziell für Ressourcensammler
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            default:
+                Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
+                break;
+        }
+        //zufallsaenderung(rs, moralkategoriewert);     //immer ausführen, egal was für ein case
+    }
+
+//TrainUnitBuilding
+    public void checkSkalaTrainUnitBuilding(TrainUnitBuilding tub, int moralkategoriewert){
+        switch(moralkategoriewert) {
+            case 1:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
+            case 2:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 3:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 4:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 5:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 6:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            case 7:
+                //speziell für TrainunitBuilding
+                
+                //Kosten der Ausbildung auch noch anpassen
+
+                break;
+            default:
+                Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
+                break;
+        }
+        //zufallsaenderung(tub, moralkategoriewert);     //immer ausführen, egal was für ein case
+    }
+
+
+    //Alkohol Boost auch noch beachten!, als Parameter übergeben? oder ist der nur für den Moralwert?
     //was ist beim leben falls kategoiewechsel? aktuelles leben auch anpassen? runter falls maxhealth niedriger als aktuelles leben, höher wenn maxhealth wieder steigt?
-    public void klasse1(VolkObject vo){
+   
+/* 
+    public void klassetmpalt(VolkObject vo){
         //Allgemeine Volkobjekt Variablen:
         vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.5f);
         if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
@@ -53,7 +369,6 @@ public class Moralskala : MonoBehaviour
         vo.AttackRange = (int)(vo.StandardAttackRange * 0.5f);
         Debug.Log("Typ= " + vo.GetType());
         //Speziell für Gebäude or Einheiten:
-        /*
         if(vo.GetType() == typeof(RessourcenSammler)){
             vo.RessourcenMoralAuswirkung = -1f;
         }else if(vo.GetType() == typeof(TrainUnitBuilding)){
@@ -65,8 +380,9 @@ public class Moralskala : MonoBehaviour
             if(vo.MaxSteps <= 0) vo.MaxSteps = 0;
             vo.Ausbildungszeit = vo.StandardAusbildungszeit + 3;
             //Kosten der Ausbildung auch noch anpassen
-        } */
+        }
     }
+*/
 
 
 
