@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca4c8e4d-b6d2-46b9-a284-e3c8a8224190" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anikani-Struggle-Recode/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Volk/OrderOfSeraphs/Buildings/CastleLvl1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Volk/OrderOfSeraphs/Buildings/CastleLvl1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/AniSpriteMerger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/AniSpriteMerger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelperScripts/VoiceRecognition.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Volk/VolkObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Volk/VolkObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +105,7 @@
       <workItem from="1704457357413" duration="17046000" />
       <workItem from="1704979633202" duration="1554000" />
       <workItem from="1704988217936" duration="8094000" />
-      <workItem from="1705058735952" duration="5281000" />
+      <workItem from="1705058735952" duration="3602000" />
     </task>
     <servers />
   </component>

@@ -198,7 +198,7 @@ public class VolkObject : NetworkBehaviour
         im = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<InfoboxManager>();
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
-        //loadAnimations();
+        loadAnimations();
         animationList = idle;
         //Debug.Log(animationList.Count);
         safe = GetComponent<SpriteRenderer>().sprite;

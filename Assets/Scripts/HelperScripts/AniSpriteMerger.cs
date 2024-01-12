@@ -6,7 +6,7 @@ public class AniSpriteMerger : MonoBehaviour
 {
     [SerializeField] private Sprite[] staticSprites;
     [SerializeField] private Sprite[] colorSprites;
-    private List<Sprite> coloredSprites = new List<Sprite>();
+    private List<Sprite> coloredSprites;
     private Color color;
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class AniSpriteMerger : MonoBehaviour
         color = transform.parent.transform.GetChild(3).GetComponent<SpriteRenderer>().color;
 
         for (int i = 0; i < staticSprites.Length; i++) {
-            coloredSprites.Add(concreteMerge(staticSprites[i], colorSprites[i], color));
+            coloredSprites.Add(concreteMerge(staticSprites[i], coloredSprites[i], color));
         }
     }
 
