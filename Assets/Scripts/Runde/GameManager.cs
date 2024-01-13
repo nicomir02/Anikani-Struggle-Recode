@@ -5,7 +5,7 @@ using Mirror;
 
 public class GameManager : NetworkBehaviour
 {
-    [SerializeField] private Dictionary<int, Color> gameFarben = new Dictionary<int, Color>(); 
+    private readonly SyncDictionary<int, float[]> gameFarben = new SyncDictionary<int, float[]>();
     [SerializeField] private List<StandardVolk> voelker;
     [SerializeField] private SaveHelper saveHelper;
 
@@ -16,38 +16,45 @@ public class GameManager : NetworkBehaviour
     }
 
     public Color getColor(int id) {
-        if(id < gameFarben.Count) return gameFarben[id];
+        if(gameFarben.ContainsKey(id)) {
+            Debug.Log(gameFarben[id][0] + " " + gameFarben[id][1] + " " + gameFarben[id][2]);
+            return new Color(gameFarben[id][0], gameFarben[id][1], gameFarben[id][2], 255);
+        } 
         return Color.white;
     }
 
+    [Command(requiresAuthority=false)]
     public void setColor(int id, Color color) {
-        Debug.Log(id);
-        Debug.Log(color);
-        if(gameFarben.ContainsKey(id)) {
-            gameFarben[id] = color;
-        }else {
-            gameFarben.Add(id, color);
-        }
         float[] array = new float[3];
         array[0] = color.r;
         array[1] = color.g;
         array[2] = color.b;
+        if(gameFarben.ContainsKey(id)) {
+            gameFarben[id] = array;
+        }else {
+            gameFarben.Add(id, array);
+        }
+
+        
         newColorCMD(id, array);
     }
 
     [Command(requiresAuthority=false)]
     public void newColorCMD(int id, float[] colorUtility) {
-        newColorRPC(id, colorUtility);
+        if(gameFarben.ContainsKey(id)) {
+            gameFarben[id] = colorUtility;
+        }else {
+            gameFarben.Add(id, colorUtility);
+        }
     }
 
-    [ClientRpc]
-    public void newColorRPC(int id, float[] colorUtility) {
-        Color color = new Color(colorUtility[0], colorUtility[1], colorUtility[2], 255);
-        if(gameFarben.ContainsKey(id)) {
-            gameFarben[id] = color;
-        }else {
-            gameFarben.Add(id, color);
+    public Color getColorByName(string playername) {
+        foreach(PlayerManager players in FindObjectsOfType<PlayerManager>()) {
+            if(players.name == playername) {
+                return getColor(players.playerCode);
+            }
         }
+        return Color.white;
     }
 
     public StandardVolk getVolkByID(int id) {

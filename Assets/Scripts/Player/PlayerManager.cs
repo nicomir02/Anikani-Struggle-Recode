@@ -181,6 +181,17 @@ public class PlayerManager : NetworkBehaviour
 
     void Start() {
         if(isLocalPlayer) {
+            int id = new Random().Next(0, 1000);
+            while(true) {
+                foreach(PlayerManager players in FindObjectsOfType<PlayerManager>()) {
+                    if(players.playerCode == id) {
+                        id = new Random().Next(0, 9999);
+                        continue;
+                    }
+                }
+                break;
+            }
+            playerCode = id;
             backgroundMusic = GetComponent<AudioSource>();
             changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveHelper>().name);
             spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();

@@ -115,13 +115,13 @@ public class LobbyManager : NetworkBehaviour {
         float redVal = red.value;
         float greenVal = green.value;
         float blueVal = blue.value;
-        red.interactable = false;
+        /*red.interactable = false;
         red.gameObject.SetActive(false);
         green.interactable = false;
         green.gameObject.SetActive(false);
         blue.interactable = false;
         blue.gameObject.SetActive(false);
-        chooseColorBtn.gameObject.SetActive(false);
+        chooseColorBtn.gameObject.SetActive(false);*/
 
         
 
@@ -171,7 +171,7 @@ public class LobbyManager : NetworkBehaviour {
         if(!registered && NetworkClient.ready) {
             string pname = networkManager.GetComponent<SaveHelper>().name;
             if(pname == "" || pname == null) pname = "Random Name " + new Random().Next(0, 1000);
-            PlayerHelperScript.findLocalPlayer().name = pname;
+            PlayerHelperScript.findLocalPlayer().changePlayername(pname);
             serverPlayerConnect(pname);
 
             registered = true;
@@ -184,6 +184,8 @@ public class LobbyManager : NetworkBehaviour {
 
                         TMP_Text text = o.GetComponent<TMP_Text>();
                         text.text = kvp.Key;
+
+                        text.color = gameManager.getColorByName(kvp.Key);
 
                         if(kvp.Value == true) {
                             text.text += " - ready";
@@ -200,7 +202,7 @@ public class LobbyManager : NetworkBehaviour {
                     }
                     i++;
                 }
-                newPlayer(PlayerHelperScript.findLocalPlayer().name);
+                newPlayer(pname);
             }else {
                 examplePlayerlistElement.text = PlayerHelperScript.findLocalPlayer().name;
                 playerlist.Add(PlayerHelperScript.findLocalPlayer().name, examplePlayerlistElement);
@@ -213,13 +215,32 @@ public class LobbyManager : NetworkBehaviour {
     [Command(requiresAuthority=false)]
     public void serverPlayerConnect(string playername) {      
         playernames.Add(playername, false);
+
+        foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
+            changeName(pm.playerCode, pm.name);
+        }
     }
 
+    [ClientRpc]
+    public void changeName(int code, string pn) {
+        foreach(PlayerManager pm in FindObjectsOfType<PlayerManager>()) {
+            if(pm.playerCode == code) {
+                pm.name = pn;
+            }
+        }
+    }
+
+    [Command(requiresAuthority=false)]
+    void CMDsyncDictionary() {
+        syncDictionary();
+    }
     
     [ClientRpc]
     void syncDictionary() {
         int i=0;
         foreach(KeyValuePair<string, bool>kvp in playernames) {
+            if(!playerlist.ContainsKey(kvp.Key)) continue;
+            if(gameManager.getColorByName(kvp.Key) != null) playerlist[kvp.Key].color = gameManager.getColorByName(kvp.Key);
             playerlist[kvp.Key].text = kvp.Key;
             if(kvp.Value == true) playerlist[kvp.Key].text += " - ready";
             i++;
@@ -233,7 +254,7 @@ public class LobbyManager : NetworkBehaviour {
         tribeOptions.interactable = false;
 
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-        if(pm.playerCode == -1) return;
+        if(pm.playerCode == -1 || !playerChosen) return;
         readyPlayer(pm.name);
     }
 
@@ -263,25 +284,8 @@ public class LobbyManager : NetworkBehaviour {
 
     void chooseColor(float red, float green, float blue) {
         Color color = new Color (red, green, blue, 1f);
-
-
-        PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-        if (pm.playerCode == -1 || !playerChosen) {
-            float wert = red * 1000 + green*1000+blue*1000 + new Random().Next(0, 1000);
-            pm.playerCode = (int) wert;
-        }
-        gameManager.setColor(pm.playerCode, color);
-
-        /*
-        else {
-            int num = pm.playerCode;
-            if (num == 0) player1.GetComponent<Image>().color = color;
-            if (num == 1) player2.GetComponent<Image>().color = color;
-            if (num == 2) player3.GetComponent<Image>().color = color;
-            if (num == 3) player4.GetComponent<Image>().color = color;
-
-            //set Color to gameFarben Liste
-            
-        }*/
+        playerChosen = true;
+        gameManager.setColor(PlayerHelperScript.findLocalPlayer().playerCode, color);
+        CMDsyncDictionary();
     }
 }
