@@ -23,15 +23,23 @@ public class PlayerManager : NetworkBehaviour
     */
 
     [SyncVar] private int volkID = -1;
+    private AudioSource backgroundMusic;
 
     public int playerVolk {
         get{return volkID;}
         set{
             volkID = value;
             Debug.Log(volkID);
+            if(backgroundMusic == null) backgroundMusic = GetComponent<AudioSource>();
             foreach(StandardVolk v in FindObjectsOfType<SaveHelper>()[0].Voelker) {
                 if(v.id == volkID) {
                     volk = v;
+                    if(volk.BackgroundMusicClip != null) {
+                        backgroundMusic.clip = volk.BackgroundMusicClip;
+                    }else {
+                        //Standard Musik
+                    }
+                    if(backgroundMusic.clip != null) backgroundMusic.Play();
                 }
             }
         }
@@ -173,6 +181,7 @@ public class PlayerManager : NetworkBehaviour
 
     void Start() {
         if(isLocalPlayer) {
+            backgroundMusic = GetComponent<AudioSource>();
             changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveHelper>().name);
             spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
         }

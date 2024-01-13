@@ -148,6 +148,7 @@ public class OnlineMenu : MonoBehaviour
                 usingSteamText.text = "using Steam";
                 chooseName.readOnly = true;
                 chooseName.text = SteamFriends.GetPersonaName().ToString();
+                manager.GetComponent<SaveHelper>().checkAndSave(chooseName.text);
                 connect.SetActive(false);
                 ipAdress.readOnly = true;
                 ipAdress.text = "wait for invitation...";

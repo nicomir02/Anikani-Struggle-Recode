@@ -89,6 +89,7 @@ public class Area : NetworkBehaviour
             foreach(Tilemap t in FindObjectsOfType<Tilemap>()){
                 t.SetTileFlags(vec, TileFlags.None);
                 if(gameManager.getColor(kvp.Value) != Color.white) t.SetColor(vec, gameManager.getColor(kvp.Value));
+                Debug.Log(kvp.Value + " " + gameManager.getColor(kvp.Value));
             }
         }
     }

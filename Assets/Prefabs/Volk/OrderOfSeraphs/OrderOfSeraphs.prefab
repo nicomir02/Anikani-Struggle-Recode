@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hauptGebaeude: {fileID: -1864038161657043744, guid: 435b6613f707a2c4aac0381d0c5c4c3e, type: 3}
+  backgroundMusicClip: {fileID: 8300000, guid: 44a8d6a31cd2b67489182be50a66fd94, type: 3}
   buildings:
   - {fileID: 1912368084208151826, guid: 0033ea3bf85417b44ac7d8ccce2a40a6, type: 3}
   - {fileID: 4157904445678943923, guid: 151f40afe9a0d5c4a89242ebb7f226bd, type: 3}

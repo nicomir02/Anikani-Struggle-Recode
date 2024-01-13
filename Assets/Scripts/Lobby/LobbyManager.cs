@@ -7,25 +7,24 @@ using TMPro;
 using System;
 using System.Text;
 using Unity.VisualScripting;
-using UnityEditor.Build.Content;
+//using UnityEditor.Build.Content;
 
 public class LobbyManager : NetworkBehaviour {
     [SerializeField] private NetworkManagerAnikani networkManager;
-    [SerializeField] private TMP_Text[] playerlist;
 
     [SerializeField] private GameManager gameManager;
 
+    private Dictionary<string, TMP_Text> playerlist = new Dictionary<string, TMP_Text>();
     private readonly SyncDictionary<string, bool> playernames = new SyncDictionary<string, bool>();
+    [SerializeField] private TMP_Text examplePlayerlistElement;
+    [SerializeField] private Transform playerlistContent;
+
+    [SyncVar] public int connectedPlayers = 0;
 
     private bool playerChosen = false;
     [SerializeField] private Button readyBtn;
 
     [SerializeField] private TMP_Dropdown tribeOptions;
-
-    [SerializeField] private Button player1;
-    [SerializeField] private Button player2;
-    [SerializeField] private Button player3;
-    [SerializeField] private Button player4;
 
     [SerializeField] private Button chooseColorBtn;
     [SerializeField] private Slider red;
@@ -44,23 +43,12 @@ public class LobbyManager : NetworkBehaviour {
 
     void Start() {
         Ingame.SetActive(false);
-        player1.onClick.AddListener(() => OnButtonClicked(player1));
-        player2.onClick.AddListener(() => OnButtonClicked(player2));
-        player3.onClick.AddListener(() => OnButtonClicked(player3));
-        player4.onClick.AddListener(() => OnButtonClicked(player4));
         chooseColorBtn.onClick.AddListener(() => OnButtonClicked(chooseColorBtn));
         tribeOptions.onValueChanged.AddListener(delegate {tribeChange(tribeOptions);});
 
-        red.interactable = false;
-        red.gameObject.SetActive(false);
         red.onValueChanged.AddListener(delegate {valueChanged(red);});
-        green.interactable = false;
-        green.gameObject.SetActive(false);
         green.onValueChanged.AddListener(delegate {valueChanged(green);});
-        blue.interactable = false;
-        blue.gameObject.SetActive(false);
         blue.onValueChanged.AddListener(delegate {valueChanged(blue);});
-        chooseColorBtn.gameObject.SetActive(false);
 
         foreach(StandardVolk volk in saveAttributes.Voelker) {
             string volkname = "";
@@ -76,6 +64,21 @@ public class LobbyManager : NetworkBehaviour {
         }
 
         readyBtn.onClick.AddListener(ready);
+    }
+
+    [Command(requiresAuthority=false)]
+    public void newPlayer(string player) {
+        RPCnewPlayer(player);
+        syncDictionary();
+    }
+
+    [ClientRpc]
+    public void RPCnewPlayer(string player) {
+        GameObject o = Instantiate(examplePlayerlistElement.gameObject, playerlistContent);
+
+        TMP_Text text = o.GetComponent<TMP_Text>();
+        text.text = player;
+        playerlist.Add(player, text);
     }
 
     void tribeChange(TMP_Dropdown change) {
@@ -101,40 +104,6 @@ public class LobbyManager : NetworkBehaviour {
     }
 
     public void OnButtonClicked(Button buttonClicked) {
-        if(buttonClicked == player1 || buttonClicked == player2 || buttonClicked == player3 || buttonClicked == player4) {
-            if (playerChosen) {}
-            else {
-                playerChosen = true;
-                TMP_Text buttonTextComponent = buttonClicked.transform.GetChild(0).GetComponent<TMP_Text>();
-                PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-                if(!buttonTextComponent.text.Contains("-")) {
-                    if(pm.playerCode != -1) {
-                        cmdUpdateButtonText(pm.playerCode, "");
-                    }
-
-                    if(buttonClicked == player1) {
-                        pm.playerCode = 0;
-                        cmdUpdateButtonText(0, buttonTextComponent.text + " - " + pm.name);
-                    }else if(buttonClicked == player2) {
-                        pm.playerCode = 1;
-                        cmdUpdateButtonText(1, buttonTextComponent.text + " - " + pm.name);
-                    }else if(buttonClicked == player3) {
-                        pm.playerCode = 2;
-                        cmdUpdateButtonText(2, buttonTextComponent.text + " - " + pm.name);
-                    }else if(buttonClicked == player4) {
-                        pm.playerCode = 3;
-                        cmdUpdateButtonText(3, buttonTextComponent.text + " - " + pm.name);
-                    }
-                }
-                red.interactable = true;
-                red.gameObject.SetActive(true);
-                green.interactable = true;
-                green.gameObject.SetActive(true);
-                blue.interactable = true;
-                blue.gameObject.SetActive(true);
-                chooseColorBtn.gameObject.SetActive(true);
-            }
-        }
         if(buttonClicked == chooseColorBtn) colorChosing();
     }
 
@@ -153,6 +122,8 @@ public class LobbyManager : NetworkBehaviour {
         blue.interactable = false;
         blue.gameObject.SetActive(false);
         chooseColorBtn.gameObject.SetActive(false);
+
+        
 
         chooseColor(redVal, greenVal, blueVal);
     }
@@ -173,7 +144,7 @@ public class LobbyManager : NetworkBehaviour {
 
     [ClientRpc]
     void rpcUpdateButtonText(int btn, string text) {
-        if(text != "") {
+        /*if(text != "") {
             if(btn == 0) {
                 player1.transform.GetChild(0).GetComponent<TMP_Text>().text = text;
             }else if(btn == 1) {
@@ -193,23 +164,55 @@ public class LobbyManager : NetworkBehaviour {
             }else if(btn == 3) {
                 player4.transform.GetChild(0).GetComponent<TMP_Text>().text = player4.transform.GetChild(0).GetComponent<TMP_Text>().text.Split(" -")[0];
             }
-        }
+        }*/
     }
 
     void Update() {
         if(!registered && NetworkClient.ready) {
             string pname = networkManager.GetComponent<SaveHelper>().name;
             if(pname == "" || pname == null) pname = "Random Name " + new Random().Next(0, 1000);
+            PlayerHelperScript.findLocalPlayer().name = pname;
             serverPlayerConnect(pname);
+
             registered = true;
             tribeChange(tribeOptions);
+            if(++connectedPlayers > 1) {
+                int i = 0;
+                foreach(KeyValuePair<string, bool> kvp in playernames) {
+                    if(kvp.Key != pname && i > 0) {
+                        GameObject o = Instantiate(examplePlayerlistElement.gameObject, playerlistContent);
+
+                        TMP_Text text = o.GetComponent<TMP_Text>();
+                        text.text = kvp.Key;
+
+                        if(kvp.Value == true) {
+                            text.text += " - ready";
+                        }
+
+                        playerlist.Add(kvp.Key, text);
+                    }else if(kvp.Key != pname && i == 0) {
+                        examplePlayerlistElement.text = kvp.Key;
+                        playerlist.Add(kvp.Key, examplePlayerlistElement);
+
+                        if(kvp.Value == true) {
+                            examplePlayerlistElement.text += " - ready";
+                        }
+                    }
+                    i++;
+                }
+                newPlayer(PlayerHelperScript.findLocalPlayer().name);
+            }else {
+                examplePlayerlistElement.text = PlayerHelperScript.findLocalPlayer().name;
+                playerlist.Add(PlayerHelperScript.findLocalPlayer().name, examplePlayerlistElement);
+                //newPlayer(PlayerHelperScript.findLocalPlayer().name);
+            }
+            
         }
     }
    
     [Command(requiresAuthority=false)]
     public void serverPlayerConnect(string playername) {      
         playernames.Add(playername, false);
-        syncDictionary();
     }
 
     
@@ -217,8 +220,8 @@ public class LobbyManager : NetworkBehaviour {
     void syncDictionary() {
         int i=0;
         foreach(KeyValuePair<string, bool>kvp in playernames) {
-            playerlist[i].text = kvp.Key;
-            if(kvp.Value == true) playerlist[i].text += " - ready";
+            playerlist[kvp.Key].text = kvp.Key;
+            if(kvp.Value == true) playerlist[kvp.Key].text += " - ready";
             i++;
         }
     }
@@ -261,10 +264,15 @@ public class LobbyManager : NetworkBehaviour {
     void chooseColor(float red, float green, float blue) {
         Color color = new Color (red, green, blue, 1f);
 
+
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if (pm.playerCode == -1 || !playerChosen) {
-            //Textfeld please select Player number
+            float wert = red * 1000 + green*1000+blue*1000 + new Random().Next(0, 1000);
+            pm.playerCode = (int) wert;
         }
+        gameManager.setColor(pm.playerCode, color);
+
+        /*
         else {
             int num = pm.playerCode;
             if (num == 0) player1.GetComponent<Image>().color = color;
@@ -273,7 +281,7 @@ public class LobbyManager : NetworkBehaviour {
             if (num == 3) player4.GetComponent<Image>().color = color;
 
             //set Color to gameFarben Liste
-            gameManager.setColor(num, color);
-        }
+            
+        }*/
     }
 }

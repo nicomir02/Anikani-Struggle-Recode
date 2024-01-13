@@ -6,6 +6,12 @@ public class StandardVolk : MonoBehaviour
 {
     //allgemeine Gebäude für alle Völker(spezielle in spezifischen Volkskripten reinschreiben)
     [SerializeField] private Building hauptGebaeude;
+    [SerializeField] private AudioClip backgroundMusicClip;
+    public AudioClip BackgroundMusicClip {
+        get {
+            return backgroundMusicClip;
+        }
+    }
 
     public Building HauptGebaeude {
         get{return hauptGebaeude;}
