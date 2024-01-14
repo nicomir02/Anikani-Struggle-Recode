@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 
 public class VolkObject : NetworkBehaviour
 {
-    //Test
     [SyncVar] public float health;
 
     
@@ -90,7 +89,7 @@ public class VolkObject : NetworkBehaviour
     
     protected List<Sprite> animationList = new List<Sprite>();
     [SerializeField] private float animationAbstand = 0.2f;
-    public List<Sprite> idle = new List<Sprite>();
+    protected List<Sprite> idle = new List<Sprite>();
 
     private void loadAnimations() {
         transform.GetChild(4).GetComponent<AniSpriteMerger>().aniMerge();
@@ -200,8 +199,7 @@ public class VolkObject : NetworkBehaviour
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         loadAnimations();
-        //animationList = idle;
-        //Debug.Log(animationList.Count);
+        animationList = idle;
         safe = GetComponent<SpriteRenderer>().sprite;
         StartCoroutine(animationStart(0));
         //für moralsuwirkungen erstmal zu testen
@@ -303,40 +301,6 @@ public class VolkObject : NetworkBehaviour
         m_selected = false;
     }
     
-    public virtual void tryAttack(Vector3Int v, VolkObject obj) {
-        Debug.Log($"[tryAttack] Attempting an action on position: {v}");
-
-        if (healValue > 0 && obj.transform.parent == transform.parent) {  // Healing own unit
-            obj.changeHealth(healValue);
-            lastHeal = 0;
-            Debug.Log($"[tryAttack] Healing unit {obj.name} with value: {healValue}");
-        } else {
-            Debug.Log("[tryAttack] Trying to Attack");
-            foreach (VolkObject potentialTarget in FindObjectsOfType<VolkObject>()) {
-                if (potentialTarget.isObjectAtPosition(v)) {
-                    if (potentialTarget == obj) {
-                        Debug.Log($"[tryAttack] Attacking unit {obj.name} with attack value: {attackValue}");
-                        obj.changeHealth(-attackValue); 
-                        lastAttack = 0;
-
-                        // Evaluate and apply morale change for attacking unit
-                        Moral_Attack moralAttackEvaluator = new Moral_Attack();
-                        float moraleImpactForAttacker = moralAttackEvaluator.auswerten(this);
-                        ApplyMoraleChange(moraleImpactForAttacker);
-                        Debug.Log($"[tryAttack] Morale impact for attacker {this.name}: {moraleImpactForAttacker}");
-
-                        // Evaluate and apply morale change for attacked unit
-                        Moral_Schaden moralSchadenEvaluator = new Moral_Schaden();
-                        float moraleImpactForAttacked = moralSchadenEvaluator.auswerten(obj);
-                        obj.ApplyMoraleChange(moraleImpactForAttacked);
-                        Debug.Log($"[tryAttack] Morale impact for attacked unit {obj.name}: {moraleImpactForAttacked}");
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
     public void cycleObjectMethod(){
         //Debug.Log("cycleObjectMethod");
         if(Input.GetAxisRaw("CycleObjects") > 0) {  //Next Object durch .
