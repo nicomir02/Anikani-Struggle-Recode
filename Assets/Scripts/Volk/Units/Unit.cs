@@ -249,7 +249,7 @@ public class Unit : VolkObject
     }
     
 
-    public void tryAttack(Vector3Int v, VolkObject obj) {
+    public override void tryAttack(Vector3Int v, VolkObject obj) {
 
 	/*Debug.Log($"[tryAttack] Attempting an action on position: {v}");
 
@@ -282,7 +282,7 @@ public class Unit : VolkObject
                 }
             }
         }*/ //hinzufuegen...
-
+        //base.tryAttack();
         if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
             obj.changeHealth(healValue);
             lastHeal = 0;

@@ -303,7 +303,7 @@ public class VolkObject : NetworkBehaviour
         m_selected = false;
     }
     
-    public void tryAttack(Vector3Int v, VolkObject obj) {
+    public virtual void tryAttack(Vector3Int v, VolkObject obj) {
         Debug.Log($"[tryAttack] Attempting an action on position: {v}");
 
         if (healValue > 0 && obj.transform.parent == transform.parent) {  // Healing own unit

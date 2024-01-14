@@ -9,7 +9,7 @@ public class ObjectSpawnHelper : NetworkBehaviour
     [SerializeField] private TilemapHover tilemapHover;
 
     [Command(requiresAuthority=false)]
-    public void spawnBuilding(int volk, int buildingid, Transform t, string objectname) {
+    public void spawnBuilding(int volk, int buildingid, Transform t, string objectname, int playerCode) {
         GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getBuildingByID(buildingid), t);
         NetworkServer.Spawn(prefab);
         RPCnamechange(prefab, objectname, t);
