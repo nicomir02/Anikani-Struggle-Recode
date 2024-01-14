@@ -7,6 +7,7 @@ public class AniSpriteMerger : MonoBehaviour
     [SerializeField] private Sprite[] staticSprites;
     [SerializeField] private Sprite[] colorSprites;
     private float vertAnpassung;
+    private float horizAnpassung;
     private List<Sprite> coloredSprites = new List<Sprite>();
     
     void Start()
@@ -84,9 +85,11 @@ public class AniSpriteMerger : MonoBehaviour
         newTex.Apply();
         Vector2 piv; 
         vertAnpassung = transform.parent.GetComponent<SpriteMerger>().vertAnpassung;
-        float tmpAn = vertAnpassung * 0.125f;
-        if (quad) piv = new Vector2(0.5f, (0.125f + tmpAn)); 
-        else piv = new Vector2(0.5f, (0.625f + tmpAn)); 
+        horizAnpassung = transform.parent.GetComponent<SpriteMerger>().horizAnpassung;
+        float tmpVert = vertAnpassung * 0.125f;
+        float tmpHoriz = horizAnpassung * 0.125f;
+        if (quad) piv = new Vector2((0.5f + tmpHoriz), (0.125f + tmpVert)); 
+        else piv = new Vector2((0.5f + tmpHoriz), (0.625f + tmpVert)); 
         Sprite final = Sprite.Create(newTex, new Rect(0, 0, width, height), piv, 20f, 0, SpriteMeshType.FullRect);
         string name = "NewSprite" + i;
         final.name = name; 
