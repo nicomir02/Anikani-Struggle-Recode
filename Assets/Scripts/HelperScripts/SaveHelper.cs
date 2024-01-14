@@ -15,7 +15,7 @@ public class SaveHelper : MonoBehaviour
 
 
     public bool checkAndSave(string name){
-        if(name.Length > 12 || name.Length < 1) return false;
+        if(name.Length < 1) return false;
         this.name = name;
         return true; 
     }

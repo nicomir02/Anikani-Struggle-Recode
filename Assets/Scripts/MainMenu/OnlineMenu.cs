@@ -33,6 +33,9 @@ public class OnlineMenu : MonoBehaviour
     protected Callback<GameLobbyJoinRequested_t> JoinRequest;
     protected Callback<LobbyEnter_t> LobbyEntered;
 
+    [SerializeField] private TMP_Text steamLobbyText;
+    [SerializeField] private GameObject lobbyListElement;
+
     public ulong CurrentLobbyID;
     private const string HostAddressKey = "HostAddress";
 
@@ -44,10 +47,55 @@ public class OnlineMenu : MonoBehaviour
         hostBtn.onClick.AddListener(hostServer);
         connectBtn.onClick.AddListener(connectServer);
         usingSteamBtn.onClick.AddListener(changeUsingSteam);
-        if(!SteamManager.Initialized) return;
+        if(!SteamManager.Initialized) {
+            steamLobbyText.text = "Steam is not active";
+            return;
+        }
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+
+        reloadList();
+    }
+
+    void reloadList() {
+        int friendCount = SteamFriends.GetFriendCount(EFriendFlags.k_EFriendFlagImmediate);
+        int listAdd = 0;
+        for (int i = 0; i < friendCount; i++)
+        {
+            // Get the Steam ID of the friend
+            CSteamID friendSteamID = SteamFriends.GetFriendByIndex(i, EFriendFlags.k_EFriendFlagImmediate);
+
+            // Get information about the friend
+            FriendGameInfo_t friendGameInfo;
+            if (SteamFriends.GetFriendGamePlayed(friendSteamID, out friendGameInfo)) {
+                // Check if the friend is in a lobby
+                if (friendGameInfo.m_steamIDLobby != CSteamID.Nil) {
+                    Debug.Log("Friend " + friendSteamID + " is in lobby " + friendGameInfo.m_steamIDLobby);
+                    GameObject o = null;
+                    if(listAdd==0) {
+                        o = lobbyListElement;
+                        o.SetActive(true);
+                    }else {
+                        o = Instantiate(lobbyListElement, lobbyListElement.transform.parent);                        
+                    }
+                    o.GetComponent<Button>().onClick.AddListener(() => join(friendGameInfo.m_steamIDLobby));
+                    o.transform.GetChild(0).GetComponent<TMP_Text>().text = "Join " + SteamFriends.GetFriendPersonaName(friendSteamID);
+
+                    listAdd++;
+                }
+                else {
+                    Debug.Log("Friend " + friendSteamID + " is not in a lobby");
+                }
+            }
+        }
+    }
+
+    void join(Steamworks.CSteamID id) {
+        manager.GetComponent<SaveHelper>().checkAndSave(SteamFriends.GetPersonaName().ToString());
+        manager.changeTransport(steam);
+        SteamMatchmaking.JoinLobby(id);
+        Debug.Log("Request To Join Lobby");
     }
 
     void connectServer() {
@@ -69,7 +117,7 @@ public class OnlineMenu : MonoBehaviour
 
     public void HostLobby() {
         Debug.Log("lobby creation");
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 4);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 10);
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback) {
@@ -83,6 +131,8 @@ public class OnlineMenu : MonoBehaviour
     }
 
     private void OnJoinRequest(GameLobbyJoinRequested_t callback) {
+        if(!manager.GetComponent<SaveHelper>().checkAndSave(SteamFriends.GetPersonaName().ToString())) return;
+        manager.GetComponent<SaveHelper>().checkAndSave(SteamFriends.GetPersonaName().ToString());
         manager.changeTransport(steam);
         SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
         Debug.Log("Request To Join Lobby");
@@ -135,8 +185,10 @@ public class OnlineMenu : MonoBehaviour
     }
 
     void changeUsingSteam() {
-        
-        if(usingSteamText.text == "using Steam") {
+        manager.changeTransport(steam);
+        manager.GetComponent<SaveHelper>().checkAndSave(SteamFriends.GetPersonaName().ToString());
+        HostLobby();
+        /*if(usingSteamText.text == "using Steam") {
             usingSteamText.text = "don't use Steam";
             chooseName.readOnly = false;
             ipAdress.readOnly = false;
@@ -154,6 +206,6 @@ public class OnlineMenu : MonoBehaviour
                 ipAdress.text = "wait for invitation...";
                 manager.changeTransport(steam);
             }
-        }
+        }*/
     }
 }
