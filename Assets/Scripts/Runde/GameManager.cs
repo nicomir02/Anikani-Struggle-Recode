@@ -6,6 +6,7 @@ using Mirror;
 public class GameManager : NetworkBehaviour
 {
     private readonly SyncDictionary<int, float[]> gameFarben = new SyncDictionary<int, float[]>();
+    private Dictionary<int, Color> internFarben = new Dictionary<int, Color>();
     [SerializeField] private List<StandardVolk> voelker;
     [SerializeField] private SaveHelper saveHelper;
 
@@ -16,9 +17,13 @@ public class GameManager : NetworkBehaviour
     }
 
     public Color getColor(int id) {
+        if(internFarben.ContainsKey(id)) {
+            return internFarben[id];
+        }
         if(gameFarben.ContainsKey(id)) {
-            Debug.Log(gameFarben[id][0] + " " + gameFarben[id][1] + " " + gameFarben[id][2]);
-            return new Color(gameFarben[id][0], gameFarben[id][1], gameFarben[id][2], 255);
+            Color b = new Color(gameFarben[id][0], gameFarben[id][1], gameFarben[id][2], 255);
+            internFarben.Add(id, b);
+            return b;
         } 
         return Color.white;
     }
@@ -31,12 +36,18 @@ public class GameManager : NetworkBehaviour
         array[2] = color.b;
         if(gameFarben.ContainsKey(id)) {
             gameFarben[id] = array;
+            changeInternFarben(id);
         }else {
             gameFarben.Add(id, array);
         }
 
         
         newColorCMD(id, array);
+    }
+
+    [ClientRpc]
+    public void changeInternFarben(int id) {
+        internFarben.Remove(id);
     }
 
     [Command(requiresAuthority=false)]
