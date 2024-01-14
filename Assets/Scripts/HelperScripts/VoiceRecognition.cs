@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnitySentiment;
 using Whisper;
@@ -16,11 +17,15 @@ namespace HelperScripts
         public MicrophoneRecord microphoneRecord;
         public SentimentAnalysis sentimentAnalysis;
         public VoiceRecognition voiceRecognition;
+        public TMP_Text toggleBtn;
 
         private void Awake()
         {
             if (microphoneRecord != null) 
                 microphoneRecord.OnRecordStop += OnRecordStop;
+
+            if (toggleBtn != null)
+                toggleBtn.text = "Start";
         }
         
         private void Update()
@@ -54,17 +59,27 @@ namespace HelperScripts
                 Debug.Log("Voice recognition stopped."); 
             }
         }
-
-        private bool IsMicrophoneInitialized()
+        
+        public void ToggleVoiceRecognition()
         {
-            if (microphoneRecord == null || !microphoneRecord.IsRecording)
+            Debug.Log("ToggleVoiceRecognition called"); 
+            if (microphoneRecord.IsRecording)
             {
-                Debug.Log("microphoenRecord " + microphoneRecord);
-                Debug.Log("microphoneRecord.IsRecording: " + microphoneRecord.IsRecording);
-                Debug.Log("MicrophoneRecord is not initialized.");
-                return false;
+                StopListening();
+                UpdateButtonText("Start");
             }
-            return true;
+            else
+            {
+                StartListening();
+                UpdateButtonText("Stop");
+            }
+        }
+        
+        private void UpdateButtonText(string text)
+        {
+            Debug.Log($"Updating button text to: {text}");
+            if (toggleBtn != null)
+                toggleBtn.text = text;
         }
 
         private async void OnRecordStop(AudioChunk recordedAudio)
