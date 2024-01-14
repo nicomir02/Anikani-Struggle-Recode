@@ -911,7 +911,7 @@ MonoBehaviour:
   - {fileID: 3616472381045770389}
   - {fileID: 7398984500298423341}
   finalSpriteRenderer: {fileID: 6219530997422260251}
-  anpassung: -1
+  vertAnpassung: -1
 --- !u!212 &6219530997422260251
 SpriteRenderer:
   m_ObjectHideFlags: 0

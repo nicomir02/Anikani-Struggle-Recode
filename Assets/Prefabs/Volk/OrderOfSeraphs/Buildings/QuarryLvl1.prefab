@@ -968,7 +968,7 @@ MonoBehaviour:
   - {fileID: 614664639240776088}
   - {fileID: 6342244038085649368}
   finalSpriteRenderer: {fileID: 6219530997422260251}
-  anpassung: 0.75
+  vertAnpassung: 0.75
 --- !u!212 &6219530997422260251
 SpriteRenderer:
   m_ObjectHideFlags: 0
