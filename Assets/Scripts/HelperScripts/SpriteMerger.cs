@@ -7,7 +7,8 @@ public class SpriteMerger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer[] spritesToMerge = null; 
     [SerializeField] private SpriteRenderer finalSpriteRenderer = null; 
-    [SerializeField] private Sprite finalSprite = null; 
+    [SerializeField] public float vertAnpassung; 
+    private Sprite finalSprite = null; 
 
     void Start() {
         Merge();
@@ -48,7 +49,8 @@ public class SpriteMerger : MonoBehaviour
 
         newTex.Apply();
         newTex.filterMode = FilterMode.Point;
-        finalSprite = Sprite.Create(newTex, new Rect(0, 0, newTex.width, newTex.height), new Vector2(0.5f, 0f), 20f);
+        float tmpAn = 0.125f * vertAnpassung;
+        finalSprite = Sprite.Create(newTex, new Rect(0, 0, newTex.width, newTex.height), new Vector2(0.5f, (0.125f + tmpAn)), 20f);
         finalSprite.name = "New Sprite"; 
         finalSpriteRenderer.sprite = finalSprite;
     }

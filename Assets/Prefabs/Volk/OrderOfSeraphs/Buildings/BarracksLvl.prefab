@@ -659,7 +659,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6409f08983d25460b8463bcbcdb37b40, type: 3}
   - {fileID: 21300000, guid: 990bb658bb61f47adba28082c05403ae, type: 3}
   - {fileID: 21300000, guid: 015b12db215044cdc988f0700ec28570, type: 3}
-  coloredSprites: []
 --- !u!1 &5322103082211397709
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +911,7 @@ MonoBehaviour:
   - {fileID: 3616472381045770389}
   - {fileID: 7398984500298423341}
   finalSpriteRenderer: {fileID: 6219530997422260251}
-  finalSprite: {fileID: 0}
+  anpassung: -1
 --- !u!212 &6219530997422260251
 SpriteRenderer:
   m_ObjectHideFlags: 0
