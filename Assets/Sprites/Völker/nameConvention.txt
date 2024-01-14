@@ -1,0 +1,11 @@
+atk = attack
+frt = front (Vorderseite der Einheit)
+bck = back (Rueckseite der Einheit, wenn sie von der Kamera wegläuft)
+act = Action (universal für mehreres, z.B. Angriff und Heilung)
+hel = heal 
+wlk = walk 
+stc = static (nicht zu veraenderbare/faerbende Teil)
+clr = color (einzufaerbende Teil, z.b. Cape oder Flagge) 
+prw = preview (neutral gefaerbte Vorschau) 
+
+Name-action-side-part-num 

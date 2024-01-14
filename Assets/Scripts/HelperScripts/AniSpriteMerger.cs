@@ -6,7 +6,7 @@ public class AniSpriteMerger : MonoBehaviour
 {
     [SerializeField] private Sprite[] staticSprites;
     [SerializeField] private Sprite[] colorSprites;
-    private List<Sprite> coloredSprites = new List<Sprite>();
+    [SerializeField] private List<Sprite> coloredSprites = new List<Sprite>();
     
     void Start()
     {
@@ -29,7 +29,7 @@ public class AniSpriteMerger : MonoBehaviour
 
         Sprite tmp;
         for (int i = 0; i < staticSprites.Length; i++) {
-            tmp = concreteMerge(staticSprites[i], colorSprites[i], color);
+            tmp = concreteMerge(staticSprites[i], colorSprites[i], color, i);
             if (tmp != null) coloredSprites.Add(tmp);
         }
     }
@@ -38,8 +38,15 @@ public class AniSpriteMerger : MonoBehaviour
         return coloredSprites;
     }
 
-    public Sprite concreteMerge(Sprite staticSprite, Sprite colorSprite, Color teamColor) {
-        var newTex = new Texture2D(staticSprite.texture.width, staticSprite.texture.height);
+    public Sprite concreteMerge(Sprite staticSprite, Sprite colorSprite, Color teamColor, int i) {
+        int height = staticSprite.texture.height;
+        int width = staticSprite.texture.width;
+        bool quad = false;
+        if (width == height) quad = true;
+        if (!quad && width*2 != height) return null;
+
+        teamColor.a = 1;
+        var newTex = new Texture2D(width, height); 
         for (int x = 0; x < newTex.width; x++) {
             for (int y = 0; y < newTex.height; y++) {
                 newTex.SetPixel(x, y, new Color(0, 0, 0, 0));
@@ -47,16 +54,16 @@ public class AniSpriteMerger : MonoBehaviour
         }
 
         Color pixel;
-        for (int x = 0; x < staticSprite.texture.width; x++) {
-            for (int y = 0; y < staticSprite.texture.height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 if (staticSprite.texture.GetPixel(x, y).a == 0) pixel = newTex.GetPixel(x,y); 
                 else pixel = staticSprite.texture.GetPixel(x, y);
                 newTex.SetPixel(x, y, pixel);
             }
         }
 
-        for (int x = 0; x < colorSprite.texture.width; x++) {
-            for (int y = 0; y < colorSprite.texture.height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 if (colorSprite.texture.GetPixel(x, y).a == 0) pixel = newTex.GetPixel(x,y); 
                 else {
                     pixel = colorSprite.texture.GetPixel(x, y);
@@ -72,9 +79,14 @@ public class AniSpriteMerger : MonoBehaviour
         }
 
         newTex.Apply();
-        newTex.filterMode = FilterMode.Point;
-        Sprite final = Sprite.Create(newTex, new Rect(0, 0, newTex.width, newTex.height), new Vector2(0.5f, 0f), 20f);
-        final.name = "New Sprite"; 
+        newTex.filterMode = FilterMode.Point; 
+        newTex.Apply();
+        Vector2 piv; 
+        if (quad) piv = new Vector2(0.5f, 0f); 
+        else piv = new Vector2(0.5f, 0.5f); 
+        Sprite final = Sprite.Create(newTex, new Rect(0, 0, width, height), piv, 20f, 0, SpriteMeshType.FullRect);
+        string name = "NewSprite" + i;
+        final.name = name; 
         return final;
     }
 }

@@ -640,12 +640,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1106831591, guid: ac6e312243c1441c8a46d9bbca0df17c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4399e98e0f8f34a0d899f8d55707ef82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.4, y: 6.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1149,12 +1149,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1713941673, guid: 0727c121d67e84013bb781bb0efa81b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dc85868d673141e687b395ab6013b68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.4, y: 6.4}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1205,15 +1205,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSprites:
-  - {fileID: -1713941673, guid: 0727c121d67e84013bb781bb0efa81b8, type: 3}
-  - {fileID: 1814221906, guid: 0727c121d67e84013bb781bb0efa81b8, type: 3}
-  - {fileID: -397422709, guid: 0727c121d67e84013bb781bb0efa81b8, type: 3}
-  - {fileID: 500759372, guid: 0727c121d67e84013bb781bb0efa81b8, type: 3}
+  - {fileID: 21300000, guid: 6dc85868d673141e687b395ab6013b68, type: 3}
+  - {fileID: 21300000, guid: 06f1bb6e07fff47a597da97645ff4bfb, type: 3}
+  - {fileID: 21300000, guid: b988ef4322bc147d89d0bf1aacea69f4, type: 3}
+  - {fileID: 21300000, guid: e04325d6ee19840018861befde90c2fe, type: 3}
   colorSprites:
-  - {fileID: -1106831591, guid: ac6e312243c1441c8a46d9bbca0df17c, type: 3}
-  - {fileID: -1012707883, guid: ac6e312243c1441c8a46d9bbca0df17c, type: 3}
-  - {fileID: 257171167, guid: ac6e312243c1441c8a46d9bbca0df17c, type: 3}
-  - {fileID: 507207163, guid: ac6e312243c1441c8a46d9bbca0df17c, type: 3}
+  - {fileID: 21300000, guid: 4399e98e0f8f34a0d899f8d55707ef82, type: 3}
+  - {fileID: 21300000, guid: b87ee9a4e28664db6af50e730588ab08, type: 3}
+  - {fileID: 21300000, guid: 72ca85f3823b445a18e4a1f80cd3bab9, type: 3}
+  - {fileID: 21300000, guid: 5276a79a661c44823b9bac99e3d1a200, type: 3}
+  coloredSprites: []
 --- !u!1 &8633331318720126337
 GameObject:
   m_ObjectHideFlags: 0
