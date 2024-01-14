@@ -180,14 +180,14 @@ public class VolkObject : NetworkBehaviour
         if(currentNahrung < NeededFood*0.25) result += " - starvation"; 
         result += "\nMoralboost: " + boostAuswertung();
 
-        result += "\n\nVorlieben:\n";
+        /*result += "\n\nVorlieben:\n";
         int i =0;
         foreach(Moral m in Vorlieben) {
             if(i++ > 0) {
                 result += "\n";
             }
             result += m + ": " + m.auswerten(this) + "/1";
-        }
+        }*/
         return result;
     }
 

@@ -84,9 +84,6 @@ public class OnlineMenu : MonoBehaviour
 
                     listAdd++;
                 }
-                else {
-                    Debug.Log("Friend " + friendSteamID + " is not in a lobby");
-                }
             }
         }
     }

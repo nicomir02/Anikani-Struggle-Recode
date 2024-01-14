@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InfoboxManager : MonoBehaviour
+public class InfoboxManager : Panel
 {
     [SerializeField] private List<GameObject> AllButtonsVolkObject;
     [SerializeField] private List<GameObject> AllButtonsUnit;
     [SerializeField] private List<GameObject> AllButtonsBuilding;
-    //Main Infobox Panel
-    [SerializeField] private GameObject panel;
+
     [SerializeField] private GameObject listBtns;
 
     [SerializeField] private TMP_Text allgemeineInfos;
@@ -19,6 +18,12 @@ public class InfoboxManager : MonoBehaviour
 
 
     List<GameObject> instantiatedBtns = new List<GameObject>();
+
+    [SerializeField] private GameObject moralElement;
+
+    [SerializeField] private MoralManager moralManager;
+
+    private List<GameObject> instantiatedMoral = new List<GameObject>();
 
     bool bigInfobox = false;
 
@@ -66,6 +71,22 @@ public class InfoboxManager : MonoBehaviour
         panel.transform.GetChild(1).gameObject.SetActive(true);
 
         allgemeineInfos.text = obj.description();
+
+
+        int i = 0;
+        foreach(Moral m in obj.Vorlieben) {
+            float f = m.auswerten(obj);
+            GameObject o = moralElement;
+            if(i>0) {
+                o = Instantiate(moralElement, moralElement.transform.parent);
+                instantiatedMoral.Add(o);
+            }else moralElement.SetActive(true);
+
+            o.transform.GetChild(0).GetComponent<Image>().sprite = moralManager.getSprite(m);
+            //o.transform.GetChild(1).GetComponent<Image>().sprite = positive/negative/neutral
+            o.transform.GetChild(2).GetComponent<TMP_Text>().text = Mathf.Round(f*10)*0.1f + "/1 \n";
+            i++;
+        }
         
 
     }
@@ -89,6 +110,10 @@ public class InfoboxManager : MonoBehaviour
     public void closeInfo() {
         bigInfobox = false;
         panel.transform.GetChild(1).gameObject.SetActive(false);
+
+        foreach(GameObject o in instantiatedMoral) {
+            Destroy(o);
+        }
     }
 
     public void useDrugs() {
@@ -96,13 +121,18 @@ public class InfoboxManager : MonoBehaviour
     }
 
 
+    public override void closePanel() {
+        closeAllPanels();
+    }
+
     public void closeAllPanels() {
         foreach(GameObject o in instantiatedBtns) {
             Destroy(o);
         }
+        panel.SetActive(false);
         instantiatedBtns = new List<GameObject>();
         listBtns.SetActive(false);
         //all children deactivate still to do
-        panel.SetActive(false);
+        closeInfo();
     }
 }
