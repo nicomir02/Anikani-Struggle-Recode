@@ -6,7 +6,7 @@ public class AniSpriteMerger : MonoBehaviour
 {
     [SerializeField] private Sprite[] staticSprites;
     [SerializeField] private Sprite[] colorSprites;
-    [SerializeField] private List<Sprite> coloredSprites = new List<Sprite>();
+    private List<Sprite> coloredSprites = new List<Sprite>();
     
     void Start()
     {
@@ -82,8 +82,8 @@ public class AniSpriteMerger : MonoBehaviour
         newTex.filterMode = FilterMode.Point; 
         newTex.Apply();
         Vector2 piv; 
-        if (quad) piv = new Vector2(0.5f, 0f); 
-        else piv = new Vector2(0.5f, 0.5f); 
+        if (quad) piv = new Vector2(0.5f, 0.125f); 
+        else piv = new Vector2(0.5f, 0.625f); 
         Sprite final = Sprite.Create(newTex, new Rect(0, 0, width, height), piv, 20f, 0, SpriteMeshType.FullRect);
         string name = "NewSprite" + i;
         final.name = name; 

@@ -648,7 +648,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: beb7e0a5395f14949bc6335267a74a19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 621459e1dd86f4c63acac8545e278016, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -704,19 +704,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSprites:
+  - {fileID: 21300000, guid: ef6f49ec3bd3244a78cf5c6e0394ec27, type: 3}
   - {fileID: 21300000, guid: 329da1c2f1e544558a3b236e1d8f7749, type: 3}
   - {fileID: 21300000, guid: e7e74439e511241a98a1c015049bf18e, type: 3}
   - {fileID: 21300000, guid: c3b4a74cd271047f9a2058d6242c4b54, type: 3}
   - {fileID: 21300000, guid: d1d624e4309d9402d9de9cda81da32db, type: 3}
   - {fileID: 21300000, guid: eda12cee0bf984e368b3f3affe0e0de5, type: 3}
-  - {fileID: 21300000, guid: e0fdc24d337d540949c63b730e3c140f, type: 3}
   colorSprites:
+  - {fileID: 21300000, guid: 621459e1dd86f4c63acac8545e278016, type: 3}
   - {fileID: 21300000, guid: beb7e0a5395f14949bc6335267a74a19, type: 3}
   - {fileID: 21300000, guid: db3fea24d1cf5492d9da3df9f7a887e2, type: 3}
   - {fileID: 21300000, guid: 8ae56e3a4df5e40a6b1b4d327d8b28be, type: 3}
   - {fileID: 21300000, guid: 8d003f41fb0b0431885a351b2e757f71, type: 3}
   - {fileID: 21300000, guid: aa86c698540b0497b9ede5e78c0b9d99, type: 3}
-  - {fileID: 21300000, guid: 4479a50ca3a4845c18e04f85d9fbb1ff, type: 3}
   coloredSprites: []
 --- !u!1 &7067555344960492673
 GameObject:
@@ -791,7 +791,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 329da1c2f1e544558a3b236e1d8f7749, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef6f49ec3bd3244a78cf5c6e0394ec27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -900,7 +900,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 645041808, guid: 81f41f05539c3a44194bf4f86de75e19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dba2e5520d5241578c450132a109dd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
