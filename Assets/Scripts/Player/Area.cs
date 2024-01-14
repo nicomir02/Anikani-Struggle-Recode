@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Area : NetworkBehaviour
 {
     public readonly SyncDictionary<Vector3Int, int> area = new SyncDictionary<Vector3Int, int>();
+    private Dictionary<int, Color> helpArea = new Dictionary<int, Color>();
 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private MapBehaviour mapBehaviour;
@@ -88,8 +89,16 @@ public class Area : NetworkBehaviour
             Vector3Int vec = new Vector3Int(kvp.Key.x, kvp.Key.y, 0);
             foreach(Tilemap t in FindObjectsOfType<Tilemap>()){
                 t.SetTileFlags(vec, TileFlags.None);
-                if(gameManager.getColor(kvp.Value) != Color.white) t.SetColor(vec, gameManager.getColor(kvp.Value));
-                Debug.Log(kvp.Value + " " + gameManager.getColor(kvp.Value));
+                Color a = Color.white;
+                if(!helpArea.ContainsKey(kvp.Value)) {
+                    a = gameManager.getColor(kvp.Value);
+                    helpArea.Add(kvp.Value, a);
+                }else {
+                    a = helpArea[kvp.Value];
+                }
+                t.SetColor(vec, gameManager.getColor(kvp.Value));
+                /*if(gameManager.getColor(kvp.Value) != Color.white) );
+                Debug.Log(kvp.Value + " " + gameManager.getColor(kvp.Value));*/
             }
         }
     }
