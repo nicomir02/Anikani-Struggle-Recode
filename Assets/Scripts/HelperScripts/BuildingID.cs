@@ -25,8 +25,10 @@ public class BuildingID : MonoBehaviour
 
 
     public void click(){
-        if(buildingID == -1 || !GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().isYourTurn()) return;
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
+
+        if(buildingID == -1 || !GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().isYourTurn() || pm.maxInteractions >= pm.interactions) return;
+        
         if(pm.genugRessourceVorhanden(kosten)) {
             pm.setBuilding(buildingID);
             GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<BuildingKaufManager>().closePanel();

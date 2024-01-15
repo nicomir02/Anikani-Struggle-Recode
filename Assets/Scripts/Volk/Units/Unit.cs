@@ -15,6 +15,10 @@ public class Unit : VolkObject
     private List<Sprite> frontAttack = new List<Sprite>();
     private List<Sprite> backAttack = new List<Sprite>();
 
+    [SerializeField] private AudioClip moveSound;
+    [SerializeField] private AudioClip healSound;
+    [SerializeField] private AudioClip attackSound;
+
     private void loadMoreAnimations() {
         transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
         frontWalk = transform.GetChild(5).GetComponent<AniSpriteMerger>().GetList(); 
@@ -249,6 +253,16 @@ public class Unit : VolkObject
     }
     
 
+    [ClientRpc]
+    public void schritteSound() {
+        if(GetComponent<AudioSource>() == null) {
+            gameObject.AddComponent<AudioSource>();
+        }
+        if(moveSound == null) return;
+        GetComponent<AudioSource>().clip = moveSound;
+        GetComponent<AudioSource>().Play();
+    }
+
     public void tryAttack(Vector3Int v, VolkObject obj) {
 
 	/*Debug.Log($"[tryAttack] Attempting an action on position: {v}");
@@ -286,6 +300,14 @@ public class Unit : VolkObject
         if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
             obj.changeHealth(healValue);
             lastHeal = 0;
+
+            
+            if(GetComponent<AudioSource>() == null) {
+                gameObject.AddComponent<AudioSource>();
+            }
+            if(healSound == null) return;
+            GetComponent<AudioSource>().clip = healSound;
+            GetComponent<AudioSource>().Play();
         }else {
             if(transform.position.x >= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
                 animationList = frontAttack;
@@ -296,9 +318,17 @@ public class Unit : VolkObject
             }else if(transform.position.x <= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
                 animationList = backAttack;
             }
+            if(GetComponent<AudioSource>() == null) {
+                gameObject.AddComponent<AudioSource>();
+            }
+            lastAttack = 0; 
+
+
+            if(attackSound == null) return;
+            GetComponent<AudioSource>().clip = attackSound;
+            GetComponent<AudioSource>().Play();
             obj.changeHealth(-attackValue);
-            lastAttack = 0;
-            animationList = idle; 
+            
         }
     }
 
@@ -325,6 +355,7 @@ public class Unit : VolkObject
             }else if(startingPosition.x <= position.x && startingPosition.y <= position.y) {
                 animationList = backWalk;
             }
+            animationStart(0, true);
 
             while (elapsedTime < timeToMove) {
                 elapsedTime += Time.deltaTime;
@@ -336,8 +367,6 @@ public class Unit : VolkObject
         }
 
         transform.position = tilemapHover.getVec3FromVec3Int(positions[positions.Count-1]);
-        animationList = idle;
-
     }
 
     

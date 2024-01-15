@@ -55,6 +55,10 @@ public class PlayerManager : NetworkBehaviour
     3 = Lila
     */
 
+    public int interactions = 0;
+
+    public int maxInteractions = 2;
+
     private ObjectSpawnHelper spawnHelper;
 
     private TMP_Text woodCounter;
@@ -82,6 +86,7 @@ public class PlayerManager : NetworkBehaviour
     public bool playerHauptgebaeude {
         get{return hauptGebaeudeIstGesetzt;}
     }
+
 
     [SerializeField] private List<Ressource> alleRessourcen = new List<Ressource>();
     [SerializeField] private Ressource nahrung;
@@ -167,6 +172,12 @@ public class PlayerManager : NetworkBehaviour
         return volk;
     }
 
+    public void nextRound(RoundManager rm) {
+        interactions = 0;
+        if(rm.Round == 0) {
+            interactions = maxInteractions - 1;
+        }
+    }
 
     public void setBuilding(int buildingID) {
         if(!isLocalPlayer) return;
@@ -206,6 +217,7 @@ public class PlayerManager : NetworkBehaviour
             anikaniCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/AnikaniCounter").GetComponent<TMP_Text>();
             eingetragen = true;
             addRessource(nahrung, 10f);
+            maxInteractions = volk.StandardMaxInteractions;
         }
 
         

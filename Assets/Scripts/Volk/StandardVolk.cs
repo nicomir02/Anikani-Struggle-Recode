@@ -7,6 +7,7 @@ public class StandardVolk : MonoBehaviour
     //allgemeine Gebäude für alle Völker(spezielle in spezifischen Volkskripten reinschreiben)
     [SerializeField] private Building hauptGebaeude;
     [SerializeField] private AudioClip backgroundMusicClip;
+
     public AudioClip BackgroundMusicClip {
         get {
             return backgroundMusicClip;
@@ -22,6 +23,13 @@ public class StandardVolk : MonoBehaviour
     public List<Building> Buildings {
         get {
             return buildings;
+        }
+    }
+
+    [SerializeField] private int standardMaxInteractions = 2;
+    public int StandardMaxInteractions {
+        get {
+            return standardMaxInteractions;
         }
     }
     

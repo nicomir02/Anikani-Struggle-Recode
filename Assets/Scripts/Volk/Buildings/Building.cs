@@ -79,6 +79,11 @@ public class Building : VolkObject
         
     }
 
+    [Command(requiresAuthority=false)]
+    public void destroyBuilding() {
+
+    }
+
     
 
     // Update is called once per frame
@@ -100,6 +105,11 @@ public class Building : VolkObject
 
         if(!gesetzt){
             CMDtransparencyChange(0.5f, newPos);
+
+            if(Input.GetButtonDown("Cancel")) {
+                changeHealth(-(maxHealth*2));
+            }
+
             /*
             Leider ist setzbar() sehr ineffizient
             
@@ -126,6 +136,7 @@ public class Building : VolkObject
             vec.y += (radius-1)/2;
             
             gebaeudeBau(vec);
+            PlayerHelperScript.findLocalPlayer().interactions++;
             gesetzt = true;
             CMDtransparencyChange(1f, newPos);
         }

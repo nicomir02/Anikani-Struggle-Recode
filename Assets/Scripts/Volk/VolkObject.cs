@@ -17,6 +17,8 @@ public class VolkObject : NetworkBehaviour
     [SerializeField] public int standardMaxHealth = 100;
     [SyncVar] public int maxHealth = 100;   //vielleicht als float?
 
+    
+
 //ähnlich wie bei maxhealth:
     [SerializeField] public int standardAttackRange = 1;
     [SyncVar] public int attackRange = 1;
@@ -26,6 +28,16 @@ public class VolkObject : NetworkBehaviour
     public Moralbar Moralb {
         get{return moralbar;}
     }
+
+    [SerializeField] private AudioClip bauAusbildSound;
+    public AudioClip BauSound {
+        get {return bauAusbildSound;}
+    }
+
+    [SerializeField] private AudioClip todesSound;
+    /*public AudioClip TodesSound {
+        get {return todesSound;}
+    }*/
 
 //für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
     private float[] moralskalaArray = {0f,0.1f,0.25f,0.5f,0.75f,0.90f,1f};
@@ -205,6 +217,7 @@ public class VolkObject : NetworkBehaviour
         //für moralsuwirkungen erstmal zu testen
         maxHealth = standardMaxHealth;
         attackRange = standardAttackRange;
+        
     }
 
     [Command(requiresAuthority=false)]
@@ -226,7 +239,6 @@ public class VolkObject : NetworkBehaviour
         if(suchtLvl.Count > 1 && suchtLvl[0] > -1) {
             suchtLvl[0] = suchtLvl[0]-1;
         }
-
         if(rm != null && rm.Round > 0) changeHealth(maxHealth*0.01f);
         
     }
@@ -237,16 +249,23 @@ public class VolkObject : NetworkBehaviour
     }
     
 
-    public IEnumerator animationStart(int cur) {
+    public IEnumerator animationStart(int cur, bool change=false) {
         if(animationList.Count == 0) animationList.Add(safe);
 
-        if(++cur >= animationList.Count) cur = 0;
+        if(++cur >= animationList.Count) {
+            cur = 0;
+        }
+        if(cur==0 && change==false) {
+            animationList = idle;
+        }else if(change == true) {
+            cur = 0;
+        }
         
         GetComponent<SpriteRenderer>().sprite = animationList[cur];
 
         yield return new WaitForSecondsRealtime(animationAbstand);
 
-        StartCoroutine(animationStart(cur));
+        StartCoroutine(animationStart(cur, false));
     }
 
     public virtual bool isObjectAtPosition(Vector3Int vec) {
@@ -275,7 +294,15 @@ public class VolkObject : NetworkBehaviour
 
     [ClientRpc]
     public void destroyedObject() {
+        
+
         if(m_selected) deselect();
+        if(GetComponent<AudioSource>() == null) {
+            gameObject.AddComponent<AudioSource>();
+        }
+        if(todesSound == null) return;
+        GetComponent<AudioSource>().clip = todesSound;
+        GetComponent<AudioSource>().Play();
     }
 
     [Command(requiresAuthority=false)]

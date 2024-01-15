@@ -99,6 +99,7 @@ public class RoundManager : NetworkBehaviour
                 } */
             }
             nextRoundBuildings(pm);
+            pm.nextRound(this);
 
             moralManager.nextRound(pm);
         }else {
