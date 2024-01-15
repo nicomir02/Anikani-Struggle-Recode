@@ -15,12 +15,12 @@ public class ObjectSpawnHelper : NetworkBehaviour
         prefab.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(playerCode);
         prefab.GetComponent<SpriteMerger>().Merge();
         NetworkServer.Spawn(prefab);
-        RPCnamechange(prefab, objectname, t);
+        RPCnamechange(prefab, objectname, t, playerCode);
     }
 
     [ClientRpc]
-    void RPCnamechange(GameObject o, string objectname, Transform parent) {
-
+    void RPCnamechange(GameObject o, string objectname, Transform parent, int playerCode) {
+        o.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(playerCode);
         o.name = objectname;
         o.transform.parent = parent;
     }
@@ -31,8 +31,10 @@ public class ObjectSpawnHelper : NetworkBehaviour
         t.position = tilemapHover.getVec3FromVec3Int(tilemapHover.getVec3IntFromVec3(t.position));
         GameObject prefab = Instantiate(gameManager.getVolkByID(volk).getUnitByID(unitID), t);
         prefab.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(playerCode);
+        Debug.Log(prefab.transform.GetChild(3).GetComponent<SpriteRenderer>().color);
+        Debug.Log(gameManager.getColor(playerCode) + "game Manager");
         prefab.GetComponent<SpriteMerger>().Merge();
         NetworkServer.Spawn(prefab);
-        RPCnamechange(prefab, objectname, t.parent);
+        RPCnamechange(prefab, objectname, t.parent, playerCode);
     }
 }
