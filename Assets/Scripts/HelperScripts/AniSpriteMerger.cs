@@ -16,6 +16,7 @@ public class AniSpriteMerger : MonoBehaviour
     }
 
     public void aniMerge() { 
+        Resources.UnloadUnusedAssets();
         if (staticSprites.Length != colorSprites.Length) {
             Debug.Log("Different number of sprites");
             return;
@@ -41,6 +42,7 @@ public class AniSpriteMerger : MonoBehaviour
     }
 
     public Sprite concreteMerge(Sprite staticSprite, Sprite colorSprite, Color teamColor, int i) {
+        Resources.UnloadUnusedAssets();
         int height = staticSprite.texture.height;
         int width = staticSprite.texture.width;
         bool quad = false;
