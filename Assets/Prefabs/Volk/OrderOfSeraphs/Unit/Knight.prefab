@@ -1676,10 +1676,10 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   health: 0
-  attackValue: 60
+  attackValue: 40
   healValue: 0
-  standardMaxHealth: 100
-  maxHealth: 100
+  standardMaxHealth: 120
+  maxHealth: 120
   standardAttackRange: 1
   attackRange: 1
   healthbar: {fileID: 2177763823506695250}

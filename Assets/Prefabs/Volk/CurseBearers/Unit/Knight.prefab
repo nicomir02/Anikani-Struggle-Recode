@@ -1167,7 +1167,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4004221862323873089
@@ -1188,8 +1188,8 @@ MonoBehaviour:
   health: 0
   attackValue: 60
   healValue: 0
-  standardMaxHealth: 100
-  maxHealth: 100
+  standardMaxHealth: 80
+  maxHealth: 80
   standardAttackRange: 1
   attackRange: 1
   healthbar: {fileID: 2177763823506695250}
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
-  kostenFuerRessource: 0000000000000000
+  kostenFuerRessource: 0100000002000000
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.1

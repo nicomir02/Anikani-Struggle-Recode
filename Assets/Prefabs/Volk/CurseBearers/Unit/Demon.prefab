@@ -1686,7 +1686,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   health: 0
-  attackValue: 60
+  attackValue: 80
   healValue: 0
   standardMaxHealth: 100
   maxHealth: 100
@@ -1700,10 +1700,12 @@ MonoBehaviour:
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
   - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
-  kostenFuerRessource: 0000000000000000
+  - {fileID: 8694705376693512614, guid: 4e8866fe3485e464c808196ae9128d45, type: 3}
+  kostenFuerRessource: 010000000100000003000000
   kostenMultiplierFuerRessource:
   - 1.2
   - 1.1
+  - 1.3
   specificButtonsInfobox: []
   animationAbstand: 0.2
   m_selected: 0

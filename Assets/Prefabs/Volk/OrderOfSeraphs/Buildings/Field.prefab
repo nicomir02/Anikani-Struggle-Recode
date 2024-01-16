@@ -1060,9 +1060,13 @@ MonoBehaviour:
   bauAusbildSound: {fileID: 8300000, guid: 3e5ddfca9654e264cbae573f7a21fe2e, type: 3}
   todesSound: {fileID: 0}
   moralWert: 1
-  RessourcenFuerKosten: []
-  kostenFuerRessource: 
-  kostenMultiplierFuerRessource: []
+  RessourcenFuerKosten:
+  - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
+  - {fileID: 8694705376693512614, guid: a22ec6f3ebb71464d8bbc552bc33f4a7, type: 3}
+  kostenFuerRessource: 0200000001000000
+  kostenMultiplierFuerRessource:
+  - 1.2
+  - 1.1
   specificButtonsInfobox: []
   animationAbstand: 0.2
   m_selected: 0
