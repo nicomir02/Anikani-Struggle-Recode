@@ -5,6 +5,24 @@ using UnityEngine;
 public class Moralskala : MonoBehaviour
 {
 
+    //Serialize Fields für Balancing Aspekte zum Anpassen
+    [SerializeField] private float faktorCase1 = 0.25f;
+    [SerializeField] private float faktorCase2 = 0.5f;
+    [SerializeField] private float faktorCase3 = 0.75f;
+    [SerializeField] private float faktorCase4 = 1f;
+    [SerializeField] private float faktorCase5 = 1.25f;
+    [SerializeField] private float faktorCase6 = 1.5f;
+    [SerializeField] private float faktorCase7 = 2f;
+
+    [SerializeField] private int maxStepsAenderung1 = -3
+    [SerializeField] private int maxStepsAenderung2 = -2
+    [SerializeField] private int maxStepsAenderung3 = -1
+    [SerializeField] private int maxStepsAenderung4 = 0
+    [SerializeField] private int maxStepsAenderung5 = 1
+    [SerializeField] private int maxStepsAenderung6 = 2
+    [SerializeField] private int maxStepsAenderung7 = 3
+
+
     /*Skalenverteilung:
         klasse1: 0 - 10% Moral
         klasse2: 10 - 25% Moral
@@ -21,55 +39,55 @@ public class Moralskala : MonoBehaviour
         switch(moralkategoriewert) {
             case 1:
                
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.25f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase1);
                 if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                vo.AttackValue = vo.StandardAttackValue * 0.25f;
-                vo.HealValue = vo.StandardHealValue * 0.25f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 0.25f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase1;
+                vo.HealValue = vo.StandardHealValue * faktorCase1;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase1);
                 //Debug.Log("Typ= " + vo.GetType());
                 break;
             //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
             case 2:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.5f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase2);
                 if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                vo.AttackValue = vo.StandardAttackValue * 0.5f;
-                vo.HealValue = vo.StandardHealValue * 0.5f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 0.5f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase2;
+                vo.HealValue = vo.StandardHealValue * faktorCase2;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase2);
                 break;
             case 3:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.75f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase3);
                 if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                vo.AttackValue = vo.StandardAttackValue * 0.75f;
-                vo.HealValue = vo.StandardHealValue * 0.75f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 0.75f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase3;
+                vo.HealValue = vo.StandardHealValue * faktorCase3;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase3);
                 break;
             case 4:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase4);
                 
-                vo.AttackValue = vo.StandardAttackValue * 1f;
-                vo.HealValue = vo.StandardHealValue * 1f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 1f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase4;
+                vo.HealValue = vo.StandardHealValue * faktorCase4;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase4);
                 break;
             case 5:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1.25f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase5);
                 
-                vo.AttackValue = vo.StandardAttackValue * 1.25f;
-                vo.HealValue = vo.StandardHealValue * 1.25f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 1.25f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase5;
+                vo.HealValue = vo.StandardHealValue * faktorCase5;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase5);
                 break;
             case 6:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 1.5f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase6);
                 
-                vo.AttackValue = vo.StandardAttackValue * 1.5f;
-                vo.HealValue = vo.StandardHealValue * 1.5f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 1.5f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase6;
+                vo.HealValue = vo.StandardHealValue * faktorCase6;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase6);
                 break;
             case 7:
-                vo.MaxHealth = (int)(vo.StandardMaxHealth * 2f);
+                vo.MaxHealth = (int)(vo.StandardMaxHealth * faktorCase7);
                 
-                vo.AttackValue = vo.StandardAttackValue * 2f;
-                vo.HealValue = vo.StandardHealValue * 2f;
-                vo.AttackRange = (int)(vo.StandardAttackRange * 2f);
+                vo.AttackValue = vo.StandardAttackValue * faktorCase7;
+                vo.HealValue = vo.StandardHealValue * faktorCase7;
+                vo.AttackRange = (int)(vo.StandardAttackRange * faktorCase7);
                 break;
             default:
                 Debug.Log("Ausserhalb Moralskala. Irgendetwas schief gelaufen");
