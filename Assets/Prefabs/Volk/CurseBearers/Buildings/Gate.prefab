@@ -920,6 +920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565484043293773196}
+  - component: {fileID: 6391005286775528550}
   - component: {fileID: 6219530997422260251}
   - component: {fileID: -4369724155848389381}
   - component: {fileID: 1912368084208151826}
@@ -952,6 +953,24 @@ Transform:
   - {fileID: 6187247868400061437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6391005286775528550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220863251501962979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed9b073de0504886bf9451a6f4f89e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritesToMerge:
+  - {fileID: 3188433746567868863}
+  - {fileID: 8888720092394474632}
+  finalSpriteRenderer: {fileID: 6219530997422260251}
+  vertAnpassung: 0
+  horizAnpassung: 0
 --- !u!212 &6219530997422260251
 SpriteRenderer:
   m_ObjectHideFlags: 0
