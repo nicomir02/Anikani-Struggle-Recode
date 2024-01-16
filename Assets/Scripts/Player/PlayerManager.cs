@@ -202,6 +202,19 @@ public class PlayerManager : NetworkBehaviour
                 }
                 break;
             }
+
+            foreach(StandardVolk v in FindObjectsOfType<SaveHelper>()[0].Voelker) {
+                if(v.id == volkID) {
+                    volk = v;
+                    if(volk.BackgroundMusicClip != null) {
+                        backgroundMusic.clip = volk.BackgroundMusicClip;
+                    }else {
+                        //Standard Musik
+                    }
+                    if(backgroundMusic.clip != null) backgroundMusic.Play();
+                }
+            }
+            
             playerCode = id;
             backgroundMusic = GetComponent<AudioSource>();
             changePlayername(GameObject.Find("NetworkManager").GetComponent<SaveHelper>().name);
