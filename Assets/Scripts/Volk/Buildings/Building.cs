@@ -105,9 +105,9 @@ public class Building : VolkObject
         if(!gesetzt){
             CMDtransparencyChange(0.5f, newPos);
 
-            if(GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<GameManager>().GetButtonDown("Cancel") && GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().Round > 0) {
+            /*if(GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<GameManager>().GetButtonDown("Cancel") && GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().Round > 0) {
                 changeHealth(-(maxHealth*2));
-            }
+            }*/ //GetButtonDown() nicht mehr da 
 
             /*
             Leider ist setzbar() sehr ineffizient
