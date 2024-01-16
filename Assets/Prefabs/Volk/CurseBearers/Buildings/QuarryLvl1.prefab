@@ -969,7 +969,7 @@ MonoBehaviour:
   - {fileID: 1045832794325767053}
   - {fileID: 3819994369529889391}
   finalSpriteRenderer: {fileID: 6219530997422260251}
-  vertAnpassung: 0
+  vertAnpassung: 0.75
   horizAnpassung: 0
 --- !u!212 &6219530997422260251
 SpriteRenderer:
