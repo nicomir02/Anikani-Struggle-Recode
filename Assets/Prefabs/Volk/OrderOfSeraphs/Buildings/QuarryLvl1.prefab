@@ -640,7 +640,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f49774f18994e426b890bba94e798698, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d19198fa9829347d888f5f86f95e94ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1012,12 +1012,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 8545bff7fb2e4403eb8ae2e9f6f5ee77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92ad3e5c28c034f8c9b7036dfc8befcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   healthbar: {fileID: 2035238876954726685}
   moralbar: {fileID: 2126596063110173542}
   bauAusbildSound: {fileID: 8300000, guid: 3e5ddfca9654e264cbae573f7a21fe2e, type: 3}
+  todesSound: {fileID: 0}
   moralWert: 1
   RessourcenFuerKosten:
   - {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
@@ -1248,7 +1249,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 470c75f011c8c4b77b0dc84941e5447c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea8654053df544d18b220c1209c82598, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1304,15 +1305,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSprites:
-  - {fileID: 21300000, guid: 470c75f011c8c4b77b0dc84941e5447c, type: 3}
-  - {fileID: 21300000, guid: 6dc85868d673141e687b395ab6013b68, type: 3}
-  - {fileID: 21300000, guid: 06f1bb6e07fff47a597da97645ff4bfb, type: 3}
-  - {fileID: 21300000, guid: b988ef4322bc147d89d0bf1aacea69f4, type: 3}
+  - {fileID: 21300000, guid: ea8654053df544d18b220c1209c82598, type: 3}
+  - {fileID: 21300000, guid: 1a491da498af8401aae1c74e907a38fe, type: 3}
+  - {fileID: 21300000, guid: 6dd39a672fac248a9b17a8ae926d7aa9, type: 3}
+  - {fileID: 21300000, guid: 2a0404fa285d14f3f8d6c3e2688b8916, type: 3}
   colorSprites:
-  - {fileID: 21300000, guid: f49774f18994e426b890bba94e798698, type: 3}
-  - {fileID: 21300000, guid: 4399e98e0f8f34a0d899f8d55707ef82, type: 3}
-  - {fileID: 21300000, guid: b87ee9a4e28664db6af50e730588ab08, type: 3}
-  - {fileID: 21300000, guid: 72ca85f3823b445a18e4a1f80cd3bab9, type: 3}
+  - {fileID: 21300000, guid: d19198fa9829347d888f5f86f95e94ae, type: 3}
+  - {fileID: 21300000, guid: 2e03dcd3d64a9427fad0b9cdfc73c412, type: 3}
+  - {fileID: 21300000, guid: bff165b794e694911af3e662c68a3a65, type: 3}
+  - {fileID: 21300000, guid: 2879535b5c82444c09461ee47c6909e7, type: 3}
 --- !u!1 &8633331318720126337
 GameObject:
   m_ObjectHideFlags: 0
