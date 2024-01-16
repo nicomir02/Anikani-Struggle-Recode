@@ -36,6 +36,8 @@ public class Building : VolkObject
 
     [SerializeField] private GameObject lightObject;
 
+    private GameManager gameManager;
+
     //position des Gebäudes
     private readonly SyncList<Vector3Int> position = new SyncList<Vector3Int>();
     [SyncVar] protected Vector3Int middlePoint;
@@ -60,6 +62,8 @@ public class Building : VolkObject
 
         spawnHelper = GameObject.Find("___InGame___/----Manager----/HelperScripts").GetComponent<ObjectSpawnHelper>();
 
+        gameManager = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<GameManager>(); 
+
         changeHealth(maxHealth);
 
         //Spielersuche
@@ -77,11 +81,6 @@ public class Building : VolkObject
             transparencyChange(0f);
         }
         
-    }
-
-    [Command(requiresAuthority=false)]
-    public void destroyBuilding() {
-
     }
 
     
@@ -106,7 +105,7 @@ public class Building : VolkObject
         if(!gesetzt){
             CMDtransparencyChange(0.5f, newPos);
 
-            if(Input.GetButtonDown("Cancel")) {
+            if(GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<GameManager>().GetButtonDown("Cancel") && GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>().Round > 0) {
                 changeHealth(-(maxHealth*2));
             }
 
@@ -181,6 +180,17 @@ public class Building : VolkObject
         Vector3 curPosition = transform.position;
         curPosition = vec;
         transform.position = curPosition;
+
+        if(f != 1f) return;
+
+        gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(pm.playerCode);
+        if(gameObject.GetComponent<AudioSource>() == null) {
+            gameObject.AddComponent<AudioSource>();
+        }
+        if(gameObject.GetComponent<VolkObject>().BauSound != null) {
+            gameObject.GetComponent<AudioSource>().clip = gameObject.GetComponent<VolkObject>().BauSound;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
     }
 
     private void transparencyChange(float f){

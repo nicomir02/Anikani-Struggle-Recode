@@ -46,11 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hauptGebaeude: {fileID: -1864038161657043744, guid: 3dd69da70f48358448b056b22f930a4f, type: 3}
   backgroundMusicClip: {fileID: 8300000, guid: 50d48a84842dadb4c98118bfa6de9104, type: 3}
+  description: 
   buildings:
   - {fileID: 1912368084208151826, guid: 909fab638e2419c40991069b6580c1d2, type: 3}
   - {fileID: 4157904445678943923, guid: f9f7c47ac5f9fa8498bda509127b7095, type: 3}
   - {fileID: -4492628895403585771, guid: 0de59e41c2643054491b1cff09bc7cff, type: 3}
   - {fileID: -6469586152435052321, guid: afc7ccf41306c3c47857b8143aea92be, type: 3}
+  standardMaxInteractions: 2
   id: 1
   units:
   - {fileID: 4004221862323873089, guid: be951a3934de9d444baf7cc544f3a0f0, type: 3}

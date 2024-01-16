@@ -192,7 +192,4 @@ public class RoundManager : NetworkBehaviour
         roundText.text = round + "";
         roundChange();
     }
-
-
-
 }

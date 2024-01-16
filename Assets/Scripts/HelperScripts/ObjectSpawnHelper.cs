@@ -20,17 +20,19 @@ public class ObjectSpawnHelper : NetworkBehaviour
 
     [ClientRpc]
     void RPCnamechange(GameObject o, string objectname, Transform parent, int playerCode) {
-        o.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(playerCode);
-        if(o.GetComponent<AudioSource>() == null) {
-            o.AddComponent<AudioSource>();
-        }
-        if(o.GetComponent<VolkObject>().BauSound != null) {
-            o.GetComponent<AudioSource>().clip = o.GetComponent<VolkObject>().BauSound;
-            o.GetComponent<AudioSource>().Play();
-        }
-
         o.name = objectname;
         o.transform.parent = parent;
+
+        if(o.GetComponent<Unit>() != null) {
+            o.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(playerCode);
+            if(o.GetComponent<AudioSource>() == null) {
+                o.AddComponent<AudioSource>();
+            }
+            if(o.GetComponent<VolkObject>().BauSound != null) {
+                o.GetComponent<AudioSource>().clip = o.GetComponent<VolkObject>().BauSound;
+                o.GetComponent<AudioSource>().Play();
+            }
+        }
     }
 
     [Command(requiresAuthority=false)]

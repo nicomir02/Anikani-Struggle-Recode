@@ -8,6 +8,8 @@ public class StandardVolk : MonoBehaviour
     [SerializeField] private Building hauptGebaeude;
     [SerializeField] private AudioClip backgroundMusicClip;
 
+    [SerializeField][TextArea(3, 10)] private string description;
+
     public AudioClip BackgroundMusicClip {
         get {
             return backgroundMusicClip;

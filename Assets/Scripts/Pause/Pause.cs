@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class Pause : Panel
 {
@@ -15,21 +17,9 @@ public class Pause : Panel
 
     [SerializeField] private List<GameObject> cannotPause = new List<GameObject>();
 
-    void Update()
-    {
-        if(Input.GetButtonDown("Cancel")) {
-            bool b = false;
-            foreach(Panel o in GameObject.FindObjectsOfType<Panel>()) {
-                if(o.panel.gameObject.activeSelf) {
-                    o.closePanel();
-                    b = true;
-                    break;
-                }
-            }
-            Debug.Log(b);
-            if(!b) updatePause();
-        }
-    }
+    [SerializeField] private InputManager inputManager;
+
+    
 
 
     void updatePause() {
@@ -50,5 +40,35 @@ public class Pause : Panel
 
     public void disconnect() {
         NetworkClient.Disconnect();
+    }
+
+    void Update() {
+        if(inputManager.GetButtonDown("Cancel")) {
+            if(settingsMenu.activeSelf) {
+                closeSettings();
+                return;
+            }
+
+            bool b = false;
+            foreach(Panel o in GameObject.FindObjectsOfType<Panel>()) {
+                if(o.panel.gameObject.activeSelf) {
+                    o.closePanel();
+                    b = true;
+                    break;
+                }
+            }
+            if(!b) updatePause();
+        }
+    }
+
+
+    [SerializeField] private GameObject settingsMenu;
+
+    public void openSettings() {
+        settingsMenu.SetActive(true);
+    }
+
+    public void closeSettings() {
+        settingsMenu.SetActive(false);
     }
 }
