@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Mirror;
 using System.Linq;
+using System.Threading;
+using System;
 
 public class TrainUnitBuilding : Building
 {
@@ -12,6 +14,8 @@ public class TrainUnitBuilding : Building
     private int maxAusbildungen = 4;  
     //Liste der aktuellen auszubildenden Einheiten und die Anzahl der noch benötigten Runden.
     private Dictionary<int, Unit> ausbildungen = new Dictionary<int, Unit>();
+
+    [SerializeField] private AudioClip trainEndSound;
     
     public bool istVoll {
         get{return ausbildungen.Count >= maxAusbildungen;}
@@ -26,16 +30,16 @@ public class TrainUnitBuilding : Building
         get{return zahl;}
     }
 
-    /* void Start(){
+    public override void Start(){
+        base.Start();
         maxAusbildungen = standardMaxAusbildungen;
-    } hides inherited Start von BUilding? wie löse ich das?*/
+        loadTrainEnd();
+        Debug.Log("Start called");
+    } 
 
     public override void selected() {
         base.selected();    //führt sachen aus selected Methode von Building aus.
         //Jetzt spezielle Aktionen für TrainUnitBuildings wie z.B. Barracke
-
-        
-
     }
     
 
@@ -45,7 +49,11 @@ public class TrainUnitBuilding : Building
         if(ausbildungen.ContainsKey(zahl)) {
             //Ausbildung gespawned;
             PlayerManager pm = PlayerHelperScript.findLocalPlayer();
-            
+            animationList = trainEnd;
+            if(trainEndSound != null) {
+                GetComponent<AudioSource>().clip = trainEndSound;
+                GetComponent<AudioSource>().Play();
+            }
             pm.setUnit(ausbildungen[zahl], transform);
             ausbildungen.Remove(zahl);//um dictionary zu pflegen und nicht größer werden zu lassen
             if(ausbildungen.Count <= 0) {
@@ -53,7 +61,6 @@ public class TrainUnitBuilding : Building
             }
         }
     }
-
 
     /*
     Erklärung für nextROundMethode:
@@ -63,6 +70,12 @@ public class TrainUnitBuilding : Building
     6, Knight
     10, Angel
     */
+
+    private List<Sprite> trainEnd = new List<Sprite>();
+    private void loadTrainEnd() {
+        transform.GetChild(5).GetComponent<AniSpriteMerger>().aniMerge();
+        trainEnd = transform.GetChild(5).GetComponent<AniSpriteMerger>().GetList(); 
+    }
 
     public bool addTrainUnit(Unit u) {
         if(ausbildungen.Count >= maxAusbildungen) return false;

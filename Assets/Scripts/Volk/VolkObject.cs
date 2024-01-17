@@ -265,7 +265,7 @@ public class VolkObject : NetworkBehaviour
 
         yield return new WaitForSecondsRealtime(animationAbstand);
 
-        StartCoroutine(animationStart(cur, false));
+        StartCoroutine(animationStart(cur, change));
     }
 
     public virtual bool isObjectAtPosition(Vector3Int vec) {

@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4794894740432728703
 Transform:
   m_ObjectHideFlags: 0
@@ -272,8 +272,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00034999847, y: 0, z: 0}
-    m_Extent: {x: 0.50035, y: 0.25, z: 0}
+    m_Center: {x: 0.00020000339, y: 0, z: 0}
+    m_Extent: {x: 0.50020003, y: 0.25, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -738,7 +738,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1090c4647f8184591b62e23987066eba, type: 3}
   - {fileID: 21300000, guid: e29d5d537835648c996a51c79d9898bc, type: 3}
   - {fileID: 21300000, guid: 745c20752c40b44b9a61ee17fa2438e2, type: 3}
-  - {fileID: 21300000, guid: 2c4af983f02ce4e32bc2fd900501b161, type: 3}
   colorSprites:
   - {fileID: 21300000, guid: aa5a9c76b58164c79b594ac3d3c940c0, type: 3}
   - {fileID: 21300000, guid: 729dc8252dcab45058a38c4c04cdd35c, type: 3}
@@ -1547,7 +1546,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1090c4647f8184591b62e23987066eba, type: 3}
   - {fileID: 21300000, guid: e29d5d537835648c996a51c79d9898bc, type: 3}
   - {fileID: 21300000, guid: 745c20752c40b44b9a61ee17fa2438e2, type: 3}
-  - {fileID: 21300000, guid: 2c4af983f02ce4e32bc2fd900501b161, type: 3}
   colorSprites:
   - {fileID: 21300000, guid: aa5a9c76b58164c79b594ac3d3c940c0, type: 3}
   - {fileID: 21300000, guid: 729dc8252dcab45058a38c4c04cdd35c, type: 3}
@@ -1614,7 +1612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed9b073de0504886bf9451a6f4f89e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritesToMerge: []
+  spritesToMerge:
+  - {fileID: 4826800346798905288}
+  - {fileID: 7708035580579577051}
   finalSpriteRenderer: {fileID: 1819018108548548678}
   vertAnpassung: 0
   horizAnpassung: 0
@@ -1659,12 +1659,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 84cc57e6528224562a5fa76c36f1e661, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 954869558102247f19b60791d56c627b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1716,7 +1716,7 @@ MonoBehaviour:
   standardMaxSteps: 4
   reichweitenText: {fileID: 1829708506095464769}
   currentPosition: {x: 36, y: 47, z: 1}
-  standardAusbildungszeit: 0
+  standardAusbildungszeit: 5
   lightObject: {fileID: 1993530594792640057}
 --- !u!114 &7198032011308890104
 MonoBehaviour:

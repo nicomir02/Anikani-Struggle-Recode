@@ -1076,11 +1076,12 @@ MonoBehaviour:
   - 1.6
   specificButtonsInfobox:
   - {fileID: 6462048890079275521, guid: eb6cf14f8adf9cd409e3ab0e2457a848, type: 3}
-  animationAbstand: 0.3
+  animationAbstand: 0.5
   m_selected: 0
   radius: 3
   lightObject: {fileID: 390609869062261948}
   standardMaxAusbildungen: 4
+  trainEndSound: {fileID: 8300000, guid: ab6f4c527bc2723409fb6dc9682260cd, type: 3}
 --- !u!82 &-8295211502563662976
 AudioSource:
   m_ObjectHideFlags: 0

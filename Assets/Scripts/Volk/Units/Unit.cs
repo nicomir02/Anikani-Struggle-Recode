@@ -327,8 +327,7 @@ public class Unit : VolkObject
             if(attackSound == null) return;
             GetComponent<AudioSource>().clip = attackSound;
             GetComponent<AudioSource>().Play();
-            obj.changeHealth(-attackValue);
-            
+            obj.changeHealth(-attackValue);   
         }
     }
 
