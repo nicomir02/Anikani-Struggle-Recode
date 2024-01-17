@@ -92,9 +92,9 @@ public class InfoboxManager : Panel
     }
 
     void LateUpdate() {
-        if(Input.GetButtonDown("Cancel") && !pause.IsPause && bigInfobox) {
+        /*if(Input.GetButtonDown("Cancel") && !pause.IsPause && bigInfobox) {
             closeInfo();
-        }
+        }*/
     }
 
     public void destroyObject(){
@@ -108,6 +108,7 @@ public class InfoboxManager : Panel
     }
 
     public void closeInfo() {
+        if(!bigInfobox) return;
         bigInfobox = false;
         panel.transform.GetChild(1).gameObject.SetActive(false);
 

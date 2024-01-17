@@ -5,6 +5,7 @@ using UnityEngine;
 public class KartenIngameOptionen : MonoBehaviour
 {
     [SerializeField] private MapBehaviour mapBehaviour;
+    [SerializeField] private InputManager inputManager;
     private int curHeight;
 
     private List<GameObject> hoehen = new List<GameObject>();
@@ -17,12 +18,10 @@ public class KartenIngameOptionen : MonoBehaviour
 
 
     void Update() {
-        if(Input.GetButtonDown("KarteHochRunter")) {
-            if(Input.GetAxis("KarteHochRunter") > 0) {
-                changeEbene(true);
-            }else if(Input.GetAxis("KarteHochRunter") < 0) {
-                changeEbene(false);
-            }
+        if(inputManager.GetButtonDown("KarteHoch")) {
+            changeEbene(true);
+        }else if(inputManager.GetButtonDown("KarteRunter")) {
+            changeEbene(false);
         }
     }
 

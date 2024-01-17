@@ -51,7 +51,7 @@ public class LobbyManager : NetworkBehaviour {
         red.onValueChanged.AddListener(delegate {valueChanged(red);});
         green.onValueChanged.AddListener(delegate {valueChanged(green);});
         blue.onValueChanged.AddListener(delegate {valueChanged(blue);});
-        int i = 1;
+        //int i = 1;
         //tribeOptions.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(i++).GetComponent<Image>().sprite = randomTribe;
         
         foreach(StandardVolk volk in saveAttributes.Voelker) {
