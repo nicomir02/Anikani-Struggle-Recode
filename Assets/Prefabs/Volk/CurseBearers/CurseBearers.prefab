@@ -47,6 +47,7 @@ MonoBehaviour:
   hauptGebaeude: {fileID: -1864038161657043744, guid: 3dd69da70f48358448b056b22f930a4f, type: 3}
   backgroundMusicClip: {fileID: 8300000, guid: 50d48a84842dadb4c98118bfa6de9104, type: 3}
   description: 
+  tribeIcon: {fileID: 21300000, guid: 8e1eb69c851193249adff0fd0f775d8c, type: 3}
   buildings:
   - {fileID: 1912368084208151826, guid: 909fab638e2419c40991069b6580c1d2, type: 3}
   - {fileID: 4157904445678943923, guid: f9f7c47ac5f9fa8498bda509127b7095, type: 3}

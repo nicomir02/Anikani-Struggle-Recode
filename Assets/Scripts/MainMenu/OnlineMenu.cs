@@ -7,6 +7,7 @@ using Mirror;
 using Steamworks;
 using UnityEngine.SceneManagement;
 
+
 public class OnlineMenu : MonoBehaviour
 {
     [SerializeField] private TMP_Text usingSteamText;
@@ -58,7 +59,8 @@ public class OnlineMenu : MonoBehaviour
         reloadList();
     }
 
-    void reloadList() {
+    public void reloadList() {
+        SteamAPI.Init();
         int friendCount = SteamFriends.GetFriendCount(EFriendFlags.k_EFriendFlagImmediate);
         int listAdd = 0;
         for (int i = 0; i < friendCount; i++)

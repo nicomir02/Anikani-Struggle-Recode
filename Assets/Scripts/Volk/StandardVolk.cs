@@ -10,6 +10,8 @@ public class StandardVolk : MonoBehaviour
 
     [SerializeField][TextArea(3, 10)] private string description;
 
+    [SerializeField] public Sprite tribeIcon;
+
     public AudioClip BackgroundMusicClip {
         get {
             return backgroundMusicClip;

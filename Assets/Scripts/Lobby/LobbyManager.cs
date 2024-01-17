@@ -39,6 +39,8 @@ public class LobbyManager : NetworkBehaviour {
 
     [SerializeField] private SaveHelper saveAttributes;
 
+    [SerializeField] private Sprite randomTribe;
+
     bool registered = false;
 
     void Start() {
@@ -49,7 +51,9 @@ public class LobbyManager : NetworkBehaviour {
         red.onValueChanged.AddListener(delegate {valueChanged(red);});
         green.onValueChanged.AddListener(delegate {valueChanged(green);});
         blue.onValueChanged.AddListener(delegate {valueChanged(blue);});
-
+        int i = 1;
+        //tribeOptions.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(i++).GetComponent<Image>().sprite = randomTribe;
+        
         foreach(StandardVolk volk in saveAttributes.Voelker) {
             string volkname = "";
 
@@ -61,6 +65,7 @@ public class LobbyManager : NetworkBehaviour {
             }
 
             tribeOptions.options.Add(new TMP_Dropdown.OptionData(volkname));
+            //if(volk.tribeIcon != null) tribeOptions.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(i++).GetComponent<Image>().sprite = volk.tribeIcon;
         }
 
         readyBtn.onClick.AddListener(ready);
