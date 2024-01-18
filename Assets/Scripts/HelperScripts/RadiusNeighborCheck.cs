@@ -6,8 +6,10 @@ using UnityEngine.Tilemaps;
 public class RadiusNeighborCheck : MonoBehaviour
 {
     private MapBehaviour mb; 
+    private Area area;
     void Start(){
         mb = GameObject.Find("___InGame___/----Manager----/MapManager").GetComponent<MapBehaviour>();
+        area = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>();
     }
 
     //Check to see if tiles in the specifies radius are free/empty (for building placement i.e.)
@@ -32,6 +34,8 @@ public class RadiusNeighborCheck : MonoBehaviour
                     if(checkArea && checkOwnArea(currentPosition)) {
                         checkArea = false;
                         canBuild = true;
+                    }else if(checkArea && area.isEnemyArea(currentPosition)) {
+                        return false;
                     }
                 }
                 currentPosition.y += 1;
@@ -56,7 +60,7 @@ public class RadiusNeighborCheck : MonoBehaviour
 
     //schaut ob im eigenen Gebiet
     bool checkOwnArea(Vector3Int currentPosition){
-        return GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<Area>().isOwnArea(currentPosition);
+        return area.isOwnArea(currentPosition);
     }
 
     //Nur ungerader Radius, damit Mitte gewählt werden kann 

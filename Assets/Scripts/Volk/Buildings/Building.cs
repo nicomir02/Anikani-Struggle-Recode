@@ -28,11 +28,7 @@ public class Building : VolkObject
     //Spawn Helper
     private ObjectSpawnHelper spawnHelper;
 
-    private PlayerManager pm;
-    public PlayerManager playerManager {
-        get{return pm;}
-        set{pm = value;}
-    }
+    
 
     [SerializeField] private GameObject lightObject;
 
@@ -208,6 +204,8 @@ public class Building : VolkObject
 
     public virtual bool setzbar(){
         Vector3Int neuPos = tilemapHover.getMousePosition();
+
+
         return radiusNeighborCheck.checkRadius(radius, neuPos, tilemapHover.tilemaps);
     }
 

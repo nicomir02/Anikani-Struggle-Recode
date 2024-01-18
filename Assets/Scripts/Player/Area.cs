@@ -51,8 +51,8 @@ public class Area : NetworkBehaviour
 //dient als Überprüfung damit man nur in eigener Area bauen und in der Runde in der man dran ist
     public bool isOwnArea(Vector3Int vec) {
         vec.z = mapBehaviour.getZ(vec);
-        
-        return PlayerHelperScript.findLocalPlayer().playerCode == roundManager.ActiveID && ((area.ContainsKey(vec) && area[vec] == roundManager.ActiveID) || (!build && !area.ContainsKey(vec)));
+        int id = PlayerHelperScript.findLocalPlayer().playerCode;
+        return PlayerHelperScript.findLocalPlayer().playerCode == roundManager.ActiveID && ((area.ContainsKey(vec) && !isEnemyArea(vec)) || (!build && !area.ContainsKey(vec)));
     }
 
     public bool isAreaByID(Vector3Int vec, int id) {

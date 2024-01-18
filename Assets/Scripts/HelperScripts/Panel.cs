@@ -6,6 +6,11 @@ public class Panel : MonoBehaviour
 {
     [SerializeField] public GameObject panel;
 
+    protected bool isPause = false;
+    public bool IsPause {
+        get{return isPause;}
+    }
+
     public virtual void closePanel() {
         panel.SetActive(false);
     }

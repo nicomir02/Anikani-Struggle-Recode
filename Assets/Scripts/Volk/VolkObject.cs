@@ -72,6 +72,17 @@ public class VolkObject : NetworkBehaviour
         get{return vorlieben;}
     }
 
+    protected PlayerManager pm;
+    public PlayerManager playerManager {
+        get{
+            if(pm == null) {
+                return transform.parent.GetComponent<PlayerManager>();
+            }
+            return pm;
+        }
+        set{pm = value;}
+    }
+
     protected MoralManager mm;
 
     //Kosten des Objekts
@@ -82,8 +93,9 @@ public class VolkObject : NetworkBehaviour
     public void ApplyMoraleChange(float change)
     {
         moralWert += change;
-        //moralWert = Mathf.Clamp(moralWert, 0f, 1f);*/
+        moralWert = Mathf.Clamp(moralWert, 0f, 1f);
         if (Moralb != null) Moralb.Change(moralWert);
+        mm.gesamtMoralBerechnung(playerManager);
         Debug.Log($"[VolkObject] New Morale Value: {moralWert}");
     }
 
@@ -163,7 +175,7 @@ public class VolkObject : NetworkBehaviour
         return moralBoost;
     }
 
-    public float moralAuswertung() {
+    public float moralAuswertung(bool gesamtauswertung=true) {
         float moral = 0f;
         int howMany = 0;
 
@@ -179,7 +191,7 @@ public class VolkObject : NetworkBehaviour
         float old = MoralWert;
         MoralWert = Mathf.Min((moral / howMany)*MoralBoost,1f);
         if(Moralb != null) Moralb.Change(MoralWert);
-
+        if(gesamtauswertung) mm.gesamtMoralBerechnung(playerManager);
         return MoralWert;
     }
 

@@ -31,6 +31,11 @@ public class InfoboxManager : Panel
     VolkObject obj;
     bool destroyable = true;
 
+
+    [SerializeField] private Sprite positive;
+    [SerializeField] private Sprite neutral;
+    [SerializeField] private Sprite negative;
+
     public void openRightBox(VolkObject o, bool canDestroy=true) {
         closeAllPanels();
         listBtns.SetActive(true);
@@ -67,6 +72,7 @@ public class InfoboxManager : Panel
     }   
 
     public void openAllgemeineInfos(){
+        if(instantiatedMoral.Count > 0) closeInfo();
         bigInfobox = true;
         panel.transform.GetChild(1).gameObject.SetActive(true);
 
@@ -83,7 +89,14 @@ public class InfoboxManager : Panel
             }else moralElement.SetActive(true);
 
             o.transform.GetChild(0).GetComponent<Image>().sprite = moralManager.getSprite(m);
-            //o.transform.GetChild(1).GetComponent<Image>().sprite = positive/negative/neutral
+
+            if(m.m_Moral == 0) {
+                o.transform.GetChild(1).GetComponent<Image>().sprite = positive;
+            }else if(m.m_Moral == 1) {
+                o.transform.GetChild(1).GetComponent<Image>().sprite = neutral;
+            }else {
+                o.transform.GetChild(1).GetComponent<Image>().sprite = negative;
+            }
             o.transform.GetChild(2).GetComponent<TMP_Text>().text = Mathf.Round(f*10)*0.1f + "/1 \n";
             i++;
         }
@@ -104,7 +117,8 @@ public class InfoboxManager : Panel
     }
 
     public void einheitenAusbildung(){
-        GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<UnitKaufManager>().openPanel((TrainUnitBuilding) obj);
+        Debug.Log("test");
+        GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<UnitKaufManager>().openPanel((TrainUnitBuilding) obj, (!isPause && !bigInfobox));
     }
 
     public void closeInfo() {

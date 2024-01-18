@@ -8,8 +8,8 @@ public class InputManager : MonoBehaviour
 {
     public void neueBelegung() {
         if(PlayerPrefs.GetString("Button_CANCEL") == null || PlayerPrefs.GetString("Button_CANCEL") == "") PlayerPrefs.SetString("Button_CANCEL", KeyCode.Escape.ToString());
-        if(PlayerPrefs.GetString("Button_KARTEHOCH") == null || PlayerPrefs.GetString("Button_KARTEHOCH") == "") PlayerPrefs.SetString("Button_KARTEHOCH", KeyCode.Plus.ToString());
-        if(PlayerPrefs.GetString("Button_KARTERUNTER") == null || PlayerPrefs.GetString("Button_KARTERUNTER") == "") PlayerPrefs.SetString("Button_KARTERUNTER", KeyCode.Hash.ToString());
+        if(PlayerPrefs.GetString("Button_KARTEHOCH") == null || PlayerPrefs.GetString("Button_KARTEHOCH") == "") PlayerPrefs.SetString("Button_KARTEHOCH", KeyCode.Keypad8.ToString());
+        if(PlayerPrefs.GetString("Button_KARTERUNTER") == null || PlayerPrefs.GetString("Button_KARTERUNTER") == "") PlayerPrefs.SetString("Button_KARTERUNTER", KeyCode.Keypad5.ToString());
         PlayerPrefs.Save();
     }
 

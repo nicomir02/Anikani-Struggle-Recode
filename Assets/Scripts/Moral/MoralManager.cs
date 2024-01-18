@@ -57,15 +57,22 @@ public class MoralManager : NetworkBehaviour
     [Command(requiresAuthority=false)]
     public void nextRound(PlayerManager pm) {
         if(rm.Round == 0) return;
+        gesamtMoralBerechnung(pm);
+        if(gesamtMoral > 0.9f) {
+            pm.addRessource(anikani, 0.5f);
+        }
+    }
+
+
+    public float gesamtMoralBerechnung(PlayerManager pm) {
         float moral = 0f;
         int howMany = 0;
-        
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                moral += vo.moralAuswertung();
+                moral += vo.moralAuswertung(false);
                 howMany++;
                 //neu dazu für Moralauswirkungen
-                vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
+                //vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
                 //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
             }
         }
@@ -74,9 +81,8 @@ public class MoralManager : NetworkBehaviour
         moralbar.Change(newGesamtMoral);
         gesamtMoral = newGesamtMoral;
 
-        if(newGesamtMoral > 0.9f) {
-            pm.addRessource(anikani, 0.5f);
-        }
+        return gesamtMoral;
+        
     }
 
     public List<Moral> getMoral(int volkObject, bool heal=false) {

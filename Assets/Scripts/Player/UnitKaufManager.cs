@@ -87,8 +87,8 @@ public class UnitKaufManager : Panel
         }
     }
 
-    public void openPanel(TrainUnitBuilding b) {
-        if(!canPause()) return;
+    public void openPanel(TrainUnitBuilding b, bool forceOpen=false) {
+        if(!canPause() && !forceOpen) return;
         saveBuilding = b;
         panel.SetActive(true);
         

@@ -9,10 +9,7 @@ using TMPro;
 public class Pause : Panel
 {
     //Noch nicht funktionabel;
-    private bool isPause = false;
-    public bool IsPause {
-        get{return isPause;}
-    }
+    
     [SerializeField] Button continueBtn;
 
     [SerializeField] private List<GameObject> cannotPause = new List<GameObject>();
@@ -22,10 +19,10 @@ public class Pause : Panel
     
 
 
-    void updatePause() {
-        isPause = !isPause;
-        if(isPause) {
+    public void updatePause() {
+        if(!isPause) {
             panel.SetActive(true);
+            isPause = true;
             Time.timeScale = 0f;
         }else {
             closePanel();
@@ -36,6 +33,7 @@ public class Pause : Panel
         base.closePanel();
         isPause = false;
         Time.timeScale = 1f;
+        closeSettings();
     }
 
     public void disconnect() {
