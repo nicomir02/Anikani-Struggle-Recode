@@ -295,9 +295,28 @@ public class VolkObject : NetworkBehaviour
         
     }
 
-    //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen
-    public void prevMoralAnpassung(){
+     //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen. auch schauen ob Bereich auf der Skala sich verändert hat(andere klasse/kategoie nun)
+    public bool prevMoralAnpassung(){
+        int prevKategorieWert = moralSkalenKategorieWert;
+        checkSkalenKategorie();
+        //Debug.Log("aktuelles Objekttyp=" + this.GetType()); hier klappt es aber wenn ich volkobject übergebe dann nicht mehr
         prevMoralWert = moralWert;
+        if(prevKategorieWert == moralSkalenKategorieWert){
+            return false;   //keine anpassung nötig
+        } else{
+            return true;    //anpassung nötig
+        }
+    }
+
+//hilfsmethode für obige prevMoralAnpassung() und am Anfang um Kategoiewert für anfängliche Moral auch anzupassen(vershciedene einheiten könnten unterschiedliche startmoral haben)
+    private void checkSkalenKategorie(){
+        int count = 1;          //zählen der Kategoien/Klassen fangen bei 1 an
+        //schauen mit HIlfe des arrays in welcher kategoie der aktuelle moralwert liegt
+        for (int i = 0; i < moralskalaArray.Length; i++){
+            if(moralWert < moralskalaArray[i]) break;
+            count++;
+        }
+        moralSkalenKategorieWert = count;   //den aktuellen Kategoriewert anpassen
     }
     
 
