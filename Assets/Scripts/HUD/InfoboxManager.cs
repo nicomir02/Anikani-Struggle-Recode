@@ -20,7 +20,7 @@ public class InfoboxManager : Panel
     List<GameObject> instantiatedBtns = new List<GameObject>();
 
     [SerializeField] private GameObject moralElement;
-
+    [SerializeField] private TilemapHover tilemapHover;
     [SerializeField] private MoralManager moralManager;
 
     private List<GameObject> instantiatedMoral = new List<GameObject>();
@@ -104,10 +104,16 @@ public class InfoboxManager : Panel
 
     }
 
-    void LateUpdate() {
-        /*if(Input.GetButtonDown("Cancel") && !pause.IsPause && bigInfobox) {
-            closeInfo();
-        }*/
+
+    void Update() {
+        if(!bigInfobox && instantiatedBtns.Count == 0) {
+            foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
+                if(vo.GetComponent<SpriteRenderer>().color == tilemapHover.getSelectColor()) {
+                    openRightBox(vo);
+                    return;
+                }
+            }
+        }
     }
 
     public void destroyObject(){

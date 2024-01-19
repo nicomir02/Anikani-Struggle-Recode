@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -173,7 +173,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: newtreeanimation_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 12
+        width: 26
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dae23c4a95153343b0537c29e5bdfae
+      internalID: -407682540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 12
+        width: 27
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70945978c1f4e164da15a30594eaec2e
+      internalID: 368552695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 12
+        width: 26
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e3b7e4ea8cecb489aee272a09c9e7a
+      internalID: 12358961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 12
+        width: 27
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99d2399fbd2d8954094be0576425a93b
+      internalID: 2078757848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 12
+        width: 26
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 270087582236a654dae478bee3631581
+      internalID: 1728387743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_5
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 12
+        width: 27
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab549ba452fd4849ba99dc761f5dbae
+      internalID: -639297455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_6
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 12
+        width: 26
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9933098e448ba944bb43b68a910c884
+      internalID: 420072681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: newtreeanimation_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 12
+        width: 27
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: -0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2895e348b0a53b439273d87737f3324
+      internalID: -1712445215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -184,7 +352,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      newtreeanimation_0: -407682540
+      newtreeanimation_1: 368552695
+      newtreeanimation_2: 12358961
+      newtreeanimation_3: 2078757848
+      newtreeanimation_4: 1728387743
+      newtreeanimation_5: -639297455
+      newtreeanimation_6: 420072681
+      newtreeanimation_7: -1712445215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
