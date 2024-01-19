@@ -19,26 +19,32 @@ public class VolkObject : NetworkBehaviour
             return icon;
         }
     }
-    
-    [SyncVar] public float attackValue = 0;
-   
-    [SyncVar] public float healValue = 0;
 
 //vorher war SerializeField eine SyncVar und hieß maxHealth statt standardmaxHealth. jetzt test für moralauswirkungen auf attribute
     [SerializeField] public int standardMaxHealth = 100;
     [SyncVar] public int maxHealth = 100;   //vielleicht als float?
 
-    
-
 //ähnlich wie bei maxhealth:
     [SerializeField] public int standardAttackRange = 1;
     [SyncVar] public int attackRange = 1;
+
+//auch hier wieder: //aber wo wird attackValue gesetzt?
+    [SerializeField] public float standardAttackValue = 0;
+    [SyncVar] public float attackValue = 0;
+//und auch hier: //aber wo wird healvalue gesetzt?
+   [SerializeField] public float standardHealValue = 0; 
+    [SyncVar] public float healValue = 0;
 
     [SerializeField] protected Healthbar healthbar;
     [SerializeField] protected Moralbar moralbar;
     public Moralbar Moralb {
         get{return moralbar;}
     }
+
+//für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
+    private float[] moralskalaArray = {0.1f,0.25f,0.45f,0.55f,0.75f,0.90f};    //0f und 1f braucht man nicht zum prüfen welche kategoie es ist
+
+
 
     [SerializeField] private AudioClip bauAusbildSound;
     public AudioClip BauSound {
@@ -50,8 +56,7 @@ public class VolkObject : NetworkBehaviour
         get {return todesSound;}
     }*/
 
-//für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
-    private float[] moralskalaArray = {0f,0.1f,0.25f,0.5f,0.75f,0.90f,1f};
+
 
     [SyncVar] protected int lastAttack = 0;
     public int LastAttack {
