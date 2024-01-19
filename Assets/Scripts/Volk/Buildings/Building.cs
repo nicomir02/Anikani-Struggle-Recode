@@ -71,6 +71,7 @@ public class Building : VolkObject
                 }
             }
         }
+        gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(pm.playerCode);
         if(pm == PlayerHelperScript.findLocalPlayer()){
             transparencyChange(0.5f);
         }else {
@@ -179,7 +180,7 @@ public class Building : VolkObject
 
         if(f != 1f) return;
 
-        gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().color = gameManager.getColor(pm.playerCode);
+        
         if(gameObject.GetComponent<AudioSource>() == null) {
             gameObject.AddComponent<AudioSource>();
         }
