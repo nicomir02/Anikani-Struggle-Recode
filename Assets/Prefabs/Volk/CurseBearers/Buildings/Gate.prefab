@@ -1079,6 +1079,7 @@ MonoBehaviour:
   animationAbstand: 0.5
   m_selected: 0
   radius: 3
+  icon: {fileID: 1235402616, guid: 349cd1c1dd11b21489ad2d987f47e76f, type: 3}
   lightObject: {fileID: 390609869062261948}
   standardMaxAusbildungen: 4
   trainEndSound: {fileID: 8300000, guid: ab6f4c527bc2723409fb6dc9682260cd, type: 3}

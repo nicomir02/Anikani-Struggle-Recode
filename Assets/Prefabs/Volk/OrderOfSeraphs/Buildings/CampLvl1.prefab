@@ -1077,8 +1077,10 @@ MonoBehaviour:
   animationAbstand: 0.3
   m_selected: 0
   radius: 3
+  icon: {fileID: 1235402616, guid: 349cd1c1dd11b21489ad2d987f47e76f, type: 3}
   lightObject: {fileID: 390609869062261948}
   standardMaxAusbildungen: 4
+  trainEndSound: {fileID: 0}
 --- !u!82 &2224505083534730139
 AudioSource:
   m_ObjectHideFlags: 0

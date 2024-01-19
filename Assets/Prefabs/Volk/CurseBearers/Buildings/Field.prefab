@@ -1121,6 +1121,7 @@ MonoBehaviour:
   animationAbstand: 0.5
   m_selected: 0
   radius: 3
+  icon: {fileID: 1502665933, guid: 47312aab5cf8aff45830c880d81e44cd, type: 3}
   lightObject: {fileID: 390609869062261948}
   ressource: {fileID: 8694705376693512614, guid: c083658d46b2dd943ad887f81e469b0c, type: 3}
 --- !u!114 &-4369724155848389381

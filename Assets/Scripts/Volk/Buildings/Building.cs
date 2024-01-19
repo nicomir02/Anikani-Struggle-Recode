@@ -28,8 +28,15 @@ public class Building : VolkObject
     //Spawn Helper
     private ObjectSpawnHelper spawnHelper;
 
-    
 
+
+    
+    [SerializeField] private Sprite icon;
+    public Sprite Icon {
+        get {
+            return icon;
+        }
+    }
     [SerializeField] private GameObject lightObject;
 
     private GameManager gameManager;

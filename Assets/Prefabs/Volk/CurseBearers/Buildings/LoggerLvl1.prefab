@@ -883,6 +883,7 @@ MonoBehaviour:
   animationAbstand: 0.5
   m_selected: 0
   radius: 3
+  icon: {fileID: -819632244, guid: fe661128ab370654c9babe12e81af98d, type: 3}
   lightObject: {fileID: 390609869062261948}
   ressource: {fileID: 8694705376693512614, guid: 62bd597762c9a204ca4377d3086a80fb, type: 3}
 --- !u!82 &-2077583761895913152

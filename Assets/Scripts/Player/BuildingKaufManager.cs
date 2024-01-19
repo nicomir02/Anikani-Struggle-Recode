@@ -20,7 +20,7 @@ public class BuildingKaufManager : Panel
     // Start is called before the first frame update
     void Start()
     {
-        //gebaeudeKaufBtn.onClick.AddListener(openClosePanel);
+        
     }
 
     // Update is called once per frame
@@ -41,23 +41,30 @@ public class BuildingKaufManager : Panel
         if(!canPause()) return;
         offen = true;
         panel.SetActive(true);
+        int i = 0;
         foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllBuildingObjects()) {
-            GameObject o = Instantiate(prefab, transform.position, transform.rotation);
+            GameObject o = prefab;
+            if(i > 0) {
+                o = Instantiate(prefab, transform.position, transform.rotation);
+            }
+            Building b = PlayerHelperScript.findLocalPlayer().getVolk().getBuildingByID(kvp.Value).GetComponent<Building>();
+
             o.transform.SetParent(scrollviewTransfrom, false);
-            o.transform.GetChild(2).GetComponent<BuildingID>().building_id = kvp.Value;
-            o.transform.GetChild(0).GetComponent<Image>().sprite = kvp.Key.GetComponent<SpriteRenderer>().sprite;
+            o.transform.GetChild(4).GetComponent<BuildingID>().building_id = kvp.Value;
+            if(b.Icon != null) o.transform.GetChild(0).GetComponent<Image>().sprite = b.Icon;
 
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
-            Building b = PlayerHelperScript.findLocalPlayer().getVolk().getBuildingByID(kvp.Value).GetComponent<Building>();
+            o.transform.GetChild(1).GetComponent<TMP_Text>().text = b.name;
+            o.transform.GetChild(2).GetComponent<TMP_Text>().text = "Standard Health " + b.standardMaxHealth + "\n";
             text.text = "";
             Dictionary<Ressource, float> buildingKosten = b.getKosten();
             foreach(KeyValuePair<Ressource, float> kosten in buildingKosten) {
                 text.text += kosten.Key.name + ": " + kosten.Value + "\n";
             }
 
-            o.transform.GetChild(2).GetComponent<BuildingID>().Kosten = buildingKosten;
+            o.transform.GetChild(4).GetComponent<BuildingID>().Kosten = buildingKosten;
 
-            generatedPrefabs.Add(o);
+            if(i++ > 0) generatedPrefabs.Add(o);
         }
     }
 
