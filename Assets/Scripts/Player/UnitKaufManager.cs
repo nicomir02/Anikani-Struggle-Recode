@@ -76,14 +76,16 @@ public class UnitKaufManager : Panel
         //liste der aktuell am ausbildenden Einheiten innerhalb dieser Barracke
         List<int> sort = new List<int>(saveBuilding.Ausbildungen.Keys);
         sort.Sort();
-        
+        int a = 0;
 
         foreach(int i in sort){
-            GameObject o = Instantiate(prefabUnit, transform.position, transform.rotation);
+            GameObject o = prefabUnit;
+            if(a > 0) o = Instantiate(prefabUnit, transform.position, transform.rotation);
+            o.SetActive(true);
             o.transform.SetParent(ausbildungsleiste.GetComponent<Transform>(), false);
-            o.transform.GetChild(0).GetComponent<Image>().sprite = saveBuilding.Ausbildungen[i].GetComponent<SpriteRenderer>().sprite;
+            o.transform.GetChild(0).GetComponent<Image>().sprite = saveBuilding.Ausbildungen[i].GetComponent<Unit>().Icon;
             o.transform.GetChild(1).GetComponent<TMP_Text>().text = "" + (i - saveBuilding.Zahl);
-            generatedPrefabsUnits.Add(o);
+            if(a++>0) generatedPrefabsUnits.Add(o);
         }
     }
 
@@ -93,26 +95,29 @@ public class UnitKaufManager : Panel
         panel.SetActive(true);
         
         reloadAusbildungen();
-
+        int i = 0;
         //alle Einheiten auflisten als Scrollview innerhalb des Panels
         foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllUnits()) {
-            GameObject o = Instantiate(prefab, transform.position, transform.rotation);
+            GameObject o = prefab;
+            if(i > 0) o = Instantiate(prefab, transform.position, transform.rotation);
+            Unit u = PlayerHelperScript.findLocalPlayer().getVolk().getUnitByID(kvp.Value).GetComponent<Unit>();
+            
             o.transform.SetParent(scrollviewTransfrom, false);
-            o.transform.GetChild(2).GetComponent<UnitID>().unit_ID = kvp.Value;
-            o.transform.GetChild(0).GetComponent<Image>().sprite = kvp.Key.GetComponent<SpriteRenderer>().sprite;
+            o.transform.GetChild(4).GetComponent<UnitID>().unit_ID = kvp.Value;
+            o.transform.GetChild(0).GetComponent<Image>().sprite = u.Icon;
 
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
-            Unit u = PlayerHelperScript.findLocalPlayer().getVolk().getUnitByID(kvp.Value).GetComponent<Unit>();
+            
             text.text = "";
             Dictionary<Ressource, float> unitKosten = u.getKosten();
             foreach(KeyValuePair<Ressource, float> kosten in unitKosten) {
                 text.text += kosten.Key.name + ": " + kosten.Value + "\n";
             }
 
-            o.transform.GetChild(2).GetComponent<UnitID>().Kosten = unitKosten;
-            o.transform.GetChild(2).GetComponent<UnitID>().Building = b;
+            o.transform.GetChild(4).GetComponent<UnitID>().Kosten = unitKosten;
+            o.transform.GetChild(4).GetComponent<UnitID>().Building = b;
 
-            generatedPrefabs.Add(o);
+            if(i++ > 0) generatedPrefabs.Add(o);
         }
     }
 

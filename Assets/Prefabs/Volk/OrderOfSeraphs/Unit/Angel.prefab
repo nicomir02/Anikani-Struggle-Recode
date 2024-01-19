@@ -1747,6 +1747,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   health: 0
+  icon: {fileID: -2062820344, guid: 07979f89ee82e5740872732d85833c60, type: 3}
   attackValue: 20
   healValue: 30
   standardMaxHealth: 100

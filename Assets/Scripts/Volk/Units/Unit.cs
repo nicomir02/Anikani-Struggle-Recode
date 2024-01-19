@@ -65,44 +65,6 @@ public class Unit : VolkObject
         return ausbildungszeit;
     }
 
-    public Dictionary<Ressource, float> getKosten(){
-        Dictionary<Ressource, float> result = new Dictionary<Ressource, float>();
-        
-        int anzahl = 0;
-
-        /*
-        Optimierungsvorschlg:
-        für anzahl der gebäude: Beim PlayerManager speichern sobald Gebäude gebaut als dictinary     
-        */
-        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
-        
-        foreach(Unit u in FindObjectsOfType<Unit>()) {
-            string activePlayer = "";
-
-            foreach(PlayerManager player in FindObjectsOfType<PlayerManager>()) {
-                if(player.name == rm.aktiverSpieler) {
-                    activePlayer = player.name;
-                    break;
-                }
-            }
-
-            if(u.name == name + " " + activePlayer) {
-                anzahl++;
-            }
-        }
-
-        /*
-        for(int i = 0; i < RessourcenFuerKosten.Count; i++){
-            float wert = anzahl*kostenMultiplierFuerRessource[i];
-            float convert = Mathf.Round(wert * 10.0f) * 0.1f;
-            result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievieleEinheitenDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
-        }
-        */
-        return result;
-    }
-
-    
-
     public override void Start() {
         base.Start();
         loadMoreAnimations();

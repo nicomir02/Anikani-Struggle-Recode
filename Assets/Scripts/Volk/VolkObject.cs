@@ -8,6 +8,12 @@ public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
 
+    [SerializeField] private Sprite icon;
+    public Sprite Icon {
+        get {
+            return icon;
+        }
+    }
     
     [SyncVar] public float attackValue = 0;
    
@@ -156,6 +162,40 @@ public class VolkObject : NetworkBehaviour
             }
             return 0f;
         }
+    }
+
+    public Dictionary<Ressource, float> getKosten(){
+        Dictionary<Ressource, float> result = new Dictionary<Ressource, float>();
+        
+        int anzahl = 0;
+
+        /*
+        Optimierungsvorschlg:
+        für anzahl der gebäude: Beim PlayerManager speichern wen Gebäude gebaut als dictinary     
+        */
+        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
+        
+        foreach(Building b in FindObjectsOfType<Building>()) {
+            string activePlayer = "";
+
+            foreach(PlayerManager player in FindObjectsOfType<PlayerManager>()) {
+                if(player.name == rm.aktiverSpieler) {
+                    activePlayer = player.name;
+                    break;
+                }
+            }
+
+            if(b.name == name + " " + activePlayer) {
+                anzahl++;
+            }
+        }
+
+        for(int i = 0; i < RessourcenFuerKosten.Count; i++){
+            float wert = anzahl*kostenMultiplierFuerRessource[i];
+            float convert = Mathf.Round(wert * 10.0f) * 0.1f;
+            result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievielegebäudeDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
+        }
+        return result;
     }
 
     public float boostAuswertung() {

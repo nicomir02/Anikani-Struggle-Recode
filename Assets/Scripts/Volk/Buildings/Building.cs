@@ -28,15 +28,6 @@ public class Building : VolkObject
     //Spawn Helper
     private ObjectSpawnHelper spawnHelper;
 
-
-
-    
-    [SerializeField] private Sprite icon;
-    public Sprite Icon {
-        get {
-            return icon;
-        }
-    }
     [SerializeField] private GameObject lightObject;
 
     private GameManager gameManager;
@@ -268,40 +259,6 @@ public class Building : VolkObject
     [Command(requiresAuthority=false)]
     public override void nextRound() {
         base.nextRound();
-    }
-
-    public Dictionary<Ressource, float> getKosten(){
-        Dictionary<Ressource, float> result = new Dictionary<Ressource, float>();
-        
-        int anzahl = 0;
-
-        /*
-        Optimierungsvorschlg:
-        für anzahl der gebäude: Beim PlayerManager speichern wen Gebäude gebaut als dictinary     
-        */
-        rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
-        
-        foreach(Building b in FindObjectsOfType<Building>()) {
-            string activePlayer = "";
-
-            foreach(PlayerManager player in FindObjectsOfType<PlayerManager>()) {
-                if(player.name == rm.aktiverSpieler) {
-                    activePlayer = player.name;
-                    break;
-                }
-            }
-
-            if(b.name == name + " " + activePlayer) {
-                anzahl++;
-            }
-        }
-
-        for(int i = 0; i < RessourcenFuerKosten.Count; i++){
-            float wert = anzahl*kostenMultiplierFuerRessource[i];
-            float convert = Mathf.Round(wert * 10.0f) * 0.1f;
-            result.Add(RessourcenFuerKosten[i], convert+kostenFuerRessource[i]); //wievielegebäudeDiesesTyps*multiplierfürverschiedeneRessourcen+kostenFuerRessource
-        }
-        return result;
     }
 
     private bool isSelected(){
