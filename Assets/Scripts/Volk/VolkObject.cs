@@ -8,6 +8,11 @@ public class VolkObject : NetworkBehaviour
 {
     [SyncVar] public float health;
 
+    private int moralSkalenKategorieWert = 0;       //die klasse/kategorie in der sich der Moralwert befindet (<10% = 1, <25% = 2, <45% = 3. <55% = 4, <75% = 5, <90% = 6, >90% = 7)
+    public int MoralSkalenKategorieWert {
+        get{return moralSkalenKategorieWert;}
+    }
+
     [SerializeField] private Sprite icon;
     public Sprite Icon {
         get {

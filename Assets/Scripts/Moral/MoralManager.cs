@@ -25,6 +25,7 @@ public class MoralManager : NetworkBehaviour
 
     float gesamtMoral = 0.5f;
     [SerializeField] private Moralbar moralbar;
+    [SerializeField] private Moralskala moralskala;
 
     //noch MOralskala an ein Gameobject anfügen: [SerializeField] private Moralskala ms;
 
