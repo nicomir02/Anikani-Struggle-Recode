@@ -14,13 +14,13 @@ public class Moralskala : MonoBehaviour
     [SerializeField] private float faktorCase6 = 1.5f;
     [SerializeField] private float faktorCase7 = 2f;
 
-    [SerializeField] private int maxStepsAenderung1 = -3
-    [SerializeField] private int maxStepsAenderung2 = -2
-    [SerializeField] private int maxStepsAenderung3 = -1
-    [SerializeField] private int maxStepsAenderung4 = 0
-    [SerializeField] private int maxStepsAenderung5 = 1
-    [SerializeField] private int maxStepsAenderung6 = 2
-    [SerializeField] private int maxStepsAenderung7 = 3
+    [SerializeField] private int maxStepsAenderung1 = -3;
+    [SerializeField] private int maxStepsAenderung2 = -2;
+    [SerializeField] private int maxStepsAenderung3 = -1;
+    [SerializeField] private int maxStepsAenderung4 = 0;
+    [SerializeField] private int maxStepsAenderung5 = 1;
+    [SerializeField] private int maxStepsAenderung6 = 2;
+    [SerializeField] private int maxStepsAenderung7 = 3;
 
 
     /*Skalenverteilung:
