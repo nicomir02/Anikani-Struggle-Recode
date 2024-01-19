@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Moralskala : MonoBehaviour
 {
-
+ 
     //Serialize Fields für Balancing Aspekte zum Anpassen
     [SerializeField] private float faktorCase1 = 0.25f;
     [SerializeField] private float faktorCase2 = 0.5f;

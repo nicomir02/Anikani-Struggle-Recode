@@ -76,7 +76,7 @@ public class MoralManager : NetworkBehaviour
                 
                 if (vo.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
                     //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute) methode direkt in moralskala implementiert momentan
-                    moralskala.checkSkala(vo, vo.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                    //moralskala.checkSkala(vo, vo.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
                 }
             }
         }
@@ -88,7 +88,7 @@ public class MoralManager : NetworkBehaviour
                 Debug.Log("Unit");
                 Debug.Log(u.GetType());
                 if (u.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
-                    moralskala.checkSkalaUnit(u, u.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                    //moralskala.checkSkalaUnit(u, u.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
                 }
             }
         }
@@ -111,7 +111,7 @@ public class MoralManager : NetworkBehaviour
                 Debug.Log("RessourcenSammler");
                 Debug.Log(rs.GetType());
                 if (rs.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
-                    moralskala.checkSkalaRessourcenSammler(rs, rs.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                    //moralskala.checkSkalaRessourcenSammler(rs, rs.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
                 }
             }
         }
@@ -123,7 +123,7 @@ public class MoralManager : NetworkBehaviour
                 Debug.Log("TrainUnitBuilding");
                 Debug.Log(tub.GetType());
                 if (tub.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
-                    moralskala.checkSkalaTrainUnitBuilding(tub, tub.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                    //moralskala.checkSkalaTrainUnitBuilding(tub, tub.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
                 }
             }
         }
