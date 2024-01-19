@@ -13,6 +13,6 @@ public class Healthbar : Bar
     }
 
     public override void newMaxValue() {
-        MaxValue = gameObject.transform.parent.GetComponent<VolkObject>().health;
+        MaxValue = gameObject.transform.parent.GetComponent<VolkObject>().maxHealth;
     }
 }

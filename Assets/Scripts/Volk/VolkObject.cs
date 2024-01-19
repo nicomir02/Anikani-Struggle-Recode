@@ -291,9 +291,14 @@ public class VolkObject : NetworkBehaviour
             value = maxHealth-health;
             health = maxHealth;
         }else health += value;
-        if(healthbar != null) healthbar.Change(value);
+        if(healthbar != null) healthChange(value);
         
         if(health <= 0) destroyObject();
+    }
+
+    [ClientRpc]
+    public void healthChange(float value) {
+        healthbar.Change(value);
     }
 
     //einheit zerstören

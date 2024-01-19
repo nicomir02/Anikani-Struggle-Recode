@@ -196,8 +196,9 @@ public class Building : VolkObject
     }
 
     public override bool isObjectAtPosition(Vector3Int vec) {
+        
         foreach(Vector3Int ve in position) {
-            return ve.x == vec.x && ve.y == vec.y;
+            if(ve.x == vec.x && ve.y == vec.y) return true;
         }
         return false;
     }
