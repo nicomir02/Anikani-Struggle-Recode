@@ -69,11 +69,61 @@ public class MoralManager : NetworkBehaviour
         int howMany = 0;
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                moral += vo.moralAuswertung(false);
+                moral += vo.moralAuswertung();
                 howMany++;
                 //neu dazu für Moralauswirkungen
-                //vo.prevMoralAnpassung();    //Anpassung der Variable prevMoralWert
-                //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute)
+                
+                if (vo.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    //vo.moralAuswirkung();       //Auswirkungen durch Moralveränderung auf Attribute(erstmal nur Attribute) methode direkt in moralskala implementiert momentan
+                    moralskala.checkSkala(vo, vo.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
+        //für alle inherited classes auch, da casten (vo as Unit) nicht klappt:
+        //Unit
+        foreach(Unit u in FindObjectsOfType<Unit>()){
+            if(u.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(u.transform.parent);
+                Debug.Log("Unit");
+                Debug.Log(u.GetType());
+                if (u.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaUnit(u, u.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
+        //Building
+        foreach(MainBuilding mb in FindObjectsOfType<Building>()){
+            if(mb.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(mb.transform.parent);
+                Debug.Log("Building");
+                Debug.Log(mb.GetType());
+                /*if (mb.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaMainBuilding(mb, mb.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }*/
+            }
+        }
+
+        //Ressourcensammler
+        foreach(RessourcenSammler rs in FindObjectsOfType<RessourcenSammler>()){
+            if(rs.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(rs.transform.parent);
+                Debug.Log("RessourcenSammler");
+                Debug.Log(rs.GetType());
+                if (rs.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaRessourcenSammler(rs, rs.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
+            }
+        }
+
+        //TrainUnitBuilding
+        foreach(TrainUnitBuilding tub in FindObjectsOfType<TrainUnitBuilding>()){
+            if(tub.transform.parent.GetComponent<PlayerManager>() == pm) {
+                Debug.Log(tub.transform.parent);
+                Debug.Log("TrainUnitBuilding");
+                Debug.Log(tub.GetType());
+                if (tub.prevMoralAnpassung()){    //Anpassung der Variable prevMoralWert
+                    moralskala.checkSkalaTrainUnitBuilding(tub, tub.MoralSkalenKategorieWert);    //getter für moralKategoiewert übergeben an moralskala skript
+                }
             }
         }
 
