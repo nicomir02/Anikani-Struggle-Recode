@@ -549,9 +549,15 @@ public class VolkObject : NetworkBehaviour
         get{return attackValue;}
         set{attackValue = value;}
     }
+    public float StandardAttackValue {
+        get{return standardAttackValue;}
+    }
         public float HealValue {
         get{return healValue;}
         set{healValue = value;}
+    }
+    public float StandardHealValue {
+        get{return standardHealValue;}
     }
     public int MaxHealth {
         get{return maxHealth;}
