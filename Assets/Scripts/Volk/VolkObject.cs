@@ -43,8 +43,7 @@ public class VolkObject : NetworkBehaviour
 
 //für die Moralskala. Bei Auswahl fuer den Aufruf der Moralskala benutzt
     private float[] moralskalaArray = {0.1f,0.25f,0.45f,0.55f,0.75f,0.90f};    //0f und 1f braucht man nicht zum prüfen welche kategoie es ist
-
-
+    [SerializeField] private Moralskala moralskala;
 
     [SerializeField] private AudioClip bauAusbildSound;
     public AudioClip BauSound {
@@ -302,7 +301,7 @@ public class VolkObject : NetworkBehaviour
             suchtLvl[0] = suchtLvl[0]-1;
         }
         if(rm != null && rm.Round > 0) changeHealth(maxHealth*0.01f);
-        
+        //einzelMoralAuswirkung();
     }
 
      //in MoralManager aufgerufen. Jede Runde wird der prevMoralWert angepasst auf den aktuellen. auch schauen ob Bereich auf der Skala sich verändert hat(andere klasse/kategoie nun)
@@ -538,6 +537,16 @@ public class VolkObject : NetworkBehaviour
         }
         }*/
 
+    /*private void einzelMoralAuswirkung(){
+        
+        if (prevMoralAnpassung()){   //Anpassung der Variable prevMoralWert
+            moralskala.checkSkala(this, moralSkalenKategorieWert);
+            if(this.getType()==Unit){
+                moralskala.checkSkalaUnit(this, moralSkalenKategorieWert);
+            }  
+        }
+    } */
+
 
         //Getter und Setter für Variablen für Moralskala
         
@@ -552,7 +561,7 @@ public class VolkObject : NetworkBehaviour
     public float StandardAttackValue {
         get{return standardAttackValue;}
     }
-        public float HealValue {
+    public float HealValue {
         get{return healValue;}
         set{healValue = value;}
     }
