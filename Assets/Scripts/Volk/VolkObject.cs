@@ -289,6 +289,9 @@ public class VolkObject : NetworkBehaviour
     
     public virtual void Update() {
         if(!m_selected) return;
+        if(!im.ListBtns.activeSelf && im.BigInfobox) {
+            selected();
+        }
         if(Input.GetButtonDown("CycleObjects")) {
             cycleObjectMethod();
         }

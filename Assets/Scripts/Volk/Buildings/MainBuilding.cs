@@ -13,7 +13,6 @@ public class MainBuilding : Building
 
     public override void selected() {
         base.selected();
-        im.closeInfo();
         im.openRightBox(this, false);
     }
     
