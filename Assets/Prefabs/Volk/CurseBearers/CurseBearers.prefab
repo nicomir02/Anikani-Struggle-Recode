@@ -46,7 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hauptGebaeude: {fileID: -1864038161657043744, guid: 3dd69da70f48358448b056b22f930a4f, type: 3}
   backgroundMusicClip: {fileID: 8300000, guid: 50d48a84842dadb4c98118bfa6de9104, type: 3}
-  description: 
+  description: The Curse Bearers, in stark contrast to the Order of Seraphs, are
+    a faction deeply entrenched in dark and demonic practices. Their elite units
+    are powerful demons focused on dealing substantial damage, displaying offensive
+    prowess. Unlike the Seraphs, the Curse Bearers prioritize offense over defense,
+    resulting in units with lower life expectancy but formidable attacking capabilities.
+    The origins of their units can be traced to the Devil's Gate, serving as a portal
+    for demonic entities. This faction embraces a diabolical nature, with an emphasis
+    on unleashing destructive forces in pursuit of their goals.
   tribeIcon: {fileID: 21300000, guid: 8e1eb69c851193249adff0fd0f775d8c, type: 3}
   buildings:
   - {fileID: 1912368084208151826, guid: 909fab638e2419c40991069b6580c1d2, type: 3}

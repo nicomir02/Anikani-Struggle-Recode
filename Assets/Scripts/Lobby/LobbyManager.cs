@@ -24,8 +24,6 @@ public class LobbyManager : NetworkBehaviour {
     private bool playerChosen = false;
     [SerializeField] private Button readyBtn;
 
-    [SerializeField] private TMP_Dropdown tribeOptions;
-
     [SerializeField] private Button chooseColorBtn;
     [SerializeField] private Slider red;
     [SerializeField] private Slider green;
@@ -40,20 +38,22 @@ public class LobbyManager : NetworkBehaviour {
     [SerializeField] private SaveHelper saveAttributes;
 
     [SerializeField] private Sprite randomTribe;
+    [SerializeField] private GameObject element;
+    [SerializeField] private Image tribeIcon;
+    [SerializeField] private TMP_Text description;
 
     bool registered = false;
 
     void Start() {
         Ingame.SetActive(false);
         chooseColorBtn.onClick.AddListener(() => OnButtonClicked(chooseColorBtn));
-        tribeOptions.onValueChanged.AddListener(delegate {tribeChange(tribeOptions);});
 
         red.onValueChanged.AddListener(delegate {valueChanged(red);});
         green.onValueChanged.AddListener(delegate {valueChanged(green);});
         blue.onValueChanged.AddListener(delegate {valueChanged(blue);});
-        //int i = 1;
+        int i = 1;
         //tribeOptions.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(i++).GetComponent<Image>().sprite = randomTribe;
-        
+        element.GetComponent<Button>().onClick.AddListener(() => tribeChange("Random Tribe"));
         foreach(StandardVolk volk in saveAttributes.Voelker) {
             string volkname = "";
 
@@ -63,12 +63,36 @@ public class LobbyManager : NetworkBehaviour {
                 volkname += c;
                 old = c;
             }
-
-            tribeOptions.options.Add(new TMP_Dropdown.OptionData(volkname));
+            GameObject o = Instantiate(element, element.transform.parent);
+            o.transform.GetChild(0).GetComponent<TMP_Text>().text = volkname;
+            o.transform.GetChild(1).GetComponent<Image>().sprite = volk.tribeIcon;
+            o.GetComponent<Button>().onClick.AddListener(() => tribeChange(volk.name));
+            i++;
             //if(volk.tribeIcon != null) tribeOptions.transform.GetChild(3).GetChild(0).GetChild(0).GetChild(i++).GetComponent<Image>().sprite = volk.tribeIcon;
         }
 
         readyBtn.onClick.AddListener(ready);
+    }
+
+    void tribeChange(string volkname) {
+        if(volkname == "Random Tribe" || volkname == "RandomTribe") {
+            Random rand = new Random();
+            StandardVolk v = saveAttributes.Voelker[rand.Next(1, saveAttributes.Voelker.Count)];
+            PlayerHelperScript.findLocalPlayer().playerVolk = v.id;
+            description.text = "???";
+            tribeIcon.sprite = randomTribe;
+        }else {
+            StandardVolk v = null;
+            foreach(StandardVolk volk in saveAttributes.Voelker) {
+                if(volk.name == volkname) {
+                    PlayerHelperScript.findLocalPlayer().playerVolk = volk.id;
+                    v = volk;
+                    break;
+                }
+            }
+            description.text = v.Description;
+            tribeIcon.sprite = v.tribeIcon;
+        }
     }
 
     [Command(requiresAuthority=false)]
@@ -84,28 +108,6 @@ public class LobbyManager : NetworkBehaviour {
         TMP_Text text = o.GetComponent<TMP_Text>();
         text.text = player;
         playerlist.Add(player, text);
-    }
-
-    void tribeChange(TMP_Dropdown change) {
-        string volkname = "";
-
-        int options = change.value;
-
-        if(options == 0) {
-            Random rand = new Random();
-            options = rand.Next(1, tribeOptions.options.Count);
-        }
-
-        foreach(char c in tribeOptions.options[options].text) {
-            if(c != ' ') volkname += c;
-        }
-
-        foreach(StandardVolk volk in saveAttributes.Voelker) {
-            if(volk.name == volkname) {
-                PlayerHelperScript.findLocalPlayer().playerVolk = volk.id;
-                break;
-            }
-        }
     }
 
     public void OnButtonClicked(Button buttonClicked) {
@@ -178,9 +180,8 @@ public class LobbyManager : NetworkBehaviour {
             if(pname == "" || pname == null) pname = "Random Name " + new Random().Next(0, 1000);
             PlayerHelperScript.findLocalPlayer().changePlayername(pname);
             serverPlayerConnect(pname);
-
+            tribeChange("Random Tribe");
             registered = true;
-            tribeChange(tribeOptions);
             if(++connectedPlayers > 1) {
                 int i = 0;
                 foreach(KeyValuePair<string, bool> kvp in playernames) {
@@ -254,10 +255,6 @@ public class LobbyManager : NetworkBehaviour {
  
 
     void ready() {
-        
-
-        tribeOptions.interactable = false;
-
         PlayerManager pm = PlayerHelperScript.findLocalPlayer();
         if(pm.playerCode == -1 || !playerChosen) return;
         readyPlayer(pm.name);
