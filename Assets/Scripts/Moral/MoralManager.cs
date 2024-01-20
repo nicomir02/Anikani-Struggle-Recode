@@ -71,7 +71,7 @@ public class MoralManager : NetworkBehaviour
         int howMany = 0;
         foreach(VolkObject vo in FindObjectsOfType<VolkObject>()) {
             if(vo.transform.parent.GetComponent<PlayerManager>() == pm) {
-                moral += vo.moralAuswertung();
+                moral += vo.moralAuswertung(false);
                 howMany++;
                 //neu dazu für Moralauswirkungen
                 
