@@ -16,8 +16,8 @@ public class MapBehaviour : NetworkBehaviour
     [SerializeField] private Ressource[] ressourcen;
     //[SerializeField] private Biom[] biomInBiom;
 
-    [SerializeField] public int width = 50;
-    [SerializeField] public int height = 50;
+    [SerializeField][SyncVar] public int width = 50;
+    [SerializeField][SyncVar] public int height = 50;
     [SerializeField] public int maxZ = 3;
 
     [SerializeField] private TileBase unterErde;
