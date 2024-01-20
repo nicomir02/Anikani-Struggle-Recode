@@ -157,6 +157,11 @@ public class Unit : VolkObject
         reichweitenText.text = steps+"";
     }
 
+    [Command(requiresAuthority=false)]
+    void cmdChangeSteps(int m_steps) {
+        changeSteps(m_steps);
+    }
+
 
 
 
@@ -194,10 +199,6 @@ public class Unit : VolkObject
                 if(attackRange <= liste.Count || mapBehaviour.getZ(start)-mapBehaviour.getZ(end)+attackRange <= liste.Count) { //und man von der jetzigen Position das gegnerische Object erreicht mit der angriffsreichweite
                     Debug.Log("test");
                     tryAttack(end, obj);   //probieren ob man dieses Object attackieren kann
-                    steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
-                    reichweitenText.text = steps+"";
-                    changeSteps(0);
-                    lastMoveWasAttack = true;
                 }
                 return; //auf kein Objekt draufgehen(erstmal!!)
             }
@@ -236,7 +237,12 @@ public class Unit : VolkObject
             if(healSound == null) return;
             GetComponent<AudioSource>().clip = healSound;
             GetComponent<AudioSource>().Play();
-        } else {
+
+            steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
+            reichweitenText.text = steps+"";
+            changeSteps(0);
+            lastMoveWasAttack = true;
+        }else if(obj.transform.parent != transform.parent){
             if(transform.position.x >= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
                 animationList = frontAttack;
             }else if(transform.position.x >= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
@@ -250,23 +256,17 @@ public class Unit : VolkObject
                 gameObject.AddComponent<AudioSource>();
             }
             lastAttack = 0; 
-            obj.changeHealth(-attackValue); 
 
-            // Evaluate and apply morale change for attacking unit
-            Moral_Attack moralAttackEvaluator = new Moral_Attack();
-            float moraleImpactForAttacker = moralAttackEvaluator.auswerten(this);
-            ApplyMoraleChange(moraleImpactForAttacker);
-            Debug.Log($"[tryAttack] Morale impact for attacker {this.name}: {moraleImpactForAttacker}");
+            obj.changeHealth(-attackValue);
 
-            // Evaluate and apply morale change for attacked unit
-            Moral_Schaden moralSchadenEvaluator = new Moral_Schaden();
-            float moraleImpactForAttacked = moralSchadenEvaluator.auswerten(obj);
-            obj.ApplyMoraleChange(moraleImpactForAttacked);
-            Debug.Log($"[tryAttack] Morale impact for attacked unit {obj.name}: {moraleImpactForAttacked}");
+            steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
+            reichweitenText.text = steps+"";
+            changeSteps(0);
+            lastMoveWasAttack = true;
 
             if(attackSound == null) return;
             GetComponent<AudioSource>().clip = attackSound;
-            GetComponent<AudioSource>().Play(); 
+            GetComponent<AudioSource>().Play();
         }
     }
 
