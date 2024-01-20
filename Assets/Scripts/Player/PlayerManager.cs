@@ -4,22 +4,35 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 
-public class PlayerManager : NetworkBehaviour
-{
-
-   
-
+public class PlayerManager : NetworkBehaviour {
     /*
     Speicher alles was Spieler spezifisch ist
     PlayerFind Methode findet sich in einem HelperScript "PlayerHelperScript"
     */
-
 
     /*
     Volk des Spielers
     0 = Order of Seraph
     1 = Curse Bearer
     ....
+    */
+
+    /*
+    Idee für Sprite speichern: 
+    Scripts für einzelne Völker
+    z.B. OrderOfSeraphSprites
+        Speicherort für alle Knight Sprites
+        Speicherort für alle Archer Sprites
+        ...
+    player ruft spezifisches Script auf 
+        Methode mit Volk übergabe und switch case
+    einheitliche speicherart oder ähnliches für aufruf/rückgabe von Spritelists für animationlist
+    im script animerger und merger aufrufe für die sprites und bei objekt erstellung teamfarbe übergeben 
+
+    ggf. wenn irgendwann überlaufen der Einheiten möglich noch ein weiteres Script EnemySprites, 
+    um alle feindlichen einheiten in eigener Farbe zu generieren 
+    möglichkeit 1: get other players, get SpriteSaver, getUnitsInColor()
+    möglichkeit 2: keine Ahnung irgendwas anderes 
     */
 
     [SyncVar] private int volkID = -1;
