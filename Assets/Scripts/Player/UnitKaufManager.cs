@@ -63,7 +63,7 @@ public class UnitKaufManager : Panel
                 offen = false;
             }
         }
-        if(Input.GetButtonDown("Cancel") && !pause.IsPause && offen) {
+        if((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.U) )&& !pause.IsPause && offen) {
             closePanel();
         }
     }
