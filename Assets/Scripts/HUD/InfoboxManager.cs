@@ -12,7 +12,7 @@ public class InfoboxManager : Panel
 
     [SerializeField] private GameObject listBtns;
     public GameObject ListBtns {
-        get {return listBtns}
+        get {return listBtns;}
     }
 
     [SerializeField] private TMP_Text allgemeineInfos;
@@ -29,8 +29,8 @@ public class InfoboxManager : Panel
     private List<GameObject> instantiatedMoral = new List<GameObject>();
 
     bool bigInfobox = false;
-    public GameObject BigInfobox {
-        get {return bigInfobox}
+    public bool BigInfobox {
+        get {return bigInfobox;}
     }
 
     //angeklicktes VolkObject
