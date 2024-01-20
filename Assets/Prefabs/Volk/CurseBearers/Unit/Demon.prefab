@@ -1714,9 +1714,9 @@ MonoBehaviour:
   animationAbstand: 0.2
   m_selected: 0
   lastMoveWasAttack: 0
-  moveSound: {fileID: 0}
-  healSound: {fileID: 0}
-  attackSound: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: b15166cd1599ea7409a890c9ec4eb3b5, type: 3}
+  healSound: {fileID: 8300000, guid: 446fa866e2625524a969cb29db468b42, type: 3}
+  attackSound: {fileID: 8300000, guid: 446fa866e2625524a969cb29db468b42, type: 3}
   standardMaxSteps: 4
   reichweitenText: {fileID: 1829708506095464769}
   currentPosition: {x: 36, y: 47, z: 1}
