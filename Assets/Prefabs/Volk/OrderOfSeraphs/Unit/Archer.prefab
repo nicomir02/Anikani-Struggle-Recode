@@ -1665,14 +1665,17 @@ MonoBehaviour:
   syncInterval: 0
   health: 0
   icon: {fileID: 2075923501, guid: dd6188e4990778542ab37fa45dd096df, type: 3}
-  attackValue: 40
-  healValue: 0
   standardMaxHealth: 70
   maxHealth: 70
   standardAttackRange: 3
   attackRange: 3
+  standardAttackValue: 0
+  attackValue: 40
+  standardHealValue: 0
+  healValue: 0
   healthbar: {fileID: 2177763823506695250}
   moralbar: {fileID: 7976238794158359663}
+  moralskala: {fileID: 0}
   bauAusbildSound: {fileID: 0}
   todesSound: {fileID: 8300000, guid: a6e4603e26c0f234ba7ef938d7c4847d, type: 3}
   moralWert: 1
@@ -1688,7 +1691,7 @@ MonoBehaviour:
   m_selected: 0
   lastMoveWasAttack: 0
   moveSound: {fileID: 8300000, guid: 1c4da961d2fe9534c99fd75e47306704, type: 3}
-  healSound: {fileID: 0}
+  healSound: {fileID: 8300000, guid: 09be85fd33fa92040a5b4201aa9b57da, type: 3}
   attackSound: {fileID: 8300000, guid: 09be85fd33fa92040a5b4201aa9b57da, type: 3}
   standardMaxSteps: 2
   reichweitenText: {fileID: 1829708506095464769}

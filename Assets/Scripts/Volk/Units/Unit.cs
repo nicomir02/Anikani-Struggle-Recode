@@ -226,51 +226,17 @@ public class Unit : VolkObject
     }
 
     public void tryAttack(Vector3Int v, VolkObject obj) {
-
-	/*Debug.Log($"[tryAttack] Attempting an action on position: {v}");
-
-        if (healValue > 0 && obj.transform.parent == transform.parent) {  // Healing own unit
-            obj.changeHealth(healValue);
-            lastHeal = 0;
-            Debug.Log($"[tryAttack] Healing unit {obj.name} with value: {healValue}");
-        } else {
-            Debug.Log("[tryAttack] Trying to Attack");
-            foreach (VolkObject potentialTarget in FindObjectsOfType<VolkObject>()) {
-                if (potentialTarget.isObjectAtPosition(v)) {
-                    if (potentialTarget == obj) {
-                        Debug.Log($"[tryAttack] Attacking unit {obj.name} with attack value: {attackValue}");
-                        obj.changeHealth(-attackValue); 
-                        lastAttack = 0;
-
-                        // Evaluate and apply morale change for attacking unit
-                        Moral_Attack moralAttackEvaluator = new Moral_Attack();
-                        float moraleImpactForAttacker = moralAttackEvaluator.auswerten(this);
-                        ApplyMoraleChange(moraleImpactForAttacker);
-                        Debug.Log($"[tryAttack] Morale impact for attacker {this.name}: {moraleImpactForAttacker}");
-
-                        // Evaluate and apply morale change for attacked unit
-                        Moral_Schaden moralSchadenEvaluator = new Moral_Schaden();
-                        float moraleImpactForAttacked = moralSchadenEvaluator.auswerten(obj);
-                        obj.ApplyMoraleChange(moraleImpactForAttacked);
-                        Debug.Log($"[tryAttack] Morale impact for attacked unit {obj.name}: {moraleImpactForAttacked}");
-                        break;
-                    }
-                }
-            }
-        }*/ //hinzufuegen...
-
         if(healValue > 0 && obj.transform.parent == transform.parent) {  //eigene Einheit heilen falls man heilen kann
             obj.changeHealth(healValue);
             lastHeal = 0;
 
-            
             if(GetComponent<AudioSource>() == null) {
                 gameObject.AddComponent<AudioSource>();
             }
             if(healSound == null) return;
             GetComponent<AudioSource>().clip = healSound;
             GetComponent<AudioSource>().Play();
-        }else {
+        } else {
             if(transform.position.x >= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
                 animationList = frontAttack;
             }else if(transform.position.x >= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
@@ -284,12 +250,23 @@ public class Unit : VolkObject
                 gameObject.AddComponent<AudioSource>();
             }
             lastAttack = 0; 
+            obj.changeHealth(-attackValue); 
 
+            // Evaluate and apply morale change for attacking unit
+            Moral_Attack moralAttackEvaluator = new Moral_Attack();
+            float moraleImpactForAttacker = moralAttackEvaluator.auswerten(this);
+            ApplyMoraleChange(moraleImpactForAttacker);
+            Debug.Log($"[tryAttack] Morale impact for attacker {this.name}: {moraleImpactForAttacker}");
+
+            // Evaluate and apply morale change for attacked unit
+            Moral_Schaden moralSchadenEvaluator = new Moral_Schaden();
+            float moraleImpactForAttacked = moralSchadenEvaluator.auswerten(obj);
+            obj.ApplyMoraleChange(moraleImpactForAttacked);
+            Debug.Log($"[tryAttack] Morale impact for attacked unit {obj.name}: {moraleImpactForAttacked}");
 
             if(attackSound == null) return;
             GetComponent<AudioSource>().clip = attackSound;
-            GetComponent<AudioSource>().Play();
-            obj.changeHealth(-attackValue);   
+            GetComponent<AudioSource>().Play(); 
         }
     }
 
