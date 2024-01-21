@@ -63,6 +63,17 @@ public class TrainUnitBuilding : Building
         }
     }
 
+    [Command(requiresAuthority=false)]
+    public void trainAnimation() {
+        animationList = trainEnd;
+        RpcTrainAnimation();
+    }
+
+    public void RpcTrainAnimation() {
+        animationList = trainEnd;
+        animationStart(0, 0);
+    }
+
     /*
     Erklärung für nextROundMethode:
     zahl++
