@@ -18,4 +18,12 @@ public class HelpPanelOpener : MonoBehaviour
         }
 
 	}
+	public void LateUpdate()
+	{
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			if (Panel != null){
+			Panel.SetActive(false);
+		}
+		}
+	}
 }
