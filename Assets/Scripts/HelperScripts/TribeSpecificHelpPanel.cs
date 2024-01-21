@@ -6,6 +6,9 @@ using TMPro;
 
 public class TribeSpecificHelpPanel : MonoBehaviour
 {
+    public int volkID = 0;
+    //ausgewähltes Volk gechached
+    private StandardVolk volk;
     public GameObject Panel;
     //public string tribename;
     //ScrollView Units
@@ -27,10 +30,10 @@ public class TribeSpecificHelpPanel : MonoBehaviour
     public void fillUnitPanel(){
         int i = 0;
         //alle Einheiten auflisten als Scrollview innerhalb des Panels
-        foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllUnits()) {
+        foreach(KeyValuePair<GameObject, int> kvp in volk.getAllUnits()) {
             GameObject o = unitPrefab;
             if(i > 0) o = Instantiate(unitPrefab, transform.position, transform.rotation);
-            Unit u = PlayerHelperScript.findLocalPlayer().getVolk().getUnitByID(kvp.Value).GetComponent<Unit>();
+            Unit u = volk.getUnitByID(kvp.Value).GetComponent<Unit>();
             
             o.transform.SetParent(scrollviewUnitTransform, false);
             o.transform.GetChild(4).GetComponent<UnitID>().unit_ID = kvp.Value;
@@ -52,12 +55,12 @@ public class TribeSpecificHelpPanel : MonoBehaviour
 
     public void fillBuildingPanel(){
         int i = 0;
-        foreach(KeyValuePair<GameObject, int> kvp in PlayerHelperScript.findLocalPlayer().getVolk().getAllBuildingObjects()) {
+        foreach(KeyValuePair<GameObject, int> kvp in volk.getAllBuildingObjects()) {
             GameObject o = buildingPrefab;
             if(i > 0) {
                 o = Instantiate(buildingPrefab, transform.position, transform.rotation);
             }
-            Building b = PlayerHelperScript.findLocalPlayer().getVolk().getBuildingByID(kvp.Value).GetComponent<Building>();
+            Building b = volk.getBuildingByID(kvp.Value).GetComponent<Building>();
 
             o.transform.SetParent(scrollviewBuildingTransform, false);
             o.transform.GetChild(4).GetComponent<BuildingID>().building_id = kvp.Value;
@@ -76,5 +79,11 @@ public class TribeSpecificHelpPanel : MonoBehaviour
 
             if(i++ > 0) generatedBuildingPrefabs.Add(o);
         }
+    }
+
+    public void setVolk(){
+        Debug.Log("Start setVolk");
+        SaveHelper sv = GameObject.Find("___Everywhere___/----NetworkManager----").GetComponent<SaveHelper>();
+        volk = sv.Voelker[volkID];
     }
 }
