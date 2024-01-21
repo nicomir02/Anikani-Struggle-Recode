@@ -968,7 +968,7 @@ MonoBehaviour:
   - 1.5
   - 1.2
   specificButtonsInfobox: []
-  animationAbstand: 0.07
+  animationAbstand: 0.2
   m_selected: 0
   radius: 3
   lightObject: {fileID: 390609869062261948}
