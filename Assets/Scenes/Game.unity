@@ -27546,6 +27546,7 @@ GameObject:
   - component: {fileID: 1708957699}
   - component: {fileID: 1708957698}
   - component: {fileID: 1708957701}
+  - component: {fileID: 1708957702}
   m_Layer: 0
   m_Name: HelpBtn
   m_TagString: Untagged
@@ -27681,6 +27682,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Panel: {fileID: 1489237401}
   closePrevPanel: {fileID: 0}
+--- !u!114 &1708957702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708957696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48cb7cf2ef0fcc4aa131a8d435223df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 1489237401}
 --- !u!1 &1712445611
 GameObject:
   m_ObjectHideFlags: 0

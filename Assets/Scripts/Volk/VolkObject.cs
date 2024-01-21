@@ -341,14 +341,14 @@ public class VolkObject : NetworkBehaviour
     [ClientRpc]
     public void RpcanimationStart(int cur, int next) {
         if(next == -1) {
-            StartCoroutine(animation(cur));
+            StartCoroutine(sAnimation(cur));
         }else {
-            StartCoroutine(animation(cur, next));
+            StartCoroutine(sAnimation(cur, next));
         }
     }    
     
     
-    public IEnumerator animation(int cur, int next=-1) {
+    public IEnumerator sAnimation(int cur, int next=-1) {
         if(animationList.Count == 0) animationList.Add(safe);
 
         if(++cur >= animationList.Count) {
@@ -371,10 +371,10 @@ public class VolkObject : NetworkBehaviour
 
         if(next == -1) {
             Debug.Log("a");
-            StartCoroutine(animation(cur, -1));
+            StartCoroutine(sAnimation(cur, -1));
         }else {
             Debug.Log("b");
-            StartCoroutine(animation(cur, next));
+            StartCoroutine(sAnimation(cur, next));
         }
     }
 
