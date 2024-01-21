@@ -22,6 +22,21 @@ public class Moralskala : MonoBehaviour
     [SerializeField] private int maxStepsAenderung6 = 2;
     [SerializeField] private int maxStepsAenderung7 = 3;
 
+    [SerializeField] private int maxAusbildungenAenderung1 = -3;
+    [SerializeField] private int maxAusbildungenAenderung2 = -2;
+    [SerializeField] private int maxAusbildungenAenderung3 = -1;
+    [SerializeField] private int maxAusbildungenAenderung4 = 0;
+    [SerializeField] private int maxAusbildungenAenderung5 = 1;
+    [SerializeField] private int maxAusbildungenAenderung6 = 2;
+    [SerializeField] private int maxAusbildungenAenderung7 = 3;
+    
+    [SerializeField] private int ausbildungszeitAenderung1 = +2;
+    [SerializeField] private int ausbildungszeitAenderung2 = +1;
+    [SerializeField] private int ausbildungszeitAenderung3 = 0;
+    [SerializeField] private int ausbildungszeitAenderung4 = 0;
+    [SerializeField] private int ausbildungszeitAenderung5 = 0;
+    [SerializeField] private int ausbildungszeitAenderung6 = -1;
+    [SerializeField] private int ausbildungszeitAenderung7 = -2;
 
     /*Skalenverteilung:
         klasse1: 0 - 10% Moral
@@ -103,104 +118,66 @@ public class Moralskala : MonoBehaviour
     public void checkSkalaUnit(Unit u, int moralkategoriewert){
         switch(moralkategoriewert) {
             case 1:
-               /*
-               //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 0.25f);
-                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                u.AttackValue = u.StandardAttackValue * 0.25f;
-                u.HealValue = u.StandardHealValue * 0.25f;
-                u.AttackRange = (int)(u.StandardAttackRange * 0.25f);
-                */
                 //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps - 3;
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung1;
                 if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung1;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
             case 2:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 0.5f);
-                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                u.AttackValue = u.StandardAttackValue * 0.5f;
-                u.HealValue = u.StandardHealValue * 0.5f;
-                u.AttackRange = (int)(u.StandardAttackRange * 0.5f);
-                */
-                //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps - 2;
+                 //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung2;
                 if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung2;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 3:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 0.75f);
-                if(u.Health > u.MaxHealth) u.Health = u.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-                u.AttackValue = u.StandardAttackValue * 0.75f;
-                u.HealValue = u.StandardHealValue * 0.75f;
-                u.AttackRange = (int)(u.StandardAttackRange * 0.75f);
-                */
-                //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps - 1;
+                 //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung3;
                 if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung3;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 4:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 1f);
-                
-                u.AttackValue = u.StandardAttackValue * 1f;
-                u.HealValue = u.StandardHealValue * 1f;
-                u.AttackRange = (int)(u.StandardAttackRange * 1f);
-                */
-                //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps - 0;
+                 //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung4;
                 if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung4;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 5:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 1.25f);
-               
-                u.AttackValue = u.StandardAttackValue * 1.25f;
-                u.HealValue = u.StandardHealValue * 1.25f;
-                u.AttackRange = (int)(u.StandardAttackRange * 1.25f);
-                */
-                //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps + 1;
+                 //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung5;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung5;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 6:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 1.5f);
-                
-                u.HealValue = u.StandardHealValue * 1.5f;
-                u.AttackRange = (int)(u.StandardAttackRange * 1.5f);
-                */
                 //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps + 2;
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung6;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung6;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 7:
-                /*
-                //allgemeine Attribute
-                u.MaxHealth = (int)(u.StandardMaxHealth * 2f);
-                
-                u.AttackValue = u.StandardAttackValue * 2f;
-                u.HealValue = u.StandardHealValue * 2f;
-                u.AttackRange = (int)(u.StandardAttackRange * 2f);
-                */
-                //speziell für Unit
-                u.MaxSteps = u.StandardMaxSteps + 3;
+                 //speziell für Unit
+                u.MaxSteps = u.StandardMaxSteps + maxStepsAenderung7;
+                if(u.MaxSteps <= 0) u.MaxSteps = 0;
+                u.Ausbildungszeit = u.StandardAusbildungszeit + ausbildungszeitAenderung7;
+                if(u.Ausbildungszeit <= 0) u.Ausbildungszeit = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
@@ -325,44 +302,51 @@ public class Moralskala : MonoBehaviour
         switch(moralkategoriewert) {
             case 1:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung1;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             //noch klasse1 methode für alle kategoien kopieren und anpassen(auf balance achten)
             case 2:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung2;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 3:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung3;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 4:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung4;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 5:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung5;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 6:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung6;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
             case 7:
                 //speziell für TrainunitBuilding
-                
+                tub.MaxAusbildungen = tub.StandardMaxAusbildungen + maxAusbildungenAenderung7;
+                if(tub.MaxAusbildungen <= 0) tub.MaxAusbildungen = 0;
                 //Kosten der Ausbildung auch noch anpassen
 
                 break;
@@ -377,30 +361,6 @@ public class Moralskala : MonoBehaviour
     //Alkohol Boost auch noch beachten!, als Parameter übergeben? oder ist der nur für den Moralwert?
     //was ist beim leben falls kategoiewechsel? aktuelles leben auch anpassen? runter falls maxhealth niedriger als aktuelles leben, höher wenn maxhealth wieder steigt?
    
-/* 
-    public void klassetmpalt(VolkObject vo){
-        //Allgemeine Volkobjekt Variablen:
-        vo.MaxHealth = (int)(vo.StandardMaxHealth * 0.5f);
-        if(vo.Health > vo.MaxHealth) vo.Health = vo.MaxHealth;  //Leben nur verringern, falls maxleben niedriger wird als jetziges leben
-        vo.AttackValue = vo.StandardAttackValue * 0.5f;
-        vo.HealValue = vo.StandardHealValue * 0.5f;
-        vo.AttackRange = (int)(vo.StandardAttackRange * 0.5f);
-        Debug.Log("Typ= " + vo.GetType());
-        //Speziell für Gebäude or Einheiten:
-        if(vo.GetType() == typeof(RessourcenSammler)){
-            vo.RessourcenMoralAuswirkung = -1f;
-        }else if(vo.GetType() == typeof(TrainUnitBuilding)){
-            vo.MaxAusbildungen = vo.StandardMaxAusbildungen - 3;
-        }else if(vo.GetType() == typeof(FoodSammler)){
-            //ähnlich wie RessourcenSammler anpassen!
-        }else if(vo.GetType() == typeof(Unit)){
-            vo.MaxSteps = vo.StandardMaxSteps - 3;
-            if(vo.MaxSteps <= 0) vo.MaxSteps = 0;
-            vo.Ausbildungszeit = vo.StandardAusbildungszeit + 3;
-            //Kosten der Ausbildung auch noch anpassen
-        }
-    }
-*/
 
 
 
@@ -439,10 +399,12 @@ public class Moralskala : MonoBehaviour
         //zufallsfloat berechnen für prozentuale anpassung(attributspezifische range!)
         //dann attribut/variable anhand zufallsfloat anpassen
 
+        //als letztes schauen ob es noch eine weitere Auswirkung gibt oder nicht
+        if(UnityEngine.Random.Range(0,Mathf.Pow(2,moralkategoriewert)) == 0) weitereAuswirkungen();
     }
 
     //weitere Auswirkungen
-    public void weitereAuswirkungen(VolkObject vo){
+    public void weitereAuswirkungen(){
         //Bewegung
         //Angriff
         //übergang zu Gegner

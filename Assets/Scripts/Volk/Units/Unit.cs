@@ -60,7 +60,6 @@ public class Unit : VolkObject
     [SerializeField] private int standardAusbildungszeit;
     private int ausbildungszeit;
 
-
     [SerializeField] private GameObject lightObject;
     public int getAusbildungszeit() {
         if (ausbildungszeit <= 0) ausbildungszeit = standardAusbildungszeit;
