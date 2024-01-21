@@ -6,6 +6,10 @@ using Unity.VisualScripting;
 
 public class VolkObject : NetworkBehaviour
 {
+    [SerializeField] private string lore = "";   //platzhalter
+    public string Lore {
+        get{return lore;}
+    }
     [SyncVar] public float health;
 
     private int moralSkalenKategorieWert = 0;       //die klasse/kategorie in der sich der Moralwert befindet (<10% = 1, <25% = 2, <45% = 3. <55% = 4, <75% = 5, <90% = 6, >90% = 7)

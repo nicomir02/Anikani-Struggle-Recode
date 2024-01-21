@@ -6,6 +6,7 @@ using TMPro;
 
 public class TribeSpecificHelpPanel : MonoBehaviour
 {
+    public SaveHelper sv;
     public int volkID = 0;
     //ausgewähltes Volk gechached
     private StandardVolk volk;
@@ -36,8 +37,19 @@ public class TribeSpecificHelpPanel : MonoBehaviour
             Unit u = volk.getUnitByID(kvp.Value).GetComponent<Unit>();
             
             o.transform.SetParent(scrollviewUnitTransform, false);
-            o.transform.GetChild(4).GetComponent<UnitID>().unit_ID = kvp.Value;
             o.transform.GetChild(0).GetComponent<Image>().sprite = u.Icon;
+            o.transform.GetChild(1).GetComponent<TMP_Text>().text = u.name;
+            o.transform.GetChild(2).GetComponent<TMP_Text>().text = u.Lore;
+            string result = "" + 
+                "\nHealth: " + u.StandardMaxHealth +
+                "\nAttackRange: " + u.StandardAttackRange +
+                "\nAttackValue: " + u.StandardAttackValue +
+                "\nMovement: " + u.StandardMaxSteps;
+            o.transform.GetChild(3).GetComponent<TMP_Text>().text = result;
+
+
+            /*o.transform.GetChild(4).GetComponent<UnitID>().unit_ID = kvp.Value;
+            
 
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
             
@@ -49,7 +61,7 @@ public class TribeSpecificHelpPanel : MonoBehaviour
 
             o.transform.GetChild(4).GetComponent<UnitID>().Kosten = unitKosten;
 
-            if(i++ > 0) generatedUnitPrefabs.Add(o);
+            if(i++ > 0) generatedUnitPrefabs.Add(o);*/
         }
     }
 
@@ -63,11 +75,23 @@ public class TribeSpecificHelpPanel : MonoBehaviour
             Building b = volk.getBuildingByID(kvp.Value).GetComponent<Building>();
 
             o.transform.SetParent(scrollviewBuildingTransform, false);
-            o.transform.GetChild(4).GetComponent<BuildingID>().building_id = kvp.Value;
             if(b.Icon != null) o.transform.GetChild(0).GetComponent<Image>().sprite = b.Icon;
+            o.transform.GetChild(1).GetComponent<TMP_Text>().text = b.name;
+            o.transform.GetChild(2).GetComponent<TMP_Text>().text = b.Lore;
+            string result = "" + 
+                "\nHealth: " + b.StandardMaxHealth +
+                "\nAttackRange: " + b.StandardAttackRange +
+                "\nAttackValue: " + b.StandardAttackValue;
+            o.transform.GetChild(3).GetComponent<TMP_Text>().text = result;
+            
+            
+            /*
+            
+            o.transform.GetChild(4).GetComponent<BuildingID>().building_id = kvp.Value;
+            
 
             TMP_Text text = o.transform.GetChild(3).GetComponent<TMP_Text>();
-            o.transform.GetChild(1).GetComponent<TMP_Text>().text = b.name;
+            
             o.transform.GetChild(2).GetComponent<TMP_Text>().text = "Standard Health " + b.standardMaxHealth + "\n";
             text.text = "";
             Dictionary<Ressource, float> buildingKosten = b.getKosten();
@@ -78,12 +102,12 @@ public class TribeSpecificHelpPanel : MonoBehaviour
             o.transform.GetChild(4).GetComponent<BuildingID>().Kosten = buildingKosten;
 
             if(i++ > 0) generatedBuildingPrefabs.Add(o);
+            */
         }
     }
 
     public void setVolk(){
         Debug.Log("Start setVolk");
-        SaveHelper sv = GameObject.Find("___Everywhere___/----NetworkManager----").GetComponent<SaveHelper>();
         volk = sv.Voelker[volkID];
     }
 }
