@@ -133,6 +133,7 @@ public class VolkObject : NetworkBehaviour
     private void loadAnimations() {
         transform.GetChild(4).GetComponent<AniSpriteMerger>().aniMerge();
         idle = transform.GetChild(4).GetComponent<AniSpriteMerger>().GetList(); 
+        animationList = idle;
     }
 
     public bool m_selected = false;
@@ -272,9 +273,8 @@ public class VolkObject : NetworkBehaviour
         mm = GameObject.Find("___InGame___/----Manager----/GameManager").GetComponent<MoralManager>();
         rm = GameObject.Find("___InGame___/----Manager----/RoundManager").GetComponent<RoundManager>();
         loadAnimations();
-        animationList = idle;
         safe = GetComponent<SpriteRenderer>().sprite;
-        StartCoroutine(animationStart(0));
+        animationStart(0, -1);
         //für moralsuwirkungen erstmal zu testen
         maxHealth = standardMaxHealth;
         attackRange = standardAttackRange;
@@ -330,25 +330,52 @@ public class VolkObject : NetworkBehaviour
         }
         moralSkalenKategorieWert = count;   //den aktuellen Kategoriewert anpassen
     }
+    [Command(requiresAuthority=false)]
+    public void animationStart(int cur, int next) {
+        if(next == -1) {
+            RpcanimationStart(cur, -1);
+        }else {
+            RpcanimationStart(cur, next);
+        }
+    }    
+    [ClientRpc]
+    public void RpcanimationStart(int cur, int next) {
+        if(next == -1) {
+            StartCoroutine(animation(cur));
+        }else {
+            StartCoroutine(animation(cur, next));
+        }
+    }    
     
-
-    public IEnumerator animationStart(int cur, bool change=false) {
+    
+    public IEnumerator animation(int cur, int next=-1) {
         if(animationList.Count == 0) animationList.Add(safe);
 
         if(++cur >= animationList.Count) {
             cur = 0;
-        }
-        if(cur==0 && change==false) {
-            animationList = idle;
-        }else if(change == true) {
-            cur = 0;
+            if(next != -1) {
+                switch(next) {
+                    case 0:
+                        animationList = idle;
+                        break;
+                }
+                    
+                next = -1;
+            }
         }
         
         GetComponent<SpriteRenderer>().sprite = animationList[cur];
 
         yield return new WaitForSecondsRealtime(animationAbstand);
+        Debug.Log(cur + " " + animationList.Count);
 
-        StartCoroutine(animationStart(cur, change));
+        if(next == -1) {
+            Debug.Log("a");
+            StartCoroutine(animation(cur, -1));
+        }else {
+            Debug.Log("b");
+            StartCoroutine(animation(cur, next));
+        }
     }
 
     public virtual bool isObjectAtPosition(Vector3Int vec) {

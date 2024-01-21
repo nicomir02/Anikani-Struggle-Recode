@@ -50,6 +50,8 @@ public class Unit : VolkObject
     private MapBehaviour mapBehaviour;
 
     private Area area;
+
+    private bool facingRight = true;
     
     
     [SyncVar] public Vector3Int currentPosition; //Wieder private machen nach test
@@ -243,20 +245,12 @@ public class Unit : VolkObject
             changeSteps(0);
             lastMoveWasAttack = true;
         }else if(obj.transform.parent != transform.parent){
-            if(transform.position.x >= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
-                animationList = frontAttack;
-            }else if(transform.position.x >= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
-                animationList = backAttack;
-            }else if(transform.position.x <= obj.transform.position.x && transform.position.y >= obj.transform.position.y) {
-                animationList = frontAttack;
-            }else if(transform.position.x <= obj.transform.position.x && transform.position.y <= obj.transform.position.y) {
-                animationList = backAttack;
-            }
+            
             if(GetComponent<AudioSource>() == null) {
                 gameObject.AddComponent<AudioSource>();
             }
             lastAttack = 0; 
-
+            angriffAnimation(this, obj);
             obj.changeHealth(-attackValue);
 
             steps = 0;      //übrige Aktions/Schrittanzahl auf 0 gesetzt
@@ -268,6 +262,64 @@ public class Unit : VolkObject
             GetComponent<AudioSource>().clip = attackSound;
             GetComponent<AudioSource>().Play();
         }
+    }
+
+    [Command(requiresAuthority=false)]
+    public void angriffAnimation(VolkObject v, VolkObject obj) {
+        RpcangriffAnimation(this, obj);
+    }
+
+    [ClientRpc]
+    public void RpcangriffAnimation(VolkObject v, VolkObject obj) {
+
+        if(v.transform.position.x >= obj.transform.position.x && v.transform.position.y >= obj.transform.position.y) {
+            animationList = frontAttack;
+        }else if(v.transform.position.x >= obj.transform.position.x && v.transform.position.y <= obj.transform.position.y) {
+            animationList = backAttack;
+        }else if(v.transform.position.x <= obj.transform.position.x && v.transform.position.y >= obj.transform.position.y) {
+            animationList = frontAttack;
+        }else if(v.transform.position.x <= obj.transform.position.x && v.transform.position.y <= obj.transform.position.y) {
+            animationList = backAttack;
+        }
+        animationStart(0, 0);
+    }
+
+    
+
+    void Flip(){ //0 = right, 1 = left;
+        facingRight = !facingRight;
+        Vector2 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    [Command(requiresAuthority=false)]
+    public void moveAnimation(Vector3 v, Vector3 obj) {
+        RpcMoveAnimation(v, obj);
+    }
+
+    [ClientRpc]
+    public void RpcMoveAnimation(Vector3 startingPosition, Vector3 position) {
+
+        List<Sprite> nextAnimation = animationList;
+        if(startingPosition.x >= position.x && startingPosition.y >= position.y) {
+            nextAnimation = frontWalk;
+            if(!facingRight) Flip();
+        }else if(startingPosition.x >= position.x && startingPosition.y <= position.y) {
+            nextAnimation = backWalk;
+            if(!facingRight) Flip();
+        }else if(startingPosition.x <= position.x && startingPosition.y >= position.y) {
+            nextAnimation = frontWalk;
+            if(facingRight) Flip();
+        }else if(startingPosition.x <= position.x && startingPosition.y <= position.y) {
+            nextAnimation = backWalk;
+            if(facingRight) Flip();
+        }
+        if(nextAnimation != animationList) {
+            animationList = nextAnimation;
+            animationStart(0, -1);
+        }
+       
     }
 
     public IEnumerator MoveToPosition(List<Vector3Int> positions, float timeToMove, Vector3Int from)
@@ -283,17 +335,9 @@ public class Unit : VolkObject
             }
 
             Vector3 position = tilemapHover.getVec3FromVec3Int(positions[i+1]);
-
-            if(startingPosition.x >= position.x && startingPosition.y >= position.y) {
-                animationList = frontWalk;
-            }else if(startingPosition.x >= position.x && startingPosition.y <= position.y) {
-                animationList = backWalk;
-            }else if(startingPosition.x <= position.x && startingPosition.y >= position.y) {
-                animationList = frontWalk;
-            }else if(startingPosition.x <= position.x && startingPosition.y <= position.y) {
-                animationList = backWalk;
-            }
-            animationStart(0, true);
+            moveAnimation(startingPosition, position);
+            
+            
 
             while (elapsedTime < timeToMove) {
                 elapsedTime += Time.deltaTime;
@@ -302,6 +346,7 @@ public class Unit : VolkObject
                 GetComponent<Renderer>().sortingOrder = (int) transform.position.z + 1;
                 yield return null;
             }
+            animationStart(idle.Count+1, 0);
         }
 
         transform.position = tilemapHover.getVec3FromVec3Int(positions[positions.Count-1]);
