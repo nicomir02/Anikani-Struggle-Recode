@@ -63,6 +63,8 @@ public class StandardVolk : MonoBehaviour
         return null;
     }
 
+
+
     public Dictionary<GameObject, int> getAllBuildingObjects() {
         Dictionary<GameObject, int> objects = new Dictionary<GameObject, int>();
         

@@ -395,7 +395,17 @@ public class VolkObject : NetworkBehaviour
         }else health += value;
         if(healthbar != null) healthChange(value);
         
-        if(health <= 0) destroyObject();
+        if(health <= 0) {
+            if(this is MainBuilding) {
+                foreach(VolkObject o in FindObjectsOfType<VolkObject>()) {
+                    if(o.transform.parent == transform.parent) {
+                        o.changeHealth(-o.maxHealth*2);
+                    }
+                }
+            }
+            GameObject.FindObjectsOfType<RoundManager>()[0].removePlayer(transform.parent.gameObject.name);
+            destroyObject();
+        }
     }
 
     [ClientRpc]

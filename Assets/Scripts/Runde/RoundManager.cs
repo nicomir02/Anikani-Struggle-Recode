@@ -61,6 +61,14 @@ public class RoundManager : NetworkBehaviour
     }
 
     [Command(requiresAuthority=false)]
+    public void removePlayer(string id) {
+        if(activePlayer.text == id) {
+            list.Remove(id);
+            CMDnextRound();
+        }
+    }
+
+    [Command(requiresAuthority=false)]
     public void startGame(List<string> listOfPlayers) {
         while(listOfPlayers.Count > 0) {
             int value = rand.Next(listOfPlayers.Count-1);
