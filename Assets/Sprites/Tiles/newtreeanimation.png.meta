@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 20
@@ -178,12 +178,12 @@ TextureImporter:
       name: newtreeanimation_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 12
-        width: 26
-        height: 36
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: newtreeanimation_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 12
-        width: 27
-        height: 36
+        x: 66
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: newtreeanimation_2
       rect:
         serializedVersion: 2
-        x: 152
-        y: 12
-        width: 26
-        height: 36
+        x: 132
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,12 +241,12 @@ TextureImporter:
       name: newtreeanimation_3
       rect:
         serializedVersion: 2
-        x: 217
-        y: 12
-        width: 27
-        height: 36
+        x: 198
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,12 +262,12 @@ TextureImporter:
       name: newtreeanimation_4
       rect:
         serializedVersion: 2
-        x: 283
-        y: 12
-        width: 26
-        height: 36
+        x: 264
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,12 +283,12 @@ TextureImporter:
       name: newtreeanimation_5
       rect:
         serializedVersion: 2
-        x: 348
-        y: 12
-        width: 27
-        height: 36
+        x: 330
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -304,12 +304,12 @@ TextureImporter:
       name: newtreeanimation_6
       rect:
         serializedVersion: 2
-        x: 414
-        y: 12
-        width: 26
-        height: 36
+        x: 396
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -325,12 +325,12 @@ TextureImporter:
       name: newtreeanimation_7
       rect:
         serializedVersion: 2
-        x: 480
-        y: 12
-        width: 27
-        height: 36
+        x: 462
+        y: 0
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.5, y: -0.1}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
