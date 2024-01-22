@@ -399,7 +399,7 @@ public class VolkObject : NetworkBehaviour
             if(this is MainBuilding) {
                 foreach(VolkObject o in FindObjectsOfType<VolkObject>()) {
                     if(o.transform.parent == transform.parent) {
-                        o.changeHealth(-o.maxHealth*2);
+                        o.destroyObject();
                     }
                 }
                 GameObject.FindObjectsOfType<RoundManager>()[0].removePlayer(transform.parent.gameObject.name);
