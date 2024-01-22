@@ -241,6 +241,9 @@ public class PlayerManager : NetworkBehaviour {
                 if(v.id == volkID) {
                     volk = v;
                     if(v.BackgroundMusicClip != null) {
+                        if(backgroundMusic == null) {
+                            backgroundMusic = GetComponent<AudioSource>();
+                        }
                         backgroundMusic.clip = v.BackgroundMusicClip;
                     }else {
                         //Standard Musik
