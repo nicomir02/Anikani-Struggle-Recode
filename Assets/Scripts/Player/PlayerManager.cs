@@ -236,6 +236,20 @@ public class PlayerManager : NetworkBehaviour {
     }
 
     void Update() {
+        if(volk == null && volkID != -1) {
+            foreach(StandardVolk v in FindObjectsOfType<SaveHelper>()[0].Voelker) {
+                if(v.id == volkID) {
+                    volk = v;
+                    if(v.BackgroundMusicClip != null) {
+                        backgroundMusic.clip = v.BackgroundMusicClip;
+                    }else {
+                        //Standard Musik
+                    }
+                    if(backgroundMusic.clip != null) backgroundMusic.Play();
+                }
+            }
+        }
+        
         if(!eingetragen && GameObject.Find("___InGame___/Canvas/LeisteOben/WoodCounter") != null) {
             woodCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/WoodCounter").GetComponent<TMP_Text>();
             nahrungsCounter = GameObject.Find("___InGame___/Canvas/LeisteOben/NahrungsCounter").GetComponent<TMP_Text>();
@@ -245,21 +259,6 @@ public class PlayerManager : NetworkBehaviour {
             addRessource(nahrung, 10f);
             maxInteractions = volk.StandardMaxInteractions;
         }
-
-        if(volk == null && volkID != -1) {
-            foreach(StandardVolk v in FindObjectsOfType<SaveHelper>()[0].Voelker) {
-                if(v.id == volkID) {
-                    volk = v;
-                    if(volk.BackgroundMusicClip != null) {
-                        backgroundMusic.clip = volk.BackgroundMusicClip;
-                    }else {
-                        //Standard Musik
-                    }
-                    if(backgroundMusic.clip != null) backgroundMusic.Play();
-                }
-            }
-        }
-        
     }
     
     [Command(requiresAuthority=false)]
