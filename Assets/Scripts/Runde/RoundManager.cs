@@ -45,6 +45,9 @@ public class RoundManager : NetworkBehaviour
         return isActive;
     }
 
+/*
+Hab es so gemacht, dass wenn ein MainBuilding kaputt geht, die anderen Buildings vom Spieler zerstört werden & das er aus dem RoundManager rausfliegt
+*/
     
 
     void nextRound() {

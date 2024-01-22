@@ -402,8 +402,8 @@ public class VolkObject : NetworkBehaviour
                         o.changeHealth(-o.maxHealth*2);
                     }
                 }
+                GameObject.FindObjectsOfType<RoundManager>()[0].removePlayer(transform.parent.gameObject.name);
             }
-            GameObject.FindObjectsOfType<RoundManager>()[0].removePlayer(transform.parent.gameObject.name);
             destroyObject();
         }
     }
