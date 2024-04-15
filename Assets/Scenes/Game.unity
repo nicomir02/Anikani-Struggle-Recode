@@ -973,74 +973,73 @@ MonoBehaviour:
     between players and their virtual army. Here''s a detailed overview of this groundbreaking
     feature:
 
-    
+
 
     Voice-Activated Commands:
 
-    
 
-    Real-Time Interaction:
-    Engage with your units in real-time by using your microphone to issue commands.
-    Directly control their movements, tactics, and actions with the power of your
-    voice.
 
-    Efficiency and Precision: The speech system enhances the speed and
-    precision of command inputs, providing a seamless and intuitive way to manage
-    your forces during the intensity of battle.
+    Real-Time Interaction: Engage
+    with your units in real-time by using your microphone to issue commands. Directly
+    control their movements, tactics, and actions with the power of your voice.
+
+    Efficiency
+    and Precision: The speech system enhances the speed and precision of command
+    inputs, providing a seamless and intuitive way to manage your forces during the
+    intensity of battle.
 
     Sentiment Analysis:
 
-    
 
-    Judging
-    Tone: A sophisticated sentiment analysis feature evaluates the tone and manner
-    of your voice commands. The system is attuned to detect variations in tone, volume,
-    and even speed of speech.
 
-    Impact on Gameplay: The sentiment analysis has
-    direct implications on the Moralvalue of your units. The way you communicate
-    with them influences their morale and overall performance on the battlefield.
+    Judging Tone: A sophisticated
+    sentiment analysis feature evaluates the tone and manner of your voice commands.
+    The system is attuned to detect variations in tone, volume, and even speed of
+    speech.
 
-    Unit
-    Preferences:
+    Impact on Gameplay: The sentiment analysis has direct implications
+    on the Moralvalue of your units. The way you communicate with them influences
+    their morale and overall performance on the battlefield.
 
-    
+    Unit Preferences:
 
-    Individual Preferences: Units in the game have distinct
-    personalities and preferences. Some respond better to assertive and direct commands,
-    while others appreciate a more polite and measured approach.
 
-    Dynamic Responses:
-    Tailor your communication style to match the preferences of individual units.
-    Building a rapport with your units enhances their responsiveness and boosts their
-    overall effectiveness.
+
+    Individual
+    Preferences: Units in the game have distinct personalities and preferences. Some
+    respond better to assertive and direct commands, while others appreciate a more
+    polite and measured approach.
+
+    Dynamic Responses: Tailor your communication
+    style to match the preferences of individual units. Building a rapport with your
+    units enhances their responsiveness and boosts their overall effectiveness.
 
     Moralvalue:
 
-    
 
-    Defining Morale: Moralvalue
-    is a metric reflecting the overall morale of your units. It is directly influenced
-    by how players communicate with their troops.
 
-    Gameplay Implications: Units
-    with higher Moralvalue exhibit improved combat performance, increased efficiency
-    in resource gathering, and quicker response times. Conversely, low Moralvalue
-    may lead to disobedience or reduced effectiveness in battle.
+    Defining
+    Morale: Moralvalue is a metric reflecting the overall morale of your units. It
+    is directly influenced by how players communicate with their troops.
+
+    Gameplay
+    Implications: Units with higher Moralvalue exhibit improved combat performance,
+    increased efficiency in resource gathering, and quicker response times. Conversely,
+    low Moralvalue may lead to disobedience or reduced effectiveness in battle.
 
     Strategic
     Impact:
 
-    
-
-    Tactical Considerations: As a commander, the way you manage
-    and maintain the morale of your units becomes a critical aspect of strategic
-    gameplay. Positive morale can turn the tide of a challenging battle, while negative
-    morale may lead to unrest and rebellion within your ranks.
 
 
-    With the speech
-    system, sentiment analysis, and unit preferences, this game introduces an unparalleled
+    Tactical Considerations: As a commander, the way you manage and
+    maintain the morale of your units becomes a critical aspect of strategic gameplay.
+    Positive morale can turn the tide of a challenging battle, while negative morale
+    may lead to unrest and rebellion within your ranks.
+
+
+    With the speech system,
+    sentiment analysis, and unit preferences, this game introduces an unparalleled
     level of player-unit interaction. Your ability to inspire, command, and lead
     your forces is not only a strategic necessity but a nuanced and personalized
     journey that shapes the destiny of your virtual army.'
@@ -13447,56 +13446,55 @@ MonoBehaviour:
     a central place, significantly influencing the course of the game. Here is a
     detailed description of the Moralvalue features:
 
-    
+
 
     Unit/Building-Specific
     Mood/Disposition:
 
-    
 
-    The mood or disposition of each individual unit
-    type or building is individually influencable.
+
+    The mood or disposition of each individual unit type
+    or building is individually influencable.
 
     Players have direct influence
     on how certain attributes of units and buildings are perceived.
 
-    Impact
-    on Gameplay:
+    Impact on
+    Gameplay:
 
-    
 
-    The mood/disposition of units and buildings has an
-    immediate impact on the overall course of the game.
 
-    Players must make strategic
-    decisions to maintain and increase the morale of their troops.
+    The mood/disposition of units and buildings has an immediate
+    impact on the overall course of the game.
 
-    Attributes
-    with Preferences/Dislikes:
+    Players must make strategic decisions
+    to maintain and increase the morale of their troops.
 
-    
+    Attributes with Preferences/Dislikes:
 
-    Units and buildings have general and
-    specific preferences or dislikes for various attributes.
 
-    For example, they
-    may like certain types of damage, be neutral towards it, or dislike it.
 
-    Positive
-    - Neutral - Negative:
+    Units
+    and buildings have general and specific preferences or dislikes for various attributes.
 
-    
+    For
+    example, they may like certain types of damage, be neutral towards it, or dislike
+    it.
 
-    Each unit or building can have a positive,
-    neutral, or negative attitude towards different attributes.
+    Positive - Neutral - Negative:
 
-    These attitudes
-    influence the behavior and efficiency of units in the game.
 
-    Random Selection
-    for Each Attribute:
 
-    
+    Each unit or building can have
+    a positive, neutral, or negative attitude towards different attributes.
+
+    These
+    attitudes influence the behavior and efficiency of units in the game.
+
+    Random
+    Selection for Each Attribute:
+
+
 
     Each unit or building has a random manifestation
     for each attribute, increasing the diversity of morale values in the game.
@@ -13504,55 +13502,55 @@ MonoBehaviour:
     Players
     need to adapt to the different preferences of their troops.
 
-    Individual
-    Unit/Building Morale:
+    Individual Unit/Building
+    Morale:
 
-    
 
-    Each unit or building has an individual morale
-    based on its specific preferences and dislikes.
 
-    Individual morale directly
-    influences their performance in the game.
+    Each unit or building has an individual morale based on its specific
+    preferences and dislikes.
+
+    Individual morale directly influences their performance
+    in the game.
 
     Overall Morale:
 
-    
 
-    The
-    overall morale of the player''s realm is defined by the sum of the individual
-    morale of all units and buildings.
 
-    High overall morale brings various strategic
-    advantages.
+    The overall morale of the player''s
+    realm is defined by the sum of the individual morale of all units and buildings.
+
+    High
+    overall morale brings various strategic advantages.
 
     Impact of Morale:
 
-    
 
-    Morale Scale: Morale is rated
-    on a scale from positive to neutral to negative.
 
-    Minor percentage changes
-    in several variables: Morale slightly influences various statistical variables,
-    including speed, damage, and resource yield.
+    Morale
+    Scale: Morale is rated on a scale from positive to neutral to negative.
 
-    Further Influence on Units/Buildings:
+    Minor
+    percentage changes in several variables: Morale slightly influences various statistical
+    variables, including speed, damage, and resource yield.
 
-    
+    Further Influence
+    on Units/Buildings:
+
+
+
+    Unplanned Attacks: Units may launch unexpected attacks
+    due to their mood or enhance their effectiveness in planned attacks.
 
     Unplanned
-    Attacks: Units may launch unexpected attacks due to their mood or enhance their
-    effectiveness in planned attacks.
+    Movement: Units might execute unforeseen movements due to their morale values,
+    challenging tactical planning.
 
-    Unplanned Movement: Units might execute
-    unforeseen movements due to their morale values, challenging tactical planning.
-
-    "Anikani
-    Re-Struggle" stands out with its sophisticated Moralvalue system, providing not
-    only strategic depth but also a dynamic and personalized player experience. Players
-    must keep track of not only their military power but also the emotions and preferences
-    of their troops to succeed in this epic strategy game.'
+    "Anikani Re-Struggle" stands out with its
+    sophisticated Moralvalue system, providing not only strategic depth but also
+    a dynamic and personalized player experience. Players must keep track of not
+    only their military power but also the emotions and preferences of their troops
+    to succeed in this epic strategy game.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16647,10 +16645,10 @@ MonoBehaviour:
     an additional building for extraction. The resource''s availability is tied to
     the rise in morale and the utilization of other resources.
 
-    
 
-    This
-    unique resource has caused the land to fracture, sparking intense conflicts between
+
+    This unique
+    resource has caused the land to fracture, sparking intense conflicts between
     diverse factions vying to conquer as much territory as possible and secure control
     over Anikani, utilizing any means necessary. Abuse and complete disregard for
     the responsible use of Anikani have led to ruptures in the space-time continuum.
@@ -23229,30 +23227,29 @@ MonoBehaviour:
     you''ll strategically navigate the terrain to collect essential resources for
     base construction, troop training, and upgrades.
 
-    
 
-    As you progress,
-    each unit type in your army comes with distinct preferences and needs. Balancing
-    these preferences, such as preferred terrain or specific resources, becomes crucial
+
+    As you progress, each
+    unit type in your army comes with distinct preferences and needs. Balancing these
+    preferences, such as preferred terrain or specific resources, becomes crucial
     for maintaining unit morale and maximizing efficiency. Adapt your strategy to
     ensure your units remain content and operate at their best.
 
-    
 
-    Engage
-    in intense battles with other players, where the layout of the tilemap and your
+
+    Engage in
+    intense battles with other players, where the layout of the tilemap and your
     strategic decisions play a pivotal role. Build alliances, forge treaties, or
     wage wars to dominate the tile-based world. With each turn, carefully plan your
     moves, resource allocations, and troop deployments to outsmart opponents and
     claim victory.
 
-    
 
-    Resource management, thoughtful troop composition,
-    and strategic placement on the tilemap are key elements for success. Whether
-    you choose diplomatic or aggressive approaches, the game offers a dynamic and
-    engaging multiplayer experience, where every decision influences the outcome
-    of the round.'
+
+    Resource management, thoughtful troop composition, and
+    strategic placement on the tilemap are key elements for success. Whether you
+    choose diplomatic or aggressive approaches, the game offers a dynamic and engaging
+    multiplayer experience, where every decision influences the outcome of the round.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -25977,11 +25974,11 @@ MonoBehaviour:
     strategic decisions to build diverse and powerful armies. Here''s a breakdown
     of the unit recruitment system in this game:
 
-    
+
 
     Recruitment Buildings:
 
-    
+
 
     Facilities:
     Specialized recruitment buildings, like barracks and archery ranges, are pivotal
@@ -25995,7 +25992,7 @@ MonoBehaviour:
 
     Unit Types:
 
-    
+
 
     Close Combat Type: Trained in barracks,
     close combat units are formidable warriors equipped for hand-to-hand combat.
@@ -26012,21 +26009,21 @@ MonoBehaviour:
 
     Tribe-Specific Units:
 
-    
 
-    Order Of Seraphs
-    - Angel Unit: The Angel unit, unique to the Order Of Seraphs, brings divine power
+
+    Order Of Seraphs -
+    Angel Unit: The Angel unit, unique to the Order Of Seraphs, brings divine power
     to the battlefield. With exceptional abilities, it stands as a symbol of the
     tribe''s strengths and strategies.
 
     Recruitment Costs:
 
-    
 
-    Resource
-    Scaling: The more units you have of a particular type, the higher the recruitment
-    cost becomes. This dynamic cost scaling reflects the challenges of maintaining
-    and expanding specialized forces.
+
+    Resource Scaling:
+    The more units you have of a particular type, the higher the recruitment cost
+    becomes. This dynamic cost scaling reflects the challenges of maintaining and
+    expanding specialized forces.
 
     Strategic Decisions: Players must carefully
     consider the composition of their army. While large armies may provide strength
@@ -26035,11 +26032,11 @@ MonoBehaviour:
 
     Training Upgrades:
 
-    
 
-    Enhancements:
-    Invest in training upgrades within recruitment buildings to improve the efficiency
-    and effectiveness of your units. These upgrades may include faster training times,
+
+    Enhancements: Invest
+    in training upgrades within recruitment buildings to improve the efficiency and
+    effectiveness of your units. These upgrades may include faster training times,
     increased unit attributes, or unlocking special abilities.
 
     Unit recruitment
@@ -27179,12 +27176,12 @@ MonoBehaviour:
     relies on securing essential resources: wood, stone, and food. Each plays a critical
     role in expanding your empire and maintaining a formidable army.
 
-    
+
 
     Wood
     and Stone:
 
-    
+
 
     Acquisition: Wood and stone are obtained through specialized
     resource acquisition buildings, such as lumber mills and quarries, strategically
@@ -27196,7 +27193,7 @@ MonoBehaviour:
 
     Food:
 
-    
+
 
     Acquisition:
     Establish farms on fertile terrain to cultivate food for your population. Farms
@@ -27209,10 +27206,10 @@ MonoBehaviour:
 
     Anikani (Unique Resource):
 
-    
 
-    Acquisition:
-    Anikani is a special resource that sets this game apart. Currently under development,
+
+    Acquisition: Anikani
+    is a special resource that sets this game apart. Currently under development,
     this unique resource will be gathered through specific in-game actions, creating
     an intriguing layer of gameplay depth and strategy.
 
