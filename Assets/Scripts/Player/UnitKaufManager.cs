@@ -23,6 +23,8 @@ public class UnitKaufManager : Panel
     [SerializeField] private GameObject prefabUnit;
     private List<GameObject> generatedPrefabsUnits = new List<GameObject>();
 
+    [SerializeField] private InputManager inputManager;
+
     
     TrainUnitBuilding saveBuilding;
 
@@ -63,7 +65,7 @@ public class UnitKaufManager : Panel
                 offen = false;
             }
         }
-        if((Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.U) )&& !pause.IsPause && offen) {
+        if((inputManager.GetButtonDown("Button_CANCEL") || inputManager.GetButtonDown("Unitpanel"))&& !pause.IsPause && offen) {
             closePanel();
         }
     }

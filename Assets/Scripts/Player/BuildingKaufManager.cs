@@ -17,6 +17,8 @@ public class BuildingKaufManager : Panel
 
     [SerializeField] private Pause pause;
 
+    [SerializeField] private InputManager inputManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class BuildingKaufManager : Panel
     // Update is called once per frame
     void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.B) && canPause()){
+        if(inputManager.GetButtonDown("BuildingPanel") && canPause()){
             if(!offen ){
                 openPanel();
                 offen = true;

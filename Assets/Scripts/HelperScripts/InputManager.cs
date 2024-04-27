@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
         if(PlayerPrefs.GetString("Button_CANCEL") == null || PlayerPrefs.GetString("Button_CANCEL") == "") PlayerPrefs.SetString("Button_CANCEL", KeyCode.Escape.ToString());
         if(PlayerPrefs.GetString("Button_KARTEHOCH") == null || PlayerPrefs.GetString("Button_KARTEHOCH") == "") PlayerPrefs.SetString("Button_KARTEHOCH", KeyCode.Keypad8.ToString());
         if(PlayerPrefs.GetString("Button_KARTERUNTER") == null || PlayerPrefs.GetString("Button_KARTERUNTER") == "") PlayerPrefs.SetString("Button_KARTERUNTER", KeyCode.Keypad5.ToString());
+        if(PlayerPrefs.GetString("Unitpanel") == null || PlayerPrefs.GetString("Unitpanel") == "") PlayerPrefs.SetString("Unitpanel", KeyCode.U.ToString());
+        if(PlayerPrefs.GetString("BuildingPanel") == null || PlayerPrefs.GetString("BuildingPanel") == "") PlayerPrefs.SetString("BuildingPanel", KeyCode.B.ToString());
         PlayerPrefs.Save();
     }
 
